@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Hamburger from 'hamburger-react';
 import Container from 'react-bootstrap/Container';
 import SideNav from './SideNav';
-import logoMini from '../assets/svg/logo.svg';
+import logo from '../assets/svg/logo.svg';
 
 const useMediaQuery = (width: number) => {
   const [targetReached, setTargetReached] = useState(false);
@@ -42,7 +42,12 @@ const NavBar = () => {
         <div className="flex justify-between items-center px-5">
           <Link href="/">
             <div className="logo">
-              <Image src={logoMini} alt="logo" className="h-10" />
+              <Image
+                alt="sea sight tours logo"
+                src="/logo.svg"
+                width={200}
+                height={200}
+              />
             </div>
           </Link>
 
