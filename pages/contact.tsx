@@ -3,10 +3,12 @@ import Image from 'next/image';
 import PageHero from '../components/Contact/PageHero';
 
 const Contact = () => {
+  const canada_address: string[] = ['5779 Desson Avenue', 'Niagara Falls', 'Ontario, Canada L2G 3T5'];
+  const usa_address: string[] = ['486 19th street', 'Niagara Falls', 'Buffalo, USA NY 14303'];
   return (
     <div className="Contact">
       <PageHero />
-      <div className="container pl-20 pb-10">
+      <section className="Call_us container pl-20 pb-10">
         <div className="Contact_details grid grid-cols-2 gap-20 px-5 pt-11 w-[70%] m-auto">
           <div className="Call_logo">
             <Image
@@ -16,7 +18,7 @@ const Contact = () => {
               height={600}
             />
           </div>
-          <div className="Call_us ">
+          <div className=" ">
             <h2 className="font-bold text-4xl text-slate-700">
               Call Us Anytime from: <br /> 8am-4pm <br /> Monday-Friday
             </h2>
@@ -34,10 +36,10 @@ const Contact = () => {
             <p className="text-sky-500 text-3xl">info@seesight-tours.com</p>
           </div>
         </div>
-      </div>
-      <section className="bg-gray-100">
+      </section>
+      <section className="contact_us_form bg-gray-100">
         <div className="container pt-20">
-          <div className="contact_us_form w-[40%] m-auto text-center pl-20 ">
+          <div className="w-[40%] m-auto text-center pl-20 ">
             <form className="flex flex-col text-center pb-20">
               <h2 className="text-4xl font-bold text-slate-700">
                 Send us a message
@@ -61,6 +63,53 @@ const Contact = () => {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      </section>
+      <section className="location">
+        <div className="location1_content grid grid-cols-2">
+          <div className="location_Text bg-red-500 text-white text-center px-10 py-20">
+            <h2 className="text-4xl font-bold">
+              Where are we Canada
+              <br />
+            </h2>
+            <br />
+            <div className="text-3xl">
+              <p>5779 Desson Avenue</p>
+              <p>Niagara Falls</p>
+              <p>Ontario, Canada L2G 3T5</p>
+            </div>
+          </div>
+          <div className="location_map">
+            <iframe
+              title="Where are we Canada"
+              src={`https://www.google.com/maps?q=${canada_address[0]}${canada_address[1]}${canada_address[2]}&output=embed`}
+              width="100%"
+              height="100%"
+              style={{ border: '0' }}
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div className="location2_content grid grid-cols-2">
+          <div className="location_map">
+            <iframe
+              title="Where are we USA"
+              src={`https://www.google.com/maps?q=${usa_address[0]}${usa_address[1]}${usa_address[2]}&output=embed`}
+              width="100%"
+              height="100%"
+              style={{ border: '0' }}
+              loading="lazy"
+            />
+          </div>
+          <div className="location_Text bg-red-500 text-white text-center p-20">
+            <h2 className="text-3xl font-bold">Where are we USA</h2>
+            <br />
+            <div className="text-3xl">
+              <p>486 19th street</p>
+              <p>Niagara Falls</p>
+              <p>Buffalo, USA NY 14303</p>
+            </div>
           </div>
         </div>
       </section>
