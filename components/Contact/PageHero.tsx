@@ -13,7 +13,7 @@ const PageHero = () => {
   `;
 
   return (
-    <section className="Hero_Section ">
+    <section className="Hero_Section opacity-80 ">
       <PageHero
         className="PageHero bg-no-repeat bg-cover bg-center flex justify-start items-center"
       >
