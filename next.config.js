@@ -10,7 +10,12 @@ module.exports = withReactSvg({
 });
 
 const nextConfig = {
-  reactStrictMode: true
+
+  reactStrictMode: true,
+  images: {
+    domains: ['res.cloudinary.com']
+  }
+
 };
 
 module.exports = nextConfig;
