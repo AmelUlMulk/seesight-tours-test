@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import LandingPage from '../components/Landingpage/landingpage';
 
 export default function Home() {
   return (
@@ -11,9 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h2 className="text-3xl font-bold underline bg-red-400">
-          This is Seesight Tours
-        </h2>
+        <LandingPage />
       </main>
     </>
   );

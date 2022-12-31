@@ -10,7 +10,6 @@ module.exports = withReactSvg({
 });
 
 const nextConfig = {
-
   reactStrictMode: true,
   images: {
     remotePatterns: [
@@ -19,10 +18,8 @@ const nextConfig = {
         hostname: 'res.cloudinary.com'
       }
     ]
-  }
-    domains: ['res.cloudinary.com']
-  }
-
+  },
+  domains: ['res.cloudinary.com']
 };
 
 module.exports = nextConfig;
