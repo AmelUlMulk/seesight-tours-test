@@ -102,7 +102,7 @@ const Privacy = () => {
         </p>
         <h1 className="text-3xl pt-8 pb-2 font-normal">OPT OUT PROCESS</h1>
         <p className="text-lg ">
-          Please note that cookies are specific to your browser and computer. If
+        Please note that cookies are specific to your browser and computer. If
           you change browsers and/or computers, your settings will not carry
           over. Opting out does not mean you will no longer receive
           advertisements. It does mean that See Sight Tours from which you opted
@@ -117,24 +117,26 @@ const Privacy = () => {
           demographic information for research purposes. None of this summarized
           demographic information will be capable of identifying you.
         </p>
-        <ul className="list-disc px-4 text-lg">
-          <li>Set your browser to decline third party cookies</li>
-          <li>
-            Make use of {''}
-            <span className="text-blue-400">Google cookie management</span>{' '}
-            processes
-          </li>
-          <li>Make use of Ad choices cookie management process</li>
-          <li>
-            You can easily opt out of cookie tracking by clicking on the
-            <span className="text-blue-400"> ‘opting out’ link </span>
-          </li>
-          <li>
-            Opt out of{' '}
-            <span className="text-blue-400">Interest based advertising</span>
-          </li>
-        </ul>
-
+          <ul className="list-disc px-4 text-lg">
+            <li>Set your browser to decline third party cookies</li>
+            <li>
+              Make use of {''}
+              <span className="text-blue-400">
+                Google cookie management
+              </span>{' '}
+              processes
+            </li>
+            <li>Make use of Ad choices cookie management process</li>
+            <li>
+              You can easily opt out of cookie tracking by clicking on the
+              <span className="text-blue-400"> ‘opting out’ link </span>
+            </li>
+            <li>
+              Opt out of{' '}
+              <span className="text-blue-400">Interest based advertising</span>
+            </li>
+          </ul>
+         
         <h1 className="text-3xl pt-8 pb-2 font-normal">
           ELECTRONIC NEWSLETTERS
         </h1>

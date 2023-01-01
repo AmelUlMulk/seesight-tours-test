@@ -1,11 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { gql } from '@apollo/client';
-import client from '../apollo-client';
-interface IProps {
-  blogs: any;
-}
-export default function Home({ blogs }: IProps) {
+
+export default function Home() {
   return (
     <>
       <Head>
@@ -21,24 +17,4 @@ export default function Home({ blogs }: IProps) {
       </main>
     </>
   );
-}
-
-export async function getStaticProps() {
-  const { data } = await client.query({
-    query: gql`
-      query BLOGS_PAGE {
-        blogsPage {
-          id
-          header
-          subheader
-          page_title
-        }
-      }
-    `
-  });
-  return {
-    props: {
-      blogsPage: data.blogsPage
-    }
-  };
 }

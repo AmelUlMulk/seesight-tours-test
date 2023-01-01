@@ -20,7 +20,13 @@ const nextConfig = {
       }
     ]
   },
+  service:{
+    name: "seesighttours",
+    endpoint:{
+      url:'https://boatapp.seesight-tours.com/console/'
+    }
 
+  }
 };
 
 module.exports = nextConfig;
