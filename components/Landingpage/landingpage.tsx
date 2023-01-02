@@ -8,7 +8,6 @@ const LandingPage = () => {
     <>
       <PageHero />
       <Trustbar />
-      <FeaturedNavSection />
       <FeaturedExperiences />
     </>
   );
