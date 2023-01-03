@@ -3,8 +3,16 @@ import Image from 'next/image';
 import PageHero from '../components/Contact/PageHero';
 
 const Contact = () => {
-  const canada_address: string[] = ['5779 Desson Avenue', 'Niagara Falls', 'Ontario, Canada L2G 3T5'];
-  const usa_address: string[] = ['486 19th street', 'Niagara Falls', 'Buffalo, USA NY 14303'];
+  const canada_address: string[] = [
+    '5779 Desson Avenue',
+    'Niagara Falls',
+    'Ontario, Canada L2G 3T5'
+  ];
+  const usa_address: string[] = [
+    '486 19th street',
+    'Niagara Falls',
+    'Buffalo, USA NY 14303'
+  ];
   return (
     <div className="Contact">
       <PageHero />
