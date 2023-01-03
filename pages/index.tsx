@@ -3,6 +3,12 @@ import Image from 'next/image';
 import LandingPage from '../components/Landingpage/landingpage';
 
 export default function Home() {
+import { gql } from '@apollo/client';
+import client from '../apollo-client';
+interface IProps {
+  blogs: any;
+}
+export default function Home({ blogs }: IProps) {
   return (
     <>
       <Head>
@@ -16,4 +22,24 @@ export default function Home() {
       </main>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const { data } = await client.query({
+    query: gql`
+      query BLOGS_PAGE {
+        blogsPage {
+          id
+          header
+          subheader
+          page_title
+        }
+      }
+    `
+  });
+  return {
+    props: {
+      blogsPage: data.blogsPage
+    }
+  };
 }
