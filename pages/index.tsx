@@ -1,14 +1,14 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import LandingPage from '../components/Landingpage/landingpage';
-
-export default function Home() {
 import { gql } from '@apollo/client';
 import client from '../apollo-client';
+
 interface IProps {
-  blogs: any;
+  featuredExp: any;
+  citydropdown: any;
 }
-export default function Home({ blogs }: IProps) {
+export default function Home({ featuredExp, citydropdown }: IProps) {
   return (
     <>
       <Head>
@@ -18,7 +18,7 @@ export default function Home({ blogs }: IProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <LandingPage />
+        <LandingPage featuredExp={featuredExp} citydropdown={citydropdown} />
       </main>
     </>
   );
@@ -27,19 +27,143 @@ export default function Home({ blogs }: IProps) {
 export async function getStaticProps() {
   const { data } = await client.query({
     query: gql`
-      query BLOGS_PAGE {
-        blogsPage {
-          id
+      query FEATUREDEXPERIENCES(
+        $dayTours: Boolean!
+        $multiday: Boolean!
+        $airportTransfers: Boolean!
+      ) {
+        homePage {
           header
           subheader
-          page_title
+          allThings: all_things_to_do {
+            product {
+              id: boat_id
+              name
+              slug
+              duration
+              price
+              cardMessage: card_message
+              cardSnippet: snippet
+              cardMedia: card_media {
+                name
+                alt: alternativeText
+                url
+                fragment: caption
+                type: provider_metadata
+              }
+              reviews {
+                id
+                rating
+              }
+            }
+          }
+          dayTours: one_day_tours @include(if: $dayTours) {
+            product {
+              id: boat_id
+              name
+              slug
+              duration
+              price
+              cardMessage: card_message
+              cardSnippet: snippet
+              cardMedia: card_media {
+                name
+                alt: alternativeText
+                url
+                fragment: caption
+                type: provider_metadata
+              }
+              reviews {
+                id
+                rating
+              }
+            }
+          }
+          multiday: multi_day_tours @include(if: $multiday) {
+            product {
+              id: boat_id
+              name
+              slug
+              duration
+              price
+              cardMessage: card_message
+              cardSnippet: snippet
+              cardMedia: card_media {
+                name
+                alt: alternativeText
+                url
+                fragment: caption
+                type: provider_metadata
+              }
+              reviews {
+                id
+                rating
+              }
+            }
+          }
+          airportTransfers: airport_transfer @include(if: $airportTransfers) {
+            product {
+              id: boat_id
+              name
+              slug
+              duration
+              price
+              cardMessage: card_message
+              cardSnippet: snippet
+              cardMedia: card_media {
+                name
+                alt: alternativeText
+                url
+                fragment: caption
+                type: provider_metadata
+              }
+              reviews {
+                id
+                rating
+              }
+            }
+          }
+        }
+        citiesDropdown: cities {
+          id
+          name
+          slug
+        }
+
+        totalProducts: productsConnection {
+          aggregate {
+            totalCount
+          }
+        }
+        totalDayTours: productsConnection(where: { type: "DAYTOUR" }) {
+          aggregate {
+            count
+          }
+        }
+        totalMultiDay: productsConnection(where: { type: "MULTIDAY" }) {
+          aggregate {
+            count
+          }
+        }
+        totalAirportPickup: productsConnection(
+          where: { type: "AIRPORTPICKUP" }
+        ) {
+          aggregate {
+            count
+          }
         }
       }
-    `
+    `,
+    variables: {
+      dayTours: true,
+      multiday: true,
+      airportTransfers: false
+    }
   });
   return {
     props: {
-      blogsPage: data.blogsPage
+      featuredExp: data.homePage,
+      citydropdown: data.citiesDropdown
     }
   };
 }

@@ -3,12 +3,19 @@ import FeaturedNavSection from '../FeaturedExperiences/FeaturedNavSec';
 import Trustbar from '../Trust/Trustbar';
 import PageHero from './Pagehero';
 
-const LandingPage = () => {
+interface IProps {
+  featuredExp: any;
+  citydropdown: any;
+}
+const LandingPage = ({ featuredExp, citydropdown }: IProps) => {
   return (
     <>
       <PageHero />
       <Trustbar />
-      <FeaturedExperiences />
+      <FeaturedExperiences
+        featuredExp={featuredExp}
+        citydropdown={citydropdown}
+      />
     </>
   );
 };

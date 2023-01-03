@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import FeaturedNavSection from './FeaturedNavSec';
+import { useQuery } from '@apollo/client';
+import { optimizeImage } from 'next/dist/server/image-optimizer';
 let arr = [
   {
     filterClass: 'allThings',
@@ -18,125 +20,39 @@ let arr = [
     filterName: 'Airport Transfer'
   }
 ];
-const filteredCity = [
-  {
-    __typename: 'Cities',
-    id: '8',
-    name: 'Saint John',
-    slug: 'saint-john-tours'
-  },
-  {
-    __typename: 'Cities',
-    id: '3',
-    name: 'Philadelphia',
-    slug: 'philadelphia-tours'
-  },
-  { __typename: 'Cities', id: '20', name: 'Austin', slug: 'austin-tours' },
-  { __typename: 'Cities', id: '5', name: 'Victoria', slug: 'victoria-tours' },
-  {
-    __typename: 'Cities',
-    id: '14',
-    name: 'Prince Edward Island',
-    slug: 'prince-edward-island-tours'
-  },
-  {
-    __typename: 'Cities',
-    id: '17',
-    name: 'Niagara Falls, Canada',
-    slug: 'niagara-falls-tours-canada'
-  },
-  {
-    __typename: 'Cities',
-    id: '21',
-    name: 'Fort Lauderdale',
-    slug: 'Fort-Lauderdale-Tours'
-  },
-  {
-    __typename: 'Cities',
-    id: '15',
-    name: 'Vancouver',
-    slug: 'vancouver-tours'
-  },
-  { __typename: 'Cities', id: '12', name: 'Newport', slug: 'newport-tours' },
-  { __typename: 'Cities', id: '4', name: 'Ottawa', slug: 'ottawa-tours' },
-  {
-    __typename: 'Cities',
-    id: '11',
-    name: 'Sydney, Nova Scotia',
-    slug: 'sydney-tours'
-  },
-  { __typename: 'Cities', id: '19', name: 'Miami', slug: 'miami-tours' },
-  {
-    __typename: 'Cities',
-    id: '7',
-    name: 'Niagara Falls, USA',
-    slug: 'niagara-falls-usa-tours'
-  },
-  { __typename: 'Cities', id: '10', name: 'Montreal', slug: 'montreal-tours' },
-  {
-    __typename: 'Cities',
-    id: '18',
-    name: 'San Antonio',
-    slug: 'san-antonio-tours'
-  },
-  {
-    __typename: 'Cities',
-    id: '9',
-    name: 'Providence',
-    slug: 'providence-tours'
-  },
-  { __typename: 'Cities', id: '2', name: 'Toronto', slug: 'toronto-tours' },
-  { __typename: 'Cities', id: '13', name: 'Halifax', slug: 'halifax-tours' },
-  { __typename: 'Cities', id: '16', name: 'Boston', slug: 'boston-tours' },
-  { __typename: 'Cities', id: '6', name: 'Chicago', slug: 'chicago-tours' },
-  {
-    __typename: 'Cities',
-    id: '22',
-    name: 'Savannah Tours',
-    slug: 'savannah-tours'
-  }
-];
-const FeaturedExperiences = () => {
+
+interface IProps {
+  featuredExp: any;
+  citydropdown: any;
+}
+const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
   const [activeNav, setActiveNav] = useState('allThings');
   const [city, setCity] = useState<any>('All Cities');
+  const [cityToggle, setCityToggle] = useState<boolean>(false);
   const [navArray, setNavArray] = useState<any>(arr);
-  // console.log('activeNav:', activeNav);
+  //////////////////////////////////////
+  console.log('homePage', featuredExp);
+  //////////////////////////////////////
+  const Drop_Down_options = () => {
+    let options: Array<Record<string, unknown>> = [];
+    let filteredCities = citydropdown ? citydropdown : [];
+    filteredCities?.forEach((obj: Record<string, unknown>) => {
+      options.push({ value: [obj.name], label: [obj.name] });
+    });
 
-  //Navbar button data
-  // useEffect(() => {
-  //   let finalNavArray: Array<Record<string, any>> = [];
-  //   let flag = true;
-  //   arr.forEach(item => {
-  //     finalNavArray.push(item);
-  //   });
-  //   if (city === 'All Cities') {
-  //     setNavArray(arr);
-  //   } else {
-  //     setNavArray(finalNavArray);
-  //     finalNavArray?.forEach(item => {
-  //       if (item.filterClass == activeNav) {
-  //         flag = false;
-  //       }
-  //     });
-  //     if (flag) {
-  //       setActiveNav('allThings');
-  //     }
-  //   }
-  // }, []);
-
-  // update cityname based of selected city
-  // useEffect(() => {
-  //   setCity(selectedcityname);
-  // }, [selectedcityname]);
-
-  //   return active nav
-  // const showActiveNav = () => {
-  //   if (activeNav === 'allThings') return 'All Things To Do';
-  //   else if (activeNav === 'dayTours') return 'Day Tours';
-  //   else if (activeNav === 'multiday') return 'Multi Day Tours';
-  //   else if (activeNav === 'airportTransfers') return 'Airport Transfer';
-  // };
-  // return filtered city data with sorting base on aplphabet
+    return options.sort((a: any, b: any) => {
+      let x = a.label[0].toUpperCase();
+      let y = b.label[0].toUpperCase();
+      return x === y ? 0 : x > y ? 1 : -1;
+    });
+  };
+  const sortedCities = Drop_Down_options();
+  const showActiveNav = () => {
+    if (activeNav === 'allThings') return 'All Things To Do';
+    else if (activeNav === 'dayTours') return 'Day Tours';
+    else if (activeNav === 'multiday') return 'Multi Day Tours';
+    else if (activeNav === 'airportTransfers') return 'Airport Transfer';
+  };
 
   return (
     <div>
@@ -145,7 +61,48 @@ const FeaturedExperiences = () => {
         setActiveNav={setActiveNav}
         navData={navArray}
       />
-      <h1 className="text-3xl">Featured Products</h1>
+      <div className="featured_dropdown flex justify-between mt-10 px-40">
+        <div>
+          <h1 className="text-3xl">Featured Experiences</h1>
+        </div>
+        <div className="city_dropDown flex gap-3 pr-20">
+          <p>{`Show ${showActiveNav()} in:`}</p>
+          <div
+            onMouseLeave={() => {
+              if (cityToggle) return setCityToggle(!cityToggle);
+            }}
+            className="dropdown relative max-w-[210px] w-[210px] "
+          >
+            <button
+              onClick={() => setCityToggle(!cityToggle)}
+              className="border-[1px] border-slate-300 rounded-md w-[100%] py-2"
+            >
+              All Cities
+            </button>
+            {cityToggle && (
+              <div className="dropdown_list border-1 border-slate-500 absolute right-0 z-50 w-[100%] h-[400px] overflow-scroll">
+                <div
+                  className="px-5 py-1 border-[1px] border-slate-3
+                00"
+                >
+                  All Cities
+                </div>
+                {sortedCities.map((opt: Record<string, any>, index) => {
+                  return (
+                    <div
+                      className="border-[1px] border-slate-3
+                00 px-3 py-1"
+                      key={opt.label}
+                    >
+                      {opt.label}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
