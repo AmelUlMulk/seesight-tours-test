@@ -31,7 +31,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
   const [cityToggle, setCityToggle] = useState<boolean>(false);
   const [navArray, setNavArray] = useState<any>(arr);
   //////////////////////////////////////
-  console.log('homePage', featuredExp);
+  // console.log('featuredExp', featuredExp);
   //////////////////////////////////////
   const Drop_Down_options = () => {
     let options: Array<Record<string, unknown>> = [];
@@ -61,11 +61,11 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
         setActiveNav={setActiveNav}
         navData={navArray}
       />
-      <div className="featured_dropdown flex justify-between mt-10 px-40">
+      <div className="featured_dropdown flex justify-between mt-10 px-20">
         <div>
           <h1 className="text-3xl">Featured Experiences</h1>
         </div>
-        <div className="city_dropDown flex gap-3 pr-20">
+        <div className="city_dropDown flex gap-3 pr-10">
           <p>{`Show ${showActiveNav()} in:`}</p>
           <div
             onMouseLeave={() => {
@@ -91,7 +91,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
                   return (
                     <div
                       className="border-[1px] border-slate-3
-                00 px-3 py-1"
+                00 px-3 py-1 bg-white"
                       key={opt.label}
                     >
                       {opt.label}

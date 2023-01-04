@@ -3,12 +3,15 @@ import Image from 'next/image';
 import LandingPage from '../components/Landingpage/landingpage';
 import { gql } from '@apollo/client';
 import client from '../apollo-client';
+import { HOMEPAGEINTERFACE } from '../graphql_api/homePage';
+import { HOMEPAGE } from '../graphql_api/homePage';
 
 interface IProps {
   featuredExp: any;
   citydropdown: any;
+  HomePage: any;
 }
-export default function Home({ featuredExp, citydropdown }: IProps) {
+export default function Home({ featuredExp, citydropdown, HomePage }: IProps) {
   return (
     <>
       <Head>
@@ -18,7 +21,11 @@ export default function Home({ featuredExp, citydropdown }: IProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <LandingPage featuredExp={featuredExp} citydropdown={citydropdown} />
+        <LandingPage
+          featuredExp={featuredExp}
+          citydropdown={citydropdown}
+          HomePage={HomePage}
+        />
       </main>
     </>
   );
@@ -160,10 +167,17 @@ export async function getStaticProps() {
       airportTransfers: false
     }
   });
+  const { data: HomePage } = await client.query<HOMEPAGEINTERFACE>({
+    query: HOMEPAGE,
+    variables: {
+      guides: false
+    }
+  });
   return {
     props: {
       featuredExp: data.homePage,
-      citydropdown: data.citiesDropdown
+      citydropdown: data.citiesDropdown,
+      HomePage: HomePage
     }
   };
 }
