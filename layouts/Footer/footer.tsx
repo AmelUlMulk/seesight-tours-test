@@ -21,8 +21,8 @@ const Footer = () => {
   return (
     <section className="footer_section ">
       <div className="flex px-20">
-        <div className="flex flex-wrap  gap-12 max-w-[1200px] mx-auto w-[100%] ">
-          <div className="logo-section">
+        <div className="flex flex-wrap  gap-14 max-w-[1200px] mx-auto w-[100%] ">
+          <div className="logo-section w-[100%] lg:w-[35%] sm:w-[50%] xsm:w-[90%] md:w-[40%]">
             <div className="image-wrapper">
               <Image
                 src="/logo.svg"
@@ -40,7 +40,7 @@ const Footer = () => {
               electronic
             </div>
           </div>
-          <div>
+          <div className="">
             <h1 className="text-2xl font-bold">Book your Tour</h1>
             <ul className="Book_your_tour mt-5">
               <li className="py-2">
@@ -87,7 +87,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div>
+          <div className="">
             <h1 className="text-2xl font-bold">Menu</h1>
             <ul className="Menu mt-5">
               <li className="py-2">
@@ -134,7 +134,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div>
+          <div className="">
             <h1 className="text-2xl font-bold">Get in Touch</h1>
             <ul className="Get_in_touch mt-5">
               <li className="py-2 flex gap-5 items-center">
@@ -173,7 +173,7 @@ const Footer = () => {
       </div>
 
       <div className="follow_us mt-2 ">
-        <div className="w-[40%] ml-auto flex gap-11 justify-center items-center bg-blue-500 text-2xl text-center text-white rounded-l-[25px] py-3">
+        <div className="w-[80%] lg:w-[40%] md:w-[60%] sm:w-[70%] xsm:w-[95%] ml-auto flex flex-wrap gap-11 xsm:gap-8 xxsm:gap-5 justify-center items-center bg-blue-500 text-2xl xsm:text-[1.20rem] text-center text-white rounded-l-[25px] py-3">
           <div className="">Follow us</div>
           <InstagramIcon />
           <FacebookIcon />
