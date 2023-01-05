@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+<<<<<<< Updated upstream
 .active{
     color: skyblue;
+=======
+.active {
+  color: skyblue;
 }
+html {
+  width: 100%;
+  overflow-x: hidden;
+>>>>>>> Stashed changes
+}
+
