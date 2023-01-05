@@ -1,13 +1,7 @@
-<<<<<<< Updated upstream
-import React from 'react';
-
-const Blogs = () => {
-  return <div>Blogs</div>;
-=======
 import React, { useState } from 'react';
 import { BLOGS_PAGE, BLOG_PAGE_INTERFACE } from '../../api/blogsPage';
 import PageHero from '../../components/Contact/PageHero';
-import client from '../../utils/connections/AppoloClient';
+import client from '../../apollo-client';
 import Image from 'next/image';
 import styled from 'styled-components';
 import Link from 'next/link';
@@ -90,7 +84,6 @@ const Blogs = ({ blogsPage, blogs }: BLOG_PAGE_INTERFACE) => {
       </div>
     </div>
   );
->>>>>>> Stashed changes
 };
 
 export default Blogs;
