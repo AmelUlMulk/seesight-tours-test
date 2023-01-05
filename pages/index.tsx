@@ -1,16 +1,12 @@
 import Head from 'next/head';
 import Image from 'next/image';
-<<<<<<< Updated upstream
+import PageHero from '../components/Contact/PageHero';
 import { gql } from '@apollo/client';
 import client from '../apollo-client';
 interface IProps {
   blogs: any;
 }
 export default function Home({ blogs }: IProps) {
-=======
-import PageHero from '../components/Contact/PageHero';
-export default function Home() {
->>>>>>> Stashed changes
   return (
     <>
       <Head>

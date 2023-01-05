@@ -51,7 +51,6 @@ const BlogHero = ({
   const StyledImage = styled(Image)`
     z-index: 0;
   `;
-  console.log('author', author);
   return (
     <section className="Hero_Section opacity-80 ">
       <BlogHero className="BlogHero bg-no-repeat bg-cover bg-center flex justify-start items-center">

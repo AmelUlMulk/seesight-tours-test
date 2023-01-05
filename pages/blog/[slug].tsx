@@ -1,12 +1,8 @@
 import React from 'react';
-<<<<<<< Updated upstream
-
-const Blog = () => {
-  return <div>Blog</div>;
-=======
 import styled from 'styled-components';
+import { gql } from '@apollo/client';
 import { BLOG_PAGE, BLOG_PAGE_INTERFACE } from '../../api/blogPage';
-import client from '../../utils/connections/AppoloClient';
+import client from '../../apollo-client';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 
@@ -173,7 +169,7 @@ export async function getStaticProps({ params }: Params) {
   const { slug } = params;
 
   const { data } = await client.query<BLOG_PAGE_INTERFACE>({
-    query: BLOG_PAGE(),
+    query: BLOG_PAGE,
     variables: {
       slug
     }
@@ -220,7 +216,6 @@ const Blog = ({ blogs }: BLOG_PAGE_INTERFACE) => {
       </BLOGPAGE>
     </div>
   );
->>>>>>> Stashed changes
 };
 
 export default Blog;
