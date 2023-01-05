@@ -14,9 +14,7 @@ const PageHero = () => {
 
   return (
     <section className="Hero_Section opacity-80 ">
-      <PageHero
-        className="PageHero bg-no-repeat bg-cover bg-center flex justify-start items-center"
-      >
+      <PageHero className="PageHero bg-no-repeat bg-cover bg-center flex justify-start items-center">
         <div className="PageHero_container flex flex-col pl-10 ">
           <div className="text-5xl font-bold text-white">
             <h1>Contact Us</h1>
