@@ -47,7 +47,6 @@ const PageHero = ({ title, snippet, media }: IProps): JSX.Element => {
   return (
     <section className="Hero_Section opacity-80 ">
       <PageHero className="PageHero bg-no-repeat bg-cover bg-center flex justify-start items-center">
-
         <StyledImage alt="guidesImage" src={media} layout="fill" />
 
         <div className="PageHero_container flex flex-col pl-10 ">
