@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import PageHero from '../components/Contact/PageHero';
 import { gql } from '@apollo/client';
 import client from '../apollo-client';
 interface IProps {
@@ -15,9 +16,7 @@ export default function Home({ blogs }: IProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h2 className="text-3xl font-bold underline bg-red-400">
-          This is Seesight Tours
-        </h2>
+        <PageHero title={''} snippet={''} media={undefined} />
       </main>
     </>
   );
