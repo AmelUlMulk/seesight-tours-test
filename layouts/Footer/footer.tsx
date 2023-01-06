@@ -18,172 +18,171 @@ const LinkStyle = styled.div<Props>`
 const Footer = () => {
   const router = useRouter();
   return (
-    <section id="footer_section" className="relative mt-10">
-      <div className="relative px-16 py-4">
-        <div className="flex ">
-          <div className="flex flex-wrap  gap-14 max-w-[1200px] mx-auto w-[100%] ">
-            <div className="logo-section w-[100%] lg:w-[35%] sm:w-[50%] xsm:w-[90%] md:w-[40%]">
-              <div id="image-wrapper">
-                <Image
-                  src="/logo.svg"
-                  width={200}
-                  height={200}
-                  alt="sea sight log image"
-                ></Image>
-              </div>
-              <div id="intro-paragraph " className="max-w-[350px] pt-10">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry&apos;s standard
-                dummy text ever since the 1500s, when an unknown printer took a
-                galley of type and scrambled it to make a type specimen book. It
-                has survived not only five centuries, but also the leap into
-                electronic
-              </div>
+    <section id="footer_section" className="relative py-10">
+      <div className="relative px-1 py-4">
+        <div className="flex flex-wrap  gap-10 2xl:gap-8 max-w-[1200px] 2xl:max-w-[2250px] mx-auto w-[100%] ">
+          <div className="logo-section px-5 md:px-8 lg:px-12 w-[100%] lg:w-[35%] sm:w-[50%] xsm:w-[90%] md:w-[40%]">
+            <div id="image-wrapper">
+              <Image
+                src="/logo.svg"
+                width={350}
+                height={350}
+                alt="sea sight log image"
+              ></Image>
             </div>
-            <div id="book_your_tour mt-5">
-              <h1 className="text-2xl font-bold">Book your Tour</h1>
-              <ul className="pt-2">
-                <li className="py-2">
-                  <Link href="/tours">
-                    <LinkStyle isActive={router.asPath === '/tours'}>
-                      Day Tours
-                    </LinkStyle>
-                  </Link>
-                </li>
-                <li className="py-2">
-                  <Link href="/multi-day-tours">
-                    <LinkStyle isActive={router.asPath === '/multi-day-tours'}>
-                      Mutli Day Tours
-                    </LinkStyle>
-                  </Link>
-                </li>
-                <li className="py-2">
-                  <Link href="/cities">
-                    <LinkStyle isActive={router.asPath === '/cities'}>
-                      Discover Cities
-                    </LinkStyle>
-                  </Link>
-                </li>
-                <li className="py-2">
-                  <Link href="trip-shepherd">
-                    <LinkStyle isActive={router.asPath === '/trip-shepherd'}>
-                      Trip Shepherd
-                    </LinkStyle>
-                  </Link>
-                </li>
-                <li className="py-2">
-                  <Link href="/faq">
-                    <LinkStyle isActive={router.asPath === '/faq'}>
-                      FAQ&apos;s
-                    </LinkStyle>
-                  </Link>
-                </li>
-                <li className="py-2">
-                  <Link href="/reviews">
-                    <LinkStyle isActive={router.asPath === '/reviews'}>
-                      Reviews
-                    </LinkStyle>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div id="menu">
-              <h1 className="text-2xl font-bold">Menu</h1>
-              <ul className="pt-2">
-                <li className="py-2">
-                  <Link href="/blog">
-                    <LinkStyle isActive={router.asPath === '/blog'}>
-                      Blog
-                    </LinkStyle>
-                  </Link>
-                </li>
-                <li className="py-2">
-                  <Link href="/privacy">
-                    <LinkStyle isActive={router.asPath === '/privacy'}>
-                      Privacy Policy
-                    </LinkStyle>
-                  </Link>
-                </li>
-                <li className="py-2">
-                  <Link href="/about">
-                    <LinkStyle isActive={router.asPath === '/about'}>
-                      About Us
-                    </LinkStyle>
-                  </Link>
-                </li>
-                <li className="py-2">
-                  <Link href="/contact">
-                    <LinkStyle isActive={router.asPath === '/contact'}>
-                      Contact Us
-                    </LinkStyle>
-                  </Link>
-                </li>
-                <li className="py-2">
-                  <Link href="/careers">
-                    <LinkStyle isActive={router.asPath === '/careers'}>
-                      Careers
-                    </LinkStyle>
-                  </Link>
-                </li>
-                <li className="py-2">
-                  <Link href="/partner">
-                    <LinkStyle isActive={router.asPath === '/partner'}>
-                      Become a Partner
-                    </LinkStyle>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div id="get_in_touch">
-              <h1 className="text-2xl font-bold">Get in Touch</h1>
-              <ul className="pt-2">
-                <li className="py-2 flex gap-5 items-center">
-                  <div>
-                    <ClockIcon />
-                  </div>
-                  <div>8am- 4am (Monday - Friday)</div>
-                </li>
-                <li className="py-2 flex gap-5 items-center">
-                  <div>
-                    <MobileIcon />
-                  </div>
-                  <div>1-888-961-6584 (Toll Free)</div>
-                </li>
-                <li className="py-2 flex gap-5 items-center">
-                  <div>
-                    <MobileIcon />
-                  </div>
-                  <div> 1-289-271-9767 (Local)</div>
-                </li>
-                <li className="py-2 flex gap-5 items-center">
-                  <div>
-                    <MobileIcon />
-                  </div>
-                  <div>1-8880-908-6056 (fax)</div>
-                </li>
-                <li className="py-2 flex gap-5 items-center">
-                  <div>
-                    <MessageIcon />
-                  </div>
-                  <div className="text-red-500"> Info@seesight-tours.com</div>
-                </li>
-              </ul>
+            <div id="intro-paragraph " className="max-w-[500px] pt-10 text-xl">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry&apos;s standard dummy
+              text ever since the 1500s, when an unknown printer took a galley
+              of type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic
             </div>
           </div>
+          <div id="book_your_tour" className="px-5 md:px-8 lg:px-12 pt-4">
+            <h1 className="text-4xl font-bold">Book your Tour</h1>
+            <ul className="pt-2">
+              <li className="py-2 text-2xl">
+                <Link href="/tours">
+                  <LinkStyle isActive={router.asPath === '/tours'}>
+                    Day Tours
+                  </LinkStyle>
+                </Link>
+              </li>
+              <li className="py-2 text-2xl">
+                <Link href="/multi-day-tours">
+                  <LinkStyle isActive={router.asPath === '/multi-day-tours'}>
+                    Mutli Day Tours
+                  </LinkStyle>
+                </Link>
+              </li>
+              <li className="py-2 text-2xl">
+                <Link href="/cities">
+                  <LinkStyle isActive={router.asPath === '/cities'}>
+                    Discover Cities
+                  </LinkStyle>
+                </Link>
+              </li>
+              <li className="py-2 text-2xl">
+                <Link href="trip-shepherd">
+                  <LinkStyle isActive={router.asPath === '/trip-shepherd'}>
+                    Trip Shepherd
+                  </LinkStyle>
+                </Link>
+              </li>
+              <li className="py-2 text-2xl">
+                <Link href="/faq">
+                  <LinkStyle isActive={router.asPath === '/faq'}>
+                    FAQ&apos;s
+                  </LinkStyle>
+                </Link>
+              </li>
+              <li className="py-2 text-2xl">
+                <Link href="/reviews">
+                  <LinkStyle isActive={router.asPath === '/reviews'}>
+                    Reviews
+                  </LinkStyle>
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div id="menu" className="px-5 md:px-8 lg:px-12 pt-4">
+            <h1 className="text-4xl font-bold">Menu</h1>
+            <ul className="pt-2">
+              <li className="py-2 text-2xl">
+                <Link href="/blog">
+                  <LinkStyle isActive={router.asPath === '/blog'}>
+                    Blog
+                  </LinkStyle>
+                </Link>
+              </li>
+              <li className="py-2 text-2xl">
+                <Link href="/privacy">
+                  <LinkStyle isActive={router.asPath === '/privacy'}>
+                    Privacy Policy
+                  </LinkStyle>
+                </Link>
+              </li>
+              <li className="py-2 text-2xl">
+                <Link href="/about">
+                  <LinkStyle isActive={router.asPath === '/about'}>
+                    About Us
+                  </LinkStyle>
+                </Link>
+              </li>
+              <li className="py-2 text-2xl">
+                <Link href="/contact">
+                  <LinkStyle isActive={router.asPath === '/contact'}>
+                    Contact Us
+                  </LinkStyle>
+                </Link>
+              </li>
+              <li className="py-2 text-2xl">
+                <Link href="/careers">
+                  <LinkStyle isActive={router.asPath === '/careers'}>
+                    Careers
+                  </LinkStyle>
+                </Link>
+              </li>
+              <li className="py-2 text-2xl">
+                <Link href="/partner">
+                  <LinkStyle isActive={router.asPath === '/partner'}>
+                    Become a Partner
+                  </LinkStyle>
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div id="get_in_touch" className="px-5 md:px-8 lg:px-12 pt-4">
+            <h1 className="text-4xl font-bold">Get in Touch</h1>
+            <ul className="pt-2">
+              <li className="py-2 text-2xl flex gap-5 items-center">
+                <div className="w-7">
+                  <ClockIcon />
+                </div>
+                <div>8am- 4am (Monday - Friday)</div>
+              </li>
+              <li className="py-2 text-2xl flex gap-5 items-center">
+                <div>
+                  <MobileIcon />
+                </div>
+                <div>1-888-961-6584 (Toll Free)</div>
+              </li>
+              <li className="py-2 text-2xl flex gap-5 items-center">
+                <div>
+                  <MobileIcon />
+                </div>
+                <div> 1-289-271-9767 (Local)</div>
+              </li>
+              <li className="py-2 text-2xl flex gap-5 items-center">
+                <div>
+                  <MobileIcon />
+                </div>
+                <div>1-8880-908-6056 (fax)</div>
+              </li>
+              <li className="py-2 text-2xl flex gap-5 items-center">
+                <div>
+                  <MessageIcon />
+                </div>
+                <div className="text-red-500"> Info@seesight-tours.com</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div id="watermark-top" className="absolute top-0 right-0 -z-20">
+          <Image
+            src="/watermark-rotate.jpg"
+            width={150}
+            height={140}
+            alt="sea sight tours watermark"
+          />
         </div>
       </div>
+
       <div
-        id="watermark-top"
-        className="absolute top-0 -right-[27px] -rotate-90 -z-20"
+        id="watermark-btttom"
+        className="absolute bottom-0 left-[66px] -z-20"
       >
-        <Image
-          src="/watermark.jpg"
-          width={200}
-          height={200}
-          alt="sea sight tours watermark"
-        />
-      </div>
-      <div id="watermark-btttom" className="absolute bottom-0 left-5 -z-20">
         <Image
           src="/watermark.jpg"
           width={300}
@@ -192,7 +191,10 @@ const Footer = () => {
         />
       </div>
       <div className="flex lg:flex-row lg:justify-between py-5 flex-col-reverse">
-        <div id="copyright" className="lg:pl-16 lg:py-2 py-10 text-center">
+        <div
+          id="copyright"
+          className="lg:pl-[55px] lg:py-2 md:pl-16 py-10 text-center"
+        >
           <p>Copyright © 2022 See Sight Tours. All rights reserved.</p>
         </div>
         <div
