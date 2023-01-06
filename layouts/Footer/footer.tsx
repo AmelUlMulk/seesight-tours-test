@@ -180,11 +180,11 @@ const Footer = () => {
       </div>
 
       <div
-        id="watermark-btttom"
+        id="watermark-bottom"
         className="absolute bottom-0 left-[66px] -z-20"
       >
         <Image
-          src="/watermark.jpg"
+          src="/watermark-hz.jpg"
           width={300}
           height={300}
           alt="sea sight tours watermark"
