@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import Image from 'next/image';
 import SwiperCore, {
   Navigation,
@@ -15,10 +15,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/lazy';
 import 'swiper/css/a11y';
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
- 
-const ProgressPagination=styled.div`
-    
-`
+
 const Carousel = ({ imagesArr }: any) => {
   const [keyValue, setKeyValue] = useState<number>(1);
   return (
@@ -35,14 +32,14 @@ const Carousel = ({ imagesArr }: any) => {
         slideToClickedSlide
         preloadImages
         pagination={{
-            clickable: true,
-            // eslint-disable-next-line object-shorthand
-            renderBullet: function (index, className) {
-              return `<div class="${className}"><div style="--dur:${
-                imagesArr[index]?.duration / 1000 + 0.3
-              }s" class="bullets"></div></div>`;
-            },
-          }}
+          clickable: true,
+          // eslint-disable-next-line object-shorthand
+          renderBullet: function (index, className) {
+            return `<div class="${className}"><div style="--dur:${
+              imagesArr[index]?.duration / 1000 + 0.3
+            }s" class="bullets"></div></div>`;
+          }
+        }}
         autoplay={{
           stopOnLastSlide: false,
           disableOnInteraction: false
@@ -68,8 +65,14 @@ const Carousel = ({ imagesArr }: any) => {
                 playsInline
               />
             ) : (
-              <div >
-                <Image src={image.imageURL} width={500} height={500} alt="" className='min-w-[100%]'/>
+              <div>
+                <Image
+                  src={image.imageURL}
+                  width={500}
+                  height={500}
+                  alt=""
+                  className="min-w-[100%]"
+                />
               </div>
             )}
           </SwiperSlide>

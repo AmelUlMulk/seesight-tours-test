@@ -36,8 +36,8 @@ interface PRODUCTINTERFACE {
     }
   ];
 }
-interface SLUG_INTERFACE{
-  slug:string;
+interface SLUG_INTERFACE {
+  slug: string;
 }
 interface ATTRACTION_SLUGS_INTERFACE {
   cities: [attractions: [SLUG_INTERFACE]];
@@ -119,7 +119,7 @@ const ATTRACTION_PAGE = gql`
   }
 `;
 export async function getStaticPaths() {
-  const { data } = await client.query({
+  const { data } = await client.query<ATTRACTION_SLUGS_INTERFACE>({
     query: ATTRACTION_PAGE_SLUGS
   });
   const arr: any = [];
@@ -222,7 +222,7 @@ const SubSlug = ({ attraction }: IProps) => {
         </div>
         <LocationMap
           name={name}
-        address={address}
+          address={address}
           data={{ hoursOfOperation, address }}
         />
       </div>
