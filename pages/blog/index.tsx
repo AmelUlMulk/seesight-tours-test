@@ -41,6 +41,7 @@ const Blogs = ({ blogsPage, blogs }: BLOG_PAGE_INTERFACE) => {
         media={
           '	https://res.cloudinary.com/see-sight-tours/image/upload/w_1440,h_500/t_header/f_auto,q_auto,/fl_progressive:steep/v1581435096/american-falls-luna-island-rainbow-bridge.webP'
         }
+        video={false}
       />
       <div className=" flex justify-center ">
         <div className="grid w-5/6 grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-1">
