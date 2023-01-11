@@ -16,7 +16,12 @@ export default function Home({ blogs }: IProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <PageHero title={''} snippet={''} media={undefined} />
+        <PageHero
+          title={''}
+          snippet={''}
+          media="https://res.cloudinary.com/see-sight-tours/video/upload/v1658237954/landing-page-hero_mu19mc.mp4"
+          video={true}
+        />
       </main>
     </>
   );
