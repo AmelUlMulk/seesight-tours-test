@@ -39,7 +39,7 @@ const NavBar = () => {
   return (
     <header className="Navbar relative py-5 bg-gray-100">
       <Container>
-        <div className="flex justify-between items-center px-5">
+        <div className="flex justify-between items-center px-5 gap-24">
           <Link href="/">
             <div className="logo">
               <Image
