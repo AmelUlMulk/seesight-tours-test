@@ -40,7 +40,7 @@ interface SLUG_INTERFACE {
   slug: string;
 }
 interface ATTRACTION_SLUGS_INTERFACE {
-  cities: [attractions: [SLUG_INTERFACE]];
+  cities: [attractions: [{ slug: string }]];
 }
 interface ATTRACTION_PAGE_INTERFACE {
   attractions: [ATTRACTION];
@@ -64,8 +64,10 @@ interface ATTRACTION {
 }
 const ATTRACTION_PAGE_SLUGS = gql`
   query ATTRACTION_SLUGS {
-    attractions {
-      slug
+    cities {
+      attractions {
+        slug
+      }
     }
   }
 `;
@@ -123,19 +125,34 @@ export async function getStaticPaths() {
     query: ATTRACTION_PAGE_SLUGS
   });
   const arr: any = [];
+  const slugArr: Array<Record<string, string>> = [];
   const { cities: [...attractions] = [] } = data;
   attractions?.forEach((atr: any) => {
     atr.attractions.forEach((atr1: any) => {
       arr.push(atr1);
     });
   });
+  arr.forEach((attr: any) => {
+    slugArr.push({
+      slug1: attr.slug.split('/')[0],
+      slug2: attr.slug.split('/')[1]
+    });
+  });
+  const paths = slugArr.map((slg: Record<string, string>) => {
+    return {
+      params: {
+        slug: `${slg.slug1}`,
+        slug2: `${slg.slug2}`
+      }
+    };
+  });
+
   return {
-    paths: arr.map((attr: any) => {
-      return { params: { slug2: attr.slug.toString().split('/')[1] } };
-    }),
-    fallback: true
+    paths,
+    fallback: false
   };
 }
+
 export async function getStaticProps({ params }: IProps) {
   const slug = `${params.slug}/${params.slug2}`;
   const {

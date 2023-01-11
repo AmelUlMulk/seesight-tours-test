@@ -1,5 +1,5 @@
-const MainSlug = () => {
-  return <div>This is Main Slug</div>;
+const CityPage = () => {
+  return <h2>Sub Slug</h2>;
 };
 
-export default MainSlug;
+export default CityPage;
