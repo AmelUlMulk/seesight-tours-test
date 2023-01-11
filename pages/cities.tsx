@@ -3,8 +3,8 @@ import client from '../apollo-client';
 import PageHero from '../components/Contact/PageHero';
 import styled from 'styled-components';
 import Image from 'next/image';
-import Link from 'next/link';
 import { CITIES_PAGE_INTERFACE, CITIES_PAGE } from '../api/citiesPage';
+import Link from 'next/link';
 
 export async function getStaticProps() {
   const { data } = await client.query<CITIES_PAGE_INTERFACE>(CITIES_PAGE);
@@ -32,7 +32,6 @@ const StyledImage = styled(Image)`
 `;
 
 const Cities = ({ citiesPage }: CITIES_PAGE_INTERFACE) => {
-  console.log('Cities', citiesPage);
   return (
     <div>
       <PageHero
@@ -45,32 +44,38 @@ const Cities = ({ citiesPage }: CITIES_PAGE_INTERFACE) => {
       />
       <h1 className="font-bold text-4xl text-center pt-10">Featured Cities</h1>
       <div className="flex justify-center">
-        <div className="grid w-5/6 grid-cols-4 gap-3">
+        <div className="grid w-5/6 grid-cols-4 gap-3 xxsm:grid-cols-1 xsm:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {citiesPage.featured.map(cities => (
             <div className="flex justify-center w-full" key={cities.city.id}>
-              <CityCards className="  max-w-xs w-full rounded-lg overflow-hidden shadow-lg ">
-                <StyledImage
-                  src={cities.city.cardMedia[0].url}
-                  alt={cities.city.cardMedia[0].url}
-                  width={500}
-                  height={200}
-                />
-                <div className="px-2 py-4 relative">
-                  <div className="font-bold text-xl mb-2 px-5 text-center">
-                    {cities.city.name}
+              <CityCards className="  max-w-xs w-full rounded-lg overflow-hidden shadow-lg cursor-pointer transform transition duration-500 hover:scale-105">
+                <Link href={`/${cities.city.slug}`}>
+                  <StyledImage
+                    src={cities.city.cardMedia[0].url}
+                    alt={cities.city.cardMedia[0].url}
+                    width={500}
+                    height={200}
+                  />
+                  <div className="px-2 py-4 relative">
+                    <div className="font-bold text-xl mb-2 px-5 text-center">
+                      {cities.city.name}
+                    </div>
+                    <div className="px-5 text-base text-center">
+                      {cities.city.cardSnippet}
+                    </div>
                   </div>
-                </div>
+                </Link>
               </CityCards>
             </div>
           ))}
         </div>
       </div>
+
       <h1 className="font-bold text-4xl text-center pt-10">All Cities</h1>
       <div className="flex justify-center">
-        <div className="grid w-5/6 grid-cols-4 gap-3">
+        <div className="grid w-5/6 grid-cols-4 gap-3 xxsm:grid-cols-1 xsm:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {citiesPage.cities.map(cities => (
             <div className="flex justify-center w-full" key={cities.city.id}>
-              <CityCards className="  max-w-xs w-full rounded-lg overflow-hidden shadow-lg ">
+              <CityCards className="  max-w-xs w-full rounded-lg overflow-hidden shadow-lg cursor-pointer transform transition duration-500 hover:scale-105">
                 <StyledImage
                   src={cities.city.cardMedia[0].url}
                   alt={cities.city.cardMedia[0].url}

@@ -47,6 +47,10 @@ const PageHero = ({ title, snippet, media, video }: IProps): JSX.Element => {
   `;
   const StyledVideo = styled.video`
     height: 60vh;
+    object-fit: cover;
+    @media (max-width: 2200px) {
+      height: 69vh;
+    }
     width: 100vw !important;
   `;
 
@@ -61,7 +65,7 @@ const PageHero = ({ title, snippet, media, video }: IProps): JSX.Element => {
           <div className="font-bold text-white">
             <h1>{title}</h1>
           </div>
-          <div className="text-2xl text-white">
+          <div className="text-2xl text-white ">
             <p>{snippet}</p>
           </div>
         </div>
