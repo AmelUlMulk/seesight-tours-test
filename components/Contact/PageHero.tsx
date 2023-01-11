@@ -58,11 +58,7 @@ const PageHero = ({ title, snippet, media, video }: IProps): JSX.Element => {
     <section className="Hero_Section opacity-80 overflow-hidden">
       <PageHero className="PageHero bg-no-repeat bg-cover bg-center flex justify-start items-center ">
         {!video && <StyledImage alt="guidesImage" src={media} layout="fill" />}
-        {video && (
-          <StyledVideo src={media} muted loop autoPlay playsInline />
-        )}{' '}
-
-
+        {video && <StyledVideo src={media} muted loop autoPlay playsInline />}
         <div className="PageHero_container flex flex-col pl-10 ">
           <div className="font-bold text-white">
             <h1>{title}</h1>

@@ -1,10 +1,10 @@
 import { ApolloClient, InMemoryCache, HttpLink, from } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
 const httpLink = new HttpLink({
-  uri: String(process.env.REACT_APP_URI),
+  uri: String(process.env.NEXT_PUBLIC_URI),
   headers: {
-    [String(process.env.REACT_APP_CLIENT_HEADER)]:
-      String(process.env.REACT_APP_CLIENT_VALUE) ?? ''
+    [String(process.env.NEXT_PUBLIC_CLIENT_HEADER)]:
+      String(process.env.NEXT_PUBLIC_CLIENT_VALUE) ?? ''
   }
 });
 const errorLink = onError(({ graphQLErrors, networkError }) => {
