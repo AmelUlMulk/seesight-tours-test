@@ -61,6 +61,8 @@ const PageHero = ({ title, snippet, media, video }: IProps): JSX.Element => {
         {video && (
           <StyledVideo src={media} muted loop autoPlay playsInline />
         )}{' '}
+
+
         <div className="PageHero_container flex flex-col pl-10 ">
           <div className="font-bold text-white">
             <h1>{title}</h1>
