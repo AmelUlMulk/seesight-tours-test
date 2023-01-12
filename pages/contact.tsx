@@ -15,7 +15,14 @@ const Contact = () => {
   ];
   return (
     <div className="Contact">
-      <PageHero />
+      <PageHero
+        title={'Contact Us'}
+        snippet={"We'd love to hear from you"}
+        media={
+          'https://res.cloudinary.com/see-sight-tours/image/upload/q_auto,f_auto,c_fill,g_faces,h_570,w_1920,y_0/v1582036498/Happy-group-tour-guides.jpg'
+        }
+        video={false}
+      />
       <section className="Call_us container pl-20 pb-10">
         <div className="Contact_details grid grid-cols-2 gap-20 px-5 pt-11 w-[70%] m-auto">
           <div className="Call_logo">

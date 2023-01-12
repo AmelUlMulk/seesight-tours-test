@@ -1,18 +1,24 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import dayjs from 'dayjs';
 
 interface IProps {
   title: string;
   snippet: string;
-  media: string;
-  video: boolean;
+  media: any;
+  publicationDate: any;
+  author: any;
 }
-
-const PageHero = ({ title, snippet, media, video }: IProps): JSX.Element => {
-  const PageHero = styled.div`
+const BlogHero = ({
+  title,
+  snippet,
+  media,
+  publicationDate,
+  author
+}: IProps): JSX.Element => {
+  const BlogHero = styled.div`
     height: 50vh;
     position: relative;
-    overflow: hidden !important;
     &:before {
       background: black;
       content: '';
@@ -45,31 +51,24 @@ const PageHero = ({ title, snippet, media, video }: IProps): JSX.Element => {
   const StyledImage = styled(Image)`
     z-index: 0;
   `;
-  const StyledVideo = styled.video`
-    height: 60vh;
-    object-fit: cover;
-    @media (max-width: 2200px) {
-      height: 69vh;
-    }
-    width: 100vw !important;
-  `;
-
   return (
-    <section className="Hero_Section opacity-80 overflow-hidden">
-      <PageHero className="PageHero bg-no-repeat bg-cover bg-center flex justify-start items-center ">
-        {!video && <StyledImage alt="guidesImage" src={media} layout="fill" />}
-        {video && <StyledVideo src={media} muted loop autoPlay playsInline />}
+    <section className="Hero_Section opacity-80 ">
+      <BlogHero className="BlogHero bg-no-repeat bg-cover bg-center flex justify-start items-center">
+        <StyledImage alt="guidesImage" src={media} layout="fill" />
         <div className="PageHero_container flex flex-col pl-10 ">
           <div className="font-bold text-white">
             <h1>{title}</h1>
           </div>
-          <div className="text-2xl text-white ">
+          <div className="text-2xl text-white">
             <p>{snippet}</p>
           </div>
+          <div className="text-md text-white">
+            {`${dayjs(publicationDate).format('DD MMMM YYYY')} | ${author}`}
+          </div>
         </div>
-      </PageHero>
+      </BlogHero>
     </section>
   );
 };
 
-export default PageHero;
+export default BlogHero;
