@@ -1,7 +1,12 @@
 import Head from 'next/head';
 import Image from 'next/image';
-
-export default function Home() {
+import PageHero from '../components/Contact/PageHero';
+import { gql } from '@apollo/client';
+import client from '../apollo-client';
+interface IProps {
+  blogs: any;
+}
+export default function Home({ blogs }: IProps) {
   return (
     <>
       <Head>
@@ -11,10 +16,33 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h2 className="text-3xl font-bold underline bg-red-400">
-          This is Seesight Tours
-        </h2>
+        <PageHero
+          title={''}
+          snippet={''}
+          media="https://res.cloudinary.com/see-sight-tours/video/upload/v1658237954/landing-page-hero_mu19mc.mp4"
+          video={true}
+        />
       </main>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const { data } = await client.query({
+    query: gql`
+      query BLOGS_PAGE {
+        blogsPage {
+          id
+          header
+          subheader
+          page_title
+        }
+      }
+    `
+  });
+  return {
+    props: {
+      blogsPage: data.blogsPage
+    }
+  };
 }
