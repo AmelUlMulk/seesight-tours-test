@@ -51,11 +51,11 @@ const NavBar = () => {
           </Link>
 
           {mediaQuery ? (
-            <div>
+            <div className="pr-[10px]">
               <Hamburger toggled={isOpen} toggle={() => setOpen(!isOpen)} />
             </div>
           ) : (
-            <div className="Navlinks flex gap-4">
+            <div className="Navlinks flex gap-4 px-5">
               <Link
                 href="/tours"
                 className={
