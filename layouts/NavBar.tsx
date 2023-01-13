@@ -3,7 +3,6 @@ import Image from 'next/image';
 import React, { useState, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Hamburger from 'hamburger-react';
-import Container from 'react-bootstrap/Container';
 import SideNav from './SideNav';
 import logo from '../assets/svg/logo.svg';
 
@@ -34,14 +33,14 @@ const useMediaQuery = (width: number) => {
 const NavBar = () => {
   const [isOpen, setOpen] = useState<boolean>(false);
   const router = useRouter();
-  const mediaQuery = useMediaQuery(900);
+  const mediaQuery = useMediaQuery(1024);
   // eslint-disable-next-line no-console
   return (
     <header className="Navbar relative py-5 bg-gray-100">
-      <Container>
-        <div className="flex justify-between items-center px-5">
+      <div className="mx-auto 2xl:max-w-[1650px] xl:max-w-[1280px] lg:max-w-[1024px] md:max-w-[832px] sm:max-w-[640px] xsm:max-w-[576px] ">
+        <div className="flex justify-between items-center gap-24">
           <Link href="/">
-            <div className="logo">
+            <div className="logo px-2">
               <Image
                 alt="sea sight tours logo"
                 src="/logo.svg"
@@ -52,11 +51,11 @@ const NavBar = () => {
           </Link>
 
           {mediaQuery ? (
-            <div className="pr-10">
+            <div className="pr-[10px]">
               <Hamburger toggled={isOpen} toggle={() => setOpen(!isOpen)} />
             </div>
           ) : (
-            <div className="Navlinks flex gap-4">
+            <div className="Navlinks flex gap-4 px-5">
               <Link
                 href="/tours"
                 className={
@@ -121,7 +120,7 @@ const NavBar = () => {
                 href="/my-tours"
                 className={
                   router.pathname.split('/')[1] == 'my-tours'
-                    ? 'active hover:text-blue-400 px-1 '
+                    ? 'active hover:text-blue-400 pr-2 '
                     : 'hover:text-blue-400 pl-1'
                 }
               >
@@ -130,7 +129,7 @@ const NavBar = () => {
             </div>
           )}
         </div>
-      </Container>
+      </div>
       <SideNav isOpen={isOpen} setOpen={setOpen} />
     </header>
   );
