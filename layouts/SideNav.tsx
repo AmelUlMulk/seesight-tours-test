@@ -12,55 +12,84 @@ import styled from 'styled-components';
 import FaceBookIcon from '../assets/svg/aifillfb.svg';
 import TwitterIcon from '../assets/svg/aifilltwittersquare.svg';
 import InstagramIcon from '../assets/svg/fainstagramsquare.svg';
-// import YoutubeIcon from '../assets/svg/fayoutubesquare';
+import YoutubeIcon from '../assets/svg/fayoutubesquare.svg';
 
 interface IProps {
   isOpen: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const SideNav = ({ isOpen, setOpen }: IProps) => {
-  const SideNav_Wrapper = styled.div`
-    height: 100vh;
-    .pro-sidebar-inner {
-      background: #56b8e7;
-      .pro-sidebar-footer {
-        .pro-item-content {
-          display: flex;
-          justify-content: center;
-          gap: 15px;
+const SideNav_Wrapper = styled.div`
+  .pro-sidebar {
+    height: calc(100vh - 62px);
+    position: fixed;
+    transition: width, left, right, 0.3s;
 
-          a::before {
-            content: none;
-          }
+    .pro-sidebar-layout {
+      ul {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+    }
 
-          svg {
-            font-size: 20px;
-            color: white;
-          }
-          svg:hover {
-            color: #d9d6d6;
+    .pro-menu {
+      height: 100%;
+      padding-bottom: 25px;
+    }
+  }
+  .pro-sidebar-inner {
+    background: #56b8e7;
+    .pro-sidebar-content {
+      margin-left: 20px;
+      border-bottom: 1px solid hsla(0, 0%, 100%, 0.2);
+      .pro-menu {
+        a {
+          color: #fffdfd;
+        }
+        a:hover {
+          color: #d9d9d9;
+        }
+        a::before {
+          content: none;
+        }
+        .pro-menu-item {
+          font-size: 1.4rem;
+        }
+        .pro-menu-item:hover {
+          background-color: #423dd6;
+        }
+      }
+    }
+    .pro-sidebar-footer {
+      .pro-menu {
+        .pro-menu-item {
+          .pro-inner-item {
+            padding: 10px 20px;
+            .pro-item-content {
+              display: flex;
+              justify-content: center;
+              gap: 13px;
+
+              a::before {
+                content: none;
+              }
+
+              svg {
+                font-size: 20px;
+                color: white;
+              }
+              svg:hover {
+                color: #d9d6d6;
+              }
+            }
           }
         }
       }
     }
-    .pro-sidebar-content .pro-menu {
-      a {
-        color: #fffdfd;
-      }
-      a:hover {
-        color: #d9d9d9;
-      }
-      a::before {
-        content: none;
-      }
-      .pro-menu-item {
-        font-size: 1.3rem;
-      }
-      .pro-menu-item:hover {
-        background-color: #423dd6;
-      }
-    }
-  `;
+  }
+`;
+const SideNav = ({ isOpen, setOpen }: IProps) => {
   return (
     <div
       id="nav-overlay"
@@ -124,6 +153,14 @@ const SideNav = ({ isOpen, setOpen }: IProps) => {
                   className="inline"
                 >
                   <FaceBookIcon />
+                </a>
+                <a
+                  href="https://www.youtube.com/user/SeeSightTours"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  aria-label="This is an external link (opens in a new tab)"
+                >
+                  <YoutubeIcon />
                 </a>
                 <a
                   href="https://www.instagram.com/seesighttours/"

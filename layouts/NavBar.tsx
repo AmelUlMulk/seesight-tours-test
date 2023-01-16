@@ -36,26 +36,26 @@ const NavBar = () => {
   const mediaQuery = useMediaQuery(1024);
   // eslint-disable-next-line no-console
   return (
-    <header className="Navbar relative py-5 bg-gray-100">
-      <div className="mx-auto 2xl:max-w-[1650px] xl:max-w-[1280px] lg:max-w-[1024px] md:max-w-[832px] sm:max-w-[640px] xsm:max-w-[576px] ">
-        <div className="flex justify-between items-center gap-24">
-          <Link href="/">
-            <div className="logo px-2">
+    <header className="Navbar sticky top-0 z-[1020] bg-gray-100 ">
+      <div className="py-2 md:py-5 mx-auto 2xl:max-w-[1650px] xl:max-w-[1280px] lg:max-w-[1024px] md:max-w-[832px] sm:max-w-[640px] xsm:max-w-[576px] ">
+        <div className="flex justify-between items-center gap-12">
+          <div className="logo pl-4 ">
+            <Link href="/">
               <Image
                 alt="sea sight tours logo"
                 src="/logo.svg"
                 width={200}
                 height={200}
               />
-            </div>
-          </Link>
+            </Link>
+          </div>
 
           {mediaQuery ? (
-            <div className="pr-[10px]">
+            <div className="xxsm:pr-[15px] sm:pr-[10px] w-[50%] flex justify-end ">
               <Hamburger toggled={isOpen} toggle={() => setOpen(!isOpen)} />
             </div>
           ) : (
-            <div className="Navlinks flex gap-4 px-5">
+            <div className="Navlinks flex md:gap-[0.57rem] lg:gap-4 md:px-3 lg:px-5 md:text-[0.79rem] lg:text-[1.12375rem]">
               <Link
                 href="/tours"
                 className={
@@ -110,8 +110,8 @@ const NavBar = () => {
                 href="/contact"
                 className={
                   router.pathname.split('/')[1] == 'contact'
-                    ? 'active hover:text-blue-400 px-1 border-r-[1px] border-black '
-                    : 'hover:text-blue-400 px-2 border-r-[1px] border-gray-300'
+                    ? 'active hover:text-blue-400 px-2 border-r-[1px] border-black '
+                    : 'hover:text-blue-400 pl-2 md:pr-2 lg:pr-4 border-r-[1px] border-gray-300'
                 }
               >
                 Contact Us
