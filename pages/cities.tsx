@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import { CITIES_PAGE_INTERFACE, CITIES_PAGE } from '../api/citiesPage';
 import Link from 'next/link';
+import Newsletter from '../layouts/Newsletter/Newsletter';
 
 export async function getStaticProps() {
   const { data } = await client.query<CITIES_PAGE_INTERFACE>(CITIES_PAGE);
@@ -92,6 +93,7 @@ const Cities = ({ citiesPage }: CITIES_PAGE_INTERFACE) => {
           ))}
         </div>
       </div>
+      <Newsletter />
     </div>
   );
 };
