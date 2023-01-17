@@ -3,20 +3,28 @@ import Home from '../../pages';
 import OurCities from '../FeaturedCities/OurCities';
 import FeaturedExperiences from '../FeaturedExperiences/FeaturedExperiences';
 import FeaturedNavSection from '../FeaturedExperiences/FeaturedNavSec';
+import Newsletter from '../Newsletter/newsletter';
 import Trustbar from '../Trust/Trustbar';
 import PageHero from './Pagehero';
 
 interface IProps {
+  allfeaturedata: any;
   featuredExp: any;
   citydropdown: any;
   HomePage: any;
 }
-const LandingPage = ({ featuredExp, citydropdown, HomePage }: IProps) => {
+const LandingPage = ({
+  allfeaturedata,
+  featuredExp,
+  citydropdown,
+  HomePage
+}: IProps) => {
   const {
     homePage,
     homePage: { cities: [...data] = [] } = {},
     citiesTotal
   } = HomePage;
+  console.log('all data:', allfeaturedata);
   return (
     <>
       <PageHero />
@@ -31,6 +39,7 @@ const LandingPage = ({ featuredExp, citydropdown, HomePage }: IProps) => {
         FeaturedCities={data}
         citiesTotalCount={citiesTotal ? citiesTotal.aggregate.totalCount : 0}
       />
+      <Newsletter />
     </>
   );
 };

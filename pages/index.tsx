@@ -3,15 +3,25 @@ import Image from 'next/image';
 import LandingPage from '../components/Landingpage/landingpage';
 import { gql } from '@apollo/client';
 import client from '../apollo-client';
+import FEATUREDEXPERIENCES from '../graphql_api/featuredexperiences';
+import { FEATURED_EXPERIENCES_INTERFACE } from '../graphql_api/featuredexperiences';
 import { HOMEPAGEINTERFACE } from '../graphql_api/homePage';
 import { HOMEPAGE } from '../graphql_api/homePage';
 
 interface IProps {
+  getInitialData: any;
+  allfeaturedata: any;
   featuredExp: any;
   citydropdown: any;
   HomePage: any;
 }
-export default function Home({ featuredExp, citydropdown, HomePage }: IProps) {
+export default function Home({
+  allfeaturedata,
+  featuredExp,
+  citydropdown,
+  HomePage
+}: IProps) {
+  // const { featuredExp, citydropdown, HomePage } = getInitialData;
   return (
     <>
       <Head>
@@ -22,6 +32,7 @@ export default function Home({ featuredExp, citydropdown, HomePage }: IProps) {
       </Head>
       <main>
         <LandingPage
+          allfeaturedata={allfeaturedata}
           featuredExp={featuredExp}
           citydropdown={citydropdown}
           HomePage={HomePage}
@@ -32,135 +43,8 @@ export default function Home({ featuredExp, citydropdown, HomePage }: IProps) {
 }
 
 export async function getStaticProps() {
-  const { data } = await client.query({
-    query: gql`
-      query FEATUREDEXPERIENCES(
-        $dayTours: Boolean!
-        $multiday: Boolean!
-        $airportTransfers: Boolean!
-      ) {
-        homePage {
-          header
-          subheader
-          allThings: all_things_to_do {
-            product {
-              id: boat_id
-              name
-              slug
-              duration
-              price
-              cardMessage: card_message
-              cardSnippet: snippet
-              cardMedia: card_media {
-                name
-                alt: alternativeText
-                url
-                fragment: caption
-                type: provider_metadata
-              }
-              reviews {
-                id
-                rating
-              }
-            }
-          }
-          dayTours: one_day_tours @include(if: $dayTours) {
-            product {
-              id: boat_id
-              name
-              slug
-              duration
-              price
-              cardMessage: card_message
-              cardSnippet: snippet
-              cardMedia: card_media {
-                name
-                alt: alternativeText
-                url
-                fragment: caption
-                type: provider_metadata
-              }
-              reviews {
-                id
-                rating
-              }
-            }
-          }
-          multiday: multi_day_tours @include(if: $multiday) {
-            product {
-              id: boat_id
-              name
-              slug
-              duration
-              price
-              cardMessage: card_message
-              cardSnippet: snippet
-              cardMedia: card_media {
-                name
-                alt: alternativeText
-                url
-                fragment: caption
-                type: provider_metadata
-              }
-              reviews {
-                id
-                rating
-              }
-            }
-          }
-          airportTransfers: airport_transfer @include(if: $airportTransfers) {
-            product {
-              id: boat_id
-              name
-              slug
-              duration
-              price
-              cardMessage: card_message
-              cardSnippet: snippet
-              cardMedia: card_media {
-                name
-                alt: alternativeText
-                url
-                fragment: caption
-                type: provider_metadata
-              }
-              reviews {
-                id
-                rating
-              }
-            }
-          }
-        }
-        citiesDropdown: cities {
-          id
-          name
-          slug
-        }
-
-        totalProducts: productsConnection {
-          aggregate {
-            totalCount
-          }
-        }
-        totalDayTours: productsConnection(where: { type: "DAYTOUR" }) {
-          aggregate {
-            count
-          }
-        }
-        totalMultiDay: productsConnection(where: { type: "MULTIDAY" }) {
-          aggregate {
-            count
-          }
-        }
-        totalAirportPickup: productsConnection(
-          where: { type: "AIRPORTPICKUP" }
-        ) {
-          aggregate {
-            count
-          }
-        }
-      }
-    `,
+  const { data } = await client.query<FEATURED_EXPERIENCES_INTERFACE>({
+    query: FEATUREDEXPERIENCES,
     variables: {
       dayTours: true,
       multiday: true,
@@ -175,6 +59,7 @@ export async function getStaticProps() {
   });
   return {
     props: {
+      allfeaturedata: data,
       featuredExp: data.homePage,
       citydropdown: data.citiesDropdown,
       HomePage: HomePage
