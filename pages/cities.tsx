@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { CITIES_PAGE_INTERFACE, CITIES_PAGE } from '../api/citiesPage';
 import Link from 'next/link';
 import Newsletter from '../layouts/Newsletter/Newsletter';
+import Head from 'next/head';
 
 export async function getStaticProps() {
   const { data } = await client.query<CITIES_PAGE_INTERFACE>(CITIES_PAGE);
@@ -35,6 +36,15 @@ const StyledImage = styled(Image)`
 const Cities = ({ citiesPage }: CITIES_PAGE_INTERFACE) => {
   return (
     <div>
+      <Head>
+        <title>{citiesPage.pageTitle}</title>
+        <meta
+          property="og:description"
+          content={citiesPage.metaDescription}
+          key="metadescription"
+        />
+        <link href={citiesPage.canonical} rel="canonical" key="canonical" />
+      </Head>
       <PageHero
         title={'Our Cities'}
         snippet={'Let us show you the places we call home'}

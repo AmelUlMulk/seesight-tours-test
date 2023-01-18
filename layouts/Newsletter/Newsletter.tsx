@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Newsletter = () => {
-  const [email, setEmail] = useState('');
-  const [validated, setValidated] = useState(false);
+const Newsletter = ({}) => {
+  const [email, setEmail] = React.useState<string>('');
+  const [validated, setValidated] = React.useState<boolean>(false);
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     event.stopPropagation();
