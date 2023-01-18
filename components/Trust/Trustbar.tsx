@@ -1,5 +1,13 @@
 import Image from 'next/image';
 
+export enum PAGE_OPTIONS {
+  DAY_TOUR_PAGED = 'dayTours',
+  MULTIDAY_TOUR_PAGE = 'multiday'
+}
+
+interface PAGE {
+  page?: PAGE_OPTIONS;
+}
 const Trustbar = () => {
   return (
     <div className="trust mt-5 border-b-[2px] border-slate-400">
