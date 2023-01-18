@@ -5,6 +5,7 @@ import client from '../apollo-client';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import styled from 'styled-components';
+import Head from 'next/head';
 
 export async function getStaticProps() {
   const { data } = await client.query<PRIVACY_PAGE_INTERFACE>(PRIVACY_PAGE);
@@ -71,6 +72,15 @@ const Privacy = ({ privacyPage }: PRIVACY_PAGE_INTERFACE) => {
 
   return (
     <>
+     <Head>
+        <title>{PrivacyPage.pageTitle}</title>
+        <meta
+          property="og:description"
+          content={PrivacyPage.metaDescription}
+          key="metadescription"
+        />
+        <link href={PrivacyPage.canonical} rel="canonical" key="canonical" />
+      </Head>
       <PageHero
         title={'Our Privacy Policy'}
         snippet={
