@@ -43,28 +43,25 @@ const Newsletter = () => {
                   </h2>
 
                   <form onSubmit={handleSubmit}>
-                    <div className="form-group mb-6 w-full flex justify-center">
+                    <div className="flex items-stretch mt-12">
                       <input
-                        type="email"
-                        className="form-control block w-96 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-gray-500 focus:outline-none"
-                        id="exampleInput91"
+                        className="bg-gray-100 rounded-lg rounded-r-none text-base leading-none text-gray-800 p-3 w-4/5 border border-transparent focus:outline-none focus:border-gray-500"
                         placeholder="Email address"
+                        name="email"
                         required
+                        type="email"
                         onChange={e => setEmail(e.target.value)}
                         maxLength={50}
                         minLength={2}
                         value={email}
                       />
-                    </div>
-                    <div className="w-full flex justify-center ">
                       <button
-                        type="submit"
-                        className="disabled:bg-red-400 w-48 px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight uppercase rounded-lg shadow-md hover:bg-red-400 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-500 active:shadow-lg transition duration-150 ease-in-out "
+                        className="disabled:bg-red-400 w-32 cursor-pointer rounded-l-none bg-red-500 rounded text-base font-medium leading-none text-white p-5 uppercase hover:bg-red-400 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-500 active:shadow-lg transition duration-150 ease-in-out"
+                        disabled={email.length <= 0}
                         data-mdb-ripple="true"
                         data-mdb-ripple-color="light"
-                        disabled={email.length <= 0}
                       >
-                        Subscribe
+                        subscribe
                       </button>
                     </div>
                   </form>
