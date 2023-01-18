@@ -41,13 +41,17 @@ const PageHero = ({ title, snippet, media, video }: IProps): JSX.Element => {
       p {
         font-size: 30px;
         width: 70%;
+        @media (max-width: 400px) {
+          font-size: 15px;
+          width: 95%;
+        }
         @media (max-width: 700px) {
           font-size: 24px;
           width: 90%;
         }
         @media (max-width: 1200px) {
           font-size: 30px;
-          width: 70%;
+          width: 80%;
           left: 0;
         }
       }
@@ -72,7 +76,7 @@ const PageHero = ({ title, snippet, media, video }: IProps): JSX.Element => {
         {video && <StyledVideo src={media} muted loop autoPlay playsInline />}
         <div className="PageHero_container flex flex-col pl-10 ">
           <div className="font-bold text-white text-left ">
-            <h1 className=" 3xl:text-5xl 2xl:text-5xl xl:text-5xl lg:text-5xl md:text-5xl sm:text-4xl xsm:text-4xl xxsm:text-2xl ">
+            <h1 className=" 3xl:text-5xl 2xl:text-5xl xl:text-5xl lg:text-5xl md:text-5xl sm:text-4xl xsm:text-4xl xxsm:text-3xl ">
               {title}
             </h1>
           </div>
