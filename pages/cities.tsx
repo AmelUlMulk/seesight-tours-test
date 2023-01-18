@@ -19,6 +19,9 @@ const CityCards = styled.div`
   margin-top: 3rem;
   margin-bottom: 1rem;
   max-height: 600px;
+  @media (max-width: 1500px) {
+    margin-top: 1.5rem;
+  }
 `;
 
 const StyledImage = styled(Image)`
@@ -42,9 +45,9 @@ const Cities = ({ citiesPage }: CITIES_PAGE_INTERFACE) => {
         }
         video={true}
       />
-      <h1 className="font-bold text-4xl text-center pt-10">Featured Cities</h1>
+      <h1 className="font-bold text-4xl text-center pt-5">Featured Cities</h1>
       <div className="flex justify-center">
-        <div className="grid w-5/6 grid-cols-4 gap-3 xxsm:grid-cols-1 xsm:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid w-5/6 grid-cols-4 gap-3 xxsm:grid-cols-1 xsm:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
           {citiesPage.featured.map(cities => (
             <div className="flex justify-center w-full" key={cities.city.id}>
               <CityCards className="  max-w-xs w-full rounded-lg overflow-hidden shadow-lg cursor-pointer transform transition duration-500 hover:scale-105">
@@ -70,7 +73,7 @@ const Cities = ({ citiesPage }: CITIES_PAGE_INTERFACE) => {
         </div>
       </div>
 
-      <h1 className="font-bold text-4xl text-center pt-10">All Cities</h1>
+      <h1 className="font-bold text-4xl text-center pt-5">All Cities</h1>
       <div className="flex justify-center">
         <div className="grid w-5/6 grid-cols-4 gap-3 xxsm:grid-cols-1 xsm:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {citiesPage.cities.map(cities => (
