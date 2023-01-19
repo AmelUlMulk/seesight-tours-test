@@ -3,7 +3,6 @@ import Image from 'next/image';
 import React, { useState, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Hamburger from 'hamburger-react';
-import Container from 'react-bootstrap/Container';
 import SideNav from './SideNav';
 import logo from '../assets/svg/logo.svg';
 
@@ -34,29 +33,29 @@ const useMediaQuery = (width: number) => {
 const NavBar = () => {
   const [isOpen, setOpen] = useState<boolean>(false);
   const router = useRouter();
-  const mediaQuery = useMediaQuery(900);
+  const mediaQuery = useMediaQuery(1024);
   // eslint-disable-next-line no-console
   return (
-    <header className="Navbar relative py-5 bg-gray-100">
-      <Container>
-        <div className="flex justify-between items-center px-5">
-          <Link href="/">
-            <div className="logo">
+    <header className="Navbar sticky top-0 z-[1020] bg-gray-100 ">
+      <div className="py-2 md:py-5 mx-auto 2xl:max-w-[1650px] xl:max-w-[1280px] lg:max-w-[1024px] md:max-w-[832px] sm:max-w-[640px] xsm:max-w-[576px] ">
+        <div className="flex justify-between items-center gap-12">
+          <div className="logo pl-4 ">
+            <Link href="/">
               <Image
                 alt="sea sight tours logo"
                 src="/logo.svg"
                 width={200}
                 height={200}
               />
-            </div>
-          </Link>
+            </Link>
+          </div>
 
           {mediaQuery ? (
-            <div className="pr-10">
+            <div className="xxsm:pr-[15px] sm:pr-[10px] w-[50%] flex justify-end ">
               <Hamburger toggled={isOpen} toggle={() => setOpen(!isOpen)} />
             </div>
           ) : (
-            <div className="Navlinks flex gap-4">
+            <div className="Navlinks flex md:gap-[0.57rem] lg:gap-4 md:px-3 lg:px-5 md:text-[0.79rem] lg:text-[1.12375rem]">
               <Link
                 href="/tours"
                 className={
@@ -111,8 +110,8 @@ const NavBar = () => {
                 href="/contact"
                 className={
                   router.pathname.split('/')[1] == 'contact'
-                    ? 'active hover:text-blue-400 px-1 border-r-[1px] border-black '
-                    : 'hover:text-blue-400 px-2 border-r-[1px] border-gray-300'
+                    ? 'active hover:text-blue-400 px-2 border-r-[1px] border-black '
+                    : 'hover:text-blue-400 pl-2 md:pr-2 lg:pr-4 border-r-[1px] border-gray-300'
                 }
               >
                 Contact Us
@@ -121,7 +120,7 @@ const NavBar = () => {
                 href="/my-tours"
                 className={
                   router.pathname.split('/')[1] == 'my-tours'
-                    ? 'active hover:text-blue-400 px-1 '
+                    ? 'active hover:text-blue-400 pr-2 '
                     : 'hover:text-blue-400 pl-1'
                 }
               >
@@ -130,7 +129,7 @@ const NavBar = () => {
             </div>
           )}
         </div>
-      </Container>
+      </div>
       <SideNav isOpen={isOpen} setOpen={setOpen} />
     </header>
   );
