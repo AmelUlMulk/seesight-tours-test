@@ -72,7 +72,7 @@ const Privacy = ({ privacyPage }: PRIVACY_PAGE_INTERFACE) => {
 
   return (
     <>
-     <Head>
+      <Head>
         <title>{PrivacyPage.pageTitle}</title>
         <meta
           property="og:description"
