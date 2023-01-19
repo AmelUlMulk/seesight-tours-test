@@ -5,6 +5,7 @@ import FeaturedExperiences from '../FeaturedExperiences/FeaturedExperiences';
 import FeaturedNavSection from '../FeaturedExperiences/FeaturedNavSec';
 import Newsletter from '../Newsletter/newsletter';
 import Trustbar from '../Trust/Trustbar';
+import LandingPageInfo from './components/landingpaginfo';
 import PageHero from './Pagehero';
 
 interface IProps {
@@ -39,6 +40,7 @@ const LandingPage = ({
         FeaturedCities={data}
         citiesTotalCount={citiesTotal ? citiesTotal.aggregate.totalCount : 0}
       />
+      <LandingPageInfo />
       <Newsletter />
     </>
   );
