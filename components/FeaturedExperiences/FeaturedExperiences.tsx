@@ -234,13 +234,14 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
                 onClick={() => setCityToggle(!cityToggle)}
                 className="border-[1px] border-slate-300 rounded-md w-[100%] py-2"
               >
-                All Cities
+                {city}
+                <span className="pl-16">{'>'}</span>
               </button>
               {cityToggle && (
                 <div className="dropdown_list border-1 border-slate-500 absolute right-0 z-50 w-[100%] h-[400px] overflow-scroll">
                   <div
-                    className="px-5 py-1 border-[1px] border-slate-3
-                00"
+                    className="px-3 py-1 border-[1px] border-slate-3
+                00 hover:bg-slate-300 cursor-pointer"
                     onClick={() => setCity('All Cities')}
                   >
                     All Cities

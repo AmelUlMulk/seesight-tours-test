@@ -9,23 +9,16 @@ import LandingPageInfo from './components/landingpaginfo';
 import PageHero from './Pagehero';
 
 interface IProps {
-  allfeaturedata: any;
   featuredExp: any;
   citydropdown: any;
   HomePage: any;
 }
-const LandingPage = ({
-  allfeaturedata,
-  featuredExp,
-  citydropdown,
-  HomePage
-}: IProps) => {
+const LandingPage = ({ featuredExp, citydropdown, HomePage }: IProps) => {
   const {
     homePage,
     homePage: { cities: [...data] = [] } = {},
     citiesTotal
   } = HomePage;
-  console.log('all data:', allfeaturedata);
   return (
     <>
       <PageHero />

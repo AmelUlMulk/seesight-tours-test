@@ -44,13 +44,13 @@ const TourCard = ({ product, productType }: IProps) => {
           >
             From ${product?.price}
           </PriceContainerStyle>
-          <div className="w-[100%] h-[100%]">
+          <div className="w-[100%] h-[100%] rounded-lg !overflow-hidden">
             <Image
               src={product?.cardMedia[0].url}
               width={400}
               height={400}
               alt="feature product image"
-              className="w-[100%] h-[100%] rounded-lg"
+              className="w-[100%] h-[100%] object-cover rounded-lg hover:scale-105 ease-in-out duration-200"
             />
           </div>
         </Link>

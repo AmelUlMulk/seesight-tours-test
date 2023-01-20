@@ -45,14 +45,14 @@ const CitiesSwiperDesk = ({ data }: IProps) => {
               <div className="flex flex-col h-[600px]">
                 <div
                   id="image-wrapper"
-                  className="flex-none w-[100%] h-[55%] object-cover relative  rounded-lg !overflow-hidden"
+                  className="flex-none w-[100%] h-[55%] rounded-lg !overflow-hidden"
                 >
                   <Image
                     src={city?.city?.cardMedia[0]?.url}
                     alt={city?.city?.cardMedia[0]?.alt}
                     width={600}
                     height={600}
-                    className="w-[100%] h-[100%] rounded-lg hover:scale-110 ease-in-out duration-200 !overflow-hidden"
+                    className="w-[100%] h-[100%] object-cover rounded-lg hover:scale-110 ease-in-out duration-200"
                   />
                 </div>
                 <div className="flex-none ">

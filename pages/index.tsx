@@ -32,7 +32,6 @@ export default function Home({
       </Head>
       <main>
         <LandingPage
-          allfeaturedata={allfeaturedata}
           featuredExp={featuredExp}
           citydropdown={citydropdown}
           HomePage={HomePage}
@@ -59,7 +58,6 @@ export async function getStaticProps() {
   });
   return {
     props: {
-      allfeaturedata: data,
       featuredExp: data.homePage,
       citydropdown: data.citiesDropdown,
       HomePage: HomePage
