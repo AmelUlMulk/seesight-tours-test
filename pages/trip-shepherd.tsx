@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PageHero from '../components/Contact/PageHero';
+import styled from 'styled-components';
+import FormModal from '../layouts/FormModal/FormModal';
+
+const TripShepherdCard = styled.div`
+  background-color: #57b8e8;
+`;
 
 const TripShepherd = () => {
+  const [show, setShowModal] = useState<boolean>(false);
   return (
     <>
       <PageHero
@@ -15,7 +22,7 @@ const TripShepherd = () => {
         video={false}
       />
       <section className=" text-black-800  bg-white">
-        <div className=" px-6 py-12  text-center lg:text-left">
+        <div className=" px-6 py-20  text-center lg:text-left">
           <div className="container mx-auto xl:px-64">
             <div className="grid lg:grid-cols-2 gap-12  items-center">
               <div className="">
@@ -37,25 +44,28 @@ const TripShepherd = () => {
                 </p>
               </div>
               <div className="mb-15 lg:mb-0">
-                <div className="block rounded-lg shadow-lg  bg-blue-400 px-6 py-12 md:px-12">
+                <TripShepherdCard className="block rounded-lg shadow-lg  px-6 py-12 md:px-12">
                   <div className="h-100% flex justify-center">
                     <h2 className="text-2xl font-bold mb-5 2xl:text-center  text-white">
                       Start your consultation now!
                     </h2>
                   </div>
                   <div className="h-100% flex justify-center">
-                    <button className="bg-red-500 text-white py-2 px-2 rounded text-lg w-60">
+                    <button
+                      onClick={() => setShowModal(true)}
+                      className="bg-red-500 text-white py-2 px-2 rounded text-lg w-60  hover:bg-red-400 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-500 active:shadow-lg transition duration-150 ease-in-out"
+                    >
                       Find out more
                     </button>
                   </div>
-                </div>
+                </TripShepherdCard>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className=" text-black-800  bg-slate-200">
+      <section className=" text-black-800  bg-slate-100">
         <div className=" px-6 py-12  text-center lg:text-left">
           <div className="container mx-auto xl:px-64">
             <div className="grid lg:grid-cols-4 md:grid-cols-2 lg:gap-12 xsm:gap-6 ">
@@ -106,18 +116,21 @@ const TripShepherd = () => {
           <div className="container mx-auto xl:px-64">
             <div className="grid lg:grid-cols-2 gap-12  items-center">
               <div className="mb-15 lg:mb-0">
-                <div className="block rounded-lg shadow-lg  bg-blue-400 px-6 py-12 md:px-12">
+                <TripShepherdCard className="block rounded-lg shadow-lg  px-6 py-12 md:px-12">
                   <div className="h-100% flex justify-center">
-                    <h2 className="text-2xl font-bold mb-5 2xl:text-center xl:text-center  text-white">
+                    <h2 className="text-2xl font-bold mb-5 2xl:text-center  text-white">
                       Start your consultation now!
                     </h2>
                   </div>
                   <div className="h-100% flex justify-center">
-                    <button className="bg-red-500 text-white py-2 px-2 rounded text-lg w-60">
+                    <button
+                      onClick={() => setShowModal(true)}
+                      className="bg-red-500 text-white py-2 px-2 rounded text-lg w-60  hover:bg-red-400 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-500 active:shadow-lg transition duration-150 ease-in-out"
+                    >
                       Find out more
                     </button>
                   </div>
-                </div>
+                </TripShepherdCard>
               </div>
               <div className="">
                 <h1 className="text-2xl md:text-2xl xl:text-2xl font-bold tracking-tight mb-3 text-left">
@@ -144,7 +157,7 @@ const TripShepherd = () => {
         <div className=" px-6 py-5  text-center lg:text-left">
           <div className="container mx-auto xl:px-64">
             <div className="mb-15 lg:mb-0">
-              <div className="block rounded-lg shadow-lg  bg-slate-200 px-6 py-12 md:px-12">
+              <div className="block rounded-lg shadow-lg  bg-slate-100 px-6 py-12 md:px-12">
                 <div className="h-100% flex justify-center">
                   <h2 className="text-2xl font-bold mb-5 2xl:text-center   text-black">
                     Important Information!
@@ -158,6 +171,7 @@ const TripShepherd = () => {
             </div>
           </div>
         </div>
+        <FormModal show={show} setShowModal={setShowModal} />
       </section>
     </>
   );
