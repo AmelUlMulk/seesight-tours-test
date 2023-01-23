@@ -1,4 +1,3 @@
-import { userAgent } from 'next/server';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -74,10 +73,13 @@ const FormModal = ({ show, setShowModal, onSoldOut }: MODAL_INTERFACE) => {
           <FormCard className="px-10 py-10 bg-slate-200 rounded-md relative  overflow-auto  ">
             <button
               onClick={() => setShowModal(false)}
-              className=" absolute right-0 top-3.5 font-bold text-black  px-12 py-2 rounded-full text-lg   "
+              className=" absolute right-0 top-3.5  text-black hover:text-gray-500 px-6  rounded-full text-lg   "
             >
               X
             </button>
+            <h1 className="text-black font-bold  text-3xl pb-5 ">
+              Let us help you find what you are looking for!
+            </h1>
             <form onSubmit={submitInfo}>
               <div className="grid gap-6 mb-6 sm:grid-cols-2">
                 <div>
