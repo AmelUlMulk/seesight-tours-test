@@ -14,14 +14,9 @@ interface IProps {
   HomePage: any;
 }
 const LandingPage = ({ featuredExp, citydropdown, HomePage }: IProps) => {
-  const {
-    homePage,
-    homePage: { cities: [...data] = [] } = {},
-    citiesTotal
-  } = HomePage;
+  const { homePage: { cities: [...data] = [] } = {}, citiesTotal } = HomePage;
   return (
     <>
-      <PageHero />
       <Trustbar />
       <FeaturedExperiences
         featuredExp={featuredExp}

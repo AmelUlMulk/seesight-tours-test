@@ -12,7 +12,7 @@ import TourCard from '../Tour/tourCard';
 import { PAGE_OPTIONS } from '../Trust/Trustbar';
 import ChevronRightIcon from './components/ChevronRightIcon';
 
-let arr = [
+const arr = [
   {
     filterClass: 'allThings',
     filterName: 'All Things To Do'
@@ -45,7 +45,6 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
   const [featuredExperienceData, setFeaturedExperienceData] = useState<
     FEATURED_EXPERIENCES_INTERFACE | HOMEPAGEINTERFACE | any
   >([]);
-  console.log('showAll:', showAll);
   // console.log('featuredExperienceData:', featuredExperienceData);
   /////////////////////////////FETCHING QUERIES//////////////////////////
   const [
@@ -65,7 +64,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
   }, [filteredCity]);
 
   useEffect(() => {
-    let finalNavArray: Array<Record<string, any>> = [];
+    const finalNavArray: Array<Record<string, any>> = [];
     let flag = true;
     arr.forEach(item => {
       finalNavArray.push(item);
@@ -96,18 +95,18 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
       }
     });
   }, [city, cityFilteredTours]);
-  console.log('filtered city:', filteredCity);
+  // console.log('filtered city:', filteredCity);
   ///////////////////////////////////FUNCTIONS/////////////////////////////
   const Drop_Down_options = () => {
-    let options: Array<Record<string, unknown>> = [];
-    let filteredCities = citydropdown ? citydropdown : [];
+    const options: Array<Record<string, unknown>> = [];
+    const filteredCities = citydropdown ? citydropdown : [];
     filteredCities?.forEach((obj: Record<string, unknown>) => {
       options.push({ value: [obj.name], label: [obj.name] });
     });
 
     return options.sort((a: any, b: any) => {
-      let x = a.label[0].toUpperCase();
-      let y = b.label[0].toUpperCase();
+      const x = a.label[0].toUpperCase();
+      const y = b.label[0].toUpperCase();
       return x === y ? 0 : x > y ? 1 : -1;
     });
   };
@@ -119,16 +118,16 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
     else if (activeNav === 'airportTransfers') return 'Airport Transfer';
   };
   /////////////////////////////Final Array////////////////////////
-  let finalArray =
-    filteredCity && featuredExperienceData
-      ? featuredExperienceData[activeNav]
-      : city === 'All Cities'
-      ? featuredExp[activeNav]
-      : [];
-  console.log('final array:', finalArray);
+  // const finalArray =
+  //   filteredCity && featuredExperienceData
+  //     ? featuredExperienceData[activeNav]
+  //     : city === 'All Cities'
+  //     ? featuredExp[activeNav]
+  //     : [];
+  // console.log('final array:', finalArray);
   //////////////////////////////Final display functions////////////
   const displayProduct = () => {
-    let filteredProduct =
+    const filteredProduct =
       filteredCity && featuredExperienceData
         ? featuredExperienceData[activeNav]
         : city === 'All Cities'
@@ -149,7 +148,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
       }, []);
 
     if (filteredProduct && filteredProduct.length === 0) {
-      return <h3 className="No__Tour">{`Tours coming to ${city} soon`}</h3>;
+      return <h3>{`Tours coming to ${city} soon`}</h3>;
     }
     return uniquefilteredProduct
       ?.slice(0, showAll ? filteredProduct.length : 6)
@@ -169,7 +168,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
   };
   const showProduct = () => {
     let selectedNav = '';
-    let selectNum = filteredCity
+    const selectNum = filteredCity
       ? //@ts-ignore
         filteredCity[activeNav].length
       : featuredExp[activeNav].length;

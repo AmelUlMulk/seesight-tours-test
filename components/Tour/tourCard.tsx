@@ -16,6 +16,7 @@ const PriceContainerStyle = styled.div`
   text-align: center;
   background-color: white;
   border: 2px solid #fd5d5a;
+  z-index: 20000;
 `;
 export const SnippetStyle = styled.p`
   display: -webkit-box;

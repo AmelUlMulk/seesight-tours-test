@@ -1,27 +1,19 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import LandingPage from '../components/Landingpage/landingpage';
+import PageHero from '../components/Contact/PageHero';
 import { gql } from '@apollo/client';
 import client from '../apollo-client';
 import FEATUREDEXPERIENCES from '../graphql_api/featuredexperiences';
-import { FEATURED_EXPERIENCES_INTERFACE } from '../graphql_api/featuredexperiences';
-import { HOMEPAGEINTERFACE } from '../graphql_api/homePage';
-import { HOMEPAGE } from '../graphql_api/homePage';
+import { FEATURED_EXPERIENCES_INTERFACE } from '../api/featuredexperiences';
+import { HOMEPAGE, HOMEPAGEINTERFACE } from '../api/homePage';
 
 interface IProps {
-  getInitialData: any;
-  allfeaturedata: any;
   featuredExp: any;
   citydropdown: any;
   HomePage: any;
 }
-export default function Home({
-  allfeaturedata,
-  featuredExp,
-  citydropdown,
-  HomePage
-}: IProps) {
-  // const { featuredExp, citydropdown, HomePage } = getInitialData;
+export default function Home({ featuredExp, citydropdown, HomePage }: IProps) {
   return (
     <>
       <Head>
@@ -31,6 +23,12 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <PageHero
+          title={''}
+          snippet={''}
+          media="https://res.cloudinary.com/see-sight-tours/video/upload/v1658237954/landing-page-hero_mu19mc.mp4"
+          video={true}
+        />
         <LandingPage
           featuredExp={featuredExp}
           citydropdown={citydropdown}

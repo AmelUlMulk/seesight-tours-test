@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.active{
-    color: skyblue;
+.active {
+  color: skyblue;
+}
+body {
+  width: 100vw !important;
+ 
 }

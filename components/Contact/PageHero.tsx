@@ -1,26 +1,89 @@
 import styled from 'styled-components';
+import Image from 'next/image';
 
-const PageHero = () => {
+interface IProps {
+  title: string;
+  snippet: string;
+  media: string;
+  video: boolean;
+}
+
+const PageHero = ({ title, snippet, media, video }: IProps): JSX.Element => {
   const PageHero = styled.div`
     height: 50vh;
-    background-image: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.35),
-        rgba(0, 0, 0, 0.35)
-      ),
-      url('https://res.cloudinary.com/see-sight-tours/image/upload/q_auto,f_auto,c_fill,g_faces,h_570,w_958,y_0/v1582036498/Happy-group-tour-guides.jpg');
-    z-index: -2;
+    position: relative;
+    overflow: hidden !important;
+    &:before {
+      background: black;
+      content: '';
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+      opacity: 0.5;
+    }
+    display: flex;
+    .PageHero_container {
+      position: absolute;
+      left: 14%;
+      @media (max-width: 1100px) {
+        left: 0;
+      }
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      z-index: 1;
+
+      p {
+        font-size: 30px;
+        width: 70%;
+        @media (max-width: 400px) {
+          font-size: 15px;
+          width: 95%;
+        }
+        @media (max-width: 700px) {
+          font-size: 24px;
+          width: 90%;
+        }
+        @media (max-width: 1200px) {
+          font-size: 30px;
+          width: 80%;
+          left: 0;
+        }
+      }
+    }
+  `;
+  const StyledImage = styled(Image)`
+    z-index: 0;
+  `;
+  const StyledVideo = styled.video`
+    height: 60vh;
+    object-fit: cover;
+    @media (max-width: 2200px) {
+      height: 69vh;
+    }
+    width: 100vw !important;
   `;
 
   return (
-    <section className="Hero_Section opacity-80 ">
-      <PageHero className="PageHero bg-no-repeat bg-cover bg-center flex justify-start items-center">
+    <section className="Hero_Section opacity-80 overflow-hidden">
+      <PageHero className="PageHero bg-no-repeat bg-cover bg-center flex justify-start items-center ">
+        {!video && <StyledImage alt="guidesImage" src={media} layout="fill" />}
+        {video && <StyledVideo src={media} muted loop autoPlay playsInline />}
         <div className="PageHero_container flex flex-col pl-10 ">
-          <div className="text-5xl font-bold text-white">
-            <h1>Contact Us</h1>
+          <div className="font-bold text-white text-left ">
+            <h1 className=" 3xl:text-5xl 2xl:text-5xl xl:text-5xl lg:text-5xl md:text-5xl sm:text-4xl xsm:text-4xl xxsm:text-3xl ">
+              {title}
+            </h1>
           </div>
           <div className="text-2xl text-white">
-            <p>We&apos;d love to hear from you</p>
+            <p className=" 3xl:text-5xl 2xl:text-5xl xl:text-5xl lg:text-5xl md:text-2xl  sm:text-2xl sm:leading-10 xsm:text-xs xsm:leading-8 xxsm:text-xs xxsm:leading-7">
+              {snippet}
+            </p>
           </div>
         </div>
       </PageHero>

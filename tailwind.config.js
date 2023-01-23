@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     screens: {
+      xxsm: '250px',
+
+      xsm: '370px',
+
       sm: '640px',
 
       md: '768px',
@@ -15,7 +19,11 @@ module.exports = {
 
       xl: '1280px',
 
-      '2xl': '1536px'
+      '2xl': '1536px',
+
+      '3xl': '1800px',
+
+      '4xl': '2200px'
     }
   },
   plugins: []
