@@ -9,35 +9,35 @@ interface IProps {
 interface Props {
   isActive: boolean;
 }
-const Button = styled.button<Props>`
-  background-color: ${props => (props.isActive ? '#22b3ed' : 'white')};
-  border: ${props => (props.isActive ? 'none' : '1px solid black')};
-  color: ${props => (props.isActive ? 'white' : 'gray')};
+const NavMenu = styled.div<Props>`
+  color: ${props => (props.isActive ? '#F15C5A' : '#333333')};
+  border-radius: ${props => (props.isActive ? '10px' : 'none')};
+  box-shadow: ${props =>
+    props.isActive ? '1px 1px 2px 1px rgba(0, 0, 0, 0.2)' : 'none'};
+  cursor: pointer;
   &:hover {
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
     transform: scale(1.2);
     transition: 0.3s ease;
   }
 `;
 const FeaturedNavSection = ({ currNav, setActiveNav, navData }: IProps) => {
   return (
-    <section className="Featured_Exp_Nav mt-10 text-xl">
+    <section id="featured_exp_nav" className="flex-none w-[65%]">
       <nav className="flex justify-center items-center gap-10">
         {navData &&
           navData.map((navItem: Record<string, any>) => (
-            <div key={navItem.filterClass}>
-              <Button
-                isActive={currNav === navItem.filterClass}
-                className={
-                  'py-2 px-5 rounded-lg'
-                  // currNav === navItem.filterClass
-                  //   ? 'activeNav py-2 px-5 rounded-lg'
-                  //   : 'py-2 px-5 rounded-lg bg-white'
-                }
-                onClick={() => setActiveNav(`${navItem.filterClass}`)}
-              >
-                {navItem.filterName}
-              </Button>
-            </div>
+            <NavMenu
+              key={navItem.filterClass}
+              isActive={currNav === navItem.filterClass}
+              className={
+                'py-2 px-5 border-r-[1px] border-[#C5C5C5] text-[24px] font-[600]'
+              }
+              onClick={() => setActiveNav(`${navItem.filterClass}`)}
+            >
+              {navItem.filterName}
+            </NavMenu>
           ))}
       </nav>
     </section>

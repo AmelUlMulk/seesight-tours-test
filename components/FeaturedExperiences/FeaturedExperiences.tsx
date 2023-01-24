@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import FeaturedNavSection from './FeaturedNavSec';
 import { useLazyQuery, useQuery } from '@apollo/client';
+import DropdownIcon from '../../assets/svg/Vector 21.svg';
 import { optimizeImage } from 'next/dist/server/image-optimizer';
 import {
   CITIES_FILTER,
@@ -211,33 +212,40 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
   };
   return (
     <section id="feature_experiences">
-      <header id="feature_experience_header">
+      <header
+        id="feature_experience_header"
+        className="flex items-center justify-between mt-10 lg:px-32 2xl:px-40"
+      >
         <FeaturedNavSection
           currNav={activeNav}
           setActiveNav={setActiveNav}
           navData={navArray}
         />
-        <div className="featured_dropdown flex justify-between mt-10 lg:px-48 2xl:px-60">
-          <div>
-            <h1 className="text-3xl font-[600]">Featured Experiences</h1>
-          </div>
-          <div className="city_dropDown flex gap-3 pr-10">
-            <p>{`Show ${showActiveNav()} in:`}</p>
+        <div id="featured_dropdown" className="flex-none w-[35%] pl-8">
+          <div id="city_dropDown" className=" flex items-center gap-3 pr-10">
+            <p className="flex-none w-[60%] text-[20px] font-[400] text-[#6D6D6D]">{`Show ${showActiveNav()} in:`}</p>
             <div
+              id="dropdown"
               onMouseLeave={() => {
                 if (cityToggle) return setCityToggle(!cityToggle);
               }}
-              className="dropdown relative max-w-[210px] w-[210px] "
+              className="flex-none w-[40%] relative "
             >
               <button
                 onClick={() => setCityToggle(!cityToggle)}
-                className="border-[1px] border-slate-300 rounded-md w-[100%] py-2"
+                className={
+                  cityToggle
+                    ? ' flex justify-between items-center border-[1px] border-[#F15C5A] rounded-xl w-[100%] px-6 py-1 text-[16.92px] text-[#333333] font-[400]'
+                    : ' flex justify-between items-center border-[1px] border-[#4F4F4F] rounded-xl w-[100%] px-6 py-1 text-[16.92px] text-[#333333] font-[400]'
+                }
               >
                 {city}
-                <span className="pl-16">{'>'}</span>
+                <span className="pl-3">
+                  <DropdownIcon />
+                </span>
               </button>
               {cityToggle && (
-                <div className="dropdown_list border-1 border-slate-500 absolute right-0 z-50 w-[100%] h-[400px] overflow-scroll">
+                <div className="dropdown_list border-1 border-slate-500 absolute right-0 z-50 w-[100%] h-[400px] overflow-y-scroll">
                   <div
                     className="px-3 py-1 border-[1px] border-slate-3
                 00 hover:bg-slate-300 cursor-pointer"
@@ -249,7 +257,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
                     return (
                       <div
                         className="border-[1px] border-slate-3
-                00 px-3 py-1 bg-white cursor-pointer hover:bg-slate-300"
+                00 px-3 py-1 bg-white cursor-pointer hover:bg-slate-300 z-[5000]"
                         key={opt.label}
                         onClick={() => setCity(opt.label[0])}
                       >
@@ -264,7 +272,10 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
         </div>
       </header>
 
-      <div id="feature_experiences_cards" className="mt-10 lg:px-48 2xl:px-60">
+      <div
+        id="feature_experiences_cards"
+        className="mt-10 lg:px-32 2xl:px-40 bg-[#F5F5F5]"
+      >
         <div className="grid lg:grid-cols-3 lg:gap-[30px]">
           {displayProduct()}
         </div>
