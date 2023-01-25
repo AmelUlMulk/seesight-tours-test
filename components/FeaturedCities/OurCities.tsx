@@ -10,14 +10,44 @@ interface IProps {
   citiesTotalCount: number;
   slug?: string;
 }
-
+const CardSnippet = (city: any) => {
+  const [showSnp, setShowSnp] = useState(false);
+  return (
+    <>
+      {showSnp ? (
+        <div
+          onClick={() => {
+            if (showSnp) {
+              setShowSnp(false);
+            }
+          }}
+          onMouseLeave={() => setShowSnp(!showSnp)}
+          className="absolute bottom-[8px] left-[12px] right-10 bg-[#000000] opacity-70 text-[#FFFFFF] text-[18px] font-[500] px-12 py-5 rounded-lg"
+        >
+          {city?.city?.cardSnippet}
+        </div>
+      ) : (
+        <div
+          onClick={() => {
+            if (!showSnp) {
+              setShowSnp(true);
+            }
+          }}
+          onMouseEnter={() => setShowSnp(!showSnp)}
+          className="absolute bottom-[8px] left-[12px] bg-[#000000] opacity-70 text-[#FFFFFF] text-[18px] font-[500] px-4 py-2 rounded-lg"
+        >
+          {city?.city?.name}
+        </div>
+      )}
+    </>
+  );
+};
 const OurCities = ({
   title,
   subTitle,
   FeaturedCities,
   citiesTotalCount
 }: IProps) => {
-  const [showSnip, setShowSnip] = useState(false);
   return (
     <section className="Our_Cities-wrapper mt-10 bg-[#F5F5F5]">
       <div id="header" className=" pt-10 lg:px-32 2xl:px-40">
@@ -46,31 +76,7 @@ const OurCities = ({
                           className="w-[100%] h-[100%] rounded-xl hover:scale-105 ease-in-out duration-200"
                         />
                       </Link>
-                      {showSnip ? (
-                        <div
-                          onClick={() => {
-                            if (showSnip) {
-                              setShowSnip(false);
-                            }
-                          }}
-                          onMouseLeave={() => setShowSnip(!showSnip)}
-                          className="absolute bottom-[8px] left-[12px] right-10 bg-[#000000] opacity-70 text-[#FFFFFF] text-[18px] font-[500] px-12 py-5 rounded-lg"
-                        >
-                          {city?.city?.cardSnippet}
-                        </div>
-                      ) : (
-                        <div
-                          onClick={() => {
-                            if (!showSnip) {
-                              setShowSnip(true);
-                            }
-                          }}
-                          onMouseEnter={() => setShowSnip(!showSnip)}
-                          className="absolute bottom-[8px] left-[12px] bg-[#000000] opacity-70 text-[#FFFFFF] text-[18px] font-[500] px-4 py-2 rounded-lg"
-                        >
-                          {city?.city?.name}
-                        </div>
-                      )}
+                      {CardSnippet(city)}
                     </div>
                   </div>
                 )}
@@ -89,31 +95,7 @@ const OurCities = ({
                           className="w-[100%] h-[100%] rounded-xl hover:scale-105 ease-in-out duration-200"
                         />
                       </Link>
-                      {showSnip ? (
-                        <div
-                          onClick={() => {
-                            if (showSnip) {
-                              setShowSnip(false);
-                            }
-                          }}
-                          onMouseLeave={() => setShowSnip(!showSnip)}
-                          className="absolute bottom-[8px] left-[12px] right-10 bg-[#000000] opacity-70 text-[#FFFFFF] text-[18px] font-[500] px-12 py-5 rounded-lg"
-                        >
-                          {city?.city?.cardSnippet}
-                        </div>
-                      ) : (
-                        <div
-                          onClick={() => {
-                            if (!showSnip) {
-                              setShowSnip(true);
-                            }
-                          }}
-                          onMouseEnter={() => setShowSnip(!showSnip)}
-                          className="absolute bottom-[8px] left-[12px] bg-[#000000] opacity-70 text-[#FFFFFF] text-[18px] font-[500] px-4 py-2 rounded-lg"
-                        >
-                          {city?.city?.name}
-                        </div>
-                      )}
+                      {CardSnippet(city)}
                     </div>
                   </div>
                 )}
@@ -132,31 +114,7 @@ const OurCities = ({
                           className="w-[100%] h-[100%] rounded-xl hover:scale-105 ease-in-out duration-200"
                         />
                       </Link>
-                      {showSnip ? (
-                        <div
-                          onClick={() => {
-                            if (showSnip) {
-                              setShowSnip(false);
-                            }
-                          }}
-                          onMouseLeave={() => setShowSnip(!showSnip)}
-                          className="absolute bottom-[8px] left-[12px] right-10 bg-[#000000] opacity-70 text-[#FFFFFF] text-[18px] font-[500] px-12 py-5 rounded-lg"
-                        >
-                          {city?.city?.cardSnippet}
-                        </div>
-                      ) : (
-                        <div
-                          onClick={() => {
-                            if (!showSnip) {
-                              setShowSnip(true);
-                            }
-                          }}
-                          onMouseEnter={() => setShowSnip(!showSnip)}
-                          className="absolute bottom-[8px] left-[12px] bg-[#000000] opacity-70 text-[#FFFFFF] text-[18px] font-[500] px-4 py-2 rounded-lg"
-                        >
-                          {city?.city?.name}
-                        </div>
-                      )}
+                      {CardSnippet(city)}
                     </div>
                   </div>
                 )}
@@ -185,31 +143,7 @@ const OurCities = ({
                           className="w-[100%] h-[100%] rounded-xl hover:scale-105 ease-in-out duration-200"
                         />
                       </Link>
-                      {showSnip ? (
-                        <div
-                          onClick={() => {
-                            if (showSnip) {
-                              setShowSnip(false);
-                            }
-                          }}
-                          onMouseLeave={() => setShowSnip(!showSnip)}
-                          className="absolute bottom-[8px] left-[12px] right-10 bg-[#000000] opacity-70 text-[#FFFFFF] text-[18px] font-[500] px-12 py-5 rounded-lg"
-                        >
-                          {city?.city?.cardSnippet}
-                        </div>
-                      ) : (
-                        <div
-                          onClick={() => {
-                            if (!showSnip) {
-                              setShowSnip(true);
-                            }
-                          }}
-                          onMouseEnter={() => setShowSnip(!showSnip)}
-                          className="absolute bottom-[8px] left-[12px] bg-[#000000] opacity-70 text-[#FFFFFF] text-[18px] font-[500] px-4 py-2 rounded-lg"
-                        >
-                          {city?.city?.name}
-                        </div>
-                      )}
+                      {CardSnippet(city)}
                     </div>
                   </div>
                 )}
@@ -228,31 +162,7 @@ const OurCities = ({
                           className="w-[100%] h-[100%] rounded-xl hover:scale-105 ease-in-out duration-200"
                         />
                       </Link>
-                      {showSnip ? (
-                        <div
-                          onClick={() => {
-                            if (showSnip) {
-                              setShowSnip(false);
-                            }
-                          }}
-                          onMouseLeave={() => setShowSnip(!showSnip)}
-                          className="absolute bottom-[8px] left-[12px] right-10 bg-[#000000] opacity-70 text-[#FFFFFF] text-[18px] font-[500] px-12 py-5 rounded-lg"
-                        >
-                          {city?.city?.cardSnippet}
-                        </div>
-                      ) : (
-                        <div
-                          onClick={() => {
-                            if (!showSnip) {
-                              setShowSnip(true);
-                            }
-                          }}
-                          onMouseEnter={() => setShowSnip(!showSnip)}
-                          className="absolute bottom-[8px] left-[12px] bg-[#000000] opacity-70 text-[#FFFFFF] text-[18px] font-[500] px-4 py-2 rounded-lg"
-                        >
-                          {city?.city?.name}
-                        </div>
-                      )}
+                      {CardSnippet(city)}
                     </div>
                   </div>
                 )}
@@ -271,31 +181,7 @@ const OurCities = ({
                           className="w-[100%] h-[100%] rounded-xl hover:scale-105 ease-in-out duration-200"
                         />
                       </Link>
-                      {showSnip ? (
-                        <div
-                          onClick={() => {
-                            if (showSnip) {
-                              setShowSnip(false);
-                            }
-                          }}
-                          onMouseLeave={() => setShowSnip(!showSnip)}
-                          className="absolute bottom-[8px] left-[12px] right-10 bg-[#000000] opacity-70 text-[#FFFFFF] text-[18px] font-[500] px-12 py-5 rounded-lg"
-                        >
-                          {city?.city?.cardSnippet}
-                        </div>
-                      ) : (
-                        <div
-                          onClick={() => {
-                            if (!showSnip) {
-                              setShowSnip(true);
-                            }
-                          }}
-                          onMouseEnter={() => setShowSnip(!showSnip)}
-                          className="absolute bottom-[8px] left-[12px] bg-[#000000] opacity-70 text-[#FFFFFF] text-[18px] font-[500] px-4 py-2 rounded-lg"
-                        >
-                          {city?.city?.name}
-                        </div>
-                      )}
+                      {CardSnippet(city)}
                     </div>
                   </div>
                 )}
