@@ -21,28 +21,40 @@ const landingpPageInfo = [
 ];
 const LandingPageInfo = () => {
   return (
-    <section id="landing_page_info">
+    <section id="landing_page_info" className="py-16 lg:px-32 2xl:px-40">
+      <h1 className="text-[56px] font-[600]">Why us</h1>
       <div className="flex">
         <div id="image-wrapper" className="relative flex-none w-[50%]">
           <Image
-            src={
-              'https://res.cloudinary.com/see-sight-tours/image/upload/t_desktop/v1581435116/hornblower-niagara-falls.jpg'
-            }
+            src={'/Rectangle 6.png'}
             fill
             alt="Hornblower Niagara Cruises"
-            className="object-cover"
+            className="object-cover rounded-lg"
           />
         </div>
-        <div className="flex-none w-[50%] bg-[#57b8e8]">
-          <div className="flex justify-center flex-col px-[14%] py-[60px]">
-            {landingpPageInfo.map((infoData: Record<string, string>) => {
-              return (
-                <div key={infoData.key} className="text-white">
-                  <h1 className="text-4xl font-[500]">{infoData.header}</h1>
-                  <p className="text-2xl">{infoData.paragraph}</p>
-                </div>
-              );
-            })}
+        <div className="flex-none w-[50%]">
+          <div className="flex justify-center flex-col px-[14%] ">
+            {landingpPageInfo.map(
+              (infoData: Record<string, string>, index: number) => {
+                return (
+                  <div key={infoData.key} className="flex">
+                    <div className="pt-2">
+                      <h1 className="text-[26px] font-[500] text-[#9B9B9B]">
+                        0{index + 1}
+                      </h1>
+                    </div>
+                    <div className="px-14">
+                      <h1 className="text-[32px] font-[600] text-[#333333]">
+                        {infoData.header}
+                      </h1>
+                      <p className="text-[#828282] text-[16px] font-[500]">
+                        {infoData.paragraph.toLocaleUpperCase()}
+                      </p>
+                    </div>
+                  </div>
+                );
+              }
+            )}
           </div>
         </div>
       </div>

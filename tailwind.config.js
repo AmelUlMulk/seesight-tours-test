@@ -24,6 +24,10 @@ module.exports = {
       '3xl': '1800px',
 
       '4xl': '2200px'
+    },
+    customDiv: {
+      qouteDiv:
+        'clip-path: polygon(0% 0%, 100% 0%, 100% 81%, 41% 81%, 31% 100%, 19% 82%, 0 82%)'
     }
   },
   plugins: []
