@@ -1,8 +1,10 @@
 import { HOMEPAGEINTERFACE } from '../../graphql_api/homePage';
 import Home from '../../pages';
+import Guides from '../../pages/guides';
 import OurCities from '../FeaturedCities/OurCities';
 import FeaturedExperiences from '../FeaturedExperiences/FeaturedExperiences';
 import FeaturedNavSection from '../FeaturedExperiences/FeaturedNavSec';
+import OurGuides from '../Guides/guides';
 import Newsletter from '../Newsletter/newsletter';
 import Trustbar from '../Trust/Trustbar';
 import LandingPageInfo from './components/landingpaginfo';
@@ -13,8 +15,14 @@ interface IProps {
   featuredExp: any;
   citydropdown: any;
   HomePage: any;
+  guidesData: any;
 }
-const LandingPage = ({ featuredExp, citydropdown, HomePage }: IProps) => {
+const LandingPage = ({
+  featuredExp,
+  citydropdown,
+  HomePage,
+  guidesData
+}: IProps) => {
   const { homePage: { cities: [...data] = [] } = {}, citiesTotal } = HomePage;
   return (
     <>
@@ -31,6 +39,7 @@ const LandingPage = ({ featuredExp, citydropdown, HomePage }: IProps) => {
       />
       <LandingPageInfo />
       <Testimonials />
+      <OurGuides guidesData={guidesData} />
       <Newsletter />
     </>
   );

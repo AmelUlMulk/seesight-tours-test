@@ -25,9 +25,12 @@ module.exports = {
 
       '4xl': '2200px'
     },
-    customDiv: {
-      qouteDiv:
-        'clip-path: polygon(0% 0%, 100% 0%, 100% 81%, 41% 81%, 31% 100%, 19% 82%, 0 82%)'
+    extend: {
+      boxShadow: {
+        guidesBox: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+        guideimageBox: '-10px -11px 0px 1px #2191fa',
+        moreguideBox: '0px 9px 9px rgb(0 0 0 / 25%)'
+      }
     }
   },
   plugins: []

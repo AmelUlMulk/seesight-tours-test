@@ -1,5 +1,7 @@
 import Image from 'next/image';
-
+import SmallToursIcon from '../../assets/svg/vector.svg';
+import FreeCancellationIcon from '../../assets/svg/Vector-1.svg';
+import ReviewsIcon from '../../assets/svg/Vector-2.svg';
 export enum PAGE_OPTIONS {
   DAY_TOUR_PAGED = 'dayTours',
   MULTIDAY_TOUR_PAGE = 'multiday'
@@ -10,28 +12,19 @@ interface PAGE {
 }
 const data = [
   {
-    total: '15',
-    heading: 'Years of Experience',
-    snippet:
-      'This Award-winning Tour Lets You Experience Niagara Falls From Above, Behind And Right Up-Close'
+    id: 'B111',
+    snippet: 'Small-Group Tours',
+    icon: '/Vector.svg'
   },
   {
-    total: '1K',
-    heading: 'Successful trips',
-    snippet:
-      'This Award-winning Tour Lets You Experience Niagara Falls From Above, Behind And Right Up-Close'
+    id: 'B112',
+    snippet: 'Free Cancellation',
+    icon: '/Vector-1.svg'
   },
   {
-    total: '10K',
-    heading: 'Happy customer',
-    snippet:
-      'This Award-winning Tour Lets You Experience Niagara Falls From Above, Behind And Right Up-Close'
-  },
-  {
-    total: '4.9',
-    heading: 'Overall rating',
-    snippet:
-      'This Award-winning Tour Lets You Experience Niagara Falls From Above, Behind And Right Up-Close'
+    id: 'B113',
+    snippet: '5000+ 5-Star Reviews',
+    icon: '/Vector-2.svg'
   }
 ];
 const Trustbar = () => {
@@ -49,20 +42,22 @@ const Trustbar = () => {
           className="min-h-[100%]"
         />
       </div>
-      <div className="flex-none w-[50%] border-b-[1px] border-[#C5C5C5] py-20">
-        <div id="experience" className="flex flex-col gap-5 text-white">
+      <div className="flex-none w-[50%] border-b-[1px] border-[#C5C5C5] py-36">
+        <div
+          id="experience"
+          className="flex flex-col gap-5 text-white pl-24 pr-28"
+        >
           {data.map(dt => {
             return (
               <div
-                key={dt.heading}
-                className="bg-[#2191FA] flex items-center rounded-[15px] px-8"
+                key={dt.id}
+                className="bg-[#2191FA] flex items-center rounded-[15px] px-8 py-5"
               >
-                <h1 className="text-[64px] font-[700]">{dt.total}</h1>
-                <div className="flex flex-col px-6 py-4">
-                  <h3 id="heading" className="text-[24px] font-[400]">
-                    {dt.heading}
-                  </h3>
-                  <p className="text-[16px] font-[400]">{dt.snippet}</p>
+                <div>
+                  <Image src={dt.icon} width={49} height={31} alt="" />
+                </div>
+                <div className="px-6 py-4 w-[100%]">
+                  <p className="text-[24px] font-[400]">{dt.snippet}</p>
                 </div>
               </div>
             );

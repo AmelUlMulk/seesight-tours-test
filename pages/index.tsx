@@ -7,13 +7,21 @@ import client from '../apollo-client';
 import FEATUREDEXPERIENCES from '../graphql_api/featuredexperiences';
 import { FEATURED_EXPERIENCES_INTERFACE } from '../api/featuredexperiences';
 import { HOMEPAGE, HOMEPAGEINTERFACE } from '../api/homePage';
+import { GUIDESINTERFACE } from '../api/commonInterfaces';
+import { GUIDES } from '../api/guides';
 
 interface IProps {
   featuredExp: any;
   citydropdown: any;
   HomePage: any;
+  guidesData: any;
 }
-export default function Home({ featuredExp, citydropdown, HomePage }: IProps) {
+export default function Home({
+  featuredExp,
+  citydropdown,
+  HomePage,
+  guidesData
+}: IProps) {
   return (
     <>
       <Head>
@@ -33,6 +41,7 @@ export default function Home({ featuredExp, citydropdown, HomePage }: IProps) {
           featuredExp={featuredExp}
           citydropdown={citydropdown}
           HomePage={HomePage}
+          guidesData={guidesData}
         />
       </main>
     </>
@@ -54,11 +63,15 @@ export async function getStaticProps() {
       guides: false
     }
   });
+  const { data: guidesData } = await client.query<GUIDESINTERFACE>({
+    query: GUIDES
+  });
   return {
     props: {
       featuredExp: data.homePage,
       citydropdown: data.citiesDropdown,
-      HomePage: HomePage
+      HomePage: HomePage,
+      guidesData
     }
   };
 }
