@@ -130,6 +130,14 @@ const FRAGMENT_PRODUCT_ORDER = gql`
       caption
       fragment: caption
     }
+    carousel: carousel_media {
+      id
+      name
+      alt: alternativeText
+      url
+      fragment: caption
+      type: provider_metadata
+    }
     reviews {
       id
       rating

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import FeaturedNavSection from './FeaturedNavSec';
 import { useLazyQuery, useQuery } from '@apollo/client';
 import DropdownIcon from '../../assets/svg/Vector 21.svg';
-import { optimizeImage } from 'next/dist/server/image-optimizer';
 import {
   CITIES_FILTER,
   CITY_FILTER_INTERFACE

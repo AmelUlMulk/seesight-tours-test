@@ -1,15 +1,10 @@
-import { HOMEPAGEINTERFACE } from '../../graphql_api/homePage';
-import Home from '../../pages';
-import Guides from '../../pages/guides';
 import OurCities from '../FeaturedCities/OurCities';
 import FeaturedExperiences from '../FeaturedExperiences/FeaturedExperiences';
-import FeaturedNavSection from '../FeaturedExperiences/FeaturedNavSec';
 import OurGuides from '../Guides/guides';
 import Newsletter from '../Newsletter/newsletter';
 import Trustbar from '../Trust/Trustbar';
 import LandingPageInfo from './components/landingpaginfo';
 import Testimonials from './components/testimonials';
-import PageHero from './Pagehero';
 
 interface IProps {
   featuredExp: any;

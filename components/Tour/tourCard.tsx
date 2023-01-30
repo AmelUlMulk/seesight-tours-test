@@ -1,7 +1,13 @@
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { PAGE_OPTIONS } from '../Trust/Trustbar';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Autoplay, Pagination } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/pagination';
+SwiperCore.use([Autoplay, Pagination]);
 interface IProps {
   product: Record<string, any>;
   productType?: string;
@@ -25,6 +31,21 @@ export const SnippetStyle = styled.p`
   overflow: hidden;
 `;
 const TourCard = ({ product, productType }: IProps) => {
+  const [image, setImage] = useState<any>([]);
+  // console.log(product);
+  console.log(image);
+  //storing Images in array
+  useEffect(() => {
+    const imageArr: Array<Record<string, any>> = [];
+    product?.carousel.map((img: Record<string, any>, index: number) => {
+      imageArr.push({
+        key: index + 1,
+        imageUrl: img?.url,
+        hasVideo: img?.type.public_id.includes('video')
+      });
+      setImage(imageArr);
+    });
+  }, [product?.carousel]);
   // REVIEWS AVG
   let totalAvg = 0;
   let total = 0;
@@ -49,13 +70,46 @@ const TourCard = ({ product, productType }: IProps) => {
             >
               From ${product?.price}
             </PriceContainerStyle>
-            <Image
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={1}
+              // autoplay={{
+              //   delay: 4000,
+              //   disableOnInteraction: false
+              // }}
+              pagination={{ dynamicBullets: false, clickable: true }}
+              className="w-[100%] h-[100%]"
+            >
+              {image?.map((img: any) => (
+                <SwiperSlide key={img?.key} className="w-[100%] h-[100%]">
+                  {img?.hasVideo ? (
+                    <video
+                      src={img?.imageUrl}
+                      muted
+                      autoPlay
+                      loop
+                      playsInline
+                      className="w-[100%] h-[100%] object-cover"
+                    ></video>
+                  ) : (
+                    <Image
+                      src={img?.imageUrl}
+                      width={400}
+                      height={400}
+                      alt="feature product image"
+                      className="w-[100%] h-[100%] object-cover rounded-lg hover:scale-105 ease-in-out duration-200"
+                    />
+                  )}
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            {/* <Image
               src={product?.cardMedia[0].url}
               width={400}
               height={400}
               alt="feature product image"
               className="w-[100%] h-[100%] object-cover rounded-lg hover:scale-105 ease-in-out duration-200"
-            />
+            /> */}
           </div>
         </Link>
       </div>

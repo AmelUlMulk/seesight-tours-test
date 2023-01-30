@@ -26,6 +26,14 @@ const FEATUREDEXPERIENCES = gql`
             fragment: caption
             type: provider_metadata
           }
+          carousel: carousel_media {
+            id
+            name
+            alt: alternativeText
+            url
+            fragment: caption
+            type: provider_metadata
+          }
           reviews {
             id
             rating
@@ -48,6 +56,14 @@ const FEATUREDEXPERIENCES = gql`
             fragment: caption
             type: provider_metadata
           }
+          carousel: carousel_media {
+            id
+            name
+            alt: alternativeText
+            url
+            fragment: caption
+            type: provider_metadata
+          }
           reviews {
             id
             rating
@@ -64,6 +80,14 @@ const FEATUREDEXPERIENCES = gql`
           cardMessage: card_message
           cardSnippet: snippet
           cardMedia: card_media {
+            name
+            alt: alternativeText
+            url
+            fragment: caption
+            type: provider_metadata
+          }
+          carousel: carousel_media {
+            id
             name
             alt: alternativeText
             url
@@ -142,6 +166,7 @@ interface FEATURED_EXPERIENCES_INTERFACE {
           cardMessage: string;
           cardSnippet: string;
           cardMedia: [CARDMEDIAINTERFACE];
+          carousel: [CARDMEDIAINTERFACE];
           reviews: {
             id: string;
             rating: string;
