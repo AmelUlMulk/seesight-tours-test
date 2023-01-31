@@ -114,13 +114,13 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
     else if (activeNav === 'airportTransfers') return 'Airport Transfer';
   };
   /////////////////////////////Final Array////////////////////////
-  const finalArray =
-    filteredCity && featuredExperienceData
-      ? featuredExperienceData[activeNav]
-      : city === 'All Cities'
-      ? featuredExp[activeNav]
-      : [];
-  console.log('final array:', finalArray);
+  // const finalArray =
+  //   filteredCity && featuredExperienceData
+  //     ? featuredExperienceData[activeNav]
+  //     : city === 'All Cities'
+  //     ? featuredExp[activeNav]
+  //     : [];
+  // console.log('final array:', finalArray);
   //////////////////////////////Final display functions////////////
   const displayProduct = () => {
     const filteredProduct =

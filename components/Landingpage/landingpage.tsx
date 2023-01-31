@@ -2,6 +2,7 @@ import OurCities from '../FeaturedCities/OurCities';
 import FeaturedExperiences from '../FeaturedExperiences/FeaturedExperiences';
 import OurGuides from '../Guides/guides';
 import Newsletter from '../Newsletter/newsletter';
+import SearchCity from '../Searchbar/searchCity';
 import Trustbar from '../Trust/Trustbar';
 import LandingPageInfo from './components/landingpaginfo';
 import Testimonials from './components/testimonials';
