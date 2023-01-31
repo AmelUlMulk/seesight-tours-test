@@ -24,10 +24,6 @@ const arr = [
   {
     filterClass: 'multiday',
     filterName: 'Multi Day Tours'
-  },
-  {
-    filterClass: 'airportTransfers',
-    filterName: 'Airport Transfer'
   }
 ];
 
@@ -118,13 +114,13 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
     else if (activeNav === 'airportTransfers') return 'Airport Transfer';
   };
   /////////////////////////////Final Array////////////////////////
-  // const finalArray =
-  //   filteredCity && featuredExperienceData
-  //     ? featuredExperienceData[activeNav]
-  //     : city === 'All Cities'
-  //     ? featuredExp[activeNav]
-  //     : [];
-  // console.log('final array:', finalArray);
+  const finalArray =
+    filteredCity && featuredExperienceData
+      ? featuredExperienceData[activeNav]
+      : city === 'All Cities'
+      ? featuredExp[activeNav]
+      : [];
+  console.log('final array:', finalArray);
   //////////////////////////////Final display functions////////////
   const displayProduct = () => {
     const filteredProduct =
@@ -186,14 +182,17 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
     }
     if (!showAll) {
       return (
-        <div className="lg:px-36 2xl:px-60 flex justify-end mt-10">
+        <div className="lg:px-32 2xl:px-40 flex justify-end mt-10">
           {selectNum > 6 && (
             <div
               onClick={() => setShowAll(true)}
               className="cursor-pointer flex items-center"
             >
-              <h1 className="text-sky-500 text-3xl font-[600]">{`See ${selectedNav} (${selectNum})`}</h1>
-              <ChevronRightIcon className="text-5xl text-sky-500 pt-2" />
+              {/* <h1 className="text-sky-500 text-3xl font-[600]">{`See ${selectedNav} (${selectNum})`}</h1> */}
+              <h1 className="text-[20px] text-[#6D6D6D] font-[400] cursor-pointer">
+                See More
+              </h1>
+              {/* <ChevronRightIcon className="text-5xl text-sky-500 pt-2" /> */}
             </div>
           )}
         </div>
@@ -203,7 +202,9 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
       return (
         <div className="lg:px-36 2xl:px-60 flex justify-end mt-10 ">
           <div onClick={() => setShowAll(false)} className="cursor-pointer">
-            <h1 className="text-sky-500 text-3xl font-[600]">Show Less</h1>
+            <h1 className="text-[20px] text-[#6D6D6D] font-[400] cursor-pointer">
+              Show Less
+            </h1>
           </div>
         </div>
       );
@@ -234,8 +235,8 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
                 onClick={() => setCityToggle(!cityToggle)}
                 className={
                   cityToggle
-                    ? ' flex justify-between items-center border-[1px] border-[#F15C5A] rounded-xl w-[100%] px-6 py-1 text-[16.92px] text-[#333333] font-[400]'
-                    : ' flex justify-between items-center border-[1px] border-[#4F4F4F] rounded-xl w-[100%] px-6 py-1 text-[16.92px] text-[#333333] font-[400]'
+                    ? ' flex justify-between items-center border-[1px] border-[#F15C5A] rounded-[10px] w-[100%] px-6 py-1 text-[16.92px] text-[#333333] font-[400]'
+                    : ' flex justify-between items-center border-[1px] border-[#4F4F4F] rounded-[10px] w-[100%] px-6 py-1 text-[16.92px] text-[#333333] font-[400]'
                 }
               >
                 {city}

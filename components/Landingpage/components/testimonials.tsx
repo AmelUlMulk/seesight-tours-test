@@ -1,5 +1,12 @@
 import Image from 'next/image';
 import styled from 'styled-components';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Navigation } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+SwiperCore.use([Navigation]);
+
 const TestimonialStyle = styled.section`
   background-image: linear-gradient(
       to top,
@@ -16,18 +23,45 @@ export const TextShadow = styled.h1`
 const data = [
   {
     id: 'A111',
-    para: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor neque sed imperdiet nibh lectus feugiat nunc sem. consectetur adipiscing elit. nibh lectus feugiat nunc ',
-    author: 'Jane'
+    review:
+      'Took my husband for our anniversary.   It is well worth the price you can’t complain.   Our tour guy well educated us on the history very informative.   Will do again thanks.',
+    traveller: 'Josephine_G'
   },
   {
     id: 'A112',
-    para: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor neque sed imperdiet nibh lectus feugiat nunc sem. consectetur adipiscing elit. nibh lectus feugiat nunc ',
-    author: 'Jackson'
+    review:
+      'We had a great time and would recommend it to anyone. Unfortunately; we couldn’t do the cruise due to winter; but the helicopter was a real highlight ',
+    traveller: 'Peter'
   },
   {
     id: 'A113',
-    para: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor neque sed imperdiet nibh lectus feugiat nunc sem. consectetur adipiscing elit. nibh lectus feugiat nunc ',
-    author: 'Cooper'
+    review:
+      'Vinny was an amazing guide and shared a ton of local knowledge. We had a lot of fun and met some new friends! Highly recommend thiis tour and especially Vinny! ',
+    traveller: 'Eric b'
+  },
+  {
+    id: 'A114',
+    review:
+      'Vinny was an amazing guide and shared a ton of local knowledge. We had a lot of fun and met some new friends! Highly recommend thiis tour and especially Vinny! ',
+    traveller: 'Eric b'
+  },
+  {
+    id: 'A115',
+    review:
+      'Vinny was an amazing guide and shared a ton of local knowledge. We had a lot of fun and met some new friends! Highly recommend thiis tour and especially Vinny! ',
+    traveller: 'Eric b'
+  },
+  {
+    id: 'A116',
+    review:
+      'Vinny was an amazing guide and shared a ton of local knowledge. We had a lot of fun and met some new friends! Highly recommend thiis tour and especially Vinny! ',
+    traveller: 'Eric b'
+  },
+  {
+    id: 'A117',
+    review:
+      'Vinny was an amazing guide and shared a ton of local knowledge. We had a lot of fun and met some new friends! Highly recommend thiis tour and especially Vinny! ',
+    traveller: 'Eric b'
   }
 ];
 const Testimonials = () => {
@@ -41,26 +75,45 @@ const Testimonials = () => {
           Testimonials
         </TextShadow>
       </div>
-      <div className="flex gap-6 lg:px-52">
-        {data.map(dt => {
-          return (
-            <div key={dt.id}>
-              <div className="flex flex-col relative bg-[#000000] opacity-80  text-white pb-12 px-8 pt-10 rounded-lg">
-                <Image src="/quote.png" width={30} height={30} alt="" />
-                <p>{dt.para}</p>
-                <div
-                  className="bg-[#000000] opacity-[80%] w-[30px] h-[30px] absolute top-[100%] left-8"
-                  style={{
-                    clipPath: 'polygon(0 0, 46% 65%, 100% 0)'
-                  }}
-                ></div>
-              </div>
-              <div className="text-[#FFFFFF] pt-5 pl-5 text-[18px] font-[700]">
-                {dt.author}
-              </div>
-            </div>
-          );
-        })}
+      <div id="slider-container" className="px-16">
+        <div id="slider-grid" className="flex gap-5">
+          <div className="flex justify-center items-center">
+            <button className="text-white bg-[#F15C5A] rounded-[50%] p-5 prevBtn">
+              P
+            </button>
+          </div>
+          <Swiper
+            slidesPerView={3}
+            spaceBetween={20}
+            navigation={{
+              nextEl: '.nextBtn',
+              prevEl: '.prevBtn'
+            }}
+          >
+            {data.map(dt => (
+              <SwiperSlide key={dt.id}>
+                <div className="flex flex-col relative bg-[#000000] opacity-80  text-white pb-12 px-16 pt-10 rounded-lg">
+                  <Image src="/quote.png" width={30} height={30} alt="" />
+                  <p>{dt.review}</p>
+                  <div
+                    className="bg-[#000000] opacity-[80%] w-[30px] h-[30px] absolute top-[100%] left-8"
+                    style={{
+                      clipPath: 'polygon(0 0, 46% 65%, 100% 0)'
+                    }}
+                  ></div>
+                </div>
+                <div className="text-[#FFFFFF] pt-5 pl-5 text-[18px] font-[700]">
+                  {dt.traveller}
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          <div className="flex justify-center items-center">
+            <button className="bg-[#F15C5A] text-white rounded-[50%] p-5 nextBtn">
+              N
+            </button>
+          </div>
+        </div>
       </div>
     </TestimonialStyle>
   );
