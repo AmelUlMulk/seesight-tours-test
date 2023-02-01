@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import client from '../apollo-client';
 import PageHero from '../components/Contact/PageHero';
+import Link from 'next/link';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { CITIES_PAGE_INTERFACE, CITIES_PAGE } from '../api/citiesPage';
-import Link from 'next/link';
 import Newsletter from '../layouts/Newsletter/Newsletter';
 import Head from 'next/head';
+import { TrustBar } from '../components/TrustBar/TrustBar';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Pagination } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import CardSnippet from '../components/CardSnippet/CardSnippet';
+import { AllCities } from '../components/AllCities/AllCities';
 
 export async function getStaticProps() {
   const { data } = await client.query<CITIES_PAGE_INTERFACE>(CITIES_PAGE);
+
   return {
     props: {
       citiesPage: data.citiesPage
@@ -17,10 +25,27 @@ export async function getStaticProps() {
   };
 }
 
+const Heading = styled.h1`
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+`;
+
+const Description = styled.p`
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 36px;
+  width: 90%;
+  @media (max-width: 850px) {
+    display: none;
+  }
+`;
+
 const CityCards = styled.div`
   margin-top: 3rem;
   margin-bottom: 1rem;
-  max-height: 600px;
+  max-height: 700px;
   @media (max-width: 1500px) {
     margin-top: 1.5rem;
   }
@@ -28,7 +53,7 @@ const CityCards = styled.div`
 
 const StyledImage = styled(Image)`
   z-index: 0;
-  height: 200px;
+  height: 250px;
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -56,56 +81,90 @@ const Cities = ({ citiesPage }: CITIES_PAGE_INTERFACE) => {
         }
         video={true}
       />
-      <h1 className="font-bold text-4xl text-center pt-5">Featured Cities</h1>
-      <div className="flex justify-center">
-        <div className="grid w-5/6 grid-cols-4 gap-3 xxsm:grid-cols-1 xsm:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
-          {citiesPage.featured.map(cities => (
-            <div className="flex justify-center w-full" key={cities.city.id}>
-              <CityCards className="  max-w-xs w-full rounded-lg overflow-hidden shadow-lg cursor-pointer transform transition duration-500 hover:scale-105">
-                <Link href={`/${cities.city.slug}`}>
-                  <StyledImage
-                    src={cities.city.cardMedia[0].url}
-                    alt={cities.city.cardMedia[0].url}
-                    width={500}
-                    height={200}
-                  />
-                  <div className="px-2 py-4 relative">
-                    <div className="font-bold text-xl mb-2 px-5 text-center">
-                      {cities.city.name}
-                    </div>
-                    <div className="px-5 text-base text-center">
-                      {cities.city.cardSnippet}
-                    </div>
-                  </div>
-                </Link>
-              </CityCards>
-            </div>
-          ))}
+      <TrustBar />
+      <section>
+        <div className="3xl:px-24  2xl:px-20 xl:px-20 lg:px-16 md:px-16 sm:px-12  xsm:px-8 xxsm:px-8 ">
+          <div id="header" className="  lg:px-18 2xl:px-24">
+            <Heading className="font-bold 2xl:text-4xl  xl:text-3xl md:text-2xl sm:text-2xl  xsm:text-2xl pt-10 ">
+              FEATURED CITIES
+            </Heading>
+            {/* <Description className="2xl:text-[24px] xl:text-[24px] md:text-[20px]">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
+              labore, necessitatibus sit dicta molestiae corrupti ipsum officiis
+              qui.
+            </Description> */}
+          </div>
+          <div className="lg:px-18 2xl:px-24">
+            <Swiper
+              className="swiper_123"
+              spaceBetween={20}
+              slidesPerView={4}
+              pagination={{ clickable: true }}
+              effect="slide"
+              grabCursor
+              breakpoints={{
+                300: {
+                  slidesPerView: 1,
+                  spaceBetween: 2
+                },
+                450: {
+                  slidesPerView: 2,
+                  spaceBetween: 2
+                },
+                600: {
+                  slidesPerView: 2,
+                  spaceBetween: 2
+                },
+                800: {
+                  slidesPerView: 3,
+                  spaceBetween: 2
+                },
+                900: {
+                  slidesPerView: 4,
+                  spaceBetween: 4
+                },
+                1200: {
+                  slidesPerView: 5,
+                  spaceBetween: 6
+                },
+                1600: {
+                  slidesPerView: 5,
+                  spaceBetween: 8
+                },
+                1800: {
+                  slidesPerView: 5,
+                  spaceBetween: 10
+                }
+              }}
+              a11y={{ enabled: true }}
+              observer
+              observeParents
+              observeSlideChildren
+            >
+              {citiesPage.featured &&
+                citiesPage.featured.map(cities => (
+                  <SwiperSlide key={cities.city.id}>
+                    <CityCards className="  max-w-xs w-full rounded-lg overflow-x-auto shadow-lg cursor-pointer transform transition duration-500 hover:scale-105">
+                      <Link href={`/${cities.city.slug}`}>
+                        <StyledImage
+                          src={cities.city.cardMedia[0].url}
+                          alt={cities.city.cardMedia[0].url}
+                          width={250}
+                          height={300}
+                        />
+                      </Link>
+                      <CardSnippet
+                        text={cities.city.cardSnippet}
+                        name={cities.city.name}
+                      />
+                    </CityCards>
+                  </SwiperSlide>
+                ))}
+            </Swiper>
+          </div>
         </div>
-      </div>
-
-      <h1 className="font-bold text-4xl text-center pt-5">All Cities</h1>
-      <div className="flex justify-center">
-        <div className="grid w-5/6 grid-cols-4 gap-3 xxsm:grid-cols-1 xsm:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {citiesPage.cities.map(cities => (
-            <div className="flex justify-center w-full" key={cities.city.id}>
-              <CityCards className="  max-w-xs w-full rounded-lg overflow-hidden shadow-lg cursor-pointer transform transition duration-500 hover:scale-105">
-                <StyledImage
-                  src={cities.city.cardMedia[0].url}
-                  alt={cities.city.cardMedia[0].url}
-                  width={500}
-                  height={200}
-                />
-                <div className="px-2 py-4 relative">
-                  <div className="font-bold text-xl mb-2 px-5 text-center">
-                    {cities.city.name}
-                  </div>
-                </div>
-              </CityCards>
-            </div>
-          ))}
-        </div>
-      </div>
+      </section>
+      <AllCities cities={citiesPage.cities} />
       <Newsletter />
     </div>
   );
