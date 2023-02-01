@@ -1,4 +1,5 @@
-import { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import SearchfilterIcon from '../../assets/svg/searchfiltericon.svg';
@@ -133,20 +134,36 @@ const SearchButtonStyle = styled.button`
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
 `;
+const SearchFilterItem = styled.li<StyledProps>`
+  background-color: ${props => (props.isHover ? 'gray' : 'none')};
+`;
+interface KeyProps {
+  key: any;
+}
+interface StyledProps {
+  isHover: boolean;
+}
+
 const SearchCity = () => {
   const [city, setCity] = useState<string>('');
   const [dropdownToggle, setDropdownToggle] = useState(false);
+  const [focusIndex, setFocusIndex] = useState(-1);
+  const resultContainer = useRef<HTMLLIElement>(null);
   const router = useRouter();
   const searchFilter = Cities.filter(cty =>
     cty.name.toLowerCase().includes(city.toLowerCase())
   );
+  console.log('focusIndex:', focusIndex);
+  useEffect(() => {
+    if (!resultContainer.current) return;
+    resultContainer.current.scrollIntoView({
+      block: 'center'
+    });
+  }, [focusIndex]);
 
-  console.log('dropdowntoggle:', dropdownToggle);
-  console.log('searchfilter:', searchFilter);
   const SubmitHandler = (e: any) => {
     e.preventDefault();
     console.log('submit call');
-    // console.log('city:', city);
     const FilterdCity = Cities.find(cty => cty.name === city);
     if (FilterdCity) {
       return router.push(FilterdCity.slug);
@@ -156,12 +173,40 @@ const SearchCity = () => {
     setCity(e.target.value);
     setDropdownToggle(false);
   };
+  const handleSelection = (selectedIndex: number) => {
+    const selectedItem = searchFilter[selectedIndex];
+    if (!selectedItem) return resetSearchComplete();
+    console.log('seletetItem:', selectedItem);
+    setCity(selectedItem.name);
+    resetSearchComplete();
+  };
+  const resetSearchComplete = useCallback(() => {
+    setFocusIndex(-1);
+    setDropdownToggle(!dropdownToggle);
+  }, []);
+  //handle keys
+  const Keyshandler: React.KeyboardEventHandler<HTMLDivElement> = e => {
+    const { key } = e;
+    let nextCount = 0;
+    if (key == 'ArrowDown') nextCount = (focusIndex + 1) % searchFilter.length;
+    if (key == 'ArrowUp')
+      nextCount = (focusIndex + searchFilter.length - 1) % searchFilter.length;
+    if (key == 'Enter') {
+      handleSelection(focusIndex);
+      SubmitHandler(e);
+    }
+    setFocusIndex(nextCount);
+  };
   return (
     <section
       id="search-filter"
       className="bg-[#FFFFFF] absolute top-[95%] bg-transparent w-[100%]"
     >
-      <div className="w-[40%] mx-auto relative z-50 ">
+      <div
+        tabIndex={0}
+        onKeyDown={Keyshandler}
+        className="w-[40%] mx-auto relative z-50 "
+      >
         <form onSubmit={SubmitHandler}>
           <SearchInputStyle className="flex items-center bg-[#E1E1E1]">
             <div
@@ -178,7 +223,7 @@ const SearchCity = () => {
                   value={city}
                   onChange={onChange}
                   placeholder="Search by City"
-                  required
+                  autoComplete="off"
                   className="py-5 bg-[#E1E1E1] w-[100%] focus:outline-none placeholder:text-[16px] placeholder:font-[400] placeholder:text-[#7C7C7C]"
                 />
               </div>
@@ -207,7 +252,7 @@ const SearchCity = () => {
                 <div id="browsers" key={cty.name}>
                   <div
                     onClick={() => setCity(cty.name)}
-                    className="text-[16px] font-[400] cursor-pointer hover:bg-slate-300"
+                    className="text-[16px] font-[400] cursor-pointer"
                   >
                     {cty.name}
                   </div>
@@ -233,17 +278,20 @@ const SearchCity = () => {
         {!dropdownToggle && city.length > 0 && (
           <div
             id="filtered-menu"
-            className="flex flex-col w-[76%] bg-[#FFFFFF] rounded-b-[15px]"
+            className="flex flex-col w-[76%] bg-[#FFFFFF] rounded-b-[15px] max-h-[300px] overflow-y-auto overflow-x-hidden"
           >
-            {searchFilter.map((cty: any) => (
-              <div key={cty.name}>
-                <div
+            {searchFilter.map((cty: any, index: number) => (
+              <ul key={cty.name}>
+                <SearchFilterItem
+                  isHover={index === focusIndex}
+                  ref={index === focusIndex ? resultContainer : null}
+                  onMouseDown={() => handleSelection(index)}
                   onClick={() => setCity(cty.name)}
-                  className="hover:cursor-pointer px- py-2"
+                  className="hover:cursor-pointer px-3 py-2"
                 >
                   {cty.name}
-                </div>
-              </div>
+                </SearchFilterItem>
+              </ul>
             ))}
           </div>
         )}

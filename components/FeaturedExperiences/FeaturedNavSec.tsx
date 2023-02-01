@@ -25,14 +25,14 @@ const NavMenu = styled.div<Props>`
 const FeaturedNavSection = ({ currNav, setActiveNav, navData }: IProps) => {
   return (
     <section id="featured_exp_nav" className="flex-none w-[65%]">
-      <nav className="flex justify-center items-center gap-10">
+      <nav className="flex justify-start items-center gap-10">
         {navData &&
           navData.map((navItem: Record<string, any>) => (
             <NavMenu
               key={navItem.filterClass}
               isActive={currNav === navItem.filterClass}
               className={
-                'py-2 px-5 border-r-[1px] border-[#C5C5C5] text-[24px] font-[600]'
+                'py-2 px-5 border-l-[1px] border-[#C5C5C5] text-[24px] font-[600]'
               }
               onClick={() => setActiveNav(`${navItem.filterClass}`)}
             >

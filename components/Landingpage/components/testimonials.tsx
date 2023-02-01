@@ -6,7 +6,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 SwiperCore.use([Navigation]);
-
+import NextslideIcon from '../../../assets/svg/nextslideicon.svg';
+import PrevslideIcon from '../../../assets/svg/prevslideicon.svg';
 const TestimonialStyle = styled.section`
   background-image: linear-gradient(
       to top,
@@ -78,8 +79,8 @@ const Testimonials = () => {
       <div id="slider-container" className="px-16">
         <div id="slider-grid" className="flex gap-5">
           <div className="flex justify-center items-center">
-            <button className="text-white bg-[#F15C5A] rounded-[50%] p-5 prevBtn">
-              P
+            <button className="text-white bg-[#F15C5A] rounded-[50%] p-4 prevBtn">
+              <PrevslideIcon />
             </button>
           </div>
           <Swiper
@@ -89,6 +90,8 @@ const Testimonials = () => {
               nextEl: '.nextBtn',
               prevEl: '.prevBtn'
             }}
+            loop={true}
+            loopFillGroupWithBlank={true}
           >
             {data.map(dt => (
               <SwiperSlide key={dt.id}>
@@ -109,8 +112,8 @@ const Testimonials = () => {
             ))}
           </Swiper>
           <div className="flex justify-center items-center">
-            <button className="bg-[#F15C5A] text-white rounded-[50%] p-5 nextBtn">
-              N
+            <button className="bg-[#F15C5A] text-white rounded-[50%] p-4 nextBtn">
+              <NextslideIcon />
             </button>
           </div>
         </div>
