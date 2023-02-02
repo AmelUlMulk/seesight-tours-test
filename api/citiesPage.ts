@@ -85,17 +85,7 @@ interface CITIES_PAGE_INTERFACE extends HEADER_STATS_INTERFACE {
         };
       }
     ];
-    cities: [
-      {
-        city: {
-          id: string;
-          name: string;
-          slug: string;
-          cardSnippet: string;
-          cardMedia: [CARDMEDIAINTERFACE];
-        };
-      }
-    ];
+    cities: [CityInterface];
   };
   averageReview: number;
   customers: string;

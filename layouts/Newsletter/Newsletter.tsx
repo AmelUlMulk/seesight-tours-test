@@ -52,7 +52,7 @@ const Newsletter = ({}) => {
           position="bottom-right"
           toastStyle={{ backgroundColor: 'green', color: 'white' }}
         />
-        <div className="flex justify-center">
+        <div className="flex justify-center pt-10">
           <div className="w-[60%]">
             <NewsletterHeading className="2xl-text-3xl xl-text-3xl lg-text-2xl font-bold  2xl:text-center xl:text-center lg:text-center md:text-center sm:text-center xsm:text-center ">
               Subscribe to our newsletter!

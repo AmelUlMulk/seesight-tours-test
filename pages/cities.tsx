@@ -1,29 +1,18 @@
 import React, { useState } from 'react';
 import client from '../apollo-client';
 import PageHero from '../components/Contact/PageHero';
-import Link from 'next/link';
-import styled from 'styled-components';
-import Image from 'next/image';
 import { CITIES_PAGE_INTERFACE, CITIES_PAGE } from '../api/citiesPage';
 import Newsletter from '../layouts/Newsletter/Newsletter';
 import Head from 'next/head';
 import { TrustBar } from '../components/TrustBar/TrustBar';
+import { AllCities } from '../components/AllCities/AllCities';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import CardSnippet from '../components/CardSnippet/CardSnippet';
-import { AllCities } from '../components/AllCities/AllCities';
-
-export async function getStaticProps() {
-  const { data } = await client.query<CITIES_PAGE_INTERFACE>(CITIES_PAGE);
-
-  return {
-    props: {
-      citiesPage: data.citiesPage
-    }
-  };
-}
+import Link from 'next/link';
+import styled from 'styled-components';
+import Image from 'next/image';
 
 const Heading = styled.h1`
   font-family: 'Poppins';
@@ -31,20 +20,9 @@ const Heading = styled.h1`
   font-weight: 700;
 `;
 
-const Description = styled.p`
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 400;
-  line-height: 36px;
-  width: 90%;
-  @media (max-width: 850px) {
-    display: none;
-  }
-`;
-
 const CityCards = styled.div`
-  margin-top: 3rem;
-  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+
   max-height: 700px;
   @media (max-width: 1500px) {
     margin-top: 1.5rem;
@@ -60,6 +38,16 @@ const StyledImage = styled(Image)`
   justify-content: center;
   object-fit: cover;
 `;
+
+export async function getStaticProps() {
+  const { data } = await client.query<CITIES_PAGE_INTERFACE>(CITIES_PAGE);
+
+  return {
+    props: {
+      citiesPage: data.citiesPage
+    }
+  };
+}
 
 const Cities = ({ citiesPage }: CITIES_PAGE_INTERFACE) => {
   return (
@@ -83,16 +71,11 @@ const Cities = ({ citiesPage }: CITIES_PAGE_INTERFACE) => {
       />
       <TrustBar />
       <section>
-        <div className="3xl:px-24  2xl:px-20 xl:px-20 lg:px-16 md:px-16 sm:px-12  xsm:px-8 xxsm:px-8 ">
+        <div className="3xl:px-32  2xl:px-20 xl:px-20 lg:px-16 md:px-16 sm:px-12  xsm:px-8 xxsm:px-8 ">
           <div id="header" className="  lg:px-18 2xl:px-24">
             <Heading className="font-bold 2xl:text-4xl  xl:text-3xl md:text-2xl sm:text-2xl  xsm:text-2xl pt-10 ">
               FEATURED CITIES
             </Heading>
-            {/* <Description className="2xl:text-[24px] xl:text-[24px] md:text-[20px]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-              labore, necessitatibus sit dicta molestiae corrupti ipsum officiis
-              qui.
-            </Description> */}
           </div>
           <div className="lg:px-18 2xl:px-24">
             <Swiper
@@ -144,13 +127,14 @@ const Cities = ({ citiesPage }: CITIES_PAGE_INTERFACE) => {
               {citiesPage.featured &&
                 citiesPage.featured.map(cities => (
                   <SwiperSlide key={cities.city.id}>
-                    <CityCards className="  max-w-xs w-full rounded-lg overflow-x-auto shadow-lg cursor-pointer transform transition duration-500 hover:scale-105">
+                    <CityCards className=" w-[100%] h-[100%] rounded relative !overflow-hidden overflow-x-auto shadow-lg cursor-pointer ">
                       <Link href={`/${cities.city.slug}`}>
                         <StyledImage
                           src={cities.city.cardMedia[0].url}
                           alt={cities.city.cardMedia[0].url}
                           width={250}
                           height={300}
+                          className="w-[100%] h-[100%] rounded hover:scale-105 ease-in-out duration-200"
                         />
                       </Link>
                       <CardSnippet
@@ -164,6 +148,7 @@ const Cities = ({ citiesPage }: CITIES_PAGE_INTERFACE) => {
           </div>
         </div>
       </section>
+      ;
       <AllCities cities={citiesPage.cities} />
       <Newsletter />
     </div>
