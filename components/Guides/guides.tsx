@@ -1,20 +1,30 @@
+import { useMediaQuery } from '../../hooks/mediaQuery';
 import { TextShadow } from '../Landingpage/components/testimonials';
 import GuidesDesk from './guidesDeskstop';
+import GuidesMobile from './guidesMobile';
 
 interface IProps {
   guidesData: any;
 }
 const OurGuides = ({ guidesData }: IProps) => {
+  const mediaQuery = useMediaQuery(768);
   return (
     <section
       id="our_guides"
       className="my-24 border-y-[1px] border-[#C5C5C5] bg-[#F5F5F5]"
     >
-      <div id="guides-container" className="py-10 lg:px-32 2xl:px-40">
+      <div
+        id="guides-container"
+        className=" py-10 xsm:px-12 md:px-28 lg:px-32 2xl:px-40"
+      >
         <TextShadow className="text-[#333333] text-[56px] font-[600]">
           Our Guides
         </TextShadow>
-        <GuidesDesk guidesData={guidesData?.guides} />
+        {mediaQuery ? (
+          <GuidesMobile guidesData={guidesData?.guides} />
+        ) : (
+          <GuidesDesk guidesData={guidesData?.guides} />
+        )}
       </div>
     </section>
   );

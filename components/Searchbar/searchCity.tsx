@@ -129,10 +129,17 @@ const SearchInputStyle = styled.div`
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
+  @media (max-width: 768px) {
+    border-radius: 60px;
+  }
 `;
 const SearchButtonStyle = styled.button`
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
+  @media (max-width: 768px) {
+    border-top-right-radius: 54px;
+    border-bottom-right-radius: 54px;
+  }
 `;
 const SearchFilterItem = styled.li<StyledProps>`
   background-color: ${props => (props.isHover ? 'gray' : 'none')};
@@ -200,23 +207,23 @@ const SearchCity = () => {
   return (
     <section
       id="search-filter"
-      className="bg-[#FFFFFF] absolute top-[95%] bg-transparent w-[100%]"
+      className="bg-[#FFFFFF] absolute xxsm:top-[94%] md:top-[90%] bg-transparent w-[100%]"
     >
       <div
         tabIndex={0}
         onKeyDown={Keyshandler}
-        className="w-[40%] mx-auto relative z-50 "
+        className="xxsm:w-[78%] md:w-[54%] lg:w-[45%] xl:w-[40%] mx-auto relative z-50 "
       >
         <form onSubmit={SubmitHandler}>
           <SearchInputStyle className="flex items-center bg-[#E1E1E1]">
             <div
-              className="flex items-center w-[76%] hover:cursor-pointer"
+              className="flex items-center xxsm:w-[70%] md:w-[76%] xxsm:gap-2 xsm:gap-1 xsm:justify-between md:gap-0 hover:cursor-pointer"
               onClick={() => setDropdownToggle(!dropdownToggle)}
             >
-              <div className="px-2 py-2 flex-none w-[8%]">
+              <div className="px-2 py-2 flex-none xxsm:w-[10%] md:w-[8%]">
                 <SearchfilterIcon />
               </div>
-              <div className="bg-[#E1E1E1] flex-none w-[84%]">
+              <div className="bg-[#E1E1E1] flex-none xxsm:w-[70%] md:w-[84%] xxsm:px-3 md:px-1 xxsm:rounded-[54px] md:rounded-none">
                 <input
                   name="search"
                   id="search"
@@ -224,16 +231,16 @@ const SearchCity = () => {
                   onChange={onChange}
                   placeholder="Search by City"
                   autoComplete="off"
-                  className="py-5 bg-[#E1E1E1] w-[100%] focus:outline-none placeholder:text-[16px] placeholder:font-[400] placeholder:text-[#7C7C7C]"
+                  className="xxsm:py-3 md:py-5 bg-[#E1E1E1] w-[100%] focus:outline-none placeholder:text-[16px] placeholder:font-[400] placeholder:text-[#7C7C7C]"
                 />
               </div>
-              <div className="flex-none w-[8%] ">
+              <div className="flex-none xxsm:w-[10%] md:w-[8%] ">
                 <DropdownIcon />
               </div>
             </div>
 
-            <div className="flex-none w-[24%]">
-              <SearchButtonStyle className="text-[18px] w-[100%] text-white font-[400] bg-[#F15C5A] py-5 px-8">
+            <div className="flex-none xsm:w-[30%] md:w-[24%]">
+              <SearchButtonStyle className="text-[18px] w-[100%] text-white font-[400] bg-[#F15C5A] xxsm:py-3 md:py-5 xxsm:px-5 xsm:px-8">
                 Search
               </SearchButtonStyle>
             </div>
@@ -246,20 +253,20 @@ const SearchCity = () => {
             id="suggested-menu"
             className="flex w-[76%] gap-6 py-2 bg-[#FFFFFF] rounded-b-[15px]"
           >
-            <div className="px-5">
+            <div className="flex-none w-[50%] px-5">
               <h1 className="text-[#0B0A0A] text[18px] font-[700]">Canada</h1>
               {Cities.filter(cty => cty.type === 'canada').map((cty: any) => (
                 <div id="browsers" key={cty.name}>
                   <div
                     onClick={() => setCity(cty.name)}
-                    className="text-[16px] font-[400] cursor-pointer"
+                    className="text-[16px] font-[400] cursor-pointer hover:bg-slate-300"
                   >
                     {cty.name}
                   </div>
                 </div>
               ))}
             </div>
-            <div className="px-5">
+            <div className=" flex-none w-[50%] px-6">
               <h1 className="text-[#0B0A0A] text[18px] font-[700]">USA</h1>
               {Cities.filter(cty => cty.type === 'usa').map((cty: any) => (
                 <div id="browsers" key={cty.name}>

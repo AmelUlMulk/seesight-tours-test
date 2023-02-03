@@ -72,11 +72,11 @@ const Testimonials = () => {
       className="py-10 px-10 bg-no-repeat bg-cover my-10"
     >
       <div className="px-10">
-        <TextShadow className="text-[60px] font-[600] shadow-textShadow">
+        <TextShadow className="lg:text-[45px] xl:text-[60px] font-[600] shadow-textShadow">
           Testimonials
         </TextShadow>
       </div>
-      <div id="slider-container" className="px-16">
+      <div id="slider-container" className="lg:max-h-[300px] h-[100%] xl:px-16">
         <div id="slider-grid" className="flex gap-5">
           <div className="flex justify-center items-center">
             <button className="text-white bg-[#F15C5A] rounded-[50%] p-4 prevBtn">
@@ -84,7 +84,7 @@ const Testimonials = () => {
             </button>
           </div>
           <Swiper
-            slidesPerView={3}
+            slidesPerView="auto"
             spaceBetween={20}
             navigation={{
               nextEl: '.nextBtn',
@@ -92,12 +92,38 @@ const Testimonials = () => {
             }}
             loop={true}
             loopFillGroupWithBlank={true}
+            breakpoints={{
+              200: {
+                slidesPerView: 1,
+                spaceBetween: 20
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 20
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 20
+              },
+              1280: {
+                slidesPerView: 3,
+                spaceBetween: 20
+              }
+            }}
           >
             {data.map(dt => (
               <SwiperSlide key={dt.id}>
-                <div className="flex flex-col relative bg-[#000000] opacity-80  text-white pb-12 px-16 pt-10 rounded-lg">
-                  <Image src="/quote.png" width={30} height={30} alt="" />
-                  <p>{dt.review}</p>
+                <div className="flex flex-col relative bg-[#000000] opacity-80  text-white pb-12 xxsm:max-h-[200px] md:max-h-[190px] lg:max-h-[200px] xl:max-h-[220px] h-[100%] xsm:px-5 md:px-5 lg:px-6 xl:px-10 xsm:pt-5 md:pt-5 lg:pt-6 xl:pt-8 rounded-lg">
+                  <Image
+                    src="/quote.png"
+                    width={30}
+                    height={30}
+                    alt=""
+                    className="w-[20px] "
+                  />
+                  <p className="pt-2 lg:text-[15px] xl:text-[16px] font-[400]">
+                    {dt.review}
+                  </p>
                   <div
                     className="bg-[#000000] opacity-[80%] w-[30px] h-[30px] absolute top-[100%] left-8"
                     style={{
@@ -105,7 +131,7 @@ const Testimonials = () => {
                     }}
                   ></div>
                 </div>
-                <div className="text-[#FFFFFF] pt-5 pl-5 text-[18px] font-[700]">
+                <div className="text-[#FFFFFF] pt-5 pl-5 lg:text-[16px] xl:text-[18px] font-[700]">
                   {dt.traveller}
                 </div>
               </SwiperSlide>

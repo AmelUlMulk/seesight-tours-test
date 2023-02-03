@@ -59,20 +59,20 @@ const TourCard = ({ product, productType }: IProps) => {
       id="tour-section"
       className="mt-10 relative flex flex-col bg-[#FFFF] rounded-lg"
     >
-      <div className="flex-none h-[60%] w-[95%] py-2 mx-auto relative">
+      <div className="sm:h-[260px] lg:h-[260px] xl:h-[300px] w-[95%] py-2 mx-auto relative">
         <Link href={`/tours/${product?.slug}`} className="rounded-md h-[100%]">
           <div className="w-[100%] h-[100%] relative rounded-lg !overflow-hidden">
             <PriceContainerStyle
               id="price_container"
-              className="lg:py-1 lg:px-6 py-2 px-6 text-[18px] font-[700] rounded-[3px]"
+              className="lg:py-1 lg:px-3 2xl:px-6 py-2 px-6 lg:text-[14px] 2xl:text-[18px] font-[700] rounded-[3px]"
             >
               From ${product?.price}
             </PriceContainerStyle>
             {product?.cardMessage && (
-              <p className="absolute top-0 left-0 max-w-[170px] py-2 px-2 text-[18px] text-[#ffffff] font-[700] bg-[#f15c5a] z-30 rounded-[5px]">
+              <p className="absolute top-0 left-0 max-w-[110px] lg:max-w-[110px] xl:max-w-[170px] py-2 px-2 lg:text-[14px] 2xl:text-[18px] text-[#ffffff] font-[700] bg-[#f15c5a] z-30 rounded-[5px]">
                 {product?.cardMessage.length > 30
-                  ? `${product.cardMessage.slice(0, 27)}...`
-                  : product.cardMessage}
+                  ? `${product.cardMessage.slice(0, 27).toUpperCase()}...`
+                  : product.cardMessage.toUpperCase()}
               </p>
             )}
             <Swiper
@@ -136,17 +136,19 @@ const TourCard = ({ product, productType }: IProps) => {
           </div>
         </div>
       </div>
-      <div className="flex-none h-[5%]"></div>
+      <div className="h-[25px] lg:h-[30px] xl:h-[30px]"></div>
 
       <div
         id="description"
-        className="flex flex-col w-[95%] mx-auto lg:h-[40%] 2xl:h-[25%]"
+        className="flex flex-col w-[95%] mx-auto xsm:h-[100px] md:h-[130px] lg:h-[120px] xl:h-[140px]"
       >
         <div id="heading">
-          <h2 className="text-[18px] font-[700]">{product?.name}</h2>
+          <h2 className=" lg:text-[15px] xl:text-[18px] font-[700]">
+            {product?.name}
+          </h2>
         </div>
         <div id="snippet">
-          <SnippetStyle className="text-[18px] text-[#444444] font-[400]">
+          <SnippetStyle className="lg:text-[15px] xl:text-[18px] text-[#444444] font-[400]">
             {product?.name.length < 120
               ? product?.cardSnippet.length < 115
                 ? `${product?.cardSnippet}`
@@ -160,19 +162,18 @@ const TourCard = ({ product, productType }: IProps) => {
           </SnippetStyle>
         </div>
       </div>
-      <div
-        id="checkout_buttons"
-        className="flex gap-2 justify-between w-[92%] mx-auto py-2"
-      >
-        <div className="">
-          <button className="text-start w-[100%] py-2 px-3 text-[#131313]  font-[500] bg-[#FFFFFF] border-[1px] border-[#F15C5A] rounded-[10px]">
-            <Link href={`/tours/${product.slug}`}>See Details</Link>
-          </button>
-        </div>
-        <div className="">
-          <button className=" w-[100%] text-[#FFFFFF] font-[500] py-2 px-3 text-[text-[18px]] bg-[#F15C5A] rounded-[10px]">
-            Book Now
-          </button>
+      <div id="checkout_buttons" className="">
+        <div className="flex gap-2 justify-between w-[92%] mx-auto py-2">
+          <div>
+            <button className="text-start w-[100%] py-2 px-3 text-[#131313]  font-[500] bg-[#FFFFFF] border-[1px] border-[#F15C5A] rounded-[10px]">
+              <Link href={`/tours/${product.slug}`}>See Details</Link>
+            </button>
+          </div>
+          <div>
+            <button className=" w-[100%] text-[#FFFFFF] font-[500] py-2 px-3 text-[text-[18px]] bg-[#F15C5A] rounded-[10px]">
+              Book Now
+            </button>
+          </div>
         </div>
       </div>
     </div>

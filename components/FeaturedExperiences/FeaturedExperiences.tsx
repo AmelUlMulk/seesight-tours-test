@@ -182,7 +182,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
     }
     if (!showAll) {
       return (
-        <div className="lg:px-32 2xl:px-40 flex justify-end mt-10">
+        <div className="xxsm:px-12 sm:px-28 lg:px-32 2xl:px-40 flex justify-end mt-10">
           {selectNum > 6 && (
             <div
               onClick={() => setShowAll(true)}
@@ -200,7 +200,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
     }
     if (showAll) {
       return (
-        <div className="lg:px-36 2xl:px-60 flex justify-end mt-10 ">
+        <div className=" lg:px-36 2xl:px-60 flex justify-end mt-10 ">
           <div onClick={() => setShowAll(false)} className="cursor-pointer">
             <h1 className="text-[20px] text-[#6D6D6D] font-[400] cursor-pointer">
               Show Less
@@ -214,29 +214,35 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
     <section id="feature_experiences">
       <header
         id="feature_experience_header"
-        className="flex items-center justify-between mt-10 lg:px-32 2xl:px-40"
+        className="lg:flex items-center  mt-10 xxsm:px-8 xsm:px-6 sm:px-16 md:px-28 lg:px-32 2xl:px-40"
       >
         <FeaturedNavSection
           currNav={activeNav}
           setActiveNav={setActiveNav}
           navData={navArray}
         />
-        <div id="featured_dropdown" className="flex-none w-[35%] pl-8">
-          <div id="city_dropDown" className=" flex items-center gap-3 pr-10">
-            <p className="flex-none w-[60%] text-[20px] font-[400] text-[#6D6D6D]">{`Show ${showActiveNav()} in:`}</p>
+        <div
+          id="featured_dropdown"
+          className=" xxsm:w-[60%] xsm:w-[70%] sm:w-[55%]  ml-auto  lg:flex-none  "
+        >
+          <div
+            id="city_dropDown"
+            className="xxsm:flex xxsm:justify-end lg:flex items-center xsm:gap-2 "
+          >
+            <p className="flex-none w-[50%] text-justify lg:text-[16px] 2xl:text-[20px] font-[400] text-[#6D6D6D]">{`Show ${showActiveNav()} in:`}</p>
             <div
               id="dropdown"
               onMouseLeave={() => {
                 if (cityToggle) return setCityToggle(!cityToggle);
               }}
-              className="flex-none w-[40%] relative "
+              className="lg:flex-none lg:w-[50%] relative "
             >
               <button
                 onClick={() => setCityToggle(!cityToggle)}
                 className={
                   cityToggle
-                    ? ' flex justify-between items-center border-[1px] border-[#F15C5A] rounded-[10px] w-[100%] px-6 py-1 text-[16.92px] text-[#333333] font-[400]'
-                    : ' flex justify-between items-center border-[1px] border-[#4F4F4F] rounded-[10px] w-[100%] px-6 py-1 text-[16.92px] text-[#333333] font-[400]'
+                    ? ' flex justify-between items-center border-[1px] border-[#F15C5A] rounded-[10px] w-[100%] xxsm:px-5 lg:px-2 2xl:px-6 py-1 text-[16.92px] text-[#333333] font-[400]'
+                    : ' flex justify-between items-center border-[1px] border-[#4F4F4F] rounded-[10px] w-[100%] xxsm:px-5 lg:px-2 2xl:px-6 py-1 text-[16.92px] text-[#333333] font-[400]'
                 }
               >
                 {city}
@@ -274,9 +280,9 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
 
       <div
         id="feature_experiences_cards"
-        className="mt-10 lg:px-32 2xl:px-40 bg-[#F5F5F5]"
+        className=" mt-10 xxsm:px-10 sm:px-20 md:px-20 lg:px-32 2xl:px-40 bg-[#F5F5F5]"
       >
-        <div className="grid lg:grid-cols-3 lg:gap-[30px]">
+        <div className="grid xxsm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-[30px]">
           {displayProduct()}
         </div>
       </div>

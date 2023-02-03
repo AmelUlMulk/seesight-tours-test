@@ -21,7 +21,7 @@ SwiperCore.use([Autoplay, Navigation, Lazy, A11y, EffectFade, Controller]);
 interface IProps {
   guidesData: any;
 }
-const GuidesDesk = ({ guidesData }: IProps) => {
+const GuidesMobile = ({ guidesData }: IProps) => {
   const [controlledSwiper, setControlledSwiper] = useState<any>({});
   if (!guidesData) {
     return <div>Loading...</div>;
@@ -33,7 +33,7 @@ const GuidesDesk = ({ guidesData }: IProps) => {
     >
       <div
         id="top-guides-wrapper"
-        className="w-[85%] max-h-[100%] h-[70%] mx-auto"
+        className="w-[85%] xsm:max-h-[70%] md:max-h-[100%] h-[70%] mx-auto"
       >
         <Swiper
           id="top-slider"
@@ -55,35 +55,27 @@ const GuidesDesk = ({ guidesData }: IProps) => {
           updateOnWindowResize
           setWrapperSize
           slideToClickedSlide
+          className="xsm:max-h-[400px] sm:max-h-[500px] h-[100%] !overflow-y-auto"
         >
           {guidesData &&
             guidesData.length > 0 &&
             guidesData?.map((guide: any, index: number) => (
               <SwiperSlide key={guide?.id} className="py-10">
-                <div className="flex gap-2 py-10 ">
-                  <div className="flex-none w-[40%]">
-                    <div
-                      id="image-wrapper"
-                      className="flex-none w-[100%] h-[90%] pl-[12px]"
-                    >
-                      <Image
-                        src={guide?.professional[0]?.url}
-                        width={491}
-                        height={504}
-                        alt={guide?.professional[0]?.alt}
-                        className="w-[100%] h-[100%] border-[7px] border-[#FFFFFF] rounded-[5px] shadow-guideimageBox"
-                      />
-                    </div>
-                  </div>
-
-                  <div
-                    id="guide-bio"
-                    className="flex-none w-[60%] max-h-[100%] h-[100%] px-5 absolute top-[30px] right-0"
-                  >
-                    <h3 className="text-[46px] font-[700]">
-                      {guide?.firstName} {guide?.lastName}
+                <div className="xsm:max-h-[400px] sm:max-h-[500px]  overflow-y-auto">
+                  <div id="guide-bio" className="inline-block">
+                    <Image
+                      src={guide?.professional[0]?.url}
+                      width={160}
+                      height={137}
+                      alt={guide?.professional[0]?.alt}
+                      className=" ml-5 mr-2 mt-10 float-left border-[7px] border-[#FFFFFF] rounded-[5px] shadow-guideimageBox"
+                    />
+                    <h3 className="xsm:text-[14px] sm:text-[30px] font-[700]">
+                      {guide?.firstName.toUpperCase()}
                     </h3>
-                    <p className="text-[#828282] md:max-h-[250px] lg:max-h-[350px] xl:max-h-[400px] h-[100%] overflow-auto xl:text-[20px] font-[500] px-3 ">{`${guide?.biography}`}</p>
+                    <p className="inline text-[#828282] overflow-auto xsm:text-[12px] sm:text-[20px] font-[500] px-3 ">
+                      {`${guide?.biography}`}
+                    </p>
                   </div>
                 </div>
               </SwiperSlide>
@@ -92,16 +84,16 @@ const GuidesDesk = ({ guidesData }: IProps) => {
       </div>
       <div
         id="bottom-guides-wrapper"
-        className="md:max-w-[442px] md:max-h-[150px] lg:max-w-[442px] lg:max-h-[153px] w-[100%] h-[100%] px-5 rounded-[10px] shadow-moreguideBox absolute xsm:top-[92%] md:top-[88%] lg:top-[92%] xsm:left-[25%] md:left-[35%] lg:left-[57%] xl:left-[64%] bg-[#FFFFFF]"
+        className="xsm:max-w-[285px] xsm:max-h-[100px] sm:max-w-[293px] sm:max-h-[125px] w-[100%] h-[100%] px-5 rounded-[10px] shadow-moreguideBox absolute xsm:top-[92%] sm:top-[88%] md:top-[88%] lg:top-[92%] xsm:left-[28%] sm:left-[40%] md:left-[42%] lg:left-[57%] xl:left-[64%] bg-[#FFFFFF] z-20"
       >
-        <div className=" md:pt-2 lg:pt-3">
-          <div>
-            <h4 className="text-[22px] text-[#000000] font-[500]">
+        <div className="xsm:pt-1 sm:pt-2">
+          <div className="relative">
+            <h4 className="xsm:text-[14px] sm:text-[22px] text-[#000000] font-[500]">
               More Guides
             </h4>
             <Swiper
               id="bottom-slider"
-              slidesPerView="auto"
+              slidesPerView={5}
               spaceBetween={1}
               grabCursor
               lazy={{ loadPrevNext: true, checkInView: true }}
@@ -120,14 +112,6 @@ const GuidesDesk = ({ guidesData }: IProps) => {
               setWrapperSize
               slideToClickedSlide
               className="rounded-[5px]"
-              breakpoints={{
-                768: {
-                  slidesPerView: 4
-                },
-                1024: {
-                  slidesPerView: 5
-                }
-              }}
             >
               {guidesData &&
                 guidesData.length > 0 &&
@@ -135,19 +119,19 @@ const GuidesDesk = ({ guidesData }: IProps) => {
                   <SwiperSlide key={guide?.id}>
                     <div
                       id="image-wrapper"
-                      className="md:min-w-[120px] md:min-h-[85px] lg:min-w-[85px] lg:min-h-[80px] xl:min-w-[85px] xl:min-h-[87px] w-[100%] h-[100%] relative rounded-[5px]"
+                      className="xsm:w-[67px] xsm:h-[60px] sm:w-[55px] sm:h-[65px] relative overflow-hidden rounded-[5px]"
                     >
                       <Image
                         src={guide?.professional[0]?.url}
                         fill
                         alt={guide?.professional[0]?.alt}
-                        className="object-cover rounded-[5px]"
+                        className="object-cover rounded-[5px] w-[100%] h-[100%]"
                       />
                     </div>
                   </SwiperSlide>
                 ))}
-              <div className="md:min-w-[100px] md:min-h-[85px] lg:min-w-[85px] lg:min-h-[80px] xl:min-w-[85px] xl:min-h-[87px]  bg-[#000000cc] absolute top-0 right-0 z-50 rounded-[5px] flex justify-center items-center">
-                <div className="bg-[#F15C5A] w-[37px] h-[37px] rounded-[154px] flex justify-center items-center nextButton">
+              <div className="xsm:w-[50px] xsm:h-[60px] sm:w-[55px] sm:h-[65px] bg-[#000000cc] absolute top-0 right-0 z-50 rounded-[5px] flex justify-center items-center">
+                <div className="bg-[#F15C5A] xsm:w-[30px] h-[30px] rounded-[154px] flex justify-center items-center nextButton">
                   <NextIcon />
                 </div>
               </div>
@@ -159,4 +143,4 @@ const GuidesDesk = ({ guidesData }: IProps) => {
   );
 };
 
-export default GuidesDesk;
+export default GuidesMobile;
