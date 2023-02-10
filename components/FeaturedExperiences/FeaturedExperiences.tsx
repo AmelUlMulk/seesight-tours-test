@@ -2,12 +2,9 @@ import { useState, useEffect } from 'react';
 import FeaturedNavSection from './FeaturedNavSec';
 import { useLazyQuery, useQuery } from '@apollo/client';
 import DropdownIcon from '../../assets/svg/Vector 21.svg';
-import {
-  CITIES_FILTER,
-  CITY_FILTER_INTERFACE
-} from '../../graphql_api/cityfilter';
-import { FEATURED_EXPERIENCES_INTERFACE } from '../../graphql_api/featuredexperiences';
-import { HOMEPAGEINTERFACE } from '../../graphql_api/homePage';
+import { CITIES_FILTER, CITY_FILTER_INTERFACE } from '../../api/cityfilter';
+import { FEATURED_EXPERIENCES_INTERFACE } from '../../api/featuredexperiences';
+import { HOMEPAGEINTERFACE } from '../../api/homePage';
 import TourCard from '../Tour/tourCard';
 import { PAGE_OPTIONS } from '../Trust/Trustbar';
 import ChevronRightIcon from './components/ChevronRightIcon';
@@ -223,7 +220,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
         />
         <div
           id="featured_dropdown"
-          className=" xxsm:w-[60%] xsm:w-[70%] sm:w-[55%]  ml-auto  lg:flex-none  "
+          className=" xxsm:w-[60%] xsm:w-[70%] sm:w-[55%] lg:w-[35%]  ml-auto  lg:flex-none  "
         >
           <div
             id="city_dropDown"

@@ -4,7 +4,7 @@ import LandingPage from '../components/Landingpage/landingpage';
 import PageHero from '../components/Contact/PageHero';
 import { gql } from '@apollo/client';
 import client from '../apollo-client';
-import FEATUREDEXPERIENCES from '../graphql_api/featuredexperiences';
+import FEATUREDEXPERIENCES from '../api/featuredexperiences';
 import { FEATURED_EXPERIENCES_INTERFACE } from '../api/featuredexperiences';
 import { HOMEPAGE, HOMEPAGEINTERFACE } from '../api/homePage';
 import { GUIDESINTERFACE } from '../api/commonInterfaces';

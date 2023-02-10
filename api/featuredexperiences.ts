@@ -100,6 +100,28 @@ const FEATUREDEXPERIENCES = gql`
           }
         }
       }
+      airportTransfers: airport_transfer @include(if: $airportTransfers) {
+        product {
+          id: boat_id
+          name
+          slug
+          duration
+          price
+          cardMessage: card_message
+          cardSnippet: snippet
+          cardMedia: card_media {
+            name
+            alt: alternativeText
+            url
+            fragment: caption
+            type: provider_metadata
+          }
+          reviews {
+            id
+            rating
+          }
+        }
+      }
     }
     citiesDropdown: cities {
       id
