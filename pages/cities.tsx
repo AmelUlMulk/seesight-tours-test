@@ -3,6 +3,7 @@ import client from '../apollo-client';
 import PageHero from '../components/Contact/PageHero';
 import styled from 'styled-components';
 import Image from 'next/image';
+
 import { CITIES_PAGE_INTERFACE, CITIES_PAGE } from '../api/citiesPage';
 import Link from 'next/link';
 import Newsletter from '../layouts/Newsletter/Newsletter';
