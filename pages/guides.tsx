@@ -130,11 +130,11 @@ const Guides = ({ guidesPage }: GUIDES_PAGE_INTERFACE) => {
                       className="flex-none 3xl:w-[552px] 2xl:w-[552px] xl:w-[500px] lg:w-[350px] md:w-[350px] sm:w-[552px] xsm:w-[552px]  3xl:h-[450px] 2xl:h-[450px] xl:h-[400px] lg:h-[400px] md:h-[400px] sm:h-[350px] xsm:h-[300px] rounded-3xl   "
                     />
                     <div className=" overflow-hidden hover:overflow-auto   pr-2   ">
-                      <GuideName className="3xl:text-[32px] lg:text-[28px] md:text-[28px] sm:text-[24px]">
+                      <GuideName className="3xl:text-[32px] 2xl:text-[32px] xl:text-[28px]  lg:text-[28px] md:text-[28px] sm:text-[28px] xsm:text-[24px]">
                         {guide.guide.firstName}
                       </GuideName>
 
-                      <GuideDescription className="3xl:text-[24px] lg:text-[20px] md:text-[20px] sm:text-[18px]  ">
+                      <GuideDescription className="3xl:text-[24px] 2xl:text-[24px] xl:text-[22px] lg:text-[20px] md:text-[20px] sm:text-[18px] xsm:text-[18px]  ">
                         {guide.guide.biography}
                       </GuideDescription>
                     </div>
