@@ -187,6 +187,10 @@ const SearchCity = () => {
     setCity(selectedItem.name);
     resetSearchComplete();
   };
+  const HandleSuggestionClick = (city: string) => {
+    setCity(city);
+    setDropdownToggle(!dropdownToggle);
+  };
   const resetSearchComplete = useCallback(() => {
     setFocusIndex(-1);
     setDropdownToggle(!dropdownToggle);
@@ -213,6 +217,7 @@ const SearchCity = () => {
         tabIndex={0}
         onKeyDown={Keyshandler}
         className="xxsm:w-[78%] md:w-[54%] lg:w-[45%] xl:w-[40%] mx-auto relative z-50 "
+        onMouseLeave={() => setDropdownToggle(!dropdownToggle)}
       >
         <form onSubmit={SubmitHandler}>
           <SearchInputStyle className="flex items-center bg-[#E1E1E1]">
@@ -258,7 +263,7 @@ const SearchCity = () => {
               {Cities.filter(cty => cty.type === 'canada').map((cty: any) => (
                 <div id="browsers" key={cty.name}>
                   <div
-                    onClick={() => setCity(cty.name)}
+                    onClick={() => HandleSuggestionClick(cty.name)}
                     className="text-[16px] font-[400] cursor-pointer hover:bg-slate-300"
                   >
                     {cty.name}
@@ -271,7 +276,7 @@ const SearchCity = () => {
               {Cities.filter(cty => cty.type === 'usa').map((cty: any) => (
                 <div id="browsers" key={cty.name}>
                   <div
-                    onClick={() => setCity(cty.name)}
+                    onClick={() => HandleSuggestionClick(cty.name)}
                     className="text-[ #0B0A0A] text-[16px] font-[400] cursor-pointer hover:bg-slate-300"
                   >
                     {cty.name}

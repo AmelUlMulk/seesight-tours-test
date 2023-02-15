@@ -126,6 +126,10 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
         : city === 'All Cities'
         ? featuredExp[activeNav]
         : [];
+    console.log('uniquefilterproduct:', filteredProduct);
+    if (filteredProduct && filteredProduct.length === 0) {
+      return <h3>{`Tours coming to ${city} soon`}</h3>;
+    }
     // prevent null & duplicate items
     const uniquefilteredProduct = filteredProduct
       ?.filter((item: Record<string, any>) => item.product !== null)
@@ -139,10 +143,6 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
           return acc;
         }
       }, []);
-
-    if (filteredProduct && filteredProduct.length === 0) {
-      return <h3>{`Tours coming to ${city} soon`}</h3>;
-    }
     return uniquefilteredProduct
       ?.slice(0, showAll ? filteredProduct.length : 6)
       .map((product: Record<string, any>, index: number) => {

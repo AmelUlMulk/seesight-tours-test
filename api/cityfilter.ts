@@ -23,11 +23,6 @@ const CITIES_FILTER = gql`
           ...FRAGMENT_PRODUCT_ORDER
         }
       }
-      airportTransfers: airport_transfer {
-        product {
-          ...FRAGMENT_PRODUCT_ORDER
-        }
-      }
     }
   }
   ${FRAGMENT_PRODUCT_ORDER}
