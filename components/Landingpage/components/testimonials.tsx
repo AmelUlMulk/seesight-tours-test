@@ -113,7 +113,7 @@ const Testimonials = () => {
           >
             {data.map(dt => (
               <SwiperSlide key={dt.id}>
-                <div className="flex flex-col relative bg-[#000000] opacity-80  text-white pb-12 xxsm:max-h-[200px] md:max-h-[190px] lg:max-h-[200px] xl:max-h-[220px] h-[100%] xsm:px-5 md:px-5 lg:px-6 xl:px-10 xsm:pt-5 md:pt-5 lg:pt-6 xl:pt-8 rounded-lg">
+                <div className="flex flex-col relative bg-[#000000] opacity-80  text-white pb-12 xxsm:max-h-[200px] md:max-h-[190px] lg:max-h-[200px] xl:max-h-[220px] 2xl:max-h-[200px] 3xl:max-h-[170px] 4xl:max-h-[170px] h-[100%] xsm:px-5 md:px-5 lg:px-6 xl:px-10 xsm:pt-5 md:pt-5 lg:pt-6 xl:pt-8 rounded-lg">
                   <Image
                     src="/quote.png"
                     width={30}
