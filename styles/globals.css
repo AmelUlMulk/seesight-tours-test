@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 .active {
-    color: skyblue;
+  color: skyblue;
 }
 
 body {
-    width: 100vw !important;
-    overflow-x: hidden;
+  width: 100vw !important;
+  overflow-x: hidden;
+  background-color: #f5f5f5;
 }
