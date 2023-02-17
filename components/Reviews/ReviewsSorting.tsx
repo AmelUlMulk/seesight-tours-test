@@ -4,12 +4,7 @@ interface IProps {
   sortOrder: string;
   setSortOrder: React.Dispatch<React.SetStateAction<string>>;
 }
-const sortObject: Record<string, string> = {
-  Newest: 'date:desc',
-  Oldest: 'date:asc',
-  Highest: 'rating:desc,date:desc',
-  Lowest: 'rating:asc,date:desc'
-};
+const sortObjectKeys: string[] = ['Newest', 'Oldest', 'Highest', 'Lowest'];
 const ReviewsSorting = ({ sortOrder, setSortOrder }: IProps) => {
   const [sortToggle, setSortToggle] = useState<boolean>(false);
   return (
@@ -24,14 +19,14 @@ const ReviewsSorting = ({ sortOrder, setSortOrder }: IProps) => {
         </button>
       </div>
       {sortToggle &&
-        Object.keys(sortObject).map((item: string, index: number) => (
+        sortObjectKeys.map((item: string, index: number) => (
           <div
             key={item}
             onClick={() => {
               setSortOrder(item);
               setSortToggle(!sortToggle);
             }}
-            className="border border-slate-300 bg-[#FFFFFF] z-50"
+            className="border border-slate-300 bg-[#FFFFFF] hover:cursor-pointer z-50"
           >
             {item}
           </div>

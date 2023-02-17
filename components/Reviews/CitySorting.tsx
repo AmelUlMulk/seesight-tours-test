@@ -22,8 +22,8 @@ const CitiesSorting = ({
 }: IProps) => {
   const [dropDownToggle, setDropdownToggle] = useState<boolean>(false);
   const sortedCitiesDropdown = sortCities(citiesDropdown);
-  console.log('citiesDropdown:', citiesDropdown);
-  console.log('SortedCitiesDropdown:', sortedCitiesDropdown);
+  // console.log('citiesDropdown:', citiesDropdown);
+  // console.log('SortedCitiesDropdown:', sortedCitiesDropdown);
   return (
     <div id="reviews-cities-dropdown">
       <div>
@@ -42,7 +42,17 @@ const CitiesSorting = ({
       {dropDownToggle && (
         <div className="bg-[#FFFFFF] max-h-[300px] overflow-y-auto z-50">
           {sortedCitiesDropdown.map((city: any) => (
-            <div key={city?.city.id} className="border border-slate-300 px-3">
+            <div
+              key={city?.city.id}
+              className="border border-slate-300 px-3 hover:cursor-pointer"
+              onClick={() =>
+                setCityFilter({
+                  cities: {
+                    slug: city?.city.slug
+                  }
+                })
+              }
+            >
               {city?.city.name}
             </div>
           ))}
