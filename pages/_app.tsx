@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import 'react-calendar/dist/Calendar.css';
 import type { AppProps } from 'next/app';
 import NavBar from '../layouts/NavBar';
 import Footer from '../layouts/Footer/footer';

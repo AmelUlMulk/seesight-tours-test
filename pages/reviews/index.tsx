@@ -48,7 +48,10 @@ const Reviews = () => {
   console.log('city:', cityFilter);
   return (
     <div>
-      <ReviewsHeader totalReviews={totalReviews ? totalReviews : {}} />
+      <ReviewsHeader
+        totalReviews={totalReviews ? totalReviews : {}}
+        citiesPageDropDown={citiesPageDropDown?.citiesPage?.cities || []}
+      />
       <ReviewsFilterNav
         cityFilter={cityFilter}
         setCityFilter={setCityFilter}

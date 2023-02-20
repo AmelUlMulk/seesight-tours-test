@@ -10,15 +10,19 @@ import 'react-circular-progressbar/dist/styles.css';
 import { Rating } from 'react-simple-star-rating';
 import ReviewRatings from './ReviewRatings';
 import { useState } from 'react';
+import AddReview from './AddReview';
 
 interface IProps {
   totalReviews: Record<string, any>;
+  citiesPageDropDown: Record<string, any>[] | undefined;
 }
 interface StyleProps {
   isRated: number;
 }
-const ReviewsHeader = ({ totalReviews }: IProps) => {
+const ReviewsHeader = ({ totalReviews, citiesPageDropDown }: IProps) => {
   const [rating, setRating] = useState<number>(0);
+  const { reviewsConnection } = totalReviews;
+  const [dispModal, setDispModal] = useState<boolean>(false);
   const percentage = 80;
 
   //functions
@@ -34,11 +38,12 @@ const ReviewsHeader = ({ totalReviews }: IProps) => {
   `;
   //display data
   console.log('ratings:', rating);
+  console.log('totalReviews:', totalReviews);
   return (
     <div id="reviews" className="bg-[#FFFFFF] pb-10">
       <section id="trustbar">
-        <div className="w-[90%] mx-auto">
-          <div className="flex justify-center items-center gap-10">
+        <div className="w-[80%] mx-auto">
+          <div className="flex justify-center items-center gap-20">
             <div>
               <Image
                 src={'/tripadvisorlogo.svg'}
@@ -67,7 +72,7 @@ const ReviewsHeader = ({ totalReviews }: IProps) => {
         </div>
       </section>
       <section id="ratings">
-        <div className="flex justify-center gap-10 pb-3">
+        <div className="flex justify-center gap-20 pb-3 w-[80%] mx-auto">
           <div
             id="rating-stars"
             className="flex flex-col justify-center items-center"
@@ -85,12 +90,20 @@ const ReviewsHeader = ({ totalReviews }: IProps) => {
                 <div className="flex flex-col justify-center items-center">
                   <RatingStar />
                   {/* <Image src={} width={66} height={66} alt="rating star" /> */}
-                  <h3 className="text-[56px] font-[700]">4.8</h3>
-                  <p className="text-[24px] font-[400]">Out of 5</p>
+                  <h3 className="text-[56px] font-[700] text-[#333333]">
+                    {parseFloat(
+                      reviewsConnection?.aggregate?.avg?.rating
+                    ).toFixed(1)}
+                  </h3>
+                  <p className="text-[24px] font-[400] text-[#333333]">
+                    Out of 5
+                  </p>
                 </div>
               </CircularProgressbarWithChildren>
             </div>
-            <p className="text-[24px] font-[400]">Based on 10k ratings</p>
+            <p className="text-[24px] font-[400] text-[#333333]">
+              Based on 10k ratings
+            </p>
             <ReviewRatings totalReviews={totalReviews} />
           </div>
 
@@ -114,17 +127,20 @@ const ReviewsHeader = ({ totalReviews }: IProps) => {
                   allowFraction
                 />
 
-                <p className="text-[24px] font-[400]">Rate IT!</p>
+                <p className="text-[24px] text-[#333333] font-[400]">
+                  Rate IT!
+                </p>
               </div>
             </CircularProgressbarWithChildren>
-            <div className="flex flex-col justify-center items-center">
-              <p className="text-[24px] font-[400]">
+            <div className="flex flex-col justify-center items-center pt-16">
+              <p className="text-[24px]text-[#333333] font-[400]">
                 Have you Traveled with US?
               </p>
               <div className="flex justify-center pt-5">
                 <ReviewBtnStyle
                   isRated={rating}
-                  className=" text-[22px] font-[400] border border-red-300 rounded-[5px] px-2 py-1 hover:cursor-pointer hover:bg-[#e64141] hover:text-white"
+                  className=" text-[22px] text-[#333333] font-[400] border border-red-300 rounded-[5px] px-2 py-1 hover:cursor-pointer hover:bg-[#e64141] hover:text-white"
+                  onClick={() => setDispModal(!dispModal)}
                 >
                   Write a Review
                 </ReviewBtnStyle>
@@ -133,6 +149,13 @@ const ReviewsHeader = ({ totalReviews }: IProps) => {
           </div>
         </div>
       </section>
+      {dispModal && (
+        <AddReview
+          dispModal={dispModal}
+          setDispModal={setDispModal}
+          citiesPageDropDown={citiesPageDropDown}
+        />
+      )}
     </div>
   );
 };

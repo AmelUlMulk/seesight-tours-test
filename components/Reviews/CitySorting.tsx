@@ -27,7 +27,9 @@ const CitiesSorting = ({
   return (
     <div id="reviews-cities-dropdown">
       <div>
-        <span className="text-[18px] font-[400]">Filter By City:</span>
+        <span className="text-[18px] text-[#333333] font-[400]">
+          Filter By City:
+        </span>
 
         <button
           className="pl-2"
