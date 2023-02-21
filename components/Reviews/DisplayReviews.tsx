@@ -5,7 +5,7 @@ interface IProps {
 }
 const DisplayReviews = ({ totalReviews }: IProps) => {
   const { reviews } = totalReviews;
-  console.log('reviews:', reviews);
+  // console.log('reviews:', reviews);
   return (
     <section id="reviews-display" className="mt-5 px-16">
       {reviews &&

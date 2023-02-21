@@ -3,10 +3,10 @@ import Image from 'next/image';
 import { SetStateAction, useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import DropdownIcon from '../../assets/svg/review-filtercitydropdown.svg';
-import { Calendar } from 'react-calendar';
 import CalendarDate from './CalendarDate';
 import moment from 'moment';
 import CitySelect from './CitySelect';
+import CityTours from './CityTours';
 interface IProps {
   dispModal: boolean;
   setDispModal: React.Dispatch<SetStateAction<boolean>>;
@@ -18,18 +18,16 @@ const AddReview = ({ dispModal, setDispModal, citiesPageDropDown }: IProps) => {
     title: '',
     description: ''
   });
-  const [selectedCity, setSelectedCity] = useState<string>();
+  const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [dispCalendar, setDispCalendar] = useState<boolean>(false);
   const [cityDropdown, setCityDropdown] = useState<boolean>(false);
-  const [selectedDate, setSelectedDate] = useState<any>();
+  const [tourDropdown, setTourDropdown] = useState<boolean>(false);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const handleSubmit = async (values: any) => {
     console.log('Submittied reviewInfo:', values);
     setReviewInfo(values);
   };
-  //   console.log('reviewInfo:', reviewInfo);
-  if (selectedDate)
-    console.log('selectedDate:', moment(selectedDate).format('MMM Do YYYY'));
-  console.log('citiesDropDown:', citiesPageDropDown);
+  console.log('selectedCity:', selectedCity);
   return (
     <div
       id="review-modal-wrapper"
@@ -78,11 +76,17 @@ const AddReview = ({ dispModal, setDispModal, citiesPageDropDown }: IProps) => {
               )}
             </button>
 
-            <button className="w-[100%] relative bg-[#EEEEEE] flex justify-between items-center px-5 py-3 rounded-[15px] mt-5">
-              <div
-                className="flex justify-center items-center pr-[11rem]"
-                onClick={() => setCityDropdown(!cityDropdown)}
-              >
+            <button
+              className="w-[100%] relative bg-[#EEEEEE] flex justify-between items-center px-5 py-3 rounded-[15px] mt-5"
+              onClick={() => {
+                setCityDropdown(!cityDropdown);
+                if (tourDropdown) {
+                  setTourDropdown(false);
+                }
+              }}
+              disabled={selectedCity === null}
+            >
+              <div className="flex justify-center items-center pr-[11rem]">
                 <span className="px-3">
                   <Image
                     src={'/locationIcon.svg'}
@@ -91,17 +95,65 @@ const AddReview = ({ dispModal, setDispModal, citiesPageDropDown }: IProps) => {
                     alt="calendar image"
                   />
                 </span>
-                <span onClick={() => setCityDropdown(!cityDropdown)}>
-                  Choose A city?
+                <span
+                  onClick={() => {
+                    setTourDropdown(!tourDropdown);
+                    if (cityDropdown) {
+                      setCityDropdown(false);
+                    }
+                  }}
+                >
+                  {selectedCity ? selectedCity : 'Choose A city?'}
                 </span>
               </div>
               <div>
                 <DropdownIcon onClick={() => setCityDropdown(!cityDropdown)} />
               </div>
               {cityDropdown && (
-                <CitySelect citiesPageDropdown={citiesPageDropDown} />
+                <CitySelect
+                  citiesPageDropdown={citiesPageDropDown}
+                  selectedCity={selectedCity}
+                  setSelectedCity={setSelectedCity}
+                  setCityDropdown={setCityDropdown}
+                  cityDropdown={cityDropdown}
+                />
               )}
             </button>
+            {selectedCity && (
+              <button
+                className="w-[100%] relative bg-[#EEEEEE] flex justify-between items-center px-5 py-3 rounded-[15px] mt-5"
+                onClick={() => setTourDropdown(!tourDropdown)}
+              >
+                <div className="flex justify-center items-center pr-[11rem]">
+                  <span className="px-3">
+                    <Image
+                      src={'/locationIcon.svg'}
+                      width={33}
+                      height={33}
+                      alt="calendar image"
+                    />
+                  </span>
+                  <span onClick={() => setTourDropdown(!cityDropdown)}>
+                    Find Your Tours
+                  </span>
+                </div>
+                <div>
+                  <DropdownIcon
+                    onClick={() => setTourDropdown(!tourDropdown)}
+                  />
+                </div>
+                {tourDropdown && (
+                  <CityTours
+                    citiesPageDropdown={citiesPageDropDown}
+                    selectedCity={selectedCity}
+                    setSelectedCity={setSelectedCity}
+                    setTourDropdown={setCityDropdown}
+                    tourDropdown={cityDropdown}
+                  />
+                )}
+              </button>
+            )}
+
             <Formik
               initialValues={reviewInfo}
               validate={values => {

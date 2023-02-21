@@ -84,11 +84,6 @@ const CITIES_PRODUCT_FILTER = gql`
           ...FRAGMENT_PRODUCT_REVIEW
         }
       }
-      airportTransfers: airport_transfer {
-        product {
-          ...FRAGMENT_PRODUCT_REVIEW
-        }
-      }
     }
   }
   ${FRAGMENT_PRODUCT_REVIEW}

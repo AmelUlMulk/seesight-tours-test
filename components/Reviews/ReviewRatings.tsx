@@ -29,8 +29,8 @@ const ReviewRatings = ({ totalReviews }: IProps) => {
     setReviews(filteredReviews());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [totalReviews]);
-  console.log('ReviewConnection:', reviewsConnection);
-  console.log('ratingReviews:', reviews);
+  // console.log('ReviewConnection:', reviewsConnection);
+  // console.log('ratingReviews:', reviews);
   return (
     <div>
       {Object.keys(reviews)
