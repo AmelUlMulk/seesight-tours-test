@@ -160,7 +160,6 @@ const SearchCity = () => {
   const searchFilter = Cities.filter(cty =>
     cty.name.toLowerCase().includes(city.toLowerCase())
   );
-  console.log('focusIndex:', focusIndex);
   useEffect(() => {
     if (!resultContainer.current) return;
     resultContainer.current.scrollIntoView({
@@ -170,7 +169,6 @@ const SearchCity = () => {
 
   const SubmitHandler = (e: any) => {
     e.preventDefault();
-    console.log('submit call');
     const FilterdCity = Cities.find(cty => cty.name === city);
     if (FilterdCity) {
       return router.push(FilterdCity.slug);
@@ -183,7 +181,6 @@ const SearchCity = () => {
   const handleSelection = (selectedIndex: number) => {
     const selectedItem = searchFilter[selectedIndex];
     if (!selectedItem) return resetSearchComplete();
-    console.log('seletetItem:', selectedItem);
     setCity(selectedItem.name);
     resetSearchComplete();
   };

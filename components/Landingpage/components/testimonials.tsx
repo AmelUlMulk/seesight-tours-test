@@ -8,6 +8,8 @@ import 'swiper/css/pagination';
 SwiperCore.use([Navigation]);
 import NextslideIcon from '../../../assets/svg/nextslideicon.svg';
 import PrevslideIcon from '../../../assets/svg/prevslideicon.svg';
+import { useQuery } from '@apollo/client';
+import { TESTIMONIALS, TESTIMONIAL_INTERFACE } from '../../../api/testimonials';
 const TestimonialStyle = styled.section`
   background-image: linear-gradient(
       to top,
@@ -66,6 +68,17 @@ const data = [
   }
 ];
 const Testimonials = () => {
+  const {
+    data: { reviews = [] } = {},
+    loading,
+    error
+  } = useQuery<TESTIMONIAL_INTERFACE>(TESTIMONIALS);
+  const filterReviews = reviews?.filter((review: any) => {
+    if (review?.review !== null) {
+      return review?.rating === 5 && review?.review.length < 150;
+    }
+  });
+
   return (
     <TestimonialStyle
       id="testimonials"
@@ -111,7 +124,7 @@ const Testimonials = () => {
               }
             }}
           >
-            {data.map(dt => (
+            {filterReviews.slice(0, 10).map(dt => (
               <SwiperSlide key={dt.id}>
                 <div className="flex flex-col relative bg-[#000000] opacity-80  text-white pb-12 xxsm:max-h-[200px] md:max-h-[190px] lg:max-h-[200px] xl:max-h-[220px] 2xl:max-h-[200px] 3xl:max-h-[170px] 4xl:max-h-[170px] h-[100%] xsm:px-5 md:px-5 lg:px-6 xl:px-10 xsm:pt-5 md:pt-5 lg:pt-6 xl:pt-8 rounded-lg">
                   <Image

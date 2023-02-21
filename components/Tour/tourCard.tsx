@@ -30,8 +30,7 @@ export const SnippetStyle = styled.p`
 `;
 const TourCard = ({ product, productType }: IProps) => {
   const [image, setImage] = useState<any>([]);
-  // console.log(product);
-  // console.log(image);
+
   //storing Images in array
   useEffect(() => {
     const imageArr: Array<Record<string, any>> = [];

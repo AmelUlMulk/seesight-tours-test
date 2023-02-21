@@ -38,8 +38,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
   const [featuredExperienceData, setFeaturedExperienceData] = useState<
     FEATURED_EXPERIENCES_INTERFACE | HOMEPAGEINTERFACE | any
   >([]);
-  // console.log('featuredExperienceData:', featuredExperienceData);
-  /////////////////////////////FETCHING QUERIES//////////////////////////
+  //FETCHING QUERIES
   const [
     cityFilteredTours,
     {
@@ -48,10 +47,8 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
       error: cityFitlerError
     }
   ] = useLazyQuery<CITY_FILTER_INTERFACE>(CITIES_FILTER);
-  //////////////////////////////////////
-  // console.log('featuredExp', featuredExp);
-  /////////////////USEFFECTS()/////////////////////////////////////////////
 
+  //USEFFECTS()
   useEffect(() => {
     filteredCity && setFeaturedExperienceData(filteredCity);
   }, [filteredCity]);
@@ -88,8 +85,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
       }
     });
   }, [city, cityFilteredTours]);
-  // console.log('filtered city:', filteredCity);
-  ///////////////////////////////////FUNCTIONS/////////////////////////////
+  //FUNCTIONS
   const Drop_Down_options = () => {
     const options: Array<Record<string, unknown>> = [];
     const filteredCities = citydropdown ? citydropdown : [];
@@ -110,15 +106,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
     else if (activeNav === 'multiday') return 'Multi Day Tours';
     else if (activeNav === 'airportTransfers') return 'Airport Transfer';
   };
-  /////////////////////////////Final Array////////////////////////
-  // const finalArray =
-  //   filteredCity && featuredExperienceData
-  //     ? featuredExperienceData[activeNav]
-  //     : city === 'All Cities'
-  //     ? featuredExp[activeNav]
-  //     : [];
-  // console.log('final array:', finalArray);
-  //////////////////////////////Final display functions////////////
+
   const displayProduct = () => {
     const filteredProduct =
       filteredCity && featuredExperienceData
@@ -126,7 +114,6 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
         : city === 'All Cities'
         ? featuredExp[activeNav]
         : [];
-    console.log('uniquefilterproduct:', filteredProduct);
     if (filteredProduct && filteredProduct.length === 0) {
       return <h3>{`Tours coming to ${city} soon`}</h3>;
     }

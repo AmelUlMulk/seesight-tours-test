@@ -21,7 +21,7 @@ const LandingPage = ({
 }: IProps) => {
   const { homePage: { cities: [...data] = [] } = {}, citiesTotal } = HomePage;
   return (
-    <>
+    <div id="landing-page" className="bg-[#F5F5F5]">
       <Trustbar />
       <FeaturedExperiences
         featuredExp={featuredExp}
@@ -37,7 +37,7 @@ const LandingPage = ({
       <Testimonials />
       <OurGuides guidesData={guidesData} />
       <Newsletter />
-    </>
+    </div>
   );
 };
 
