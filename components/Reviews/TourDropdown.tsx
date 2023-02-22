@@ -1,8 +1,20 @@
+import { SetStateAction } from 'react';
+
 interface IProps {
   data: Record<string, any>;
   title: string;
+  submitReview: Record<string, any>;
+  setSubmitReview: React.Dispatch<SetStateAction<Record<string, any>>>;
 }
-const TourDropDown = ({ data: tourData, title }: IProps) => {
+const TourDropDown = ({
+  data: tourData,
+  title,
+  submitReview,
+  setSubmitReview
+}: IProps) => {
+  const handleTourClick = (product: Record<string, any>) => {
+    console.log('product:', product);
+  };
   return (
     <div id="tour-type">
       <div className="text-[24px] font-[600]">{title}</div>

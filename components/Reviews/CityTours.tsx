@@ -9,12 +9,16 @@ interface IProps {
   setSelectedCity: React.Dispatch<SetStateAction<string | null>>;
   setTourDropdown: React.Dispatch<SetStateAction<boolean>>;
   tourDropdown: boolean;
+  submitReview: Record<string, any>;
+  setSubmitReview: React.Dispatch<SetStateAction<Record<string, any>>>;
 }
 const CityTours = ({
   citiesPageDropdown,
   selectedCity,
   setTourDropdown,
-  tourDropdown
+  tourDropdown,
+  submitReview,
+  setSubmitReview
 }: IProps) => {
   const [fetchCityTours, { data: { cities } = [] }] = useLazyQuery(
     CITIES_PRODUCT_FILTER
@@ -36,11 +40,28 @@ const CityTours = ({
       className="absolute top-[100%] left-0 bg-white z-50 max-h-[400px] overflow-y-auto rounded-[15px]"
     >
       {cities && (
-        <TourDropDown data={cities[0].allThings} title="All Things " />
+        <TourDropDown
+          data={cities[0].allThings}
+          title="All Things "
+          submitReview={submitReview}
+          setSubmitReview={setSubmitReview}
+        />
       )}
-      {cities && <TourDropDown data={cities[0].allThings} title="Day Tours " />}
       {cities && (
-        <TourDropDown data={cities[0].allThings} title="Mutli Day Tours " />
+        <TourDropDown
+          data={cities[0].allThings}
+          title="Day Tours "
+          submitReview={submitReview}
+          setSubmitReview={setSubmitReview}
+        />
+      )}
+      {cities && (
+        <TourDropDown
+          data={cities[0].allThings}
+          title="Mutli Day Tours "
+          submitReview={submitReview}
+          setSubmitReview={setSubmitReview}
+        />
       )}
     </div>
   );

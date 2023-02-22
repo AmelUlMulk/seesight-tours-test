@@ -42,15 +42,17 @@ const Reviews = () => {
     });
   }, [cityFilter, fetchReviews, sortOrder]);
   //display data
-  console.log('reviewsPage:', reviewsPage);
-  console.log('totalReviews:', totalReviews);
-  console.log('sortOrder:', sortOrder);
-  console.log('city:', cityFilter);
+  // console.log('reviewsPage:', reviewsPage);
+  // console.log('totalReviews:', totalReviews);
+  // console.log('sortOrder:', sortOrder);
+  // console.log('city:', cityFilter);
+  console.log('citiesPageDropDown:', citiesPageDropDown);
   return (
     <div>
       <ReviewsHeader
         totalReviews={totalReviews ? totalReviews : {}}
         citiesPageDropDown={citiesPageDropDown?.citiesPage?.cities || []}
+        citiesDropDown={citiesPageDropDown?.citiesPage || {}}
       />
       <ReviewsFilterNav
         cityFilter={cityFilter}

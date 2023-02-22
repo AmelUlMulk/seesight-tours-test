@@ -15,11 +15,16 @@ import AddReview from './AddReview';
 interface IProps {
   totalReviews: Record<string, any>;
   citiesPageDropDown: Record<string, any>[] | undefined;
+  citiesDropDown: Record<string, any>;
 }
 interface StyleProps {
   isRated: number;
 }
-const ReviewsHeader = ({ totalReviews, citiesPageDropDown }: IProps) => {
+const ReviewsHeader = ({
+  totalReviews,
+  citiesPageDropDown,
+  citiesDropDown
+}: IProps) => {
   const [rating, setRating] = useState<number>(0);
   const { reviewsConnection } = totalReviews;
   const [dispModal, setDispModal] = useState<boolean>(false);
@@ -37,8 +42,8 @@ const ReviewsHeader = ({ totalReviews, citiesPageDropDown }: IProps) => {
     color: ${props => (props.isRated > 0 ? 'white' : 'black')};
   `;
   //display data
-  console.log('ratings:', rating);
-  console.log('totalReviews:', totalReviews);
+  // console.log('ratings:', rating);
+  // console.log('totalReviews:', totalReviews);
   return (
     <div id="reviews" className="bg-[#FFFFFF] pb-10">
       <section id="trustbar">
@@ -154,6 +159,10 @@ const ReviewsHeader = ({ totalReviews, citiesPageDropDown }: IProps) => {
           dispModal={dispModal}
           setDispModal={setDispModal}
           citiesPageDropDown={citiesPageDropDown}
+          handleRating={handleRating}
+          rating={rating}
+          setRating={setRating}
+          citiesDropDown={citiesDropDown}
         />
       )}
     </div>

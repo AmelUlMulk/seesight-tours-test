@@ -1,29 +1,42 @@
-import { SetStateAction, useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useRef, useState } from 'react';
 import Calendar from 'react-calendar';
 
 interface IProps {
-  selectedDate: Date | null;
-  setSelectedDate: React.Dispatch<SetStateAction<Date | null>>;
+  selectedDate: any;
+  setSelectedDate: React.Dispatch<SetStateAction<any>>;
   dispCalendar: boolean;
   setDispCalendar: React.Dispatch<SetStateAction<boolean>>;
+  submitReview: Record<string, unknown>;
+  setSubmitReview: React.Dispatch<SetStateAction<Record<string, unknown>>>;
 }
 
 const CalendarDate = ({
   selectedDate,
   setSelectedDate,
   dispCalendar,
-  setDispCalendar
+  setDispCalendar,
+  submitReview,
+  setSubmitReview
 }: IProps) => {
-  const [date, setDate] = useState<Date>(new Date());
   const handleCalendarChange = (date: any) => {
     setSelectedDate(date);
-    setDispCalendar(!dispCalendar);
   };
+
+  useEffect(() => {
+    if (selectedDate) {
+      setSubmitReview(prevstate => {
+        return {
+          ...prevstate,
+          date: selectedDate
+        };
+      });
+    }
+  }, [selectedDate, setSubmitReview]);
 
   return (
     <div className="absolute top-[100%] left-0 px-5 w-[100%] z-50">
       <Calendar
-        value={date}
+        value={selectedDate || new Date()}
         onClickDay={value => handleCalendarChange(value)}
       />
     </div>
