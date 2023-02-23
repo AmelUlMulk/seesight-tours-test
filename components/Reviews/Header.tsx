@@ -28,7 +28,9 @@ const ReviewsHeader = ({
   const [rating, setRating] = useState<number>(0);
   const { reviewsConnection } = totalReviews;
   const [dispModal, setDispModal] = useState<boolean>(false);
-  const percentage = 80;
+  const percentage: number = Number(
+    parseFloat(reviewsConnection?.aggregate?.avg?.rating).toFixed(1)
+  );
 
   //functions
   const handleRating = (rate: number) => {
@@ -84,7 +86,7 @@ const ReviewsHeader = ({
           >
             <div className="w-[300px] h-[300px]">
               <CircularProgressbarWithChildren
-                value={percentage}
+                value={(percentage / 5) * 100}
                 styles={buildStyles({
                   strokeLinecap: 'round',
                   pathTransitionDuration: 1,

@@ -10,6 +10,7 @@ const FRAGMENT_REVIEW = gql`
     rating
     date
     source
+    published_at
     cities {
       id
       name

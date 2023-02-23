@@ -46,7 +46,7 @@ const Reviews = () => {
   // console.log('totalReviews:', totalReviews);
   // console.log('sortOrder:', sortOrder);
   // console.log('city:', cityFilter);
-  console.log('citiesPageDropDown:', citiesPageDropDown);
+  // console.log('citiesPageDropDown:', citiesPageDropDown);
   return (
     <div>
       <ReviewsHeader
