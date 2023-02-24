@@ -28,6 +28,7 @@ const ReviewsHeader = ({
   const [rating, setRating] = useState<number>(0);
   const { reviewsConnection } = totalReviews;
   const [dispModal, setDispModal] = useState<boolean>(false);
+  const [errorObject, setErrorObject] = useState<Record<string, unknown>>({});
   const percentage: number = Number(
     parseFloat(reviewsConnection?.aggregate?.avg?.rating).toFixed(1)
   );
@@ -46,6 +47,7 @@ const ReviewsHeader = ({
   //display data
   // console.log('ratings:', rating);
   // console.log('totalReviews:', totalReviews);
+  // console.log('errorObject:', errorObject);
   return (
     <div id="reviews" className="bg-[#FFFFFF] pb-10">
       <section id="trustbar">
@@ -165,6 +167,8 @@ const ReviewsHeader = ({
           rating={rating}
           setRating={setRating}
           citiesDropDown={citiesDropDown}
+          errorObject={errorObject}
+          setErrorObject={setErrorObject}
         />
       )}
     </div>

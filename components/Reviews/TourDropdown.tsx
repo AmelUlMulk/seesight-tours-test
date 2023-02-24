@@ -11,6 +11,8 @@ interface IProps {
   setSubmitReview: React.Dispatch<SetStateAction<Record<string, any>>>;
   errorStates: Record<string, boolean>;
   setErrorStates: React.Dispatch<SetStateAction<Record<string, boolean>>>;
+  errorObject: Record<string, unknown>;
+  setErrorObject: React.Dispatch<SetStateAction<Record<string, unknown>>>;
 }
 const TourDropDown = ({
   selectedCity,
@@ -22,11 +24,18 @@ const TourDropDown = ({
   submitReview,
   setSubmitReview,
   errorStates,
-  setErrorStates
+  setErrorStates,
+  errorObject,
+  setErrorObject
 }: IProps) => {
   const handleTourClick = (product: Record<string, any>) => {
     console.log('product:', product);
     setSelectedCityProduct(product.name);
+    if (errorObject.product) {
+      const obj = { ...errorObject };
+      delete obj.product;
+      setErrorObject(obj);
+    }
     setSubmitReview(prevState => {
       return {
         ...prevState,

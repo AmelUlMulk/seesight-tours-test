@@ -14,6 +14,8 @@ interface IProps {
   setSubmitReview: React.Dispatch<SetStateAction<Record<string, unknown>>>;
   errorStates: Record<string, boolean>;
   setErrorStates: React.Dispatch<SetStateAction<Record<string, boolean>>>;
+  errorObject: Record<string, unknown>;
+  setErrorObject: React.Dispatch<SetStateAction<Record<string, unknown>>>;
 }
 
 const DateSelect = ({
@@ -22,7 +24,11 @@ const DateSelect = ({
   dispCalendar,
   setDispCalendar,
   submitReview,
-  setSubmitReview
+  setSubmitReview,
+  errorStates,
+  setErrorStates,
+  errorObject,
+  setErrorObject
 }: IProps) => {
   useEffect(() => {
     if (selectedDate) {
@@ -36,6 +42,12 @@ const DateSelect = ({
   }, [selectedDate, setSubmitReview]);
   const handleCalendarChange = (date: any) => {
     setSelectedDate(date);
+    if (errorObject.date) {
+      const obj = { ...errorObject };
+      delete obj.date;
+      // delete obj.cities;
+      setErrorObject(obj);
+    }
   };
 
   return (

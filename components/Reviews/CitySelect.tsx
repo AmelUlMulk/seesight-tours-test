@@ -15,6 +15,8 @@ interface IProps {
   setSubmitReview: React.Dispatch<SetStateAction<Record<string, any>>>;
   errorStates: Record<string, boolean>;
   setErrorStates: React.Dispatch<SetStateAction<Record<string, boolean>>>;
+  errorObject: Record<string, unknown>;
+  setErrorObject: React.Dispatch<SetStateAction<Record<string, unknown>>>;
 }
 
 const CitySelect = ({
@@ -28,7 +30,9 @@ const CitySelect = ({
   submitReview,
   setSubmitReview,
   errorStates,
-  setErrorStates
+  setErrorStates,
+  errorObject,
+  setErrorObject
 }: IProps) => {
   // console.log('citySelectData:', citiesDropDown);
   return (
@@ -76,6 +80,8 @@ const CitySelect = ({
           setSubmitReview={setSubmitReview}
           errorStates={errorStates}
           setErrorStates={setErrorStates}
+          errorObject={errorObject}
+          setErrorObject={setErrorObject}
         />
       )}
     </button>

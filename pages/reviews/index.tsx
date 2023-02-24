@@ -19,6 +19,7 @@ const sortObject: Record<string, string> = {
 };
 const Reviews = () => {
   const [sortOrder, setSortOrder] = useState<string>('Newest');
+  const [currentPage, setCurrrentPage] = useState<number>(0);
   const [cityFilter, setCityFilter] = useState<any>(null);
   //fetching queries
   const {
@@ -34,15 +35,16 @@ const Reviews = () => {
   useEffect(() => {
     fetchReviews({
       variables: {
-        start: 0,
+        start: currentPage * 10,
         limit: 10,
         sort: sortObject[sortOrder],
         object: cityFilter
       }
     });
-  }, [cityFilter, fetchReviews, sortOrder]);
+  }, [cityFilter, fetchReviews, sortOrder, currentPage]);
   //display data
   // console.log('reviewsPage:', reviewsPage);
+  console.log('currentPage:', currentPage);
   // console.log('totalReviews:', totalReviews);
   // console.log('sortOrder:', sortOrder);
   // console.log('city:', cityFilter);
@@ -61,12 +63,13 @@ const Reviews = () => {
         setSortOrder={setSortOrder}
         citiesDropdown={citiesPageDropDown?.citiesPage?.cities || []}
       />
-      <DisplayReviews totalReviews={totalReviews ? totalReviews : {}} />
+      <DisplayReviews
+        currentPage={currentPage}
+        setCurrentPage={setCurrrentPage}
+        totalReviews={totalReviews ? totalReviews : {}}
+      />
     </div>
   );
 };
 
 export default Reviews;
-<div>
-  <div></div>
-</div>;

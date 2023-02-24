@@ -1,13 +1,37 @@
 import Moment from 'react-moment';
+import ReactPaginate from 'react-paginate';
+
 import Image from 'next/image';
+import { SetStateAction } from 'react';
 interface IProps {
   totalReviews: Record<string, any>;
+  currentPage: number;
+  setCurrentPage: React.Dispatch<SetStateAction<number>>;
 }
-const DisplayReviews = ({ totalReviews }: IProps) => {
+const DisplayReviews = ({
+  totalReviews,
+  currentPage,
+  setCurrentPage
+}: IProps) => {
   const { reviews } = totalReviews;
-  // console.log('reviews:', reviews);
+  const { reviewsConnection } = totalReviews;
+  const pageCounter = Math.ceil(
+    reviewsConnection ? reviewsConnection?.aggregate?.count / 10 : 0
+  );
+  const handlePageClick = ({ selected }: any) => {
+    console.log('selectedPage:', selected);
+    setCurrentPage(selected);
+  };
+  console.log('reviews:', reviews);
+  console.log('totalreviews:', totalReviews);
+
   return (
     <section id="reviews-display" className="mt-5 px-16">
+      {reviews?.length === 0 && (
+        <div className="text-[24px] text-[#333333] font-[600] px-16">
+          No reviews Found
+        </div>
+      )}
       {reviews &&
         reviews.map((review: any) => (
           <div
@@ -38,6 +62,23 @@ const DisplayReviews = ({ totalReviews }: IProps) => {
             </p>
           </div>
         ))}
+      <section id="pagination">
+        <div className="w-[40%] ml-auto">
+          <ReactPaginate
+            breakLabel={<span className="mr-3">...</span>}
+            nextLabel=">"
+            onPageChange={handlePageClick}
+            activeClassName="bg-orange-300"
+            pageRangeDisplayed={5}
+            pageCount={pageCounter}
+            previousLabel="<"
+            containerClassName="flex justify-center gap-3 mt-5"
+            pageClassName="block  hover:bg-slate-400 rounded-[2px] px-2"
+            // @ts-ignore
+            renderOnZeroPageCount={null}
+          />
+        </div>
+      </section>
     </section>
   );
 };

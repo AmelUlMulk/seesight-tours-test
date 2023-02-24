@@ -13,6 +13,8 @@ interface IProps {
   setTermsConditions: React.Dispatch<SetStateAction<boolean>>;
   errorStates: Record<string, boolean>;
   setErrorStates: React.Dispatch<SetStateAction<Record<string, boolean>>>;
+  errorObject: Record<string, unknown>;
+  setErrorObject: React.Dispatch<SetStateAction<Record<string, unknown>>>;
 }
 interface RatingFieldProps {
   field: Record<string, any>;
@@ -24,6 +26,11 @@ interface Props {
 const CheckBoxTextStyle = styled.p<Props>`
   opacity: ${props => (props.isChecked ? '1' : '0.5')};
 `;
+const errorMsgObject: Record<string, any> = {
+  date: 'Tour date must be selected',
+  cities: 'Tour city must be selected',
+  product: 'Tour must be selected'
+};
 const ReviewForm = ({
   rating,
   setSubmitReview,
@@ -32,7 +39,9 @@ const ReviewForm = ({
   termsConditions,
   setTermsConditions,
   errorStates,
-  setErrorStates
+  setErrorStates,
+  errorObject,
+  setErrorObject
 }: IProps) => {
   const [reviewInfo, setReviewInfo] = useState<Record<string, any>>({
     traveller: '',
@@ -51,7 +60,7 @@ const ReviewForm = ({
       handleRating(rate);
       setFieldValue(name, rate);
     };
-
+    console.log('termCond:', termsConditions);
     return (
       <Rating
         onClick={handleRate}
@@ -64,11 +73,26 @@ const ReviewForm = ({
     );
   };
   const handleCheck = () => {
-    setTermsConditions(!termsConditions);
-    setReviewInfo({
-      ...reviewInfo,
-      checkbox: !termsConditions
+    // setTermsConditions(!termsConditions);
+    // setReviewInfo({
+    //   ...reviewInfo,
+    //   checkbox: !termsConditions
+    // });
+    const errObj: Record<string, any> = {};
+    Object.keys(errorMsgObject).forEach(key => {
+      setTermsConditions(false);
+      if (!submitReview[key]) {
+        errObj[key] = errorMsgObject[key];
+      }
     });
+    setErrorObject(errObj);
+    if (Object.keys(errObj).length === 0) {
+      setTermsConditions(!termsConditions);
+      setReviewInfo({
+        ...reviewInfo,
+        checkbox: !termsConditions
+      });
+    }
   };
   const handleSubmit = async (values: any) => {
     setReviewInfo(values);
@@ -188,10 +212,10 @@ const ReviewForm = ({
             <Field
               type="checkbox"
               name="termsConditions"
-              checked={values.checkbox}
+              checked={termsConditions}
               onChange={(e: any) => {
-                setFieldValue('checkbox', e.target.checked);
                 handleCheck();
+                setFieldValue('checkbox', e.target.checked);
               }}
               className="mt-2"
             />
@@ -207,7 +231,7 @@ const ReviewForm = ({
             </CheckBoxTextStyle>
           </div>
           <button
-            className="py-2 px-10 focus:outline-none text-[25px] font-[500] bg-slate-400 rounded-[10px] mt-5"
+            className="py-2 px-10 focus:outline-none text-[25px] font-[500] bg-slate-400 rounded-[10px] mt-5 "
             type="submit"
             // disabled={isSubmitting}
           >

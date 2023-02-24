@@ -10,6 +10,8 @@ interface IProps {
   setSubmitReview: React.Dispatch<SetStateAction<Record<string, any>>>;
   errorStates: Record<string, boolean>;
   setErrorStates: React.Dispatch<SetStateAction<Record<string, boolean>>>;
+  errorObject: Record<string, unknown>;
+  setErrorObject: React.Dispatch<SetStateAction<Record<string, unknown>>>;
 }
 const CityDropdown = ({
   citiesDropDown,
@@ -19,11 +21,20 @@ const CityDropdown = ({
   submitReview,
   setSubmitReview,
   errorStates,
-  setErrorStates
+  setErrorStates,
+  errorObject,
+  setErrorObject
 }: IProps) => {
   const handleCityClick = (city: any) => {
     const { id, name } = city;
     setSelectedCity(city.name);
+    if (errorObject.cities) {
+      const obj = { ...errorObject };
+      delete obj.cities;
+      delete obj.product;
+      setErrorObject(obj);
+    }
+
     setCityDropdownToggle(!cityDropdownToggle);
     // console.log('handleClick:', name, id);
     setSubmitReview(prevState => {

@@ -11,6 +11,7 @@ import { useLazyQuery, useMutation } from '@apollo/client';
 import { CITIES_PRODUCT_FILTER, INSERT_REVIEW } from '../../api/reviews';
 import DateSelect from './DateSelect';
 import ReviewForm from './ReviewForm';
+import ErrorDisp from './ErrorDisp';
 interface IProps {
   dispModal: boolean;
   setDispModal: React.Dispatch<SetStateAction<boolean>>;
@@ -19,6 +20,8 @@ interface IProps {
   handleRating: (rate: number) => void;
   rating: number;
   setRating: React.Dispatch<SetStateAction<number>>;
+  errorObject: Record<string, unknown>;
+  setErrorObject: React.Dispatch<SetStateAction<Record<string, unknown>>>;
 }
 
 const AddReview = ({
@@ -28,25 +31,22 @@ const AddReview = ({
   citiesDropDown,
   handleRating,
   rating,
-  setRating
+  setRating,
+  errorObject,
+  setErrorObject
 }: IProps) => {
   const [submitReview, setSubmitReview] = useState<Record<string, unknown>>({
     source: null
   });
   const [termsConditions, setTermsConditions] = useState<boolean>(false);
   const [errorStates, setErrorStates] = useState<Record<string, boolean>>({
-    date: false,
-    traveller: false,
-    review: false,
-    city: false,
+    date: true,
+    traveller: true,
+    review: true,
+    city: true,
     product: false
   });
-  const [reviewInfo, setReviewInfo] = useState<Record<string, any>>({
-    traveller: '',
-    title: '',
-    review: '',
-    rating: rating
-  });
+
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [selectedCityProduct, setSelectedCityProduct] = useState<string | null>(
     null
@@ -96,6 +96,7 @@ const AddReview = ({
           <h2 className="text-[32px] font-[500]">
             Share your experience with us
           </h2>
+          {/* @ts-ignore */}
           <div className="flex flex-col">
             <DateSelect
               selectedDate={selectedDate}
@@ -106,8 +107,13 @@ const AddReview = ({
               setSubmitReview={setSubmitReview}
               errorStates={errorStates}
               setErrorStates={setErrorStates}
+              errorObject={errorObject}
+              setErrorObject={setErrorObject}
             />
-
+            {errorObject.date && (
+              // @ts-ignore
+              <div className="text-red-400">{errorObject.date}</div>
+            )}
             <CitySelect
               citiesDropDown={citiesDropDown}
               selectedCity={selectedCity}
@@ -120,7 +126,13 @@ const AddReview = ({
               setSubmitReview={setSubmitReview}
               errorStates={errorStates}
               setErrorStates={setErrorStates}
+              errorObject={errorObject}
+              setErrorObject={setErrorObject}
             />
+            {errorObject.cities && (
+              // @ts-ignore
+              <div className="text-red-400">{errorObject.cities}</div>
+            )}
             {selectedCity && (
               <CityTours
                 cities={cities}
@@ -136,9 +148,10 @@ const AddReview = ({
                 setSubmitReview={setSubmitReview}
                 errorStates={errorStates}
                 setErrorStates={setErrorStates}
+                errorObject={errorObject}
+                setErrorObject={setErrorObject}
               />
             )}
-
             <ReviewForm
               rating={rating}
               submitReview={submitReview}
@@ -148,6 +161,8 @@ const AddReview = ({
               setTermsConditions={setTermsConditions}
               errorStates={errorStates}
               setErrorStates={setErrorStates}
+              errorObject={errorObject}
+              setErrorObject={setErrorObject}
             />
           </div>
         </div>
