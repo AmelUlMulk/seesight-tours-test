@@ -63,7 +63,7 @@ const DisplayReviews = ({
           </div>
         ))}
       <section id="pagination">
-        <div className="w-[40%] ml-auto">
+        <div className="md:w-[65%] lg:w-[50%] xl:w-[40%] mx-auto md:ml-auto">
           <ReactPaginate
             breakLabel={<span className="mr-3">...</span>}
             nextLabel=">"

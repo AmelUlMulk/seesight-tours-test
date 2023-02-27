@@ -10,6 +10,7 @@ import { REVIEWS_PAGE, REVIEWS_PAGE_INTERFACE } from '../../api/reviewsPage';
 import ReviewsHeader from '../../components/Reviews/Header';
 import ReviewsFilterNav from '../../components/Reviews/ReviewsFilternav';
 import DisplayReviews from '../../components/Reviews/DisplayReviews';
+import FooterAbout from '../../components/Reviews/FooterAbout';
 
 const sortObject: Record<string, string> = {
   Newest: 'date:desc',
@@ -68,6 +69,7 @@ const Reviews = () => {
         setCurrentPage={setCurrrentPage}
         totalReviews={totalReviews ? totalReviews : {}}
       />
+      <FooterAbout reviewPage={reviewsPage} />
     </div>
   );
 };

@@ -81,7 +81,7 @@ const ReviewsHeader = ({
         </div>
       </section>
       <section id="ratings">
-        <div className="flex justify-center gap-20 pb-3 w-[80%] mx-auto">
+        <div className="md:flex md:justify-center md:gap-16 lg:gap-36 xl:gap-60 pb-3 w-[90%] mx-auto">
           <div
             id="rating-stars"
             className="flex flex-col justify-center items-center"
@@ -116,31 +116,37 @@ const ReviewsHeader = ({
             <ReviewRatings totalReviews={totalReviews} />
           </div>
 
-          <div id="write-review" className="flex flex-col">
-            <CircularProgressbarWithChildren
-              value={rating * 20}
-              styles={buildStyles({
-                strokeLinecap: 'round',
-                pathTransitionDuration: 1,
-                pathColor: rating < 2 ? 'red' : rating > 3 ? 'green' : 'yellow'
-              })}
-            >
-              <div className="flex flex-col justify-center items-center">
-                <Rating
-                  onClick={handleRating}
-                  initialValue={rating}
-                  transition
-                  fillColor="orange"
-                  emptyColor="gray"
-                  SVGstyle={{ display: 'inline-block' }}
-                  allowFraction
-                />
+          <div
+            id="write-review"
+            className="flex flex-col justify-center items-center mt-10 md:mt-0"
+          >
+            <div className="w-[300px] h-[300px]">
+              <CircularProgressbarWithChildren
+                value={rating * 20}
+                styles={buildStyles({
+                  strokeLinecap: 'round',
+                  pathTransitionDuration: 1,
+                  pathColor:
+                    rating < 2 ? 'red' : rating > 3 ? 'green' : 'yellow'
+                })}
+              >
+                <div className="flex flex-col justify-center items-center">
+                  <Rating
+                    onClick={handleRating}
+                    initialValue={rating}
+                    transition
+                    fillColor="orange"
+                    emptyColor="gray"
+                    SVGstyle={{ display: 'inline-block' }}
+                    allowFraction
+                  />
 
-                <p className="text-[24px] text-[#333333] font-[400]">
-                  Rate IT!
-                </p>
-              </div>
-            </CircularProgressbarWithChildren>
+                  <p className="text-[24px] text-[#333333] font-[400]">
+                    Rate IT!
+                  </p>
+                </div>
+              </CircularProgressbarWithChildren>
+            </div>
             <div className="flex flex-col justify-center items-center pt-16">
               <p className="text-[24px]text-[#333333] font-[400]">
                 Have you Traveled with US?

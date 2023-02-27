@@ -41,7 +41,7 @@ const ReviewRatings = ({ totalReviews }: IProps) => {
             : 0;
           return (
             <div key={index}>
-              <span className="text-[22px] text-[#333333] font-[400] px-2">{`${item} Stars`}</span>
+              <span className="text-[18px] md:text-[20px] xl:text-[22px] text-[#333333] font-[400] px-2">{`${item} Stars`}</span>
               <ProgressBar
                 completed={count}
                 maxCompleted={
@@ -51,10 +51,10 @@ const ReviewRatings = ({ totalReviews }: IProps) => {
                 }
                 bgColor="#FF9921"
                 isLabelVisible={false}
-                height="20px"
-                className="w-[350px] inline-block"
+                // height="20px"
+                className="w-[300px] md:w-[160px] lg:w-[300px] xl:w-[350px] inline-block"
               />
-              <span className="text-[22px] text-[#333333] font-[400] px-2">
+              <span className="text-[18px] md:text-[20px] xl:text-[22px] text-[#333333] font-[400] px-2">
                 {count ? count : 0}
               </span>
             </div>
