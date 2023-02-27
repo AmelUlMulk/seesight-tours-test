@@ -22,6 +22,8 @@ const Reviews = () => {
   const [sortOrder, setSortOrder] = useState<string>('Newest');
   const [currentPage, setCurrrentPage] = useState<number>(0);
   const [cityFilter, setCityFilter] = useState<any>(null);
+  const [citiesToggle, setCitiesToggle] = useState<boolean>(false);
+  const [sortToggle, setSortToggle] = useState<boolean>(false);
   //fetching queries
   const {
     data: { reviewsPage } = {},
@@ -45,13 +47,24 @@ const Reviews = () => {
   }, [cityFilter, fetchReviews, sortOrder, currentPage]);
   //display data
   // console.log('reviewsPage:', reviewsPage);
-  console.log('currentPage:', currentPage);
+  // console.log('citiesToggle:', citiesToggle);
+  // console.log('sortToggle:', sortToggle);
+  // console.log('currentPage:', currentPage);
   // console.log('totalReviews:', totalReviews);
   // console.log('sortOrder:', sortOrder);
   // console.log('city:', cityFilter);
   // console.log('citiesPageDropDown:', citiesPageDropDown);
   return (
-    <div>
+    <div
+      onClick={() => {
+        if (citiesToggle) {
+          setCitiesToggle(false);
+        }
+        if (sortToggle) {
+          setSortToggle(false);
+        }
+      }}
+    >
       <ReviewsHeader
         totalReviews={totalReviews ? totalReviews : {}}
         citiesPageDropDown={citiesPageDropDown?.citiesPage?.cities || []}
@@ -63,6 +76,10 @@ const Reviews = () => {
         sortOrder={sortOrder}
         setSortOrder={setSortOrder}
         citiesDropdown={citiesPageDropDown?.citiesPage?.cities || []}
+        citiesToggle={citiesToggle}
+        setCitiesToggle={setCitiesToggle}
+        sortToggle={sortToggle}
+        setSortToggle={setSortToggle}
       />
       <DisplayReviews
         currentPage={currentPage}

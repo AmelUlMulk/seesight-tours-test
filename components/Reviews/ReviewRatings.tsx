@@ -40,8 +40,8 @@ const ReviewRatings = ({ totalReviews }: IProps) => {
             ? reviews[item]?.item?.connection?.aggregate?.count
             : 0;
           return (
-            <div key={index}>
-              <span className="text-[18px] md:text-[20px] xl:text-[22px] text-[#333333] font-[400] px-2">{`${item} Stars`}</span>
+            <div key={index} className="flex mt-2">
+              <span className="flex-none w-[25%] xsm:w-[25%] sm:w-[20%] text-[16px] sm:text-[18px] md:text-[20px] xl:text-[22px] text-[#333333] font-[400] px-2">{`${item} Stars`}</span>
               <ProgressBar
                 completed={count}
                 maxCompleted={
@@ -52,9 +52,9 @@ const ReviewRatings = ({ totalReviews }: IProps) => {
                 bgColor="#FF9921"
                 isLabelVisible={false}
                 // height="20px"
-                className="w-[300px] md:w-[160px] lg:w-[300px] xl:w-[350px] inline-block"
+                className="w-[240px] sm:w-[300px] lg:w-[300px] xl:w-[350px] inline-block"
               />
-              <span className="text-[18px] md:text-[20px] xl:text-[22px] text-[#333333] font-[400] px-2">
+              <span className="flex-none w-[20%] xsm:w-[25%] sm:w-[20%] text-[16px] sm:text-[18px] md:text-[20px] xl:text-[22px] text-[#333333] font-[400] px-2">
                 {count ? count : 0}
               </span>
             </div>

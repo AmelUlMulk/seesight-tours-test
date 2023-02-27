@@ -11,6 +11,7 @@ import { Rating } from 'react-simple-star-rating';
 import ReviewRatings from './ReviewRatings';
 import { useState } from 'react';
 import AddReview from './AddReview';
+import { useMediaQuery } from '../../layouts/NavBar';
 
 interface IProps {
   totalReviews: Record<string, any>;
@@ -29,6 +30,7 @@ const ReviewsHeader = ({
   const { reviewsConnection } = totalReviews;
   const [dispModal, setDispModal] = useState<boolean>(false);
   const [errorObject, setErrorObject] = useState<Record<string, unknown>>({});
+  const mediaQuery = useMediaQuery(640);
   const percentage: number = Number(
     parseFloat(reviewsConnection?.aggregate?.avg?.rating).toFixed(1)
   );
@@ -51,8 +53,8 @@ const ReviewsHeader = ({
   return (
     <div id="reviews" className="bg-[#FFFFFF] pb-10">
       <section id="trustbar">
-        <div className="w-[80%] mx-auto">
-          <div className="flex justify-center items-center gap-20">
+        <div className="w-[90%] sm:w-[80%] mx-auto">
+          <div className="flex justify-center items-center xxsm:gap-2 xsm:gap-5 sm:gap-20">
             <div>
               <Image
                 src={'/tripadvisorlogo.svg'}
@@ -81,12 +83,12 @@ const ReviewsHeader = ({
         </div>
       </section>
       <section id="ratings">
-        <div className="md:flex md:justify-center md:gap-16 lg:gap-36 xl:gap-60 pb-3 w-[90%] mx-auto">
+        <div className="md:flex md:justify-center md:gap-12 lg:gap-36 xl:gap-60 pb-3 w-[90%] mx-auto">
           <div
             id="rating-stars"
             className="flex flex-col justify-center items-center"
           >
-            <div className="w-[300px] h-[300px]">
+            <div className="xxsm:w-[190px] xxsm:h-[190px] xsm:w-[220px] xsm:h-[220px] sm:w-[300px] sm:h-[300px] md:w-[250px] md:h-[250px] lg:w-[300px] lg:h-[300px]">
               <CircularProgressbarWithChildren
                 value={(percentage / 5) * 100}
                 styles={buildStyles({
@@ -97,20 +99,27 @@ const ReviewsHeader = ({
                 })}
               >
                 <div className="flex flex-col justify-center items-center">
-                  <RatingStar />
-                  {/* <Image src={} width={66} height={66} alt="rating star" /> */}
-                  <h3 className="text-[56px] font-[700] text-[#333333]">
-                    {parseFloat(
-                      reviewsConnection?.aggregate?.avg?.rating
-                    ).toFixed(1)}
-                  </h3>
-                  <p className="text-[24px] font-[400] text-[#333333]">
-                    Out of 5
-                  </p>
+                  <RatingStar className="xsm:mt-3 sm:mt-0" />
+                  {reviewsConnection?.aggregate?.avg?.rating ? (
+                    <>
+                      <h3 className="xsm:text-[32px] sm:text-[56px] font-[700] text-[#333333]">
+                        {parseFloat(
+                          reviewsConnection?.aggregate?.avg?.rating
+                        ).toFixed(1)}
+                      </h3>
+                      <p className="xsm:text-[20px] sm:text-[24px] font-[400] text-[#333333]">
+                        Out of 5
+                      </p>
+                    </>
+                  ) : (
+                    <p className="text-[24px] font-[400] text-[#333333]">
+                      Not Rated
+                    </p>
+                  )}
                 </div>
               </CircularProgressbarWithChildren>
             </div>
-            <p className="text-[24px] font-[400] text-[#333333]">
+            <p className="text-[24px] font-[400] text-[#333333] my-3">
               Based on 10k ratings
             </p>
             <ReviewRatings totalReviews={totalReviews} />
@@ -118,9 +127,9 @@ const ReviewsHeader = ({
 
           <div
             id="write-review"
-            className="flex flex-col justify-center items-center mt-10 md:mt-0"
+            className="flex flex-col items-center mt-10 md:mt-0"
           >
-            <div className="w-[300px] h-[300px]">
+            <div className="xxsm:w-[190px] xxsm:h-[190px] xsm:w-[220px] xsm:h-[220px] sm:w-[350px] sm:h-[350px] md:w-[250px] md:h-[250px] lg:w-[300px] lg:h-[300px]">
               <CircularProgressbarWithChildren
                 value={rating * 20}
                 styles={buildStyles({
@@ -136,9 +145,12 @@ const ReviewsHeader = ({
                     initialValue={rating}
                     transition
                     fillColor="orange"
-                    emptyColor="gray"
-                    SVGstyle={{ display: 'inline-block' }}
+                    emptyColor="#9B9B9B"
+                    SVGstyle={{
+                      display: 'inline-block'
+                    }}
                     allowFraction
+                    size={mediaQuery ? 30 : 40}
                   />
 
                   <p className="text-[24px] text-[#333333] font-[400]">

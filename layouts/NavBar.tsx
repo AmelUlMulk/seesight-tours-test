@@ -6,7 +6,7 @@ import Hamburger from 'hamburger-react';
 import SideNav from './SideNav';
 import logo from '../assets/svg/logo.svg';
 
-const useMediaQuery = (width: number) => {
+export const useMediaQuery = (width: number) => {
   const [targetReached, setTargetReached] = useState(false);
 
   const updateTarget = useCallback((e: { matches: any }) => {
