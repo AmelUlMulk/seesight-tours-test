@@ -129,17 +129,10 @@ const SearchInputStyle = styled.div`
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  @media (max-width: 768px) {
-    border-radius: 60px;
-  }
 `;
 const SearchButtonStyle = styled.button`
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  @media (max-width: 768px) {
-    border-top-right-radius: 54px;
-    border-bottom-right-radius: 54px;
-  }
 `;
 const SearchFilterItem = styled.li<StyledProps>`
   background-color: ${props => (props.isHover ? 'gray' : 'none')};
@@ -153,7 +146,8 @@ interface StyledProps {
 
 const SearchCity = () => {
   const [city, setCity] = useState<string>('');
-  const [dropdownToggle, setDropdownToggle] = useState(false);
+  const [suggestedToggle, setSuggestedToggle] = useState(false);
+  const [filterToggle, setFilterToggle] = useState(false);
   const [focusIndex, setFocusIndex] = useState(-1);
   const resultContainer = useRef<HTMLLIElement>(null);
   const router = useRouter();
@@ -175,22 +169,31 @@ const SearchCity = () => {
     }
   };
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value.length);
     setCity(e.target.value);
-    setDropdownToggle(false);
+    setSuggestedToggle(false);
+    if (e.target.value.length > 0) {
+      setSuggestedToggle(false);
+      setFilterToggle(true);
+    }
+    if (e.target.value.length === 0) {
+      // setSuggestedToggle(false);
+      setFilterToggle(false);
+    }
   };
   const handleSelection = (selectedIndex: number) => {
     const selectedItem = searchFilter[selectedIndex];
     if (!selectedItem) return resetSearchComplete();
     setCity(selectedItem.name);
+    setFilterToggle(false);
     resetSearchComplete();
   };
   const HandleSuggestionClick = (city: string) => {
     setCity(city);
-    setDropdownToggle(!dropdownToggle);
+    setSuggestedToggle(false);
   };
   const resetSearchComplete = useCallback(() => {
     setFocusIndex(-1);
-    setDropdownToggle(!dropdownToggle);
   }, []);
   //handle keys
   const Keyshandler: React.KeyboardEventHandler<HTMLDivElement> = e => {
@@ -205,6 +208,13 @@ const SearchCity = () => {
     }
     setFocusIndex(nextCount);
   };
+  console.log(
+    'suggestedToggle:',
+    suggestedToggle,
+    'filterToggle:',
+    filterToggle
+  );
+  console.log('city:', city);
   return (
     <section
       id="search-filter"
@@ -214,14 +224,14 @@ const SearchCity = () => {
         tabIndex={0}
         onKeyDown={Keyshandler}
         className="xxsm:w-[78%] md:w-[54%] lg:w-[45%] xl:w-[40%] mx-auto relative z-50 "
-        onMouseLeave={() => setDropdownToggle(!dropdownToggle)}
+        onMouseLeave={() => {
+          setSuggestedToggle(false);
+          setFilterToggle(false);
+        }}
       >
         <form onSubmit={SubmitHandler}>
           <SearchInputStyle className="flex items-center bg-[#E1E1E1]">
-            <div
-              className="flex items-center xxsm:w-[70%] md:w-[76%] xxsm:gap-2 xsm:gap-1 xsm:justify-between md:gap-0 hover:cursor-pointer"
-              onClick={() => setDropdownToggle(!dropdownToggle)}
-            >
+            <div className="flex items-center xxsm:w-[70%] md:w-[76%] xxsm:gap-2 xsm:gap-1 xsm:justify-between md:gap-0 hover:cursor-pointer">
               <div className="px-2 py-2 flex-none xxsm:w-[10%] md:w-[8%]">
                 <SearchfilterIcon />
               </div>
@@ -236,7 +246,13 @@ const SearchCity = () => {
                   className="xxsm:py-3 md:py-5 bg-[#E1E1E1] w-[100%] focus:outline-none placeholder:text-[16px] placeholder:font-[400] placeholder:text-[#7C7C7C]"
                 />
               </div>
-              <div className="flex-none xxsm:w-[10%] md:w-[8%] ">
+              <div
+                className="flex-none xxsm:w-[10%] md:w-[8%] "
+                onClick={() => {
+                  setSuggestedToggle(!suggestedToggle);
+                  setFilterToggle(false);
+                }}
+              >
                 <DropdownIcon />
               </div>
             </div>
@@ -250,7 +266,7 @@ const SearchCity = () => {
         </form>
 
         {/*////////////// suggested menu//////////////////// */}
-        {dropdownToggle && (
+        {suggestedToggle && (
           <div
             id="suggested-menu"
             className="flex w-[76%] gap-6 py-2 bg-[#FFFFFF] rounded-b-[15px]"
@@ -284,7 +300,7 @@ const SearchCity = () => {
           </div>
         )}
         {/* filtered menu */}
-        {!dropdownToggle && city.length > 0 && (
+        {!suggestedToggle && filterToggle && (
           <div
             id="filtered-menu"
             className="flex flex-col w-[76%] bg-[#FFFFFF] rounded-b-[15px] max-h-[300px] overflow-y-auto overflow-x-hidden"

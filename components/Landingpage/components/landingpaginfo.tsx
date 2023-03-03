@@ -31,14 +31,14 @@ const ButtonStyle = styled.button<StyleProps>`
 `;
 const LandingPageInfo = () => {
   const [infoNum, setInfoNum] = useState<number>(1);
-  const mediaQuery = useMediaQuery(768);
+  const mediaQuery = useMediaQuery(767);
 
   return (
     <section
       id="landing_page_info"
       className="py-16 xsm:px-12  md:px-[70px] lg:px-32 2xl:px-40"
     >
-      <h1 className="xsm:text-[20px] md:text-[56px] font-[600] pb-3">Why us</h1>
+      <h1 className="xsm:text-[20px] md:text-[56px] font-[700] pb-3">WHY US</h1>
       <div className="md:flex ">
         <div id="image-wrapper" className="relative md:flex-none md:w-[50%]">
           <Image
@@ -51,7 +51,7 @@ const LandingPageInfo = () => {
         </div>
         {mediaQuery ? (
           <>
-            <div className="text-center xsm:mt-6 sm:mt-5`">
+            <div className="text-center xsm:mt-6 sm:mt-5 px-12">
               {landingpPageInfo.map(
                 (infoData: Record<string, string>, index: number) => {
                   return (
@@ -102,7 +102,7 @@ const LandingPageInfo = () => {
           </>
         ) : (
           <div className="md:flex-none md:w-[50%] md:max-h-[500px]">
-            <div className="flex justify-center flex-col pl-5 h-[100%]">
+            <div className="flex justify-between flex-col pl-5 h-[100%]">
               {landingpPageInfo.map(
                 (infoData: Record<string, string>, index: number) => {
                   return (
@@ -116,7 +116,7 @@ const LandingPageInfo = () => {
                         <h1 className="md:text-[22px] lg:text-[26px] xl:text-[32px] font-[600] text-[#333333]">
                           {infoData.header}
                         </h1>
-                        <p className="text-[#828282] md:text-[14px] lg:text-[14px] xl:text-[16px] font-[500]">
+                        <p className="text-[#828282] md:text-[14px] lg:text-[14px] xl:text-[16px] md:pt-5 font-[500]">
                           {infoData.paragraph.toLocaleUpperCase()}
                         </p>
                       </div>

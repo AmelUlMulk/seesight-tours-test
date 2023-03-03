@@ -211,15 +211,15 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
         >
           <div
             id="city_dropDown"
-            className="xxsm:flex xxsm:justify-end lg:flex items-center xsm:gap-2 "
+            className="xxsm:flex xxsm:justify-end lg:flex items-center "
           >
-            <p className="flex-none w-[50%] text-justify lg:text-[16px] 2xl:text-[20px] font-[400] text-[#6D6D6D]">{`Show ${showActiveNav()} in:`}</p>
+            <p className="flex-none pr-2 xl:pr-3 text-justify lg:text-[16px] 2xl:text-[20px] font-[400] text-[#6D6D6D]">{`Show ${showActiveNav()} in:`}</p>
             <div
               id="dropdown"
               onMouseLeave={() => {
                 if (cityToggle) return setCityToggle(!cityToggle);
               }}
-              className="lg:flex-none lg:w-[50%] relative "
+              className="lg:flex-none lg:w-[35%] relative "
             >
               <button
                 onClick={() => setCityToggle(!cityToggle)}
