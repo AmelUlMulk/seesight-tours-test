@@ -39,22 +39,12 @@ const GuidesDesk = ({ guidesData }: IProps) => {
           id="top-slider"
           slidesPerView={1}
           spaceBetween={1}
+          onSwiper={setControlledSwiper}
+          loop={false}
           lazy={{ loadPrevNext: true, checkInView: true }}
-          a11y={{ itemRoleDescriptionMessage: 'Showing all our Guides' }}
-          modules={[Controller]}
-          controller={{ control: controlledSwiper }}
-          grabCursor
-          // autoplay={{
-          //   delay: 1000,
-          //   disableOnInteraction: false
-          // }}
-          observer
-          observeParents
-          observeSlideChildren
-          resizeObserver
-          updateOnWindowResize
-          setWrapperSize
-          slideToClickedSlide
+          a11y={{ itemRoleDescriptionMessage: 'Showing our Guide information' }}
+          effect="fade"
+          fadeEffect={{ crossFade: true }}
         >
           {guidesData &&
             guidesData.length > 0 &&
@@ -103,21 +93,15 @@ const GuidesDesk = ({ guidesData }: IProps) => {
               id="bottom-slider"
               slidesPerView="auto"
               spaceBetween={1}
-              grabCursor
-              lazy={{ loadPrevNext: true, checkInView: true }}
-              a11y={{ itemRoleDescriptionMessage: 'Showing all our Guides' }}
-              modules={[Controller]}
-              onSwiper={swiper => setControlledSwiper({ control: swiper })}
-              loop
+              watchSlidesProgress
               navigation={{
                 nextEl: '.nextButton'
               }}
-              observer
-              observeParents
-              observeSlideChildren
-              resizeObserver
-              updateOnWindowResize
-              setWrapperSize
+              lazy={{ loadPrevNext: true, checkInView: true }}
+              a11y={{ itemRoleDescriptionMessage: 'Showing all our Guides' }}
+              controller={{ control: controlledSwiper }}
+              loop={false}
+              grabCursor
               slideToClickedSlide
               className="rounded-[5px]"
               breakpoints={{
@@ -148,7 +132,7 @@ const GuidesDesk = ({ guidesData }: IProps) => {
                 ))}
               <div className="md:min-w-[100px] md:min-h-[85px] lg:min-w-[85px] lg:min-h-[80px] xl:min-w-[85px] xl:min-h-[87px] 2xl:min-w-[115px] 2xl:min-h-[107px] 2xl:mt-3  bg-[#000000cc] absolute top-0 right-0 z-50 rounded-[5px] flex justify-center items-center">
                 <div className="bg-[#F15C5A] w-[37px] h-[37px] rounded-[154px] flex justify-center items-center nextButton">
-                  <NextIcon />
+                  <NextIcon className="hover:cursor-pointer" />
                 </div>
               </div>
             </Swiper>

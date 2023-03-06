@@ -17,7 +17,7 @@ const NavMenu = styled.div<Props>`
   cursor: pointer;
   &:hover {
     box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+    border-radius: 5px;
     transform: scale(1.2);
     transition: 0.3s ease;
   }
@@ -28,7 +28,7 @@ const FeaturedNavSection = ({ currNav, setActiveNav, navData }: IProps) => {
       id="featured_exp_nav"
       className="xxsm:mb-5 lg:mb-0 lg:flex-none lg:w-[65%]"
     >
-      <nav className="flex xsm:justify-between xsm:gap-3 sm:gap-5 lg:justify-start items-center md:gap-5 lg:gap-8">
+      <nav className="flex xxsm:justify-between lg:justify-start items-center xxsm:gap-1 xsm:gap-2 sm:gap-5 md:gap-3 lg:gap-2 xl:gap-8">
         {navData &&
           navData.map((navItem: Record<string, any>, index: Number) => (
             <NavMenu
@@ -36,7 +36,7 @@ const FeaturedNavSection = ({ currNav, setActiveNav, navData }: IProps) => {
               isActive={currNav === navItem.filterClass}
               isFirstOne={navItem.filterClass === 'allThings'}
               className={
-                'py-2 xsm:px-3 sm:px-4 md:px-8 lg:px-5 xsm:text-[14px] sm:text-[15px] md:text-[17px] lg:text-[16px] 2xl:text-[24px] font-[600]'
+                'xxsm:px-1 xsm:px-2 sm:px-4 md:px-8 lg:px-5 xxsm:text-[14px] sm:text-[18px] md:text-[17px] lg:text-[19px] 2xl:text-[24px] font-[600]'
               }
               onClick={() => setActiveNav(`${navItem.filterClass}`)}
             >

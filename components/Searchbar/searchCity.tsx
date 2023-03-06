@@ -231,7 +231,7 @@ const SearchCity = () => {
       >
         <form onSubmit={SubmitHandler}>
           <SearchInputStyle className="flex items-center bg-[#E1E1E1]">
-            <div className="flex items-center xxsm:w-[70%] md:w-[76%] xxsm:gap-2 xsm:gap-1 xsm:justify-between md:gap-0 hover:cursor-pointer">
+            <div className="flex items-center w-[65%] xsm:w-[65%] sm:w-[70%] md:w-[76%] xxsm:gap-2 xsm:gap-1 xsm:justify-between md:gap-0 hover:cursor-pointer">
               <div className="px-2 py-2 flex-none xxsm:w-[10%] md:w-[8%]">
                 <SearchfilterIcon />
               </div>
@@ -243,7 +243,7 @@ const SearchCity = () => {
                   onChange={onChange}
                   placeholder="Search by City"
                   autoComplete="off"
-                  className="xxsm:py-3 md:py-5 bg-[#E1E1E1] w-[100%] focus:outline-none placeholder:text-[16px] placeholder:font-[400] placeholder:text-[#7C7C7C]"
+                  className="xxsm:py-3 md:py-5 bg-[#E1E1E1] w-[100%] focus:outline-none placeholder:text-[12px] xsm:placeholder:text-[14px] sm:placeholder:text-[16px] placeholder:font-[400] placeholder:text-[#7C7C7C]"
                 />
               </div>
               <div
@@ -257,8 +257,8 @@ const SearchCity = () => {
               </div>
             </div>
 
-            <div className="flex-none xsm:w-[30%] md:w-[24%]">
-              <SearchButtonStyle className="text-[18px] w-[100%] text-white font-[400] bg-[#F15C5A] xxsm:py-3 md:py-5 xxsm:px-5 xsm:px-8">
+            <div className="flex-none w-[35%] xsm:w-[35%] md:w-[24%]">
+              <SearchButtonStyle className="text-[12px] xsm:text-[14px] sm:text-[18px] w-[100%] text-white font-[400] bg-[#F15C5A] xxsm:py-3 md:py-5 xxsm:px-5 xsm:px-8">
                 Search
               </SearchButtonStyle>
             </div>
@@ -269,28 +269,28 @@ const SearchCity = () => {
         {suggestedToggle && (
           <div
             id="suggested-menu"
-            className="flex w-[76%] gap-6 py-2 bg-[#FFFFFF] rounded-b-[15px]"
+            className="flex xsm:w-[65%]  w-[65%] sm:w-[65%] md:w-[76%] md:gap-5 lg:gap-6 py-2 bg-[#FFFFFF] rounded-b-[15px] max-h-[250px] xsm:max-h-[300px] overflow-y-auto"
           >
-            <div className="flex-none w-[50%] px-5">
+            <div className="flex-none w-[50%] px-1 xsm:px-3 sm:px-5">
               <h1 className="text-[#0B0A0A] text[18px] font-[700]">Canada</h1>
               {Cities.filter(cty => cty.type === 'canada').map((cty: any) => (
                 <div id="browsers" key={cty.name}>
                   <div
                     onClick={() => HandleSuggestionClick(cty.name)}
-                    className="text-[16px] font-[400] cursor-pointer hover:bg-slate-300"
+                    className="text-[12px] xsm:text-[14px] md:text-[15px] lg:text-[16px] md:py-1 lg:py-2 font-[400] cursor-pointer hover:bg-slate-300"
                   >
                     {cty.name}
                   </div>
                 </div>
               ))}
             </div>
-            <div className=" flex-none w-[50%] px-6">
+            <div className=" flex-none w-[50%] px-1 xsm:px-3 sm:px-5">
               <h1 className="text-[#0B0A0A] text[18px] font-[700]">USA</h1>
               {Cities.filter(cty => cty.type === 'usa').map((cty: any) => (
                 <div id="browsers" key={cty.name}>
                   <div
                     onClick={() => HandleSuggestionClick(cty.name)}
-                    className="text-[ #0B0A0A] text-[16px] font-[400] cursor-pointer hover:bg-slate-300"
+                    className="text-[ #0B0A0A] text-[12px] xsm:text-[14px] md:text-[15px] lg:text-[16px]  md:py-1 lg:py-2  font-[400] cursor-pointer hover:bg-slate-300"
                   >
                     {cty.name}
                   </div>
@@ -303,7 +303,7 @@ const SearchCity = () => {
         {!suggestedToggle && filterToggle && (
           <div
             id="filtered-menu"
-            className="flex flex-col w-[76%] bg-[#FFFFFF] rounded-b-[15px] max-h-[300px] overflow-y-auto overflow-x-hidden"
+            className="flex flex-col w-[65%] xsm:w-[65%] sm:w-[65%] md:w-[76%] bg-[#FFFFFF] rounded-b-[15px] max-h-[300px] overflow-y-auto overflow-x-hidden"
           >
             {searchFilter.map((cty: any, index: number) => (
               <ul key={cty.name}>

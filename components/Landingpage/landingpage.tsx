@@ -36,7 +36,6 @@ const LandingPage = ({
       <LandingPageInfo />
       <Testimonials />
       <OurGuides guidesData={guidesData} />
-      <Newsletter />
     </div>
   );
 };
