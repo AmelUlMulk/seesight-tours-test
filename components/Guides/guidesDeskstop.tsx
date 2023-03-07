@@ -40,7 +40,8 @@ const GuidesDesk = ({ guidesData }: IProps) => {
           slidesPerView={1}
           spaceBetween={1}
           onSwiper={setControlledSwiper}
-          loop={false}
+          loop={true}
+          loopedSlides={guidesData?.length}
           lazy={{ loadPrevNext: true, checkInView: true }}
           a11y={{ itemRoleDescriptionMessage: 'Showing our Guide information' }}
           effect="fade"
@@ -93,14 +94,14 @@ const GuidesDesk = ({ guidesData }: IProps) => {
               id="bottom-slider"
               slidesPerView="auto"
               spaceBetween={1}
-              watchSlidesProgress
+              loop={true}
+              loopedSlides={guidesData?.length}
               navigation={{
                 nextEl: '.nextButton'
               }}
               lazy={{ loadPrevNext: true, checkInView: true }}
               a11y={{ itemRoleDescriptionMessage: 'Showing all our Guides' }}
               controller={{ control: controlledSwiper }}
-              loop={false}
               grabCursor
               slideToClickedSlide
               className="rounded-[5px]"
