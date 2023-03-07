@@ -36,7 +36,7 @@ const LandingPageInfo = () => {
   return (
     <section
       id="landing_page_info"
-      className="py-16 xsm:px-12  md:px-[70px] lg:px-32 2xl:px-40"
+      className="py-16 px-6 xsm:px-12  md:px-[70px] lg:px-32 2xl:px-40"
     >
       <h1 className="xsm:text-[20px] md:text-[56px] font-[700] pb-3">WHY US</h1>
       <div className="md:flex ">
@@ -51,7 +51,7 @@ const LandingPageInfo = () => {
         </div>
         {mediaQuery ? (
           <>
-            <div className="text-center xsm:mt-6 sm:mt-5 px-12">
+            <div className="text-center xsm:mt-6 sm:mt-5 sm:px-12">
               {landingpPageInfo.map(
                 (infoData: Record<string, string>, index: number) => {
                   return (

@@ -243,7 +243,7 @@ const SearchCity = () => {
                   onChange={onChange}
                   placeholder="Search by City"
                   autoComplete="off"
-                  className="xxsm:py-3 md:py-5 bg-[#E1E1E1] w-[100%] focus:outline-none placeholder:text-[12px] xsm:placeholder:text-[14px] sm:placeholder:text-[16px] placeholder:font-[400] placeholder:text-[#7C7C7C]"
+                  className="py-2 xsm:py-3 md:py-5 bg-[#E1E1E1] w-[100%] focus:outline-none placeholder:text-[12px] xsm:placeholder:text-[14px] sm:placeholder:text-[16px] placeholder:font-[400] placeholder:text-[#7C7C7C]"
                 />
               </div>
               <div
@@ -258,7 +258,7 @@ const SearchCity = () => {
             </div>
 
             <div className="flex-none w-[35%] xsm:w-[35%] md:w-[24%]">
-              <SearchButtonStyle className="text-[12px] xsm:text-[14px] sm:text-[18px] w-[100%] text-white font-[400] bg-[#F15C5A] xxsm:py-3 md:py-5 xxsm:px-5 xsm:px-8">
+              <SearchButtonStyle className="text-[12px] xsm:text-[16px] sm:text-[18px] w-[100%] text-white font-[400] bg-[#F15C5A] xxsm:py-3 md:py-5 xxsm:px-5 xsm:px-8">
                 Search
               </SearchButtonStyle>
             </div>

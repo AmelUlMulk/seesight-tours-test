@@ -198,7 +198,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
     <section id="feature_experiences">
       <header
         id="feature_experience_header"
-        className="lg:flex items-center  mt-10 xxsm:px-2 xsm:px-3 sm:px-16 md:px-28 lg:px-32 2xl:px-40"
+        className="lg:flex items-center  mt-10 xxsm:px-2 xsm:px-3 sm:px-16 md:px-28 lg:px-24 xl:px-32 2xl:px-40"
       >
         <FeaturedNavSection
           currNav={activeNav}
@@ -219,14 +219,14 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
               onMouseLeave={() => {
                 if (cityToggle) return setCityToggle(!cityToggle);
               }}
-              className="lg:flex-none lg:w-[46%] 2xl:w-[35%] 3xl:w-[30%] relative "
+              className="flex-none w-[46%] xsm:w-[40%] sm:w-[44%] lg:w-[46%] 2xl:w-[35%] 3xl:w-[30%] relative "
             >
               <button
                 onClick={() => setCityToggle(!cityToggle)}
                 className={
                   cityToggle
-                    ? ' flex justify-between items-center border-[1px] border-[#F15C5A] rounded-[5px] sm:rounded-[10px] w-[100%] xxsm:px-3  sm:px-5 lg:px-2 2xl:px-6 py-1 xxsm:text-[10px]  md:text-[16.92px] text-[#333333] font-[400]'
-                    : ' flex justify-between items-center border-[1px] border-[#4F4F4F] rounded-[5px] sm:rounded-[10px] w-[100%] xxsm:px-3  sm:px-5 lg:px-2 2xl:px-6 py-1 xxsm:text-[10px]  md:text-[16.92px] text-[#333333] font-[400]'
+                    ? ' flex justify-between items-center border-[1px] border-[#F15C5A] rounded-[8px] sm:rounded-[10px] w-[100%] xxsm:px-1 xsm:px-2  sm:px-5 lg:px-2 2xl:px-6 xxsm:py-1 lg:py-1  xxsm:text-[10px] sm:text-[14px]  md:text-[16.92px] text-[#333333] font-[400]'
+                    : ' flex justify-between items-center border-[1px] border-[#4F4F4F] rounded-[8px] sm:rounded-[10px] w-[100%] xxsm:px-1 xsm:px-2  sm:px-5 lg:px-2 2xl:px-6 xxsm:py-1 lg:py-1 xxsm:text-[10px] sm:text-[14px]  md:text-[16.92px] text-[#333333] font-[400]'
                 }
               >
                 {city}
