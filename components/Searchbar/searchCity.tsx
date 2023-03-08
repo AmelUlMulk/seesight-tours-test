@@ -149,6 +149,7 @@ const SearchCity = () => {
   const [suggestedToggle, setSuggestedToggle] = useState(false);
   const [filterToggle, setFilterToggle] = useState(false);
   const [focusIndex, setFocusIndex] = useState(-1);
+  const [cityNameErr, setCityNameErr] = useState<string>('');
   const resultContainer = useRef<HTMLLIElement>(null);
   const router = useRouter();
   const searchFilter = Cities.filter(cty =>
@@ -164,14 +165,18 @@ const SearchCity = () => {
   const SubmitHandler = (e: any) => {
     e.preventDefault();
     const FilterdCity = Cities.find(cty => cty.name === city);
+    console.log('FilterCity:', FilterdCity);
     if (FilterdCity) {
       return router.push(FilterdCity.slug);
+    } else {
+      setCityNameErr('Please search valid city');
     }
   };
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value.length);
     setCity(e.target.value);
     setSuggestedToggle(false);
+    setCityNameErr('');
     if (e.target.value.length > 0) {
       setSuggestedToggle(false);
       setFilterToggle(true);
@@ -179,6 +184,7 @@ const SearchCity = () => {
     if (e.target.value.length === 0) {
       // setSuggestedToggle(false);
       setFilterToggle(false);
+      setCityNameErr('');
     }
   };
   const handleSelection = (selectedIndex: number) => {
@@ -251,6 +257,7 @@ const SearchCity = () => {
                 onClick={() => {
                   setSuggestedToggle(!suggestedToggle);
                   setFilterToggle(false);
+                  setCityNameErr('');
                 }}
               >
                 <DropdownIcon />
@@ -266,10 +273,13 @@ const SearchCity = () => {
         </form>
 
         {/*////////////// suggested menu//////////////////// */}
+        {cityNameErr.length > 0 && (
+          <p className="text-red-400">{cityNameErr}</p>
+        )}
         {suggestedToggle && (
           <div
             id="suggested-menu"
-            className="flex xsm:w-[65%]  w-[65%] sm:w-[65%] md:w-[76%] md:gap-5 lg:gap-6 py-2 bg-[#FFFFFF] rounded-b-[15px] max-h-[250px] xsm:max-h-[300px] overflow-y-auto"
+            className="flex xsm:w-[65%]  w-[65%] sm:w-[65%] md:w-[76%] md:gap-5 lg:gap-6 py-2 bg-[#FFFFFF] rounded-b-[15px] max-h-[250px] xsm:max-h-[300px] absolute top-[100%] overflow-auto z-50"
           >
             <div className="flex-none w-[50%] px-1 xsm:px-3 sm:px-5">
               <h1 className="text-[#0B0A0A] text[18px] font-[700]">Canada</h1>
@@ -303,7 +313,7 @@ const SearchCity = () => {
         {!suggestedToggle && filterToggle && (
           <div
             id="filtered-menu"
-            className="flex flex-col w-[65%] xsm:w-[65%] sm:w-[65%] md:w-[76%] bg-[#FFFFFF] rounded-b-[15px] max-h-[300px] overflow-y-auto overflow-x-hidden"
+            className="flex flex-col w-[65%] xsm:w-[65%] sm:w-[65%] md:w-[76%] bg-[#FFFFFF] rounded-b-[15px] max-h-[300px] overflow-y-auto absolute top-[100%] overflow-x-hidden"
           >
             {searchFilter.map((cty: any, index: number) => (
               <ul key={cty.name}>
