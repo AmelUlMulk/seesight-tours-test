@@ -114,6 +114,9 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
         : city === 'All Cities'
         ? featuredExp[activeNav]
         : [];
+    if (cityFilterLoading) {
+      return <h3>Loading....</h3>;
+    }
     if (filteredProduct && filteredProduct.length === 0) {
       return <h3>{`Tours coming to ${city} soon`}</h3>;
     }
@@ -249,7 +252,10 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
                         className="border-[1px] border-slate-3
                 00 px-3 py-1 bg-white cursor-pointer hover:bg-slate-300 z-[5000]"
                         key={opt.label}
-                        onClick={() => setCity(opt.label[0])}
+                        onClick={() => {
+                          setCity(opt.label[0]);
+                          setCityToggle(false);
+                        }}
                       >
                         {opt.label}
                       </div>

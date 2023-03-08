@@ -39,14 +39,18 @@ const LandingPageInfo = () => {
       className="py-16 px-6 xsm:px-12  md:px-[70px] lg:px-32 2xl:px-40"
     >
       <h1 className="xsm:text-[20px] md:text-[56px] font-[700] pb-3">WHY US</h1>
-      <div className="md:flex ">
-        <div id="image-wrapper" className="relative md:flex-none md:w-[50%]">
+      <div className="md:flex">
+        <div
+          id="image-wrapper"
+          className="relative md:flex-none w-[100%] h-[320px] md:w-[50%] md:h-[300px] lg:h-[inherit] md:my-auto lg:m-0"
+        >
           <Image
             src={'/Rectangle 6.png'}
-            width={833}
-            height={637}
+            // width={833}
+            // height={637}
+            fill
             alt="Hornblower Niagara Cruises"
-            className="object-cover rounded-lg "
+            className="object-cover rounded-lg"
           />
         </div>
         {mediaQuery ? (
@@ -116,7 +120,7 @@ const LandingPageInfo = () => {
                         <h1 className="md:text-[22px] lg:text-[26px] xl:text-[32px] font-[600] text-[#333333]">
                           {infoData.header}
                         </h1>
-                        <p className="text-[#828282] md:text-[14px] lg:text-[14px] xl:text-[16px] md:pt-5 font-[500]">
+                        <p className="text-[#828282] md:text-[14px] lg:text-[14px] xl:text-[16px] md:pt-2 lg:pt-5 font-[500]">
                           {infoData.paragraph.toLocaleUpperCase()}
                         </p>
                       </div>
