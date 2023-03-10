@@ -3,7 +3,12 @@ import Image from 'next/image';
 import Calendar from 'react-calendar';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
-import { AVAILABILITY, PASSENGERPAX } from '../../pages/checkout/[slug]';
+import {
+  AVAILABILITY,
+  PASSENGERPAX,
+  PASSENGERINFO
+} from '../../pages/checkout/[slug]';
+import Summary from './component/summary';
 
 const StyledCelendar = styled(Calendar)`
   width: 100%;
@@ -173,13 +178,49 @@ const DateAndPax = ({
     }
     return '';
   };
-  const filteredObj = Object.entries(passengerPax)
+  const ageLimit = (key: string) => {
+    if (key === 'adults') {
+      return 'Ages 13+';
+    } else if (key === 'children') {
+      return 'Ages 5-12';
+    } else {
+      return 'Ages 0-5';
+    }
+  };
+  const updatePassengerPAX = (e: any) => {
+    const key = e.target.name as keyof PASSENGERPAX;
+    if (!seatsFull) {
+      if (e.target.id === 'plus') {
+        setPassengerPax({
+          ...passengerPax,
+          [key]: {
+            ...(passengerPax[key] as PASSENGERINFO),
+            count: (passengerPax[key] as PASSENGERINFO).count + 1
+          }
+        });
+      }
+    }
+    if (e.target.id === 'minus') {
+      if ((passengerPax[key] as PASSENGERINFO).count === 0) {
+        return;
+      }
+      setPassengerPax({
+        ...passengerPax,
+        [key]: {
+          ...(passengerPax[key] as PASSENGERINFO),
+          count: (passengerPax[key] as PASSENGERINFO).count - 1
+        }
+      });
+    }
+  };
+  const selectedPaxObj = Object.entries(passengerPax)
     //@ts-ignore
     .filter(([key, value]) => value.count > 0)
     .map(([key, value]) => ({ [key]: value }));
 
   console.log('passengerPAX', passengerPax);
-  console.log('filterPAX', filteredObj);
+  console.log('filterPAX', selectedPaxObj);
+  console.log('totalPrice', totalPrice);
   return (
     <div className="flex w-[80%] xl:gap-20 m-auto relative z-30">
       <section id="availibilty" className="flex-none w-[50%]">
@@ -230,21 +271,21 @@ const DateAndPax = ({
           <div id="update_pax" className="bg-white flex flex-col">
             <div className="flex justify-between items-center px-5 py-2">
               <div>
-                {filteredObj && filteredObj.length > 0 && (
+                {selectedPaxObj && selectedPaxObj.length > 0 && (
                   <div className="flex">
-                    {filteredObj?.map((item: Record<string, any>) => {
+                    {selectedPaxObj?.map((item: Record<string, any>) => {
                       const key = Object.keys(item)[0];
                       return (
-                        <p key={item.label}>{`${key.toUpperCase()}-X${
-                          item[key].count
-                        }`}</p>
+                        <p key={item.label}>{`${
+                          key[0].toUpperCase() + key.slice(1)
+                        }-X${item[key].count}`}</p>
                       );
                     })}
                   </div>
                 )}
               </div>
               <div
-                className={`${isOpen && 'rotate-90'}`}
+                className={`rotate-180 ${isOpen && 'rotate-0'}`}
                 onClick={() => setIsOpen(!isOpen)}
               >
                 <Image
@@ -255,11 +296,58 @@ const DateAndPax = ({
                 />
               </div>
             </div>
-            {isOpen && <div>Update PAX</div>}
+            {isOpen && (
+              <>
+                {seatsFull && (
+                  <div className="text-red-400">Seats are full</div>
+                )}
+                <div className="py-5 px-10">
+                  {Object.keys(passengerPax)
+                    .slice(0, -1)
+                    .map((key: string) => {
+                      return (
+                        <div
+                          key={key}
+                          className="flex justify-between items-center "
+                        >
+                          <div>
+                            <p>{key[0].toLocaleUpperCase() + key.slice(1)}</p>
+                            <p>{ageLimit(key)}</p>
+                          </div>
+                          <p>
+                            {/* @ts-ignore */}$
+                            {passengerPax[key as keyof PASSENGERPAX]?.price}
+                          </p>
+                          <div className="flex justify-between items-center">
+                            <button
+                              id="minus"
+                              name={key}
+                              className="border border-slate-400 w-10 h-10 rounded-full hover:bg-red-500 hover:text-white hover:border-none"
+                              onClick={e => updatePassengerPAX(e)}
+                            >
+                              -
+                            </button>
+                            <p className="px-12">
+                              {/* @ts-ignore */}
+                              {passengerPax[key as keyof PASSENGERPAX]?.count}
+                            </p>
+                            <button
+                              id="plus"
+                              name={key}
+                              className="border border-slate-400 w-10 h-10 rounded-full hover:bg-green-500 hover:text-white hover:border-none"
+                              onClick={e => updatePassengerPAX(e)}
+                            >
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                </div>
+              </>
+            )}
           </div>
-          <div id="disp_pax" className="bg-slate-400">
-            Disp PAX
-          </div>
+          <Summary passengerPax={passengerPax} totalPrice={totalPrice} />
         </div>
       </section>
     </div>

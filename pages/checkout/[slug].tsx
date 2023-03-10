@@ -6,7 +6,35 @@ import client from '../../apollo-client';
 import dayjs from 'dayjs';
 import { BOOKING_SEARCH, MY_TOURS_PAGE_INTERFACE } from '../../api/my-tours';
 import DateAndPax from '../../components/Checkout/Date&Pax';
+import useComponentSwipper from '../../components/Checkout/useComponentSwiper';
+import StripePayment from '../../components/Checkout/StripePayment';
+import ConfirmBooking from '../../components/Checkout/ConfirmBooking';
+import Steps from '../../components/Checkout/component/steps';
 
+const ButtonDiv = styled.div`
+  padding: 50px 146px;
+  position: relative;
+  z-index: 100;
+  @media (max-width: 1200px) {
+    padding: 50px 50px;
+  }
+  display: flex;
+  justify-content: end;
+  gap: 2rem;
+  .back {
+    background: none;
+    border: 2px solid #ad2025;
+  }
+  button {
+    width: 181px;
+    height: 66px;
+    color: white;
+    left: calc(50% - 181px / 2 + 525.5px);
+    top: 1098px;
+    background: #ad2025;
+    border-radius: 0px 15px;
+  }
+`;
 interface StyleProps {
   image: string;
 }
@@ -52,14 +80,14 @@ export type AVAILABILITY = {
   seatsAvailable: 150;
   prices: PASSENGERINFO[];
 };
-export type PASSENGERPAX = {
+export interface PASSENGERPAX {
   adults: PASSENGERINFO;
   children?: PASSENGERINFO;
   infants?: PASSENGERINFO;
   seats: number;
-};
+}
 
-type PASSENGERINFO = {
+export type PASSENGERINFO = {
   count: number;
   label: string;
   title: string;
@@ -232,17 +260,42 @@ const Checkout = ({
       seats: selectedTimeSlot.seatsAvailable
     });
   }, [selectedTimeSlot]);
+  useEffect(() => {
+    const adults =
+      passengerPax.adults.count * Number(passengerPax.adults.price);
+    const children = passengerPax.children
+      ? passengerPax.children.count * Number(passengerPax.children.price)
+      : 0;
+    const infants = passengerPax.infants
+      ? passengerPax.infants.count * Number(passengerPax.infants.price)
+      : 0;
+    setTotalPrice(() => Number(adults + children + infants));
+  }, [passengerPax]);
 
   useEffect(() => {
     if (bookingId !== undefined) {
       getBookings();
     }
   }, [bookingId]);
+  const { component, currentComponentIndex, next, back } = useComponentSwipper([
+    <DateAndPax
+      key="date-and-pax"
+      selectedDate={selectedDate}
+      setSelectedDate={setSelectedDate}
+      availability={selectedAvailibility}
+      selectedTimeSlot={selectedTimeSlot}
+      setSelectedTimeSlot={setSelectedTimeSlot}
+      productAvailabities={product_Availability}
+      passengerPax={passengerPax}
+      setPassengerPax={setPassengerPax}
+      totalPrice={totalPrice}
+      slug={slug}
+      name={boatnew_products[0]?.name}
+    />,
+    <StripePayment key="form" />,
+    <ConfirmBooking key="confirmation" />
+  ]);
 
-  // console.log('boatnew:', boatnew_products);
-  // console.log('productavailibilty:', product_Availability);
-  // console.log('slug & product:', slug, products);
-  // console.log('selectedAvailibilty:', selectedAvailibility);
   // console.log('selectedSlot:', selectedTimeSlot);
   // console.log('booking data:', data);
   return (
@@ -251,20 +304,20 @@ const Checkout = ({
       className="h-screen w-full bg-cover bg-no-repeat bg-center relative"
     >
       <div className="absolute top-0 left-0 h-screen w-full bg-[#000000d9] z-10 "></div>
-      Checkout
-      <DateAndPax
-        selectedDate={selectedDate}
-        setSelectedDate={setSelectedDate}
-        availability={selectedAvailibility}
-        selectedTimeSlot={selectedTimeSlot}
-        setSelectedTimeSlot={setSelectedTimeSlot}
-        productAvailabities={product_Availability}
-        passengerPax={passengerPax}
-        setPassengerPax={setPassengerPax}
-        totalPrice={totalPrice}
-        slug={slug}
-        name={boatnew_products[0]?.name}
-      />
+      <Steps currentStepIndex={currentComponentIndex} />
+      {component}
+      <ButtonDiv>
+        {currentComponentIndex > 0 && currentComponentIndex !== 2 && (
+          <button className="back" onClick={back}>
+            Back
+          </button>
+        )}
+        {currentComponentIndex === 0 && (
+          <button type="submit" form="main-form" onClick={next}>
+            Next
+          </button>
+        )}
+      </ButtonDiv>
     </MainStyle>
   );
 };
