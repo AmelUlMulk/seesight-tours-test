@@ -54,22 +54,30 @@ const GuidesMobile = ({ guidesData }: IProps) => {
             guidesData.length > 0 &&
             guidesData?.map((guide: any, index: number) => (
               <SwiperSlide key={guide?.id} className="py-10">
-                <div className="xxsm:max-h-[370px] xsm:max-h-[390px] sm:max-h-[500px]  overflow-y-auto">
-                  <div id="guide-bio" className="inline-block">
+                <div
+                  id="guide-bio"
+                  className="xxsm:max-h-[270px] xsm:max-h-[298px] sm:max-h-[318px]  overflow-y-auto"
+                >
+                  <div className="relative xxsm:w-[120px] xxsm:h-[130px]  sm:w-[170px] sm:h-[180px] float-left mr-8 mb-[16px] ">
                     <Image
                       src={guide?.professional[0]?.url}
-                      width={120}
-                      height={110}
+                      // width={140}
+                      // height={110}
+                      fill
                       alt={guide?.professional[0]?.alt}
-                      className=" ml-5 mr-2 mt-10 float-left border-[7px] xxsm:h-[130px] xsm:h-[150px] sm:h-[100%] border-[#FFFFFF] rounded-[5px] shadow-guideimageBox"
+                      className=" ml-5 mt-5 border-[7px] xxsm:h-[130px] xsm:h-[150px] sm:h-[100%] border-[#FFFFFF] rounded-[5px] shadow-guideimageBox"
                     />
-                    <h3 className="xsm:text-[14px] sm:text-[30px] font-[700]">
+                  </div>
+                  <div className="text-justify">
+                    <h3 className="xsm:text-[18px] sm:text-[30px] font-[700]">
                       {guide?.firstName.toUpperCase()}
                     </h3>
-                    <p className="inline text-[#828282] overflow-auto xxsm:text-[12px] sm:text-[20px] font-[500] px-3 ">
+                    <p className="text-[#828282] text-right overflow-auto xxsm:text-[12px] sm:text-[20px] font-[500] pl-5 inline ">
                       {`${guide?.biography}`}
                     </p>
                   </div>
+
+                  {/* </div> */}
                 </div>
               </SwiperSlide>
             ))}

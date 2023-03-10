@@ -52,7 +52,7 @@ const GuidesDesk = ({ guidesData }: IProps) => {
             guidesData?.map((guide: any, index: number) => (
               <SwiperSlide key={guide?.id} className="py-10">
                 <div className="flex gap-2 py-10 max-h-[400px] lg:max-h-[400px] 2xl:max-h-[500px]">
-                  <div className="flex-none w-[40%]">
+                  <div className="flex-none md:w-[42%] lg:w-[36%] xl:w-[30%] 2xl:w-[35%] 3xl:w-[30%]">
                     <div
                       id="image-wrapper"
                       className="flex-none w-[100%] h-[100%] pl-[12px]"
@@ -62,19 +62,19 @@ const GuidesDesk = ({ guidesData }: IProps) => {
                         width={321}
                         height={300}
                         alt={guide?.professional[0]?.alt}
-                        className="w-[100%] h-[90%] border-[7px] border-[#FFFFFF] rounded-[5px] shadow-guideimageBox"
+                        className="w-[100%] h-[100%] 2xl:w-[95%] md:h-[95%] lg:h-[100%] 2xl:h-[97%] 3xl:h-[100%] border-[7px] border-[#FFFFFF] rounded-[5px] shadow-guideimageBox"
                       />
                     </div>
                   </div>
 
                   <div
                     id="guide-bio"
-                    className="flex-none w-[60%] px-5 absolute top-[30px] right-0"
+                    className="flex-none md:w-[58%] lg:w-[64%] xl:w-[70%] 2xl:w-[65%] 3xl:w-[70%] px-5  right-0"
                   >
                     <h3 className="text-[46px] font-[700]">
-                      {guide?.firstName} {guide?.lastName}
+                      {guide?.firstName.toLocaleUpperCase()} {guide?.lastName}
                     </h3>
-                    <p className="text-[#828282] md:max-h-[250px] lg:max-h-[260px] xl:max-h-[300px] 2xl:max-h-[500px] h-[100%] overflow-auto xl:text-[20px] font-[500] px-3 ">{`${guide?.biography}`}</p>
+                    <p className="text-[#828282] text-justify md:max-h-[240px] lg:max-h-[260px] xl:max-h-[300px] 2xl:max-h-[500px] h-[100%] overflow-auto xl:text-[20px] font-[500] px-1 ">{`${guide?.biography}`}</p>
                   </div>
                 </div>
               </SwiperSlide>
