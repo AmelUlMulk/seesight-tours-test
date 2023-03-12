@@ -12,6 +12,8 @@
   "dependencies": {
     "@apollo/client": "^3.7.3",
     "@next/font": "13.1.0",
+    "@stripe/react-stripe-js": "^1.16.5",
+    "@stripe/stripe-js": "^1.48.0",
     "@types/node": "18.11.17",
     "@types/react": "18.0.26",
     "@types/react-calendar": "^3.9.0",

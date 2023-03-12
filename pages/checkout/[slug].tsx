@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { gql, useLazyQuery } from '@apollo/client';
 import client from '../../apollo-client';
+import { loadStripe } from '@stripe/stripe-js';
 import dayjs from 'dayjs';
 import { BOOKING_SEARCH, MY_TOURS_PAGE_INTERFACE } from '../../api/my-tours';
 import DateAndPax from '../../components/Checkout/Date&Pax';
@@ -168,9 +169,17 @@ const Checkout = ({
   slug,
   products
 }: PROPSDATA) => {
+  const stripePromise = loadStripe(String(process.env.NEXT_PUBLIC_STRIPE));
   const background = products[0].carousel_media[0].url;
 
   const [bookingId, setBookingId] = useState<string | undefined>();
+  const [paymentLoading, setPaymentLoading] = useState<boolean>(false);
+
+  const [customerDetails, setCustomerDetails] = useState<CustomerInfo>({
+    name: '',
+    email: '',
+    phone: ''
+  });
   const [getBookings, { data, loading, error }] =
     useLazyQuery<MY_TOURS_PAGE_INTERFACE>(BOOKING_SEARCH, {
       variables: {
@@ -292,7 +301,20 @@ const Checkout = ({
       slug={slug}
       name={boatnew_products[0]?.name}
     />,
-    <StripePayment key="form" />,
+    <StripePayment
+      key="form"
+      stripePromise={stripePromise}
+      passengerPax={passengerPax}
+      totalPrice={totalPrice}
+      productName={boatnew_products[0]?.name}
+      customerDetails={customerDetails}
+      setCustomerDetails={setCustomerDetails}
+      selectedTimeSlot={selectedTimeSlot}
+      productId={boatnew_products[0]?.id}
+      timeZone={boatnew_products[0]?.cities_products[0].city.time_zone}
+      setBookingId={setBookingId}
+      setPaymentLoading={setPaymentLoading}
+    />,
     <ConfirmBooking key="confirmation" />
   ]);
 
