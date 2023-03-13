@@ -7,6 +7,7 @@ import {
 import dayjs from 'dayjs';
 import { useStripe, useElements, Elements } from '@stripe/react-stripe-js';
 import axios from 'axios';
+import PaymentForm from './component/PaymentForm';
 export interface FormProps {
   passengerPax: PASSENGERPAX;
   totalPrice: number;
@@ -29,6 +30,7 @@ const StripePayment = ({
   timeZone,
   setBookingId,
   setPaymentLoading,
+  customerDetails,
   setCustomerDetails,
   stripePromise
 }: FormProps) => {
@@ -37,6 +39,14 @@ const StripePayment = ({
   const [customerId, setCustomerId] = useState('');
 
   const [paymentIntent, setPaymentIntent] = useState(null);
+  useEffect(() => {
+    setCustomerDetails({
+      name: '',
+      email: '',
+      phone: ''
+    });
+    setPaymentLoading(false);
+  }, []);
 
   const createPaymentIntent = async (body: any) => {
     try {
@@ -46,11 +56,23 @@ const StripePayment = ({
           ...body
         }
       );
+      // const res = await fetch(
+      //   `${process.env.NEXT_PUBLIC_PAYMENT_API}/create-payment-intent`,
+      //   {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json'
+      //     },
+      //     body: JSON.stringify(body)
+      //   }
+      // );
+      // const data = await res.json();
+      console.log('res:', res.data);
       setClientSecret(res.data.clientSecret);
       setPaymentIntent(res.data.paymentIntent);
       setCustomerId(res.data.customer);
     } catch (error) {
-      console.log('error while creating payment Inten');
+      console.log('error while creating payment Intent');
     }
   };
   useEffect(() => {
@@ -92,7 +114,21 @@ const StripePayment = ({
       )}
       {clientSecret && (
         // @ts-ignore
-        <Elements stripe={stripePromise} options={options}></Elements>
+        <Elements stripe={stripePromise} options={options}>
+          <PaymentForm
+            passengerPax={passengerPax}
+            totalPrice={totalPrice}
+            stripePromise={stripePromise}
+            setCustomerDetails={setCustomerDetails}
+            customerDetails={customerDetails}
+            customerId={customerId}
+            selectedTimeSlot={selectedTimeSlot}
+            productId={productId}
+            timeZone={timeZone}
+            setBookingId={setBookingId}
+            setPaymentLoading={setPaymentLoading}
+          />
+        </Elements>
       )}
     </div>
   );

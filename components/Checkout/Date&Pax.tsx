@@ -218,8 +218,9 @@ const DateAndPax = ({
     .filter(([key, value]) => value.count > 0)
     .map(([key, value]) => ({ [key]: value }));
 
-  console.log('passengerPAX', passengerPax);
-  console.log('filterPAX', selectedPaxObj);
+  // console.log('passengerPAX', passengerPax);
+  // console.log('filterPAX', selectedPaxObj);
+  console.log('selectedTimeSlot:', selectedTimeSlot);
   console.log('totalPrice', totalPrice);
   return (
     <div className="flex w-[80%] xl:gap-20 m-auto relative z-30">

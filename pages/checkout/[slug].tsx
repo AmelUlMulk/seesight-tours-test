@@ -156,7 +156,7 @@ export async function getServerSideProps({ params: { slug } }: CONTEXT) {
   );
   return {
     props: {
-      boatnew_products: data.boatnew_products[0],
+      boatnew_products: data.boatnew_products,
       product_Availability: product_Availability.data.data,
       slug,
       products: data.products
@@ -169,11 +169,16 @@ const Checkout = ({
   slug,
   products
 }: PROPSDATA) => {
+  console.log('boatnew:', boatnew_products);
   const stripePromise = loadStripe(String(process.env.NEXT_PUBLIC_STRIPE));
   const background = products[0].carousel_media[0].url;
 
   const [bookingId, setBookingId] = useState<string | undefined>();
   const [paymentLoading, setPaymentLoading] = useState<boolean>(false);
+
+  const [confirmationLoading, setConfirmationLoading] =
+    useState<boolean>(false);
+  const [thankyou, setThankYou] = useState<boolean>(false);
 
   const [customerDetails, setCustomerDetails] = useState<CustomerInfo>({
     name: '',
@@ -186,6 +191,9 @@ const Checkout = ({
         id: bookingId
       }
     });
+  if (data) {
+    console.log('bookings data:', data);
+  }
   const [selectedDate, setSelectedDate] = useState<string>(
     dayjs(product_Availability[0].startTime).format('YYYY-MM-DD')
   );
@@ -199,6 +207,7 @@ const Checkout = ({
   const [selectedTimeSlot, setSelectedTimeSlot] = useState<AVAILABILITY>(
     selectedAvailibility[0]
   );
+
   const [passengerPax, setPassengerPax] = useState<PASSENGERPAX>(() => {
     return {
       adults: {
@@ -280,7 +289,11 @@ const Checkout = ({
       : 0;
     setTotalPrice(() => Number(adults + children + infants));
   }, [passengerPax]);
-
+  useEffect(() => {
+    if (bookingId) {
+      next();
+    }
+  }, [bookingId]);
   useEffect(() => {
     if (bookingId !== undefined) {
       getBookings();
@@ -315,11 +328,18 @@ const Checkout = ({
       setBookingId={setBookingId}
       setPaymentLoading={setPaymentLoading}
     />,
-    <ConfirmBooking key="confirmation" />
+    <ConfirmBooking
+      key="confirmation"
+      booking={data?.booking[0]}
+      setThankYou={setThankYou}
+      setConfirmationLoading={setConfirmationLoading}
+    />
   ]);
 
   // console.log('selectedSlot:', selectedTimeSlot);
   // console.log('booking data:', data);
+  console.log('booking Id:', bookingId);
+  // console.log('custometr details:', customerDetails);
   return (
     <MainStyle
       image={background}
@@ -337,6 +357,29 @@ const Checkout = ({
         {currentComponentIndex === 0 && (
           <button type="submit" form="main-form" onClick={next}>
             Next
+          </button>
+        )}
+        {currentComponentIndex === 1 && (
+          <button type="submit" form="main-form">
+            {!paymentLoading && <> PAY </>}
+            {paymentLoading && (
+              <span className=" animate-pulse text-xl  ">
+                Processing Please wait
+              </span>
+            )}
+          </button>
+        )}
+        {currentComponentIndex === 2 && (
+          <button className="back" onClick={() => setThankYou(true)}>
+            Confirm Later
+          </button>
+        )}
+        {currentComponentIndex === 2 && (
+          <button type="submit" form="confirmation-form">
+            {!confirmationLoading && <> Confirm </>}
+            {confirmationLoading && (
+              <span className=" animate-pulse text-xl  ">Confirming</span>
+            )}
           </button>
         )}
       </ButtonDiv>
