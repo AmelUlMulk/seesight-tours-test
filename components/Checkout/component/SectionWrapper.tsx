@@ -11,10 +11,10 @@ type WrapperProps = {
 const WRAPPER = styled.div`
   position: relative;
   z-index: 50;
-  padding: 100px 146px;
+  padding: 0px 146px;
   padding-bottom: 0;
   @media (max-width: 1500px) {
-    padding: 70px 50px;
+    padding: 10px 50px;
     padding-bottom: 0;
   }
   @media (max-width: 700px) {

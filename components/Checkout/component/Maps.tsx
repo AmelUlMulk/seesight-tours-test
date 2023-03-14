@@ -1,12 +1,20 @@
+/* eslint-disable prefer-const */
+import React, { useEffect, useState } from 'react';
 import {
   GoogleMap,
-  Marker,
-  Polygon,
   useJsApiLoader,
+  Polygon,
+  Marker,
   Autocomplete
 } from '@react-google-maps/api';
-import { useCallback, useState } from 'react';
+import axios from 'axios';
 import { useRouter } from 'next/router';
+import styled from 'styled-components';
+
+const containerStyle = {
+  width: '100%',
+  height: '40vh'
+};
 
 interface MapProps {
   pickupBounds: any;
@@ -32,11 +40,8 @@ interface MapProps {
   setThankYou: React.Dispatch<React.SetStateAction<boolean>>;
   setConfirmationLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const containerStyle = {
-  width: '100%',
-  height: '40vh'
-};
-const Maps = ({
+
+function Map({
   center,
   pickupBounds,
   setPickUpLocation,
@@ -51,32 +56,18 @@ const Maps = ({
   phone,
   setThankYou,
   setConfirmationLoading
-}: MapProps) => {
+}: MapProps) {
   const [pickupCoords, setPickupCoords] = useState<any>(null);
   const [autocomplete, setAutocomplete] = useState<any>(null);
   const [wrongLocation, setWrongLocation] = useState<Boolean>(false);
-  const [map, setMap] = useState<google.maps.Map | null>(null);
-  const [currentLocation, setCurrentLocation] = useState<Record<
-    string,
-    any
-  > | null>(null);
-
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: 'AIzaSyCK_FbJyCK7eV-1GkrJ0cfsyJIuB0QJ2Ow',
+    googleMapsApiKey: `AIzaSyCK_FbJyCK7eV-1GkrJ0cfsyJIuB0QJ2Ow`,
     libraries: ['places']
   });
-
-  const onLoad = useCallback(function callback(map: any) {
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
-    setMap(map);
-  }, []);
-  const onUnmount = useCallback(function callback(map: any) {
-    setMap(null);
-  }, []);
+  const router = useRouter();
   const checkValidity = (result: any) => {
-    const coords = result?.geometry?.location;
+    let coords = result?.geometry?.location;
     if (pickupBounds) {
       const polygon = new google.maps.Polygon({ paths: pickupBounds });
       const contains = window.google.maps.geometry.poly.containsLocation(
@@ -99,6 +90,39 @@ const Maps = ({
       setPickUpLocation('');
     }
   };
+
+  const getCoords = async (latLng: any) => {
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ location: latLng }, (results, status) => {
+      if (status === google.maps.GeocoderStatus.OK && results) {
+        setPickupCoords(results[0].geometry?.location);
+        checkValidity(results[0]);
+      }
+    });
+  };
+
+  const [map, setMap] = React.useState<google.maps.Map | null>(null);
+
+  const onLoad = React.useCallback(function callback(map: any) {
+    const bounds = new window.google.maps.LatLngBounds(center);
+    map.fitBounds(bounds);
+    setMap(map);
+  }, []);
+
+  useEffect(() => {
+    const setZoom = setTimeout(() => {
+      if (map !== null) {
+        map.setZoom(13);
+      }
+    }, 2000);
+    return () => {
+      clearTimeout(setZoom);
+    };
+  }, [map]);
+
+  const onUnmount = React.useCallback(function callback(map: any) {
+    setMap(null);
+  }, []);
   const handleChange = () => {
     if (autocomplete !== null) {
       const exist = checkValidity(autocomplete?.getPlace());
@@ -120,35 +144,80 @@ const Maps = ({
       }
     }
   };
+  const confirmBooking = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (pickupLocation.length < 3 || wrongLocation) {
+      return;
+    }
+    setConfirmationLoading(true);
+    const headers = {
+      'Content-Type': 'application/json'
+    };
+
+    const response = await axios.put(
+      `${process.env.NEXT_PUBLIC_PAYMENT_API}//booking/${id}`,
+      {
+        ...customer,
+        location: pickupLocation,
+        notes: specialRequierment,
+        source,
+        rezdyId,
+        status: status,
+        phone
+      },
+      { headers }
+    );
+    setConfirmationLoading(false);
+    if (response.status === 200) {
+      console.log('confirmation Res:', response);
+      setThankYou(true);
+    }
+  };
+  console.log('pickupBound:', pickupBounds);
+  console.log('pickupCooords:', pickupCoords);
+  console.log('pickuplocation:', pickupLocation);
   return isLoaded ? (
     <div className="flex flex-col lg:flex-row justify-between">
       {pickupBounds && (
         <div className="w-full lg:w-[48%]">
           <GoogleMap
-            center={center}
-            zoom={12}
             mapContainerStyle={containerStyle}
-            // onLoad={onLoad}
-            // onUnmount={onUnmount}
+            center={center}
+            onLoad={onLoad}
+            onUnmount={onUnmount}
           >
-            <Polygon />
+            <Polygon
+              paths={pickupBounds}
+              options={{
+                fillColor: 'red',
+                fillOpacity: 0.2,
+                strokeColor: 'red',
+                strokeOpacity: 1,
+                strokeWeight: 1
+              }}
+              onClick={e => {
+                const { latLng } = e;
+                getCoords(latLng);
+              }}
+            />
             {pickupCoords && (
               <Marker
                 position={{
                   lat: pickupCoords.lat(),
-                  lng: pickupBounds.lng()
+                  lng: pickupCoords.lng()
                 }}
               />
             )}
           </GoogleMap>
         </div>
       )}
+
       <div className="w-full lg:w-[48%] flex justify-center align-middle  ">
         <form
           action=""
           className="w-full justify-center align-middle flex-col flex gap-4 "
           id="confirmation-form"
-          //   onSubmit={e => confirmBooking(e)}
+          onSubmit={e => confirmBooking(e)}
         >
           <h2 className="text-white  text-3xl  ">Pick Up Location</h2>
           {wrongLocation && (
@@ -199,6 +268,5 @@ const Maps = ({
   ) : (
     <></>
   );
-};
-
-export default Maps;
+}
+export default Map;

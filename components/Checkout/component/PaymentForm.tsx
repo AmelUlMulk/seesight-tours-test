@@ -49,7 +49,7 @@ const PaymentForm = (
   }: IProps,
   clientSecret: string
 ) => {
-  console.log('productId:', productId);
+  // console.log('productId:', productId);
   const [phone, setPhone] = useState<string>('');
   const [validPhone, setValidPhone] = useState<boolean>(true);
   const stripe = useStripe();

@@ -11,6 +11,7 @@ import useComponentSwipper from '../../components/Checkout/useComponentSwiper';
 import StripePayment from '../../components/Checkout/StripePayment';
 import ConfirmBooking from '../../components/Checkout/ConfirmBooking';
 import Steps from '../../components/Checkout/component/steps';
+import Thankyou from '../../components/Checkout/Thanks';
 
 const ButtonDiv = styled.div`
   padding: 50px 146px;
@@ -169,7 +170,7 @@ const Checkout = ({
   slug,
   products
 }: PROPSDATA) => {
-  console.log('boatnew:', boatnew_products);
+  // console.log('boatnew:', boatnew_products);
   const stripePromise = loadStripe(String(process.env.NEXT_PUBLIC_STRIPE));
   const background = products[0].carousel_media[0].url;
 
@@ -338,14 +339,16 @@ const Checkout = ({
 
   // console.log('selectedSlot:', selectedTimeSlot);
   // console.log('booking data:', data);
+  console.log('thanks:', thankyou);
   console.log('booking Id:', bookingId);
   // console.log('custometr details:', customerDetails);
   return (
     <MainStyle
       image={background}
-      className="h-screen w-full bg-cover bg-no-repeat bg-center relative"
+      className="xsm:h-[150vh] md:h-[130vh] w-full bg-cover bg-no-repeat bg-center relative"
     >
-      <div className="absolute top-0 left-0 h-screen w-full bg-[#000000d9] z-10 "></div>
+      <div className="absolute top-0 left-0 xsm:h-[150vh] md:h-[130vh] w-full bg-[#000000d9] z-10 "></div>
+      {thankyou && <Thankyou open={thankyou} close={setThankYou} />}
       <Steps currentStepIndex={currentComponentIndex} />
       {component}
       <ButtonDiv>

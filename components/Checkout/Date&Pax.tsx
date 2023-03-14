@@ -12,6 +12,7 @@ import Summary from './component/summary';
 
 const StyledCelendar = styled(Calendar)`
   width: 100%;
+  height: 100%;
   @media (max-width: 765px) {
     width: 100%;
   }
@@ -69,7 +70,11 @@ const StyledCelendar = styled(Calendar)`
     font-size: 22px;
     padding: 0.5rem;
     font-size: 1.2rem;
-
+    @media (max-width: 1280px) {
+      font-size: 20px;
+      padding: 0.3rem;
+      gap: 0.2rem;
+    }
     @media (max-width: 500px) {
       font-size: 1.1rem;
       gap: 0.2rem;
@@ -220,11 +225,11 @@ const DateAndPax = ({
 
   // console.log('passengerPAX', passengerPax);
   // console.log('filterPAX', selectedPaxObj);
-  console.log('selectedTimeSlot:', selectedTimeSlot);
-  console.log('totalPrice', totalPrice);
+  // console.log('selectedTimeSlot:', selectedTimeSlot);
+  // console.log('totalPrice', totalPrice);
   return (
-    <div className="flex w-[80%] xl:gap-20 m-auto relative z-30">
-      <section id="availibilty" className="flex-none w-[50%]">
+    <div className="md:flex w-[90%] lg:w-[80%] m-auto relative z-30">
+      <section id="availibilty" className="flex-none md:w-[50%] px-5">
         <StyledCelendar
           tileContent={({ activeStartDate, date, view }) => (
             <DayContainer
@@ -232,8 +237,12 @@ const DateAndPax = ({
                 selectedDate === dayjs(date).format('YYYY-MM-DD') ? true : false
               }
             >
-              <p>{date.getDate()}</p>
-              <p className=" text-sm md:text-lg ">{priceCheck(date)}</p>
+              <p className="text-[14px] md:text-[16px] xl:text-[20px] font-[400]">
+                {date.getDate()}
+              </p>
+              <p className=" text-[12px] xsm:text-[16px] xl:text-[20px] font-[500] sm:font-[700] ">
+                {priceCheck(date)}
+              </p>
             </DayContainer>
           )}
           onClickDay={value => {
@@ -247,11 +256,14 @@ const DateAndPax = ({
           }}
         />
       </section>
-      <section id="passenger_qty" className="flex-none w-[50%]">
+      <section
+        id="passenger_qty"
+        className="flex-none md:w-[50%] mt-5 md:mt-0 px-5"
+      >
         <div className="flex flex-col">
           <div id="selected_date" className="text-white bg-black">
-            <div className="flex flex-col sm:w-full  md:w-[48%]">
-              <div className=" flex flex-wrap w-full gap-2 ">
+            <div className="flex flex-col sm:w-full ">
+              <div className=" flex flex-wrap w-full gap-2 bg-[#131313]">
                 {availability.map(item => (
                   <TimeOptions key={item.startTime}>
                     <input
@@ -302,20 +314,24 @@ const DateAndPax = ({
                 {seatsFull && (
                   <div className="text-red-400">Seats are full</div>
                 )}
-                <div className="py-5 px-10">
+                <div className="py-2 px-6 sm:px-10 md:px-5 xl:px-10">
                   {Object.keys(passengerPax)
                     .slice(0, -1)
                     .map((key: string) => {
                       return (
                         <div
                           key={key}
-                          className="flex justify-between items-center "
+                          className="flex justify-between items-start xsm:py-2 sm:py-0"
                         >
                           <div>
-                            <p>{key[0].toLocaleUpperCase() + key.slice(1)}</p>
-                            <p>{ageLimit(key)}</p>
+                            <p className="text-[12px] sm:text-[16px] xl:text-[20px] font-[600] ">
+                              {key[0].toLocaleUpperCase() + key.slice(1)}
+                            </p>
+                            <p className="text-[12px] sm:text-[14px] lg:text-[16px] font-[400]">
+                              {ageLimit(key)}
+                            </p>
                           </div>
-                          <p>
+                          <p className="text-[12px] sm:text-[14px] xl:text-[18px] font-[600]">
                             {/* @ts-ignore */}$
                             {passengerPax[key as keyof PASSENGERPAX]?.price}
                           </p>
@@ -323,19 +339,19 @@ const DateAndPax = ({
                             <button
                               id="minus"
                               name={key}
-                              className="border border-slate-400 w-10 h-10 rounded-full hover:bg-red-500 hover:text-white hover:border-none"
+                              className="border border-slate-400 w-6 h-6 xsm:w-8 xsm:h-8  sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full hover:bg-red-500 hover:text-white hover:border-none"
                               onClick={e => updatePassengerPAX(e)}
                             >
                               -
                             </button>
-                            <p className="px-12">
+                            <p className="px-3 sm:px-10 md:px-5 lg:px-8 xl:px-12">
                               {/* @ts-ignore */}
                               {passengerPax[key as keyof PASSENGERPAX]?.count}
                             </p>
                             <button
                               id="plus"
                               name={key}
-                              className="border border-slate-400 w-10 h-10 rounded-full hover:bg-green-500 hover:text-white hover:border-none"
+                              className="border border-slate-400 w-6 h-6  xsm:w-8 xsm:h-8  sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full hover:bg-green-500 hover:text-white hover:border-none"
                               onClick={e => updatePassengerPAX(e)}
                             >
                               +
