@@ -29,7 +29,6 @@ const TourDropDown = ({
   setErrorObject
 }: IProps) => {
   const handleTourClick = (product: Record<string, any>) => {
-    console.log('product:', product);
     setSelectedCityProduct(product.name);
     if (errorObject.product) {
       const obj = { ...errorObject };
@@ -46,12 +45,14 @@ const TourDropDown = ({
 
   return (
     <div id="tour-type">
-      <div className="text-[24px] font-[600]">{title}</div>
+      <div className=" text-[14px] sm:text-[18px] lg:text-[20px] font-[500]">
+        {title}
+      </div>
       {tourData &&
         tourData.map((tour: any) => (
           <div
             key={tour?.product?.strapiID}
-            className="border border-slate-300"
+            className="border border-slate-300 text-[10px] sm:text-[13px] lg:text-[15px]"
             onClick={() => handleTourClick(tour?.product)}
           >
             {tour?.product?.name}

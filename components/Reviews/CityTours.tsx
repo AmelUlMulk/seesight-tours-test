@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import { useLazyQuery } from '@apollo/client';
 import { SetStateAction, useEffect } from 'react';
+import styled from 'styled-components';
 import { CITIES_PRODUCT_FILTER } from '../../api/reviews';
 import TourDropDown from './TourDropdown';
 import DropdownIcon from '../../assets/svg/review-filtercitydropdown.svg';
+import { useMediaQuery } from '../../layouts/NavBar';
 
 interface IProps {
   cities: any;
@@ -39,30 +41,34 @@ const CityTours = ({
   errorObject,
   setErrorObject
 }: IProps) => {
-  // console.log('Related City Tours:', cities);
+  const mediaQuery = useMediaQuery(768);
   return (
     <>
       <button
-        className="w-[100%] relative bg-[#EEEEEE] flex justify-between items-center px-5 py-3 rounded-[15px] mt-5"
+        className="w-[100%] relative bg-[#EEEEEE] flex justify-between items-center sm:px-3 py-3 rounded-[5px] lg:rounded-[10px] mt-5"
         onClick={() => setTourDropdownToggle(!tourDropdownToggle)}
       >
         <div className="flex justify-center items-center ">
           <span className="px-3">
             <Image
               src={'/locationIcon.svg'}
-              width={33}
-              height={33}
+              width={mediaQuery ? 12 : 20}
+              height={mediaQuery ? 12 : 20}
               alt="calendar image"
             />
           </span>
           <span
-            className="px-2"
+            className=" text-[10px] sm:[14px] md:text-[14px] lg:text-[14px] xl:text-[16px] font-[500] text-[#333333]"
             onClick={() => setTourDropdownToggle(!cityDropdownToggle)}
           >
-            {selectedCityProduct ? selectedCityProduct : ' Find Your Tours'}
+            {selectedCityProduct
+              ? selectedCityProduct.length > 30
+                ? `${selectedCityProduct.slice(0, 32)} ...`
+                : selectedCityProduct
+              : 'Find Your Tours'}
           </span>
         </div>
-        <div>
+        <div className="px-3">
           <DropdownIcon
             onClick={() => setTourDropdownToggle(!tourDropdownToggle)}
           />

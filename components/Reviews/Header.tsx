@@ -39,17 +39,13 @@ const ReviewsHeader = ({
   const handleRating = (rate: number) => {
     setRating(rate);
   };
-  const onPointerMove = (value: number, index: number) =>
-    console.log(value, index);
+
   //style
   const ReviewBtnStyle = styled.p<StyleProps>`
     background-color: ${props => (props.isRated > 0 ? '#e64141' : 'white')};
     color: ${props => (props.isRated > 0 ? 'white' : 'black')};
   `;
-  //display data
-  // console.log('ratings:', rating);
-  // console.log('totalReviews:', totalReviews);
-  // console.log('errorObject:', errorObject);
+
   return (
     <div id="reviews" className="bg-[#FFFFFF] pb-10">
       <section id="trustbar">

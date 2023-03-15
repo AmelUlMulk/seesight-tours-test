@@ -20,11 +20,8 @@ const DisplayReviews = ({
     reviewsConnection ? reviewsConnection?.aggregate?.count / 10 : 0
   );
   const handlePageClick = ({ selected }: any) => {
-    console.log('selectedPage:', selected);
     setCurrentPage(selected);
   };
-  console.log('reviews:', reviews);
-  console.log('totalreviews:', totalReviews);
 
   return (
     <section id="reviews-display" className="mt-5 px-5 xsm:px-8 sm:px-16">

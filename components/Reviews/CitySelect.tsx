@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { SetStateAction } from 'react';
 import CityDropdown from './CityDropdown';
 import DropdownIcon from '../../assets/svg/review-filtercitydropdown.svg';
+import { useMediaQuery } from '../../layouts/NavBar';
 
 interface IProps {
   citiesDropDown: Record<string, any>;
@@ -34,10 +35,10 @@ const CitySelect = ({
   errorObject,
   setErrorObject
 }: IProps) => {
-  // console.log('citySelectData:', citiesDropDown);
+  const mediaQuery = useMediaQuery(768);
   return (
     <button
-      className="w-[100%] relative bg-[#EEEEEE] flex justify-between items-center px-5 py-3 rounded-[15px] mt-5"
+      className="w-[100%] relative bg-[#EEEEEE] flex justify-between items-center sm:px-3 py-3 lg:py-3  rounded-[5px] lg:rounded-[10px] mt-5"
       onClick={() => {
         setCityDropdownToggle(!cityDropdownToggle);
         if (tourDropdownToggle) {
@@ -45,12 +46,12 @@ const CitySelect = ({
         }
       }}
     >
-      <div className="flex justify-center items-center pr-[11rem]">
+      <div className="flex justify-center items-center ">
         <span className="px-3">
           <Image
             src={'/locationIcon.svg'}
-            width={33}
-            height={33}
+            width={mediaQuery ? 12 : 20}
+            height={mediaQuery ? 12 : 20}
             alt="calendar image"
           />
         </span>
@@ -61,11 +62,12 @@ const CitySelect = ({
               setCityDropdownToggle(false);
             }
           }}
+          className=" text-[10px] xsm:text-[12px] sm:text-[14px] xl:text-[16px] font-[500] text-[#333333] text-justify"
         >
           {selectedCity ? selectedCity : 'Choose A city?'}
         </span>
       </div>
-      <div>
+      <div className="px-3">
         <DropdownIcon
           onClick={() => setCityDropdownToggle(!cityDropdownToggle)}
         />

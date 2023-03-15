@@ -29,7 +29,7 @@ const ReviewsSorting = ({
         </button>
       </div>
       {sortToggle && (
-        <div className="absolute top-[100%] w-[100%] z-50">
+        <div className="absolute top-[100%] w-[100%] z-50 rounded-b-[5px]">
           {sortObjectKeys.map((item: string, index: number) => (
             <div
               key={item}
@@ -37,7 +37,7 @@ const ReviewsSorting = ({
                 setSortOrder(item);
                 setSortToggle(!sortToggle);
               }}
-              className="border border-slate-300 bg-[#FFFFFF] hover:cursor-pointer"
+              className="border border-slate-300 bg-[#FFFFFF] hover:cursor-pointer px-2"
             >
               {item}
             </div>

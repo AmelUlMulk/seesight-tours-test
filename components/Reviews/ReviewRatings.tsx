@@ -29,10 +29,9 @@ const ReviewRatings = ({ totalReviews }: IProps) => {
     setReviews(filteredReviews());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [totalReviews]);
-  // console.log('ReviewConnection:', reviewsConnection);
-  // console.log('ratingReviews:', reviews);
+
   return (
-    <div>
+    <div className="w-[100%]">
       {Object.keys(reviews)
         .reverse()
         .map((item: any, index: number) => {
@@ -40,8 +39,11 @@ const ReviewRatings = ({ totalReviews }: IProps) => {
             ? reviews[item]?.item?.connection?.aggregate?.count
             : 0;
           return (
-            <div key={index} className="flex mt-2">
-              <span className="flex-none w-[25%] xsm:w-[25%] sm:w-[20%] text-[16px] sm:text-[18px] md:text-[20px] xl:text-[22px] text-[#333333] font-[400] px-2">{`${item} Stars`}</span>
+            <div
+              key={index}
+              className="flex justify-center mt-2 w-[90%] mx-auto"
+            >
+              <span className="flex-none text-right w-[32%] xsm:w-[24%] sm:w-[16%] md:w-[25%] text-[16px] sm:text-[18px] md:text-[20px] xl:text-[22px] text-[#333333] font-[400] px-2 ">{`${item} Stars`}</span>
               <ProgressBar
                 completed={count}
                 maxCompleted={
@@ -54,7 +56,7 @@ const ReviewRatings = ({ totalReviews }: IProps) => {
                 // height="20px"
                 className="w-[240px] sm:w-[300px] lg:w-[300px] xl:w-[350px] inline-block"
               />
-              <span className="flex-none w-[20%] xsm:w-[25%] sm:w-[20%] text-[16px] sm:text-[18px] md:text-[20px] xl:text-[22px] text-[#333333] font-[400] px-2">
+              <span className="flex-none w-[14%] xsm:w-[20%] sm:w-[18%] text-[16px] sm:text-[18px] md:text-[20px] xl:text-[22px] text-[#333333] font-[400] pl-1 sm:px-2">
                 {count ? count : 0}
               </span>
             </div>

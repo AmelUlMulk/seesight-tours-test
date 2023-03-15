@@ -29,8 +29,6 @@ const CitiesSorting = ({
   setCitiesToggle
 }: IProps) => {
   const sortedCitiesDropdown = sortCities(citiesDropdown);
-  // console.log('citiesDropdown:', citiesDropdown);
-  // console.log('SortedCitiesDropdown:', sortedCitiesDropdown);
   return (
     <div id="reviews-cities-dropdown" className="relative">
       <div>
@@ -49,7 +47,7 @@ const CitiesSorting = ({
         </button>
       </div>
       {citiesToggle && (
-        <div className="bg-[#FFFFFF] max-h-[300px] overflow-y-auto absolute top-[100%] w-[100%] z-50">
+        <div className="bg-[#FFFFFF] rounded-b-[5px] max-h-[300px] overflow-y-auto absolute top-[100%] w-[100%] z-50">
           <div
             onClick={() => {
               setCityFilter(null);

@@ -45,15 +45,6 @@ const Reviews = () => {
       }
     });
   }, [cityFilter, fetchReviews, sortOrder, currentPage]);
-  //display data
-  // console.log('reviewsPage:', reviewsPage);
-  // console.log('citiesToggle:', citiesToggle);
-  // console.log('sortToggle:', sortToggle);
-  // console.log('currentPage:', currentPage);
-  // console.log('totalReviews:', totalReviews);
-  // console.log('sortOrder:', sortOrder);
-  // console.log('city:', cityFilter);
-  // console.log('citiesPageDropDown:', citiesPageDropDown);
   return (
     <div
       onClick={() => {

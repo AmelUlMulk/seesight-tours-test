@@ -78,22 +78,19 @@ const AddReview = ({
     });
   }, [selectedCity]);
 
-  // console.log('selectedDate:', selectedDate);
-  // console.log('reviewInfo:', reviewInfo);
-  console.log('submitReview:', submitReview);
   return (
     <div
       id="review-modal-wrapper"
-      className="w-[100%] h-[100vh] fixed top-0 left-0 z-[2000000] bg-modalWrapper flex justify-center items-center"
+      className="w-[100%] h-[100vh] fixed top-0 left-0 z-20 bg-modalWrapper flex justify-center items-center"
       onClick={() => setDispModal(!dispModal)}
     >
       <div
         id="review-modal"
-        className="z-50 bg-[#FFFFFF]"
+        className="z-50 bg-[#FFFFFF] w-[70%] sm:w-[60%] md:w-[52%]"
         onClick={e => e.stopPropagation()}
       >
-        <div className="px-10 py-5 max-w-[600px]">
-          <h2 className="text-[32px] font-[500]">
+        <div className="px-6 lg:px-10 py-5 max-h-[86vh] sm:max-h-[86vh] lg:max-h-[84vh] overflow-y-scroll">
+          <h2 className="text-[14px] md:text-[16px] lg:text[18px] xl:text-[22px] font-[500]">
             Share your experience with us
           </h2>
           {/* @ts-ignore */}
@@ -130,8 +127,10 @@ const AddReview = ({
               setErrorObject={setErrorObject}
             />
             {errorObject.cities && (
-              // @ts-ignore
-              <div className="text-red-400">{errorObject.cities}</div>
+              <div className="text-red-400 text-[12px] sm:text-[14px] lg-text-[18px]">
+                {/* @ts-ignore */}
+                {errorObject.cities}
+              </div>
             )}
             {selectedCity && (
               <CityTours

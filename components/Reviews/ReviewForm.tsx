@@ -4,6 +4,7 @@ import { SetStateAction, useState } from 'react';
 import { Rating } from 'react-simple-star-rating';
 import styled from 'styled-components';
 import { INSERT_REVIEW } from '../../api/reviews';
+import { useMediaQuery } from '../../layouts/NavBar';
 interface IProps {
   rating: number;
   submitReview: Record<string, unknown>;
@@ -50,6 +51,7 @@ const ReviewForm = ({
     rating: rating,
     checkbox: false
   });
+  const mediaQuery = useMediaQuery(768);
   const [
     insertReview,
     { data: mutationData, loading: mutationLoading, error }
@@ -60,7 +62,6 @@ const ReviewForm = ({
       handleRating(rate);
       setFieldValue(name, rate);
     };
-    console.log('termCond:', termsConditions);
     return (
       <Rating
         onClick={handleRate}
@@ -69,6 +70,7 @@ const ReviewForm = ({
         emptyColor="gray"
         SVGstyle={{ display: 'inline-block' }}
         allowFraction
+        size={mediaQuery ? 25 : 40}
       />
     );
   };
@@ -107,12 +109,10 @@ const ReviewForm = ({
       }
     });
   };
-  console.log('reviewInfo:', reviewInfo);
   return (
     <Formik
       initialValues={reviewInfo}
       validate={values => {
-        console.log('values:', values);
         setSubmitReview(prevState => {
           return {
             ...prevState,
@@ -148,7 +148,7 @@ const ReviewForm = ({
         <Form>
           <label
             htmlFor="name"
-            className="block text-[25px] text-[#4F4F4F] font-[500]"
+            className="block text-[12px] md:text-[14px] xl:text-[16px] text-[#4F4F4F] font-[500] mt-3"
           >
             Name
           </label>
@@ -157,7 +157,7 @@ const ReviewForm = ({
             name="traveller"
             type="text"
             placeholder="Name"
-            className="focus:outline-none bg-[#EEEEEE] py-5 px-3 w-[100%] rounded-[15px]"
+            className="focus:outline-none bg-[#EEEEEE] py-2 lg:py-3 px-3 w-[100%] rounded-[5px] lg:rounded-[10px] mt-1"
           />
           <ErrorMessage
             name="traveller"
@@ -167,7 +167,7 @@ const ReviewForm = ({
 
           <label
             htmlFor="title"
-            className="block text-[25px] text-[#4F4F4F] font-[500] "
+            className="block text-[12px] md:text-[14px] xl:text-[16px] text-[#4F4F4F] font-[500] mt-3"
           >
             Title
           </label>
@@ -176,12 +176,12 @@ const ReviewForm = ({
             name="title"
             type="text"
             placeholder="Title"
-            className="focus:outline-none bg-[#EEEEEE] py-5 px-3 w-[100%] rounded-[15px]"
+            className="focus:outline-none bg-[#EEEEEE] py-2 lg:py-3 px-3 w-[100%] rounded-[5px] lg:rounded-[10px] mt-1"
           />
           <ErrorMessage name="title" component="div" className="text-red-400" />
 
           <div>
-            <label className="block text-[26px] font-[500] text-[#4F4F4F]">
+            <label className="block text-[12px] md:text-[14px] xl:text-[16px] font-[500] text-[#4F4F4F] mt-3">
               Rating
             </label>
             <Field
@@ -201,7 +201,7 @@ const ReviewForm = ({
             name="review"
             as="textarea"
             placeholder="Write Your Review"
-            className="block focus:outline-none w-[100%] rounded-[15px] py-5 px-3 bg-[#EEEEEE] min-h-[150px] mt-5"
+            className="block focus:outline-none w-[100%] rounded-[10px] py-2 lg:py-5 px-3 bg-[#EEEEEE] md:h-[120px] xl:h-[150px] min-h-[80px] mt-3 placeholder:text-[12px] lg:placeholder:text-[18px]"
           />
           <ErrorMessage
             name="review"
@@ -221,7 +221,7 @@ const ReviewForm = ({
             />
             <CheckBoxTextStyle
               isChecked={termsConditions}
-              className="text-[18px] font-[500]"
+              className="text-[10px] text-justify lg:text-[14px] font-[500]"
             >
               I certify that this review is based on my experience and is my
               genuine opinion, and have not beet offered any incentive or
@@ -231,7 +231,7 @@ const ReviewForm = ({
             </CheckBoxTextStyle>
           </div>
           <button
-            className="py-2 px-10 focus:outline-none text-[25px] font-[500] bg-slate-400 rounded-[10px] mt-5 "
+            className="py-2 px-10 focus:outline-none text-[14px] sm:text-[16px] lg:text-[18px] xl:text-[20px] font-[500] bg-slate-400 rounded-[10px] mt-5 "
             type="submit"
             // disabled={isSubmitting}
           >

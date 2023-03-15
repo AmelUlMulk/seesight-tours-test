@@ -36,7 +36,6 @@ const CityDropdown = ({
     }
 
     setCityDropdownToggle(!cityDropdownToggle);
-    // console.log('handleClick:', name, id);
     setSubmitReview(prevState => {
       return {
         ...prevState,
