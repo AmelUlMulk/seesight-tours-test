@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import { INSERT_REVIEW } from '../../api/reviews';
 import { useMediaQuery } from '../../layouts/NavBar';
 interface IProps {
+  dispModal: boolean;
+  setDispModal: React.Dispatch<SetStateAction<boolean>>;
   rating: number;
   submitReview: Record<string, unknown>;
   setSubmitReview: React.Dispatch<SetStateAction<Record<string, unknown>>>;
@@ -42,7 +44,8 @@ const ReviewForm = ({
   errorStates,
   setErrorStates,
   errorObject,
-  setErrorObject
+  setErrorObject,
+  setDispModal
 }: IProps) => {
   const [reviewInfo, setReviewInfo] = useState<Record<string, any>>({
     traveller: '',
@@ -99,7 +102,7 @@ const ReviewForm = ({
   const handleSubmit = async (values: any) => {
     setReviewInfo(values);
     delete submitReview.checkbox;
-    insertReview({
+    await insertReview({
       variables: {
         data: {
           ...submitReview,
@@ -108,6 +111,7 @@ const ReviewForm = ({
         }
       }
     });
+    setDispModal(false);
   };
   return (
     <Formik

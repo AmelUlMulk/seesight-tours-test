@@ -17,6 +17,10 @@ interface IProps {
   setSelectedDate: React.Dispatch<SetStateAction<any>>;
   dispCalendar: boolean;
   setDispCalendar: React.Dispatch<SetStateAction<boolean>>;
+  setCityDropdownToggle: React.Dispatch<SetStateAction<boolean>>;
+  cityDropdownToggle: boolean;
+  tourDropdownToggle: boolean;
+  setTourDropdownToggle: React.Dispatch<SetStateAction<boolean>>;
   submitReview: Record<string, unknown>;
   setSubmitReview: React.Dispatch<SetStateAction<Record<string, unknown>>>;
   errorStates: Record<string, boolean>;
@@ -30,6 +34,10 @@ const DateSelect = ({
   setSelectedDate,
   dispCalendar,
   setDispCalendar,
+  cityDropdownToggle,
+  setCityDropdownToggle,
+  tourDropdownToggle,
+  setTourDropdownToggle,
   submitReview,
   setSubmitReview,
   errorStates,
@@ -39,6 +47,7 @@ const DateSelect = ({
 }: IProps) => {
   const mediaQuery = useMediaQuery(768);
   useEffect(() => {
+    setDispCalendar(false);
     if (selectedDate) {
       setSubmitReview(prevstate => {
         return {
@@ -47,7 +56,7 @@ const DateSelect = ({
         };
       });
     }
-  }, [selectedDate, setSubmitReview]);
+  }, [selectedDate]);
   const handleCalendarChange = (date: any) => {
     setSelectedDate(date);
     if (errorObject.date) {
@@ -58,10 +67,16 @@ const DateSelect = ({
     }
   };
 
+  console.log('dispCal:', dispCalendar);
   return (
-    <button
-      className="w-[100%] relative bg-[#EEEEEE] flex justify-between items-center sm:px-3 py-3 rounded-[5px] lg:rounded-[10px] mt-3"
-      onClick={() => setDispCalendar(!dispCalendar)}
+    <div
+      className="w-[100%] relative bg-[#EEEEEE] flex justify-between items-center sm:px-3 py-3 rounded-[5px] lg:rounded-[10px] mt-3 hover:cursor-pointer"
+      onClick={e => {
+        e.stopPropagation();
+        setCityDropdownToggle(false);
+        setTourDropdownToggle(false);
+        setDispCalendar(!dispCalendar);
+      }}
     >
       <div className="flex justify-center items-center ">
         <span className="px-3">
@@ -75,21 +90,26 @@ const DateSelect = ({
         <span className="text-[10px] xsm:text-[12px] sm:text-[14px] xl:text-[16px] font-[500] text-[#333333]">
           {selectedDate
             ? moment(selectedDate).format('MMM Do YYYY')
-            : 'When did you go?'}
+            : 'When Did You Go?'}
         </span>
       </div>
       <div className="px-3">
         <DropdownIcon />
       </div>
       {dispCalendar && (
-        <div className="absolute top-[100%] left-0 w-[100%] z-50">
+        <div
+          onClick={(e: any) => {
+            e.stopPropagation();
+          }}
+          className="absolute top-[100%] left-0 w-[100%] z-50"
+        >
           <CalendarStyle
             value={selectedDate || new Date()}
             onClickDay={value => handleCalendarChange(value)}
           />
         </div>
       )}
-    </button>
+    </div>
   );
 };
 

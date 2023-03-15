@@ -87,7 +87,10 @@ const AddReview = ({
       <div
         id="review-modal"
         className="z-50 bg-[#FFFFFF] w-[70%] sm:w-[60%] md:w-[52%]"
-        onClick={e => e.stopPropagation()}
+        onClick={e => {
+          e.stopPropagation();
+          setDispCalendar(false);
+        }}
       >
         <div className="px-6 lg:px-10 py-5 max-h-[86vh] sm:max-h-[86vh] lg:max-h-[84vh] overflow-y-scroll">
           <h2 className="text-[14px] md:text-[16px] lg:text[18px] xl:text-[22px] font-[500]">
@@ -106,6 +109,10 @@ const AddReview = ({
               setErrorStates={setErrorStates}
               errorObject={errorObject}
               setErrorObject={setErrorObject}
+              cityDropdownToggle={cityDropdownToggle}
+              setCityDropdownToggle={setCityDropdownToggle}
+              tourDropdownToggle={tourDropdownToggle}
+              setTourDropdownToggle={setTourDropdownToggle}
             />
             {errorObject.date && (
               // @ts-ignore
@@ -162,6 +169,8 @@ const AddReview = ({
               setErrorStates={setErrorStates}
               errorObject={errorObject}
               setErrorObject={setErrorObject}
+              dispModal={dispModal}
+              setDispModal={setDispModal}
             />
           </div>
         </div>
