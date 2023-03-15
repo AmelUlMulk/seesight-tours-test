@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 import { CARDMEDIAINTERFACE } from './commonInterfaces';
+import { HEADER_STATS_INTERFACE } from './headerstats';
 
 const CITIES_PAGE = {
   query: gql`
@@ -48,10 +49,24 @@ const CITIES_PAGE = {
           }
         }
       }
+      boatnew_booking_aggregate {
+        aggregate {
+          count
+        }
+      }
+      boatnew_customers_aggregate {
+        aggregate {
+          count
+        }
+      }
+      strapi_reviews {
+        rating
+      }
     }
   `
 };
-interface CITIES_PAGE_INTERFACE {
+
+interface CITIES_PAGE_INTERFACE extends HEADER_STATS_INTERFACE {
   citiesPage: {
     header: string;
     subheader: string;
@@ -70,17 +85,19 @@ interface CITIES_PAGE_INTERFACE {
         };
       }
     ];
-    cities: [
-      {
-        city: {
-          id: string;
-          name: string;
-          slug: string;
-          cardSnippet: string;
-          cardMedia: [CARDMEDIAINTERFACE];
-        };
-      }
-    ];
+    cities: [CityInterface];
+  };
+  averageReview: number;
+  customers: string;
+  bookings: string;
+}
+export interface CityInterface {
+  city: {
+    id: string;
+    name: string;
+    slug: string;
+    cardSnippet: string;
+    cardMedia: [CARDMEDIAINTERFACE];
   };
 }
 export { CITIES_PAGE };
