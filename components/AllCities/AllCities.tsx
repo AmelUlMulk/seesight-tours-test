@@ -45,21 +45,25 @@ const citiesCanada = [
 
 export const AllCities = ({ cities }: AllCities) => {
   return (
-    <>
-      <section className="mb-3  3xl:px-32  2xl:px-20 xl:px-20 lg:px-16 md:px-16 sm:px-12  xsm:px-8 xxsm:px-8 ">
-        <div id="header" className=" lg:px-18 2xl:px-24">
-          <Heading className="font-bold 2xl:text-4xl  xl:text-3xl md:text-2xl sm:text-2xl  xsm:text-2xl pt-10 ">
-            ALL CITIES
-          </Heading>
-        </div>
-      </section>
-      <section>
-        <div className="flex flex-wrap gap-4 py-3 4xl:px-56 3xl:px-56 lg:px-32 2xl:px-24 sm:px-10  items-stretch justify-center ">
-          {cities.map((city, index) => (
+    <div className=" px-[3%] xl:px-[10%] py-12">
+      <h1 className="font-bold text-3xl xl:text-5xl      ">CITIES IN CANADA</h1>
+      <div className="flex flex-wrap gap-2 xl:gap-6 w-full  justify-center xl:justify-start  py-12 ">
+        {cities.slice(0, 9).map((city, index) => {
+          return (
             <CityCard city={city.city} key={city.city.name} index={index} />
-          ))}
-        </div>
-      </section>
-    </>
+          );
+        })}
+      </div>
+      <h1 className="font-bold text-3xl xl:text-5xl      ">
+        CITIES IN AMERICA
+      </h1>
+      <div className="flex flex-wrap gap-6 w-full  justify-center xl:justify-start  py-12 ">
+        {cities.slice(9, 21).map((city, index) => {
+          return (
+            <CityCard city={city.city} key={city.city.name} index={index} />
+          );
+        })}
+      </div>
+    </div>
   );
 };
