@@ -26,14 +26,10 @@ const PageHero = ({ title, snippet, media, video }: IProps): JSX.Element => {
     }
     display: flex;
     .PageHero_container {
-      position: absolute;
-      @media (max-width: 1100px) {
-        left: 0;
-      }
       display: flex;
       justify-content: center;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.5rem;
       width: 100%;
       z-index: 1;
     }

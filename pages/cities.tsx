@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import client from '../apollo-client';
+
 import PageHero from '../layouts/PageHero';
 import { CITIES_PAGE_INTERFACE, CITIES_PAGE } from '../api/citiesPage';
 import Newsletter from '../layouts/Newsletter/Newsletter';
