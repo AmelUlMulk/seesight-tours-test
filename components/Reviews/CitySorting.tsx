@@ -32,15 +32,15 @@ const CitiesSorting = ({
   return (
     <div id="reviews-cities-dropdown" className="relative">
       <div>
-        <span className="text-[14px] sm:text-[18px] text-[#333333] font-[400]">
+        <span className="text-[12px] sm:text-[18px] text-[#333333] font-[400]">
           Filter By City:
         </span>
 
         <button
-          className="pl-1 sm:pl-2 text-[14px] sm:text-[18px]"
+          className="pl-1 sm:pl-2 text-[12px] sm:text-[18px]"
           onClick={() => setCitiesToggle(!citiesToggle)}
         >
-          <span className="pl-2">{city ? city : 'ALL'}</span>
+          <span className="pl-[0.2rem] xsm:pl-2">{city ? city : 'ALL'}</span>
           <span className="inline-block pl-2">
             <DropdownIcon />
           </span>

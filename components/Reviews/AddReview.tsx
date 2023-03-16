@@ -1,6 +1,5 @@
 import React, { use, useEffect } from 'react';
 import Image from 'next/image';
-import styled from 'styled-components';
 import { SetStateAction, useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { Rating } from 'react-simple-star-rating';
@@ -9,6 +8,7 @@ import CitySelect from './CitySelect';
 import CityTours from './CityTours';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { CITIES_PRODUCT_FILTER, INSERT_REVIEW } from '../../api/reviews';
+import styled from 'styled-components';
 import DateSelect from './DateSelect';
 import ReviewForm from './ReviewForm';
 import ErrorDisp from './ErrorDisp';
@@ -23,6 +23,17 @@ interface IProps {
   errorObject: Record<string, unknown>;
   setErrorObject: React.Dispatch<SetStateAction<Record<string, unknown>>>;
 }
+const ReviewModal = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%, -40%);
+  @media (max-width: 1280px) {
+    top: 7%;
+  }
+  @media (max-width: 640px) {
+  }
+`;
 
 const AddReview = ({
   dispModal,
@@ -81,18 +92,18 @@ const AddReview = ({
   return (
     <div
       id="review-modal-wrapper"
-      className="w-[100%] h-[100vh] fixed top-0 left-0 z-20 bg-modalWrapper flex justify-center items-center"
+      className="w-[100%] h-[100vh] fixed top-0 left-0 z-20 bg-modalWrapper flex justify-center items-start"
       onClick={() => setDispModal(!dispModal)}
     >
       <div
         id="review-modal"
-        className="z-50 bg-[#FFFFFF] w-[70%] sm:w-[60%] md:w-[52%]"
+        className="z-50 bg-[#FFFFFF] w-[78%] sm:w-[70%] mt-24 sm:mt-32 lg:mt-36"
         onClick={e => {
           e.stopPropagation();
           setDispCalendar(false);
         }}
       >
-        <div className="px-6 lg:px-10 py-5 max-h-[86vh] sm:max-h-[86vh] lg:max-h-[84vh] overflow-y-scroll">
+        <div className="px-6 lg:px-10 py-5 max-h-[75vh] xsm:max-h-[80vh] sm:max-h-[86vh] lg:max-h-[84vh] overflow-y-scroll">
           <h2 className="text-[14px] md:text-[16px] lg:text[18px] xl:text-[22px] font-[500]">
             Share your experience with us
           </h2>

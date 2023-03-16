@@ -55,6 +55,7 @@ const Reviews = () => {
           setSortToggle(false);
         }
       }}
+      className="relative"
     >
       <ReviewsHeader
         totalReviews={totalReviews ? totalReviews : {}}

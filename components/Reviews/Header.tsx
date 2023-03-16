@@ -115,7 +115,7 @@ const ReviewsHeader = ({
                 </div>
               </CircularProgressbarWithChildren>
             </div>
-            <p className="text-[24px] font-[400] text-[#333333] my-3">
+            <p className="  text-[16px] xsm:text-[20px] sm:text-[24px] font-[500] text-[#333333] my-3">
               Based on 10k ratings
             </p>
             <ReviewRatings totalReviews={totalReviews} />

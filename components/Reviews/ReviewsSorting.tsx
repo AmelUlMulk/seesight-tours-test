@@ -7,6 +7,13 @@ interface IProps {
   setSortToggle: React.Dispatch<SetStateAction<boolean>>;
 }
 const sortObjectKeys: string[] = ['Newest', 'Oldest', 'Highest', 'Lowest'];
+const dispSort = (key: string) => {
+  if (key === 'Newest') return 'New';
+  else if (key === 'Oldest') return 'Old';
+  else if (key === 'Highest') return 'High';
+  else if (key === 'Lowest') return 'Low';
+  else return;
+};
 const ReviewsSorting = ({
   sortOrder,
   setSortOrder,
@@ -16,12 +23,12 @@ const ReviewsSorting = ({
   return (
     <div id="sorting by time" className="relative">
       <div>
-        <span className="text-[14px] sm:text-[18px] text-[#333333] font-[400]">
+        <span className="text-[12px] sm:text-[18px] text-[#333333] font-[400]">
           Sort by:
         </span>
         <button className="pl-2" onClick={() => setSortToggle(!sortToggle)}>
-          <span className="text-[14px] sm:text-[18px] font-[400]">
-            {sortOrder}
+          <span className="text-[12px] sm:text-[18px] font-[400]">
+            {dispSort(sortOrder)}
           </span>
           <span className="inline-block pl-2">
             <DropdownIcon />

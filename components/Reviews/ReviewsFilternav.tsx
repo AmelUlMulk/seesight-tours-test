@@ -31,7 +31,7 @@ const ReviewsFilterNav = ({
 
   return (
     <section id="reviews filter" className="mt-5">
-      <div className="flex justify-between px-5 xsm:px-8 sm:px-16 ">
+      <div className="flex justify-between px-3 xsm:px-8 sm:px-16 ">
         <CitiesSorting
           cityFilter={cityFilter}
           setCityFilter={setCityFilter}

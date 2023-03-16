@@ -11,6 +11,17 @@ const CalendarStyle = styled(Calendar)`
   width: 100%;
   border-radius: 10px;
   background-color: #eeeeee;
+  @media (max-width: 370px) {
+    .react-calendar__month-view__weekdays__weekday {
+      font-size: 9px;
+    }
+    .react-calendar__navigation button {
+      min-width: 38px;
+    }
+    button {
+      font-size: 12px;
+    }
+  }
 `;
 interface IProps {
   selectedDate: any;
@@ -67,7 +78,6 @@ const DateSelect = ({
     }
   };
 
-  console.log('dispCal:', dispCalendar);
   return (
     <div
       className="w-[100%] relative bg-[#EEEEEE] flex justify-between items-center sm:px-3 py-3 rounded-[5px] lg:rounded-[10px] mt-3 hover:cursor-pointer"
