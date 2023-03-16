@@ -29,8 +29,8 @@ const StyledImage = styled(Image)<ImageShadow>`
       ? '8px -8px 0px -1px #2191FA'
       : ' -8px -8px 0px -1px #2191FA'};
   border-radius: 0.5rem;
-  max-height: 471px;
-  min-width: 471px;
+  max-height: 400px;
+  min-width: 420px;
   align-self: center;
 
   @media (max-width: 1000px) {
@@ -105,7 +105,7 @@ const Guides = ({ guidesPage }: GUIDES_PAGE_INTERFACE) => {
               <h2 className="text-2xl md:text-2xl lg:text-3xl 2xl:text-4xl font-semibold  ">
                 {guide.guide.firstName}
               </h2>
-              <p className=" text-sm md:text-xl 2xl:text-2xl   text-[#333333] ">
+              <p className=" text-sm md:text-base xl:text-lg   text-[#333333] ">
                 {guide.guide.biography}
               </p>
             </div>
