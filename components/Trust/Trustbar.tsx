@@ -22,7 +22,7 @@ const data = [
     id: 'B112',
     snippet: 'Free Cancellation',
     icon: '/Vector-1.svg',
-    link: '/faqs'
+    link: '/faq'
   },
   {
     id: 'B113',
@@ -39,22 +39,27 @@ const Trustbar = () => {
     >
       <div
         id="experience"
-        className="flex xxsm:flex-col lg:flex-row justify-center gap-5 text-white "
+        className="flex xxsm:flex-col lg:flex-row text-white sm:w-[80%] lg:w-[95%] xl:w-[92%] mx-auto "
       >
         {data.map(dt => {
           return (
-            <Link href={dt.link} key={dt.id}>
-              <div className="bg-[#2191FA] flex items-center rounded-[15px] xxsm:px-5 xsm:px-6 sm:px-10 md:px-10 lg:px-3 xxsm:py-2 md:py-5">
-                <div>
-                  <Image src={dt.icon} width={49} height={31} alt="" />
+            <div
+              key={dt.id}
+              className="flex-none lg:w-[33.33%] py-2 lg:py-0 lg:px-2"
+            >
+              <Link href={dt.link}>
+                <div className="bg-[#2191FA] flex items-center rounded-[8px] lg:rounded-[15px] xxsm:pl-5 xsm:pl-6 sm:pl-10 md:pl-16 lg:pl-3 xl:pl-6 xxsm:py-2 xsm:py-3 md:py-3 lg:py-5">
+                  <div>
+                    <Image src={dt.icon} width={49} height={31} alt="" />
+                  </div>
+                  <div className="xxsm:pr-5 xsm:pr-6 md:pr-20 lg:pr-0 lg:pl-3 py-2 w-[100%] text-center lg:text-start">
+                    <p className="xsm:text-[18px] sm:text-[14px] md:text-[16px] 2xl:text-[24px] font-[400]">
+                      {dt.snippet}
+                    </p>
+                  </div>
                 </div>
-                <div className="xxsm:pl-5 xsm:pl-6 md:px-10 lg:px-3 py-2 w-[100%]">
-                  <p className="xsm:text-[18px] sm:text-[20px] md:text-[24px] lg:text-[18px] 2xl:text-[24px] font-[400]">
-                    {dt.snippet}
-                  </p>
-                </div>
-              </div>
-            </Link>
+              </Link>
+            </div>
           );
         })}
       </div>

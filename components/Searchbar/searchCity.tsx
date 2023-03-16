@@ -4,6 +4,10 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import SearchfilterIcon from '../../assets/svg/searchfiltericon.svg';
 import DropdownIcon from '../../assets/svg/dropdownicon.svg';
+
+interface SearchProps {
+  isOpen: boolean;
+}
 const Cities = [
   {
     name: 'Austin',
@@ -125,10 +129,11 @@ const Cities = [
     type: 'usa'
   }
 ];
-const SearchInputStyle = styled.div`
+const SearchInputStyle = styled.div<SearchProps>`
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
+  border-bottom-left-radius: ${props => (props.isOpen ? 'none' : '15px')};
 `;
 const SearchButtonStyle = styled.button`
   border-top-right-radius: 15px;
@@ -236,12 +241,15 @@ const SearchCity = () => {
         }}
       >
         <form onSubmit={SubmitHandler}>
-          <SearchInputStyle className="flex items-center bg-[#E1E1E1]">
+          <SearchInputStyle
+            isOpen={suggestedToggle || filterToggle}
+            className="flex items-center bg-[#E1E1E1]"
+          >
             <div className="flex items-center w-[65%] xsm:w-[65%] sm:w-[70%] md:w-[76%] xxsm:gap-2 xsm:gap-1 xsm:justify-between md:gap-0 hover:cursor-pointer">
-              <div className="px-2 py-2 flex-none xxsm:w-[10%] md:w-[8%]">
+              <div className="pl-5 pr-3 py-2 flex-none w-[10%] xsm:w-[12%] md:w-[10%] lg:w-[10%]">
                 <SearchfilterIcon />
               </div>
-              <div className="bg-[#E1E1E1] flex-none xxsm:w-[70%] md:w-[84%] xxsm:px-3 md:px-1 xxsm:rounded-[54px] md:rounded-none">
+              <div className="bg-[#E1E1E1] flex-none w-[56%] xsm:w-[60%] sm:w-[72%] md:w-[78%] xxsm:px-3 md:px-1 xxsm:rounded-[54px] md:rounded-none">
                 <input
                   name="search"
                   id="search"
@@ -249,7 +257,7 @@ const SearchCity = () => {
                   onChange={onChange}
                   placeholder="Search by City"
                   autoComplete="off"
-                  className="py-2 xsm:py-3 md:py-5 bg-[#E1E1E1] w-[100%] focus:outline-none placeholder:text-[12px] xsm:placeholder:text-[14px] sm:placeholder:text-[16px] placeholder:font-[400] placeholder:text-[#7C7C7C]"
+                  className="py-2 xsm:py-3 md:py-5 bg-[#E1E1E1] w-[100%] focus:outline-none placeholder:text-[10px] xsm:placeholder:text-[14px] sm:placeholder:text-[16px] placeholder:font-[400] placeholder:text-[#7C7C7C]"
                 />
               </div>
               <div

@@ -4,10 +4,11 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { PAGE_OPTIONS } from '../Trust/Trustbar';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Autoplay, Pagination } from 'swiper';
+import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
-SwiperCore.use([Autoplay, Pagination]);
+import 'swiper/css/navigation';
+SwiperCore.use([Autoplay, Pagination, Navigation]);
 interface IProps {
   product: Record<string, any>;
   productType?: string;
@@ -58,17 +59,17 @@ const TourCard = ({ product, productType }: IProps) => {
       id="tour-section"
       className="mt-10 relative flex flex-col bg-[#FFFF] rounded-lg"
     >
-      <div className="sm:h-[260px] lg:h-[260px] xl:h-[300px] w-[95%] py-2 mx-auto relative">
+      <div className="xsm:h-[250px] sm:h-[260px] lg:h-[260px] xl:h-[300px] w-[95%] py-2 mx-auto relative">
         <Link href={`/tours/${product?.slug}`} className="rounded-md h-[100%]">
           <div className="w-[100%] h-[100%] relative rounded-lg !overflow-hidden">
             <PriceContainerStyle
               id="price_container"
-              className="lg:py-1 lg:px-3 2xl:px-6 py-2 px-6 lg:text-[14px] 2xl:text-[18px] font-[700] rounded-[3px]"
+              className="py-1 lg:py-1 px-3 lg:px-5 2xl:px-6 text-[12px] lg:text-[14px] 2xl:text-[18px] font-[700] rounded-[3px]"
             >
-              From ${product?.price}
+              ${product?.price}
             </PriceContainerStyle>
             {product?.cardMessage && (
-              <p className="absolute top-0 left-0 max-w-[110px] lg:max-w-[110px] xl:max-w-[170px] py-2 px-2 lg:text-[14px] 2xl:text-[18px] text-[#ffffff] font-[700] bg-[#f15c5a] z-30 rounded-[5px]">
+              <p className="absolute top-0 left-0 max-w-[130px] lg:max-w-[110px] xl:max-w-[170px] py-2 px-1 xsm:px-2 text-[12px] lg:text-[14px] 2xl:text-[18px] text-[#ffffff] font-[700] bg-[#f15c5a] z-30 rounded-[5px]">
                 {product?.cardMessage.length > 30
                   ? `${product.cardMessage.slice(0, 27).toUpperCase()}...`
                   : product.cardMessage.toUpperCase()}
@@ -77,6 +78,7 @@ const TourCard = ({ product, productType }: IProps) => {
             <Swiper
               slidesPerView={1}
               spaceBetween={1}
+              navigation
               // autoplay={{
               //   delay: 4000,
               //   disableOnInteraction: false
@@ -84,8 +86,8 @@ const TourCard = ({ product, productType }: IProps) => {
               pagination={{ dynamicBullets: false, clickable: true }}
               className="w-[100%] h-[100%]"
             >
-              {image?.map((img: any) => (
-                <SwiperSlide key={img?.key} className="w-[100%] h-[100%]">
+              {image?.map((img: any, index: number) => (
+                <SwiperSlide key={index} className="w-[100%] h-[100%]">
                   {img?.hasVideo ? (
                     <video
                       src={img?.imageUrl}
@@ -142,12 +144,12 @@ const TourCard = ({ product, productType }: IProps) => {
         className="flex flex-col w-[95%] mx-auto xsm:h-[100px] md:h-[130px] lg:h-[120px] xl:h-[140px]"
       >
         <div id="heading">
-          <h2 className=" lg:text-[15px] xl:text-[18px] font-[700]">
+          <h2 className="text-[14px] lg:text-[15px] xl:text-[18px] font-[700]">
             {product?.name}
           </h2>
         </div>
         <div id="snippet">
-          <SnippetStyle className="lg:text-[15px] xl:text-[18px] text-[#444444] font-[400]">
+          <SnippetStyle className="text-[12px] lg:text-[15px] xl:text-[18px] text-[#444444] font-[400]">
             {product?.name.length < 120
               ? product?.cardSnippet.length < 115
                 ? `${product?.cardSnippet}`
@@ -162,14 +164,14 @@ const TourCard = ({ product, productType }: IProps) => {
         </div>
       </div>
       <div id="checkout_buttons" className="">
-        <div className="flex gap-2 justify-between w-[92%] mx-auto py-2">
+        <div className="flex gap-2 justify-between w-[92%] sm:w-[92%] mx-auto py-2">
           <div>
-            <button className="text-start w-[100%] py-2 px-3 text-[#131313]  font-[500] bg-[#FFFFFF] border-[1px] border-[#F15C5A] rounded-[10px]">
+            <button className="text-start w-[100%] py-2 px-3 xsm:px-6 sm:px-16 md:px-8 lg:px-5 2xl:px-8 text-[#131313] text-[12px] xsm:text-[14px] sm:text-[14px] lg:text-[13px] xl:text-[18px] font-[500] bg-[#FFFFFF] border-[1px] border-[#F15C5A] rounded-[8px] md:rounded-[10px] hover:border-none hover:text-white hover:bg-slate-400">
               <Link href={`/tours/${product.slug}`}>See Details</Link>
             </button>
           </div>
           <div>
-            <button className=" w-[100%] text-[#FFFFFF] font-[500] py-2 px-3 text-[text-[18px]] bg-[#F15C5A] rounded-[10px]">
+            <button className=" w-[100%] text-[#FFFFFF] font-[500] py-2 px-3 xsm:px-6 sm:px-16 md:px-8 lg:px-5 xl:px-5 2xl:px-8 text-[12px] xsm:text-[14px] sm:text-[14px] lg:text-[13px] xl:text-[18px] bg-[#F15C5A] rounded-[8px] md:rounded-[10px]">
               Book Now
             </button>
           </div>
