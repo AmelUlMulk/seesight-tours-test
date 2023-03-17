@@ -64,7 +64,7 @@ const DisplayReviews = ({
             <p className="xxsm:text-[12px] xsm:text-[16px] sm:text-[24px] text-[#333333] font-[400] pt-1">
               {review?.review}
             </p>
-            <p className="text-[18px] text-[#333333] font-[400] pt-6">
+            <p className="text-[12px] md:text-[18px] text-[#333333] font-[400] pt-6">
               <Moment format="MMMM DD, YYYY">{review?.date}</Moment>
             </p>
           </div>

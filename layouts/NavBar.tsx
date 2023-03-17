@@ -8,7 +8,7 @@ import logo from '../assets/svg/logo.svg';
 import { Button } from 'react-bootstrap';
 import Router from 'next/router';
 
-const useMediaQuery = (width: number) => {
+export const useMediaQuery = (width: number) => {
   const [targetReached, setTargetReached] = useState(false);
 
   const updateTarget = useCallback((e: { matches: any }) => {

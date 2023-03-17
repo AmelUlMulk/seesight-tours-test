@@ -116,6 +116,7 @@ const DateSelect = ({
           <CalendarStyle
             value={selectedDate || new Date()}
             onClickDay={value => handleCalendarChange(value)}
+            maxDate={new Date()}
           />
         </div>
       )}

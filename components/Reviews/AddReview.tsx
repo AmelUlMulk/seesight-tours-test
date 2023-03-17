@@ -1,4 +1,4 @@
-import React, { use, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { SetStateAction, useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
@@ -12,6 +12,8 @@ import styled from 'styled-components';
 import DateSelect from './DateSelect';
 import ReviewForm from './ReviewForm';
 import ErrorDisp from './ErrorDisp';
+import CrossButtonIcon from '../../assets/svg/radix-icons_cross-2.svg';
+import { useMediaQuery } from '../../layouts/NavBar';
 interface IProps {
   dispModal: boolean;
   setDispModal: React.Dispatch<SetStateAction<boolean>>;
@@ -23,17 +25,6 @@ interface IProps {
   errorObject: Record<string, unknown>;
   setErrorObject: React.Dispatch<SetStateAction<Record<string, unknown>>>;
 }
-const ReviewModal = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 10%;
-  transform: translate(-50%, -40%);
-  @media (max-width: 1280px) {
-    top: 7%;
-  }
-  @media (max-width: 640px) {
-  }
-`;
 
 const AddReview = ({
   dispModal,
@@ -66,7 +57,7 @@ const AddReview = ({
   const [cityDropdownToggle, setCityDropdownToggle] = useState<boolean>(false);
   const [tourDropdownToggle, setTourDropdownToggle] = useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<any>();
-
+  const mediaQuery = useMediaQuery(640);
   const [fetchCityTours, { data: { cities } = [] }] = useLazyQuery(
     CITIES_PRODUCT_FILTER
   );
@@ -97,12 +88,23 @@ const AddReview = ({
     >
       <div
         id="review-modal"
-        className="z-50 bg-[#FFFFFF] w-[78%] sm:w-[70%] mt-24 sm:mt-32 lg:mt-36"
+        className="z-50 bg-[#FFFFFF] w-[78%] sm:w-[70%] mt-24 sm:mt-32 lg:mt-36 absolute"
         onClick={e => {
           e.stopPropagation();
           setDispCalendar(false);
         }}
       >
+        <div
+          className="absolute top-1 xsm:top-2 right-2 sm:right-3 lg:right-5 2xl:right-10 hover:cursor-pointer"
+          onClick={() => setDispModal(false)}
+        >
+          <Image
+            src="/radix-icons_cross-2.svg"
+            width={mediaQuery ? 20 : 30}
+            height={mediaQuery ? 20 : 30}
+            alt="cross-button"
+          />
+        </div>
         <div className="px-6 lg:px-10 py-5 max-h-[75vh] xsm:max-h-[80vh] sm:max-h-[86vh] lg:max-h-[84vh] overflow-y-scroll">
           <h2 className="text-[14px] md:text-[16px] lg:text[18px] xl:text-[22px] font-[500]">
             Share your experience with us
