@@ -37,7 +37,7 @@ const Card = ({ slug, image, cardSnippet, city }: CARD_INTERFACE) => {
   const [showSnippet, setShowSnippet] = useState(false);
   return (
     <CityCards
-      onClick={() => Router.push(slug)}
+      onClick={() => Router.push(`/${slug}`)}
       className="rounded relative !overflow-hidden overflow-x-auto shadow-lg cursor-pointer "
       onMouseEnter={() => setShowSnippet(true)}
       onMouseLeave={() => setShowSnippet(false)}

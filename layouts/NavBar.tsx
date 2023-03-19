@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import Hamburger from 'hamburger-react';
 import SideNav from './SideNav';
 import logo from '../assets/svg/logo.svg';
-import { Button } from 'react-bootstrap';
 import Router from 'next/router';
 const useMediaQuery = (width: number) => {
   const [targetReached, setTargetReached] = useState(false);
@@ -120,7 +119,7 @@ const NavBar = () => {
                 </Link>
               </div>
               <div className="flex w-1/5 justify-center ">
-                <Button
+                <button
                   onClick={() => Router.push('/my-tours')}
                   className={` bg-[#F15C5A] p-3 text-white rounded-lg text-center  ${
                     router.pathname.split('/')[1] == 'my-tours'
@@ -130,7 +129,7 @@ const NavBar = () => {
               `}
                 >
                   My Tours
-                </Button>
+                </button>
               </div>
             </>
           )}
