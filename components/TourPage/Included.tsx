@@ -4,12 +4,14 @@ import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import { ATTRACTION_INTERFACE } from '../../api/commonInterfaces';
 import Image from 'next/image';
 import Card from '../Card';
+import ProductTimeline from './ProductTimeline';
 type INCLUDED = {
   data: string[];
   attractions: [ATTRACTION_INTERFACE];
+  longDescription: string;
 };
 
-const Included = ({ data, attractions }: INCLUDED) => {
+const Included = ({ data, attractions, longDescription }: INCLUDED) => {
   const ref = useRef(null);
 
   return (
@@ -23,8 +25,10 @@ const Included = ({ data, attractions }: INCLUDED) => {
         </h1>
         <ul className=" list-disc w-3/4 ">
           {data.map(item => (
+            //@ts-ignore
             <li key={item} className="py-4 text-2xl   ">
-              {item}
+              {/*@ts-ignore*/}
+              {item.value ? item.value : item}
             </li>
           ))}
         </ul>
@@ -57,16 +61,17 @@ const Included = ({ data, attractions }: INCLUDED) => {
           }}
         >
           {attractions.map(attraction => {
-            return (
-              <SwiperSlide key={attraction.name} className="w-full">
-                <Card
-                  slug={attraction.slug}
-                  image={attraction.cardMediaAlt[0].url}
-                  cardSnippet={attraction.cardSnippet}
-                  city={attraction.name}
-                />
-              </SwiperSlide>
-            );
+            if (attraction.cardMediaAlt[0]?.url)
+              return (
+                <SwiperSlide key={attraction.name} className="w-full">
+                  <Card
+                    slug={attraction.slug}
+                    image={attraction.cardMediaAlt[0].url}
+                    cardSnippet={attraction.cardSnippet}
+                    city={attraction.name}
+                  />
+                </SwiperSlide>
+              );
           })}
         </Swiper>
       </div>
@@ -77,20 +82,8 @@ const Included = ({ data, attractions }: INCLUDED) => {
         <h1 id="to-do" className="text-5xl font-extrabold my-6 ">
           What you’ll do
         </h1>
-        <ul className="w-3/4 ">
-          {data.map(item => (
-            <div key={item} className="flex gap-4 items-center w-full">
-              <Image
-                src="/hand.png"
-                width={30}
-                height={20}
-                alt="hand-icon"
-                className=" max-h-6 "
-              />
-              <li className="py-4 text-2xl w-[95%]   ">{item}</li>
-            </div>
-          ))}
-        </ul>
+
+        <ProductTimeline description={longDescription} />
       </div>
     </>
   );
