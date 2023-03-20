@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import LandingPage from '../components/Landingpage/landingpage';
-import PageHero from '../components/Contact/PageHero';
+import PageHero from '../layouts/PageHero';
 import { gql } from '@apollo/client';
 import client from '../apollo-client';
 import FEATUREDEXPERIENCES from '../api/featuredexperiences';
@@ -9,6 +9,7 @@ import { FEATURED_EXPERIENCES_INTERFACE } from '../api/featuredexperiences';
 import { HOMEPAGE, HOMEPAGEINTERFACE } from '../api/homePage';
 import { GUIDESINTERFACE } from '../api/commonInterfaces';
 import { GUIDES } from '../api/guides';
+import SearchCity from '../components/Searchbar/searchCity';
 
 interface IProps {
   featuredExp: any;
@@ -31,12 +32,18 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <PageHero
-          title={''}
-          snippet={''}
-          media="https://res.cloudinary.com/see-sight-tours/video/upload/v1658237954/landing-page-hero_mu19mc.mp4"
-          video={true}
-        />
+        <section id="hero" className="relative">
+          <PageHero
+            title={'The Best Way to See The World'}
+            snippet={
+              'Best Small Group Tours. Operating Across Canada and the United States'
+            }
+            media="https://res.cloudinary.com/see-sight-tours/video/upload/v1658237954/landing-page-hero_mu19mc.mp4"
+            video={true}
+          />
+          <SearchCity />
+        </section>
+
         <LandingPage
           featuredExp={featuredExp}
           citydropdown={citydropdown}

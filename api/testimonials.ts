@@ -8,6 +8,7 @@ const TESTIMONIALS = gql`
       review
       traveller
       rating
+      source
     }
   }
 `;
@@ -19,6 +20,7 @@ interface TESTIMONIAL_INTERFACE {
       review: string;
       traveller: string;
       rating: number;
+      source: string;
     }
   ];
 }

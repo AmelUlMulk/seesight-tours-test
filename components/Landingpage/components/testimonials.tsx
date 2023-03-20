@@ -38,17 +38,14 @@ const Testimonials = () => {
   return (
     <TestimonialStyle
       id="testimonials"
-      className="py-12 xxsm:px-3 xsm:px-5 sm:px-10 bg-no-repeat bg-cover my-10"
+      className="px-10 sm:px-20 md:px-20 lg:px-32 2xl:px-40 bg-no-repeat bg-cover my-10 py-5"
     >
-      <div className="px-10">
-        <h1 className="xxsm:text-[30px] xsm:text-[35px] md:text-[40px] lg:text-[45px] xl:text-[56px] font-[700] shadow-textShadow">
+      <div>
+        <h1 className="text-[#333333] text-[28px] sm:text-[36px] lg:text-[42px] xl:text-[50px] 2xl:text-[56px] font-[700] pb-3">
           TESTIMONIALS
         </h1>
       </div>
-      <div
-        id="slider-container"
-        className="lg:max-h-[350px] h-[100%] xl:px-16 2xl:px-28 4xl:px-40"
-      >
+      <div id="slider-container" className="lg:max-h-[350px] h-[100%]">
         <div
           id="slider-grid"
           className="flex justify-between items-center gap-2 sm:gap-5"
@@ -88,7 +85,7 @@ const Testimonials = () => {
           >
             {filterReviews.slice(0, 10).map(dt => (
               <SwiperSlide key={dt.id}>
-                <div className="pt-12 md:pt-0 ">
+                <div>
                   <div className="flex flex-col relative bg-[#000000] opacity-80  text-white xxsm:min-h-[140px] xsm:min-h-[150px]  sm:min-h-[140px] md:min-h-[160px] xl:min-h-[180px] 2xl:min-h-[165px] 3xl:max-h-[170px] 4xl:max-h-[170px] h-[100%] px-3 xsm:px-5 md:px-5 lg:px-6 xl:px-10 pt-3 xsm:pt-5 md:pt-5 lg:pt-6 pb-2 rounded-lg">
                     <Image
                       src="/quote.png"
@@ -99,6 +96,9 @@ const Testimonials = () => {
                     />
                     <p className="pt-2 text-[12px] sm:text-[15px] xl:text-[16px] font-[400]">
                       {dt.review}
+                    </p>
+                    <p className="pt-2 text-right text-[12px] sm:text-[15px] xl:text-[16px] font-[400] italic">
+                      Source: {dt.source}
                     </p>
                     <div
                       className="bg-[#000000] opacity-[80%] w-[30px] h-[30px] absolute top-[100%] left-8"

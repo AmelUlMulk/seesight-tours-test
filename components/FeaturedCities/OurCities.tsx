@@ -23,12 +23,14 @@ const OurCities = ({
 }: IProps) => {
   const mediaQuery = useMediaQuery(768);
   return (
-    <section className="Our_Cities-wrapper mt-10 bg-[#F5F5F5] xsm:px-12 md:px-28 lg:px-32 2xl:px-40">
-      <div id="header" className=" pt-10 ">
-        <TextShadow className="text-[#333333] text-[60px] font-[600]">
+    <section className="Our_Cities-wrapper mt-10 bg-[#F5F5F5] mx-10 sm:mx-20 md:mx-20 lg:mx-32 2xl:mx-40 pb-12 border-b border-[#C5C5C5]">
+      <div id="header">
+        <h1 className="text-[#333333] text-[28px] sm:text-[36px] lg:text-[42px] xl:text-[50px] 2xl:text-[56px] font-[700]">
           {title}
-        </TextShadow>
-        <p className="text-[#4F4F4F] text-[32px] font-[600]">{subTitle}</p>
+        </h1>
+        <p className="text-[#4F4F4F] text-[18px] sm:text-[22px] lg:text-[24px] xl:text-[30px] 2xl:text-[32px] font-[600]">
+          {subTitle}
+        </p>
       </div>
       {mediaQuery ? (
         <CitiesSwiper data={FeaturedCities} />

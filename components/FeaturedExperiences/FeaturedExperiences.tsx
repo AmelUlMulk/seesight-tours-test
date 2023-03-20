@@ -169,7 +169,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
     }
     if (!showAll) {
       return (
-        <div className="xxsm:px-12 sm:px-28 lg:px-32 2xl:px-40 flex justify-end mt-10">
+        <div className="mx-10 sm:mx-20 md:mx-20 lg:mx-32 2xl:mx-40 flex justify-end pt-3 pb-10 border-b border-[#C5C5C5]">
           {selectNum > 6 && (
             <div
               onClick={() => setShowAll(true)}
@@ -201,7 +201,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
     <section id="feature_experiences">
       <header
         id="feature_experience_header"
-        className="lg:flex items-center  mt-10 xxsm:px-2 xsm:px-3 sm:px-16 md:px-28 lg:px-24 xl:px-32 2xl:px-40"
+        className="lg:flex items-center mt-3 lg:mt-10 mx-5 sm:mx-8 md:mx-10 lg:mx-32 2xl:mx-40"
       >
         <FeaturedNavSection
           currNav={activeNav}
@@ -210,7 +210,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
         />
         <div
           id="featured_dropdown"
-          className=" xxsm:w-[60%] xsm:w-[70%] sm:w-[55%] lg:w-[35%]  ml-auto  lg:flex-none  "
+          className=" xxsm:w-[60%] xsm:w-[70%] sm:w-[55%] lg:w-[35%]  ml-auto mr-[4%] sm:mr-[8%] md:mr-[5%] lg:mr-0  lg:flex-none  "
         >
           <div
             id="city_dropDown"
@@ -270,13 +270,14 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
 
       <div
         id="feature_experiences_cards"
-        className=" mt-5 xxsm:px-10 sm:px-20 md:px-20 lg:px-32 2xl:px-40 bg-[#F5F5F5]"
+        className=" mt-3 lg:mt-5 mx-10 sm:mx-20 md:mx-20 lg:mx-32 2xl:mx-40 bg-[#F5F5F5]"
       >
-        <div className="grid xxsm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-[30px]">
+        <div className="grid xxsm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3 lg:gap-5">
           {displayProduct()}
         </div>
       </div>
       {showProduct()}
+      {/* <div className="w-[83%] mx-auto border border-t-[#C5C5C5]" /> */}
     </section>
   );
 };

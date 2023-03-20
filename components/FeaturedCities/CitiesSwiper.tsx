@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -19,33 +20,42 @@ const SnippetStyle = styled.p`
 `;
 const CardSnippet = (city: any) => {
   const [showSnp, setShowSnp] = useState(false);
+  const router = useRouter();
+  console.log('showSnp:', showSnp);
   return (
     <>
-      {showSnp ? (
+      <div
+        className={`absolute left-0 ${
+          showSnp && 'right-0'
+        } bottom-0 bg-[#000000] opacity-70 rounded-[5px]
+         py-1 xl:py-2 px-2 lg:px-4`}
+        onClick={() => {
+          if (!showSnp) {
+            setShowSnp(!showSnp);
+          } else {
+            router.push(`${city?.city.slug}`);
+          }
+        }}
+        onMouseLeave={() => setShowSnp(false)}
+      >
         <div
-          onClick={() => {
-            if (showSnp) {
-              setShowSnp(false);
-            }
-          }}
-          onMouseLeave={() => setShowSnp(!showSnp)}
-          className="absolute bottom-[8px] left-[12px] right-10 bg-[#000000] opacity-70 text-[#FFFFFF] md:text-[12px] lg:text-[18px] font-[500] md:px-2 lg:px-12 md:py-2 lg:py-5 rounded-lg"
-        >
-          {city?.city?.cardSnippet}
-        </div>
-      ) : (
-        <div
-          onClick={() => {
-            if (!showSnp) {
-              setShowSnp(true);
-            }
-          }}
-          onMouseEnter={() => setShowSnp(!showSnp)}
-          className="absolute w-[78%] bottom-[8px] left-[12px] bg-[#000000] opacity-70 text-[#FFFFFF] md:text-[13px] lg:text-[18px] font-[500] px-4 py-2 rounded-lg"
+          className={` bottom-0 left-0 text-[#ffffff] text-[14px] sm:text-[16px] md:text-[16px] lg:text-[18px] xl:text-[24px] 2xl:text-[28px] font-[500] ${
+            showSnp && 'width-[100%]'
+          }`}
         >
           {city?.city?.name}
         </div>
-      )}
+
+        {showSnp && (
+          <div
+            className={` w-[100%] text-[#FFFFFF] text-[12px] md:text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[22px] font-[400] ${
+              showSnp && 'pb-2'
+            } `}
+          >
+            {city?.city?.cardSnippet}
+          </div>
+        )}
+      </div>
     </>
   );
 };
@@ -63,11 +73,7 @@ const CitiesSwiper = ({ data }: IProps) => {
       }}
       breakpoints={{
         226: {
-          slidesPerView: 2,
-          spaceBetween: 10
-        },
-        576: {
-          slidesPerView: 2,
+          slidesPerView: 1.3,
           spaceBetween: 10
         }
       }}
@@ -78,11 +84,11 @@ const CitiesSwiper = ({ data }: IProps) => {
             <SwiperSlide
               id="cities_swiper-slide"
               key={city?.city.id}
-              className="w-[235px] h-[295px]"
+              className=" h-[295px]"
             >
               <div
                 id="image-wrapper"
-                className="w-[] h-[295px] relative rounded-lg !overflow-hidden"
+                className="h-[260px] xsm:h-[295px] relative rounded-lg !overflow-hidden"
               >
                 <Image
                   src={city?.city?.cardMedia[0]?.url}
@@ -94,13 +100,6 @@ const CitiesSwiper = ({ data }: IProps) => {
                 />
                 {CardSnippet(city)}
               </div>
-
-              {/* <div className="flex-none ">
-                  <div className="flex flex-col">
-                    <h3 className="text-2xl font-bold">{city?.city?.name}</h3>
-                    <p className="text-xl">{city?.city?.cardSnippet}</p>
-                  </div>
-                </div> */}
             </SwiperSlide>
           );
         })}

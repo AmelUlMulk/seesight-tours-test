@@ -13,6 +13,12 @@ interface IProps {
   product: Record<string, any>;
   productType?: string;
 }
+const StyledSwiper = styled(Swiper)`
+  // Set the desired styles for the Swiper slider here
+  .swiper-pagination-bullet-active {
+    background-color: #fd4c5c;
+  }
+`;
 const PriceContainerStyle = styled.div`
   position: absolute;
   top: 0;
@@ -57,7 +63,7 @@ const TourCard = ({ product, productType }: IProps) => {
   return (
     <div
       id="tour-section"
-      className="mt-10 relative flex flex-col bg-[#FFFF] rounded-lg"
+      className="sm:mt-5 lg:mt-10 relative flex flex-col bg-[#FFFF] rounded-lg"
     >
       <div className="xsm:h-[250px] sm:h-[260px] lg:h-[260px] xl:h-[300px] w-[95%] py-2 mx-auto relative">
         <Link href={`/tours/${product?.slug}`} className="rounded-md h-[100%]">
@@ -75,7 +81,7 @@ const TourCard = ({ product, productType }: IProps) => {
                   : product.cardMessage.toUpperCase()}
               </p>
             )}
-            <Swiper
+            <StyledSwiper
               slidesPerView={1}
               spaceBetween={1}
               navigation
@@ -83,7 +89,10 @@ const TourCard = ({ product, productType }: IProps) => {
               //   delay: 4000,
               //   disableOnInteraction: false
               // }}
-              pagination={{ dynamicBullets: false, clickable: true }}
+              pagination={{
+                dynamicBullets: false,
+                clickable: true
+              }}
               className="w-[100%] h-[100%]"
             >
               {image?.map((img: any, index: number) => (
@@ -108,7 +117,7 @@ const TourCard = ({ product, productType }: IProps) => {
                   )}
                 </SwiperSlide>
               ))}
-            </Swiper>
+            </StyledSwiper>
           </div>
         </Link>
 
@@ -166,12 +175,12 @@ const TourCard = ({ product, productType }: IProps) => {
       <div id="checkout_buttons" className="">
         <div className="flex gap-2 justify-between w-[92%] sm:w-[92%] mx-auto py-2">
           <div>
-            <button className="text-start w-[100%] py-2 px-3 xsm:px-6 sm:px-16 md:px-8 lg:px-5 2xl:px-8 text-[#131313] text-[12px] xsm:text-[14px] sm:text-[14px] lg:text-[13px] xl:text-[18px] font-[500] bg-[#FFFFFF] border-[1px] border-[#F15C5A] rounded-[8px] md:rounded-[10px] hover:border-none hover:text-white hover:bg-slate-400">
+            <button className="text-start w-[100%] py-2 px-3 xsm:px-6 sm:px-16 md:px-6 lg:px-5 2xl:px-8 text-[#131313] text-[12px] xsm:text-[14px] sm:text-[14px] lg:text-[13px] xl:text-[18px] font-[500] bg-[#FFFFFF] border-[1px] border-[#F15C5A] rounded-[8px] md:rounded-[10px] hover:border-none hover:text-white hover:bg-slate-400">
               <Link href={`/tours/${product.slug}`}>See Details</Link>
             </button>
           </div>
           <div>
-            <button className=" w-[100%] text-[#FFFFFF] font-[500] py-2 px-3 xsm:px-6 sm:px-16 md:px-8 lg:px-5 xl:px-5 2xl:px-8 text-[12px] xsm:text-[14px] sm:text-[14px] lg:text-[13px] xl:text-[18px] bg-[#F15C5A] rounded-[8px] md:rounded-[10px]">
+            <button className=" w-[100%] text-[#FFFFFF] font-[500] py-2 px-3 xsm:px-6 sm:px-16 md:px-6 lg:px-5 xl:px-5 2xl:px-8 text-[12px] xsm:text-[14px] sm:text-[14px] lg:text-[13px] xl:text-[18px] bg-[#F15C5A] rounded-[8px] md:rounded-[10px]">
               Book Now
             </button>
           </div>

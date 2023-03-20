@@ -28,7 +28,7 @@ const LandingPage = ({
         citydropdown={citydropdown}
       />
       <OurCities
-        title="Our Cities"
+        title="OUR CITIES"
         subTitle="Let us show you the places we call home"
         FeaturedCities={data}
         citiesTotalCount={citiesTotal ? citiesTotal.aggregate.totalCount : 0}
