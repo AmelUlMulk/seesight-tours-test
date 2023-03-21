@@ -10,6 +10,11 @@ import NextslideIcon from '../../../assets/svg/nextslideicon.svg';
 import PrevslideIcon from '../../../assets/svg/prevslideicon.svg';
 import { useQuery } from '@apollo/client';
 import { TESTIMONIALS, TESTIMONIAL_INTERFACE } from '../../../api/testimonials';
+import logo from '../../../assets/svg/logo.svg';
+import GoogleIcon from '../../../assets/svg/google-icon.svg';
+import TripAdvisorLogo from '../../../assets/svg/tripadvisorlogo.svg';
+import ExpediaLogo from '../../../assets/svg/expedialogo.svg';
+import VIATORICON from '../../../assets/svg/viatorlogo.svg';
 const TestimonialStyle = styled.section`
   background-image: linear-gradient(
       to top,
@@ -22,6 +27,30 @@ const TestimonialStyle = styled.section`
 export const TextShadow = styled.h1`
   text-shadow: 1px -42px 1px rgba(51, 51, 51, 0.1);
 `;
+const sourceIcon = (source: string) => {
+  switch (source) {
+    case 'WEBSITE':
+      return 'Website';
+      break;
+    case 'GOOGLE':
+      return 'Google';
+      break;
+    case 'EXPEDIA':
+      return 'Expedia';
+      break;
+    case 'TRIPADVISOR':
+      return 'Tripadvisor';
+      break;
+    case 'VIATOR':
+      return 'Viator';
+      break;
+    case 'GETYOURGUIDE':
+      return 'GetYourGuide';
+      break;
+    default:
+      return source;
+  }
+};
 const Testimonials = () => {
   const {
     data: { reviews = [] } = {},
@@ -94,11 +123,11 @@ const Testimonials = () => {
                       alt=""
                       className="w-[20px] "
                     />
-                    <p className="pt-2 text-[12px] sm:text-[15px] xl:text-[16px] font-[400]">
+                    <p className="text-[12px] sm:text-[15px] xl:text-[16px] font-[400]">
                       {dt.review}
                     </p>
-                    <p className="pt-2 text-right text-[12px] sm:text-[15px] xl:text-[16px] font-[400] italic">
-                      Source: {dt.source}
+                    <p className="absolute top-1 right-2 text-right text-[10px] sm:text-[12px] xl:text-[14px] font-[400] italic">
+                      {sourceIcon(dt.source)}
                     </p>
                     <div
                       className="bg-[#000000] opacity-[80%] w-[30px] h-[30px] absolute top-[100%] left-8"

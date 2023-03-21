@@ -10,6 +10,7 @@ import { HOMEPAGE, HOMEPAGEINTERFACE } from '../api/homePage';
 import { GUIDESINTERFACE } from '../api/commonInterfaces';
 import { GUIDES } from '../api/guides';
 import SearchCity from '../components/Searchbar/searchCity';
+import Newsletter from '../layouts/Newsletter/Newsletter';
 
 interface IProps {
   featuredExp: any;
@@ -31,7 +32,7 @@ export default function Home({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main className="pb-20 bg-[#F5F5F5]">
         <section id="hero" className="relative">
           <PageHero
             title={'The Best Way to See The World'}
@@ -50,6 +51,7 @@ export default function Home({
           HomePage={HomePage}
           guidesData={guidesData}
         />
+        <Newsletter />
       </main>
     </>
   );

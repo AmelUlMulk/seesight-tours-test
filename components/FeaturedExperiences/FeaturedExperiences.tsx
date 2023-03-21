@@ -201,7 +201,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
     <section id="feature_experiences">
       <header
         id="feature_experience_header"
-        className="lg:flex items-center mt-3 lg:mt-10 mx-5 sm:mx-8 md:mx-10 lg:mx-32 2xl:mx-40"
+        className="lg:flex items-center mt-3 lg:mt-10 mx-3 xsm:mx-5 sm:mx-8 md:mx-10 lg:mx-32 2xl:mx-40"
       >
         <FeaturedNavSection
           currNav={activeNav}
@@ -210,7 +210,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
         />
         <div
           id="featured_dropdown"
-          className=" xxsm:w-[60%] xsm:w-[70%] sm:w-[55%] lg:w-[35%]  ml-auto mr-[4%] sm:mr-[8%] md:mr-[5%] lg:mr-0  lg:flex-none  "
+          className=" w-[60%] xsm:w-[70%] sm:w-[55%] lg:w-[35%]  ml-auto mr-[8%] xsm:mr-[5%] sm:mr-[8%] md:mr-[5%] lg:mr-0  lg:flex-none  "
         >
           <div
             id="city_dropDown"
@@ -222,7 +222,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
               onMouseLeave={() => {
                 if (cityToggle) return setCityToggle(!cityToggle);
               }}
-              className="flex-none w-[46%] xsm:w-[40%] sm:w-[44%] lg:w-[46%] 2xl:w-[35%] 3xl:w-[30%] relative "
+              className="flex-none w-[48%] xsm:w-[40%] sm:w-[44%] lg:w-[46%] 2xl:w-[35%] 3xl:w-[30%] relative "
             >
               <button
                 onClick={() => setCityToggle(!cityToggle)}
@@ -238,10 +238,13 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
                 </span>
               </button>
               {cityToggle && (
-                <div className="dropdown_list border-1 border-slate-500 absolute right-0 z-50 w-[100%] h-[400px] overflow-y-scroll">
+                <div
+                  id="dropdown_list"
+                  className={` border-1 border-slate-500 absolute right-0 z-50 w-[100%] h-[400px] overflow-y-scroll `}
+                >
                   <div
                     className="px-3 py-1 border-[1px] border-slate-3
-                00 hover:bg-slate-300 cursor-pointer"
+                00 hover:bg-slate-300 cursor-pointer bg-white"
                     onClick={() => setCity('All Cities')}
                   >
                     All Cities
@@ -250,7 +253,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
                     return (
                       <div
                         className="border-[1px] border-slate-3
-                00 px-3 py-1 bg-white cursor-pointer hover:bg-slate-300 z-[5000]"
+                00 px-3 py-1 bg-white cursor-pointer hover:bg-slate-300 z-[5000] "
                         key={opt.label}
                         onClick={() => {
                           setCity(opt.label[0]);
@@ -270,7 +273,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
 
       <div
         id="feature_experiences_cards"
-        className=" mt-3 lg:mt-5 mx-10 sm:mx-20 md:mx-20 lg:mx-32 2xl:mx-40 bg-[#F5F5F5]"
+        className=" mt-2 lg:mt-3 mx-10 sm:mx-20 md:mx-20 lg:mx-32 2xl:mx-40 bg-[#F5F5F5]"
       >
         <div className="grid xxsm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3 lg:gap-5">
           {displayProduct()}

@@ -172,19 +172,20 @@ const TourCard = ({ product, productType }: IProps) => {
           </SnippetStyle>
         </div>
       </div>
-      <div id="checkout_buttons" className="">
-        <div className="flex gap-2 justify-between w-[92%] sm:w-[92%] mx-auto py-2">
-          <div>
-            <button className="text-start w-[100%] py-2 px-3 xsm:px-6 sm:px-16 md:px-6 lg:px-5 2xl:px-8 text-[#131313] text-[12px] xsm:text-[14px] sm:text-[14px] lg:text-[13px] xl:text-[18px] font-[500] bg-[#FFFFFF] border-[1px] border-[#F15C5A] rounded-[8px] md:rounded-[10px] hover:border-none hover:text-white hover:bg-slate-400">
-              <Link href={`/tours/${product.slug}`}>See Details</Link>
-            </button>
-          </div>
-          <div>
-            <button className=" w-[100%] text-[#FFFFFF] font-[500] py-2 px-3 xsm:px-6 sm:px-16 md:px-6 lg:px-5 xl:px-5 2xl:px-8 text-[12px] xsm:text-[14px] sm:text-[14px] lg:text-[13px] xl:text-[18px] bg-[#F15C5A] rounded-[8px] md:rounded-[10px]">
-              Book Now
-            </button>
-          </div>
-        </div>
+      <div
+        id="checkout_buttons"
+        className="flex gap-1 justify-between  mx-auto py-2 w-full "
+      >
+        <Link
+          href={`/tours/${product.slug}`}
+          className="flex-none w-[35%]  text-start py-2  md:px-6 lg:px-5 2xl:px-8 text-[#131313] text-[12px] xsm:text-[14px] sm:text-[14px] lg:text-[13px] xl:text-[18px] font-[500] bg-[#FFFFFF] border-[1px] border-[#F15C5A] rounded-[8px] md:rounded-[10px] hover:border-none hover:text-white hover:bg-slate-400"
+        >
+          <button>See Details</button>
+        </Link>
+
+        <button className="flex-none w-[35%] text-[#FFFFFF] font-[500] py-2  sm:px-16 md:px-6 lg:px-5 xl:px-5 2xl:px-8 text-[12px] xsm:text-[14px] sm:text-[14px] lg:text-[13px] xl:text-[18px] bg-[#F15C5A] rounded-[8px] md:rounded-[10px]">
+          Book Now
+        </button>
       </div>
     </div>
   );

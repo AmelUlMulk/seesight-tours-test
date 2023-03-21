@@ -29,7 +29,7 @@ const GuidesDesk = ({ guidesData }: IProps) => {
   return (
     <div
       id="guides_wrapper"
-      className="border-[1px] border-[#C5C5C5] shadow-guidesBox relative "
+      className="border-[1px] border-[#C5C5C5] shadow-guidesBox relative  mt-6"
     >
       <div
         id="top-guides-wrapper"
