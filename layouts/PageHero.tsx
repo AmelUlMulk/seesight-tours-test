@@ -40,6 +40,8 @@ const PageHero = ({ title, snippet, media, video }: IProps): JSX.Element => {
   const StyledVideo = styled.video`
     height: 60vh;
     object-fit: cover;
+    position: absolute;
+    z-index: 0;
     @media (max-width: 2200px) {
       height: 69vh;
     }
