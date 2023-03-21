@@ -24,6 +24,13 @@ module.exports = {
       '3xl': '1800px',
 
       '4xl': '2200px'
+    },
+    extend: {
+      boxShadow: {
+        guidesBox: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+        guideimageBox: '-10px -11px 0px 1px #2191fa',
+        moreguideBox: '0px 9px 9px rgb(0 0 0 / 25%)'
+      }
     }
   },
   plugins: []

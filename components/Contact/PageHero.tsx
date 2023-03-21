@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import SearchCity from '../Searchbar/searchCity';
 
 interface IProps {
   title: string;
@@ -70,8 +71,8 @@ const PageHero = ({ title, snippet, media, video }: IProps): JSX.Element => {
   `;
 
   return (
-    <section className="Hero_Section opacity-80 overflow-hidden">
-      <PageHero className="PageHero bg-no-repeat bg-cover bg-center flex justify-start items-center ">
+    <section className="Hero_Section relative z-0">
+      <PageHero className="PageHero bg-no-repeat bg-cover bg-center flex justify-start items-center -z-10">
         {!video && <StyledImage alt="guidesImage" src={media} layout="fill" />}
         {video && <StyledVideo src={media} muted loop autoPlay playsInline />}
         <div className="PageHero_container flex flex-col pl-10 ">
@@ -87,6 +88,7 @@ const PageHero = ({ title, snippet, media, video }: IProps): JSX.Element => {
           </div>
         </div>
       </PageHero>
+      <SearchCity />
     </section>
   );
 };

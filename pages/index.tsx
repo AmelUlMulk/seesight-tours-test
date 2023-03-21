@@ -1,12 +1,29 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import PageHero from '../components/Contact/PageHero';
+import LandingPage from '../components/Landingpage/landingpage';
+import PageHero from '../layouts/PageHero';
 import { gql } from '@apollo/client';
 import client from '../apollo-client';
+import FEATUREDEXPERIENCES from '../api/featuredexperiences';
+import { FEATURED_EXPERIENCES_INTERFACE } from '../api/featuredexperiences';
+import { HOMEPAGE, HOMEPAGEINTERFACE } from '../api/homePage';
+import { GUIDESINTERFACE } from '../api/commonInterfaces';
+import { GUIDES } from '../api/guides';
+import SearchCity from '../components/Searchbar/searchCity';
+import Newsletter from '../layouts/Newsletter/Newsletter';
+
 interface IProps {
-  blogs: any;
+  featuredExp: any;
+  citydropdown: any;
+  HomePage: any;
+  guidesData: any;
 }
-export default function Home({ blogs }: IProps) {
+export default function Home({
+  featuredExp,
+  citydropdown,
+  HomePage,
+  guidesData
+}: IProps) {
   return (
     <>
       <Head>
@@ -15,34 +32,55 @@ export default function Home({ blogs }: IProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <PageHero
-          title={''}
-          snippet={''}
-          media="https://res.cloudinary.com/see-sight-tours/video/upload/v1658237954/landing-page-hero_mu19mc.mp4"
-          video={true}
+      <main className="pb-20 bg-[#F5F5F5]">
+        <section id="hero" className="relative">
+          <PageHero
+            title={'The Best Way to See The World'}
+            snippet={
+              'Best Small Group Tours. Operating Across Canada and the United States'
+            }
+            media="https://res.cloudinary.com/see-sight-tours/video/upload/v1658237954/landing-page-hero_mu19mc.mp4"
+            video={true}
+          />
+          <SearchCity />
+        </section>
+
+        <LandingPage
+          featuredExp={featuredExp}
+          citydropdown={citydropdown}
+          HomePage={HomePage}
+          guidesData={guidesData}
         />
+        <Newsletter />
       </main>
     </>
   );
 }
 
 export async function getStaticProps() {
-  const { data } = await client.query({
-    query: gql`
-      query BLOGS_PAGE {
-        blogsPage {
-          id
-          header
-          subheader
-          page_title
-        }
-      }
-    `
+  const { data } = await client.query<FEATURED_EXPERIENCES_INTERFACE>({
+    query: FEATUREDEXPERIENCES,
+    variables: {
+      dayTours: true,
+      multiday: true,
+      airportTransfers: false
+    }
+  });
+  const { data: HomePage } = await client.query<HOMEPAGEINTERFACE>({
+    query: HOMEPAGE,
+    variables: {
+      guides: false
+    }
+  });
+  const { data: guidesData } = await client.query<GUIDESINTERFACE>({
+    query: GUIDES
   });
   return {
     props: {
-      blogsPage: data.blogsPage
+      featuredExp: data.homePage,
+      citydropdown: data.citiesDropdown,
+      HomePage: HomePage,
+      guidesData
     }
   };
 }
