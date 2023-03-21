@@ -97,6 +97,7 @@ const Reviews = () => {
           currentPage={currentPage}
           setCurrentPage={setCurrrentPage}
           totalReviews={totalReviews ? totalReviews : {}}
+          fetchReviewsLoading={fetchReviewsLoading}
         />
         <FooterAbout reviewPage={reviewsPage} />
         <Adventure />

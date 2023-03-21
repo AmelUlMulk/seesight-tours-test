@@ -7,11 +7,13 @@ interface IProps {
   totalReviews: Record<string, any>;
   currentPage: number;
   setCurrentPage: React.Dispatch<SetStateAction<number>>;
+  fetchReviewsLoading: any;
 }
 const DisplayReviews = ({
   totalReviews,
   currentPage,
-  setCurrentPage
+  setCurrentPage,
+  fetchReviewsLoading
 }: IProps) => {
   const { reviews } = totalReviews;
   const { reviewsConnection } = totalReviews;
@@ -25,6 +27,7 @@ const DisplayReviews = ({
 
   return (
     <section id="reviews-display" className="mt-5 px-5 xsm:px-8 sm:px-16">
+      {fetchReviewsLoading && <div>Loading.....</div>}
       {reviews?.length === 0 && (
         <div className="text-[24px] text-[#333333] font-[600] px-5 xsm:px-8 sm:px-16">
           No reviews Found
