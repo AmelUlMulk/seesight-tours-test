@@ -122,6 +122,14 @@ const FRAGMENT_PRODUCT_ORDER = gql`
     price
     cardSnippet: snippet
     cardMessage: card_message
+    carousel: carousel_media {
+      id
+      name
+      alt: alternativeText
+      url
+      fragment: caption
+      type: provider_metadata
+    }
     cardMedia: card_media {
       id
       name
