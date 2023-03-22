@@ -56,6 +56,7 @@ const Card = ({ slug, image, cardSnippet, city }: CARD_INTERFACE) => {
         name={city}
         showSnippet={showSnippet}
         setShowSnippet={setShowSnippet}
+        slug={slug}
       />
     </CityCards>
   );
