@@ -157,9 +157,11 @@ const SearchCity = () => {
   const [cityNameErr, setCityNameErr] = useState<string>('');
   const resultContainer = useRef<HTMLLIElement>(null);
   const router = useRouter();
+
   const searchFilter = Cities.filter(cty =>
     cty.name.toLowerCase().includes(city.toLowerCase())
   );
+
   useEffect(() => {
     if (!resultContainer.current) return;
     resultContainer.current.scrollIntoView({
@@ -170,13 +172,13 @@ const SearchCity = () => {
   const SubmitHandler = (e: any) => {
     e.preventDefault();
     const FilterdCity = Cities.find(cty => cty.name === city);
-    console.log('FilterCity:', FilterdCity);
     if (FilterdCity) {
       return router.push(FilterdCity.slug);
     } else {
       setCityNameErr('Please search valid city');
     }
   };
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value.length);
     setCity(e.target.value);
@@ -192,6 +194,7 @@ const SearchCity = () => {
       setCityNameErr('');
     }
   };
+
   const handleSelection = (selectedIndex: number) => {
     const selectedItem = searchFilter[selectedIndex];
     if (!selectedItem) return resetSearchComplete();
@@ -199,14 +202,17 @@ const SearchCity = () => {
     setFilterToggle(false);
     resetSearchComplete();
   };
+
   const HandleSuggestionClick = (city: string) => {
     setCity(city);
     setSuggestedToggle(false);
   };
+
   const resetSearchComplete = useCallback(() => {
     setFocusIndex(-1);
   }, []);
   //handle keys
+
   const Keyshandler: React.KeyboardEventHandler<HTMLDivElement> = e => {
     const { key } = e;
     let nextCount = 0;
@@ -219,6 +225,7 @@ const SearchCity = () => {
     }
     setFocusIndex(nextCount);
   };
+
   return (
     <section
       id="search-filter"
@@ -227,7 +234,7 @@ const SearchCity = () => {
       <div
         tabIndex={0}
         onKeyDown={Keyshandler}
-        className="xxsm:w-[78%] md:w-[54%] lg:w-[45%] xl:w-[40%] mx-auto relative z-50 "
+        className=" w-4/5 lg:w-2/5   mx-auto relative z-50 "
         onMouseLeave={() => {
           setSuggestedToggle(false);
           setFilterToggle(false);
@@ -248,13 +255,15 @@ const SearchCity = () => {
                   id="search"
                   value={city}
                   onChange={onChange}
-                  placeholder="Search by City"
+                  placeholder=" City"
                   autoComplete="off"
-                  className="py-2 xsm:py-3 md:py-5 bg-[#E1E1E1] w-[100%] focus:outline-none placeholder:text-[10px] xsm:placeholder:text-[14px] sm:placeholder:text-[16px] placeholder:font-[400] placeholder:text-[#7C7C7C]"
+                  className="py-2  md:py-5 bg-[#E1E1E1] w-[100%] focus:outline-none placeholder:text-[10px] xsm:placeholder:text-[14px] sm:placeholder:text-[16px] placeholder:font-[400] placeholder:text-[#7C7C7C]"
                 />
               </div>
               <div
-                className="flex-none xxsm:w-[10%] md:w-[8%] "
+                className={`flex p-4 lg:p-6 justify-center items-center ${
+                  suggestedToggle && 'rotate-180'
+                } `}
                 onClick={() => {
                   setSuggestedToggle(!suggestedToggle);
                   setFilterToggle(false);
@@ -266,7 +275,7 @@ const SearchCity = () => {
             </div>
 
             <div className="flex-none w-[35%] xsm:w-[35%] md:w-[24%]">
-              <SearchButtonStyle className="text-[12px] xsm:text-[16px] sm:text-[18px] w-[100%] text-white font-[400] bg-[#F15C5A] xxsm:py-3 md:py-5 xxsm:px-5 xsm:px-8">
+              <SearchButtonStyle className="text-[12px] md:text-lg   w-[100%] text-white font-[400] bg-[#F15C5A] xxsm:py-3 md:py-5 xxsm:px-5 xsm:px-8">
                 Search
               </SearchButtonStyle>
             </div>
@@ -280,9 +289,9 @@ const SearchCity = () => {
         {suggestedToggle && (
           <div
             id="suggested-menu"
-            className="flex xsm:w-[65%]  w-[65%] sm:w-[65%] md:w-[76%] md:gap-5 lg:gap-6 py-2 bg-[#FFFFFF] rounded-b-[15px] max-h-[250px] xsm:max-h-[300px] absolute top-[100%] overflow-auto z-50"
+            className="flex  w-[97%] md:w-[76%] shadow-2xl  xxsm:px-3 md:px-1  md:gap-5 lg:gap-6 py-2 bg-[#FFFFFF] rounded-b-[15px] max-h-[250px] xsm:max-h-[300px] absolute top-[100%] overflow-auto z-50"
           >
-            <div className="flex-none w-[50%] px-1 xsm:px-3 sm:px-5">
+            <div className=" w-[50%]    px-1 xsm:px-3 sm:px-5">
               <h1 className="text-[#0B0A0A] text[18px] font-[700]">Canada</h1>
               {Cities.filter(cty => cty.type === 'canada').map((cty: any) => (
                 <div id="browsers" key={cty.name}>
@@ -295,7 +304,7 @@ const SearchCity = () => {
                 </div>
               ))}
             </div>
-            <div className=" flex-none w-[50%] px-1 xsm:px-3 sm:px-5">
+            <div className=" flex-none w-[50%]  px-1 xsm:px-3 sm:px-5">
               <h1 className="text-[#0B0A0A] text[18px] font-[700]">USA</h1>
               {Cities.filter(cty => cty.type === 'usa').map((cty: any) => (
                 <div id="browsers" key={cty.name}>
@@ -314,7 +323,7 @@ const SearchCity = () => {
         {!suggestedToggle && filterToggle && (
           <div
             id="filtered-menu"
-            className="flex flex-col w-[65%] xsm:w-[65%] sm:w-[65%] md:w-[76%] bg-[#FFFFFF] rounded-b-[15px] max-h-[300px] overflow-y-auto absolute top-[100%] overflow-x-hidden"
+            className="flex flex-col  shadow-2xl w-[65%] xsm:w-[65%] sm:w-[65%] md:w-[76%] bg-[#FFFFFF] rounded-b-[15px] max-h-[300px] overflow-y-auto absolute top-[100%] overflow-x-hidden"
           >
             {searchFilter.map((cty: any, index: number) => (
               <ul key={cty.name}>

@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { CITIES_PAGE } from '../../api/citiesPage';
 import Cities from '../../pages/cities';
-
 interface Cards {
   text: string;
   name: string;
@@ -10,7 +9,6 @@ interface Cards {
   showSnippet: boolean;
   setShowSnippet: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
 const CardSnippet = ({
   text,
   name,
@@ -61,5 +59,4 @@ const CardSnippet = ({
     </>
   );
 };
-
 export default CardSnippet;
