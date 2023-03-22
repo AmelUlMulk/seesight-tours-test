@@ -260,17 +260,18 @@ const SearchCity = () => {
                   className="py-2  md:py-5 bg-[#E1E1E1] w-[100%] focus:outline-none placeholder:text-[10px] xsm:placeholder:text-[14px] sm:placeholder:text-[16px] placeholder:font-[400] placeholder:text-[#7C7C7C]"
                 />
               </div>
-
-              <DropdownIcon
-                className={`flex-none  ${
+              <div
+                className={`flex p-6 justify-center items-center ${
                   suggestedToggle && 'rotate-180'
-                } mr-4 `}
+                } `}
                 onClick={() => {
                   setSuggestedToggle(!suggestedToggle);
                   setFilterToggle(false);
                   setCityNameErr('');
                 }}
-              />
+              >
+                <DropdownIcon />
+              </div>
             </div>
 
             <div className="flex-none w-[35%] xsm:w-[35%] md:w-[24%]">
@@ -288,9 +289,9 @@ const SearchCity = () => {
         {suggestedToggle && (
           <div
             id="suggested-menu"
-            className="flex xsm:w-[65%]  w-[65%] sm:w-[65%] md:w-[76%] md:gap-5 lg:gap-6 py-2 bg-[#FFFFFF] rounded-b-[15px] max-h-[250px] xsm:max-h-[300px] absolute top-[100%] overflow-auto z-50"
+            className="flex  w-[100%] md:w-[76%]  xxsm:px-3 md:px-1  md:gap-5 lg:gap-6 py-2 bg-[#FFFFFF] rounded-b-[15px] max-h-[250px] xsm:max-h-[300px] absolute top-[100%] overflow-auto z-50"
           >
-            <div className="flex-none w-[50%] px-1 xsm:px-3 sm:px-5">
+            <div className=" w-[50%]    px-1 xsm:px-3 sm:px-5">
               <h1 className="text-[#0B0A0A] text[18px] font-[700]">Canada</h1>
               {Cities.filter(cty => cty.type === 'canada').map((cty: any) => (
                 <div id="browsers" key={cty.name}>
@@ -303,7 +304,7 @@ const SearchCity = () => {
                 </div>
               ))}
             </div>
-            <div className=" flex-none w-[50%] px-1 xsm:px-3 sm:px-5">
+            <div className=" flex-none w-[50%]  px-1 xsm:px-3 sm:px-5">
               <h1 className="text-[#0B0A0A] text[18px] font-[700]">USA</h1>
               {Cities.filter(cty => cty.type === 'usa').map((cty: any) => (
                 <div id="browsers" key={cty.name}>
