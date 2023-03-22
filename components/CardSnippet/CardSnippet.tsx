@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { CITIES_PAGE } from '../../api/citiesPage';
 import Cities from '../../pages/cities';
-
 interface Cards {
   text: string;
   name: string;
@@ -10,7 +9,6 @@ interface Cards {
   showSnippet: boolean;
   setShowSnippet: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
 const CardSnippet = ({
   text,
   name,
@@ -41,28 +39,13 @@ const CardSnippet = ({
         }}
       >
         <div
-          onClick={e => {
-            if (showSnippet) {
-              e.stopPropagation();
-              setShowSnippet && setShowSnippet(false);
-            }
-          }}
-          className="absolute  z-10 w-full py-8 text-lg text-center  bottom-0 left-0   bg-[#000000] opacity-80 text-[#FFFFFF] text-[16px] font-[500]  "
-        >
-          {text}
-        </div>
-        ) : (
-        <div
-          onClick={e => {
-            if (!showSnippet) {
-              e.stopPropagation();
-              setShowSnippet && setShowSnippet(true);
-            }
-          }}
-          className="absolute bottom-0 z-10  bg-[#000000] opacity-80 text-white text-[21px] font-[500] px-4 py-2 rounded-sm "
+          className={` bottom-0 left-0 text-[#ffffff] text-[14px] sm:text-[16px] lg:text-[18px] xl:text-[24px] 2xl:text-[28px] font-[500] ${
+            showSnippet && 'width-[100%]'
+          }`}
         >
           {name}
         </div>
+
         {showSnippet && (
           <div
             className={` w-[100%] text-[#FFFFFF] text-[12px] md:text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[22px] font-[400] ${
@@ -76,5 +59,4 @@ const CardSnippet = ({
     </>
   );
 };
-
 export default CardSnippet;
