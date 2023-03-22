@@ -261,7 +261,7 @@ const SearchCity = () => {
                 />
               </div>
               <div
-                className={`flex p-6 justify-center items-center ${
+                className={`flex p-4 lg:p-6 justify-center items-center ${
                   suggestedToggle && 'rotate-180'
                 } `}
                 onClick={() => {
@@ -289,7 +289,7 @@ const SearchCity = () => {
         {suggestedToggle && (
           <div
             id="suggested-menu"
-            className="flex  w-[100%] md:w-[76%]  xxsm:px-3 md:px-1  md:gap-5 lg:gap-6 py-2 bg-[#FFFFFF] rounded-b-[15px] max-h-[250px] xsm:max-h-[300px] absolute top-[100%] overflow-auto z-50"
+            className="flex  w-[100%] md:w-[76%] shadow-2xl  xxsm:px-3 md:px-1  md:gap-5 lg:gap-6 py-2 bg-[#FFFFFF] rounded-b-[15px] max-h-[250px] xsm:max-h-[300px] absolute top-[100%] overflow-auto z-50"
           >
             <div className=" w-[50%]    px-1 xsm:px-3 sm:px-5">
               <h1 className="text-[#0B0A0A] text[18px] font-[700]">Canada</h1>
@@ -323,7 +323,7 @@ const SearchCity = () => {
         {!suggestedToggle && filterToggle && (
           <div
             id="filtered-menu"
-            className="flex flex-col w-[65%] xsm:w-[65%] sm:w-[65%] md:w-[76%] bg-[#FFFFFF] rounded-b-[15px] max-h-[300px] overflow-y-auto absolute top-[100%] overflow-x-hidden"
+            className="flex flex-col shadow-2xl w-[65%] xsm:w-[65%] sm:w-[65%] md:w-[76%] bg-[#FFFFFF] rounded-b-[15px] max-h-[300px] overflow-y-auto absolute top-[100%] overflow-x-hidden"
           >
             {searchFilter.map((cty: any, index: number) => (
               <ul key={cty.name}>
