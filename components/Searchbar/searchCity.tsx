@@ -219,13 +219,6 @@ const SearchCity = () => {
     }
     setFocusIndex(nextCount);
   };
-  console.log(
-    'suggestedToggle:',
-    suggestedToggle,
-    'filterToggle:',
-    filterToggle
-  );
-  console.log('city:', city);
   return (
     <section
       id="search-filter"
