@@ -65,7 +65,7 @@ const TourCard = ({ product, productType }: IProps) => {
       id="tour-section"
       className="sm:mt-5 lg:mt-10 relative flex flex-col bg-[#FFFF] rounded-lg"
     >
-      <div className="xsm:h-[250px] sm:h-[260px] lg:h-[260px] xl:h-[300px] w-[95%] py-2 mx-auto relative">
+      <div className="h-[240px] xsm:h-[280px] sm:h-[300px] md:h-[260px] lg:h-[260px] xl:h-[300px] w-[95%] py-2 mx-auto relative">
         <Link href={`/tours/${product?.slug}`} className="rounded-md h-[100%]">
           <div className="w-[100%] h-[100%] relative rounded-lg !overflow-hidden">
             <PriceContainerStyle
@@ -150,7 +150,7 @@ const TourCard = ({ product, productType }: IProps) => {
 
       <div
         id="description"
-        className="flex flex-col w-[95%] mx-auto xsm:h-[100px] md:h-[130px] lg:h-[120px] xl:h-[140px]"
+        className="flex flex-col w-[95%] mx-auto xsm:h-[100px] md:h-[100px] lg:h-[130px] xl:h-[140px]"
       >
         <div id="heading">
           <h2 className="text-[14px] lg:text-[15px] xl:text-[18px] font-[700]">
@@ -174,16 +174,16 @@ const TourCard = ({ product, productType }: IProps) => {
       </div>
       <div
         id="checkout_buttons"
-        className="flex gap-1 justify-between  mx-auto py-2 w-full "
+        className="flex justify-between px-3 py-2 w-full "
       >
         <Link
           href={`/tours/${product.slug}`}
-          className="flex-none w-[35%]  text-start py-2  md:px-6 lg:px-5 2xl:px-8 text-[#131313] text-[12px] xsm:text-[14px] sm:text-[14px] lg:text-[13px] xl:text-[18px] font-[500] bg-[#FFFFFF] border-[1px] border-[#F15C5A] rounded-[8px] md:rounded-[10px] hover:border-none hover:text-white hover:bg-slate-400"
+          className="flex-none w-[37%] py-2 text-[#131313] text-center text-[12px] xsm:text-[14px] xl:text-[16px] 2xl:text-[18px] font-[500] bg-[#FFFFFF] border-[1px] border-[#F15C5A] rounded-[8px] md:rounded-[10px] hover:border-none hover:text-white hover:bg-slate-400"
         >
           <button>See Details</button>
         </Link>
 
-        <button className="flex-none w-[35%] text-[#FFFFFF] font-[500] py-2  sm:px-16 md:px-6 lg:px-5 xl:px-5 2xl:px-8 text-[12px] xsm:text-[14px] sm:text-[14px] lg:text-[13px] xl:text-[18px] bg-[#F15C5A] rounded-[8px] md:rounded-[10px]">
+        <button className="flex-none w-[37%] py-2 text-[#FFFFFF] text-center font-[500] text-[12px] xsm:text-[14px] xl:text-[16px] 2xl:text-[18px] bg-[#F15C5A] rounded-[8px] md:rounded-[10px]">
           Book Now
         </button>
       </div>

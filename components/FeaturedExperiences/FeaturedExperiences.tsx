@@ -275,7 +275,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
         id="feature_experiences_cards"
         className=" mt-2 lg:mt-3 mx-10 sm:mx-20 md:mx-20 lg:mx-32 2xl:mx-40 bg-[#F5F5F5]"
       >
-        <div className="grid xxsm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3 lg:gap-5">
+        <div className="grid xxsm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-5">
           {displayProduct()}
         </div>
       </div>
