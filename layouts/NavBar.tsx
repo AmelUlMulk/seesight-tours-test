@@ -46,7 +46,8 @@ const NavBar = () => {
                 alt="sea sight tours logo"
                 src="/logo.svg"
                 width={200}
-                height={200}
+                height={57}
+                className="max-h-[56px]"
               />
             </Link>
           </div>

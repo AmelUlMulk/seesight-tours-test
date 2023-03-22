@@ -20,7 +20,7 @@ const CardSnippet = ({ text, name, showSnippet, setShowSnippet }: Cards) => {
               setShowSnippet && setShowSnippet(false);
             }
           }}
-          className="absolute  z-10 w-full py-8 md:text-lg text-center  bottom-0 left-0   bg-[#000000] opacity-70 text-[#FFFFFF] text-[16px] font-[500]  "
+          className="absolute  z-10 w-full py-8 text-lg text-center  bottom-0 left-0   bg-[#000000] opacity-80 text-[#FFFFFF] text-[16px] font-[500]  "
         >
           {text}
         </div>
@@ -32,7 +32,7 @@ const CardSnippet = ({ text, name, showSnippet, setShowSnippet }: Cards) => {
               setShowSnippet && setShowSnippet(true);
             }
           }}
-          className="absolute bottom-0 z-10  bg-[#000000] opacity-70 text-[#FFFFFF] text-[18px] font-[500] px-4 py-2 rounded-sm "
+          className="absolute bottom-0 z-10  bg-[#000000] opacity-80 text-white text-[21px] font-[500] px-4 py-2 rounded-sm "
         >
           {name}
         </div>

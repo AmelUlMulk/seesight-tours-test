@@ -30,7 +30,7 @@ const StyledImage = styled(Image)<ImageShadow>`
       : ' -8px -8px 0px -1px #2191FA'};
   border-radius: 0.5rem;
   max-height: 400px;
-  min-width: 420px;
+  min-width: 300px;
   align-self: center;
 
   @media (max-width: 1000px) {
@@ -111,7 +111,7 @@ const Guides = ({ guidesPage }: GUIDES_PAGE_INTERFACE) => {
             </div>
             <StyledImage
               src={guide.guide.professional[0].url}
-              width={350}
+              width={300}
               height={350}
               quality={100}
               position={i % 2 === 0 ? 'right' : 'left'}

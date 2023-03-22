@@ -15,6 +15,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 
 import Card from '../components/Card';
+import SearchCity from '../components/Searchbar/searchCity';
 
 const Heading = styled.h1`
   font-style: normal;
@@ -73,14 +74,17 @@ const Cities = ({ citiesPage }: CITIES_PAGE_INTERFACE) => {
         />
         <link href={citiesPage.canonical} rel="canonical" key="canonical" />
       </Head>
-      <PageHero
-        title={'OUR CITIES'}
-        snippet={'Let us show you the places we call home'}
-        media={
-          'https://res.cloudinary.com/see-sight-tours/video/upload/f_auto,q_auto,t_header/v1632763195/strapi/CitiesPage-Desktop.mp4'
-        }
-        video={true}
-      />
+      <div className=" relative mb-16   ">
+        <PageHero
+          title={'OUR CITIES'}
+          snippet={'Let us show you the places we call home'}
+          media={
+            'https://res.cloudinary.com/see-sight-tours/video/upload/f_auto,q_auto,t_header/v1632763195/strapi/CitiesPage-Desktop.mp4'
+          }
+          video={true}
+        />
+        <SearchCity />
+      </div>
       <TrustBar />
       <section className="flex flex-col w-full  justify-start ">
         <div className=" pl-[3%] xl:pl-[10%] ">
