@@ -13,7 +13,7 @@ interface CardProps {
 
 const StyledDiv = styled.div<CardProps>`
   @media (min-width: 1500px) {
-    width: ${props => (props.large ? '40%' : '28%')} !important;
+    width: ${props => (props.large ? '38%' : '29%')} !important;
   }
   width: 350px;
   @media (max-width: 752px) {
@@ -35,7 +35,11 @@ const CityCard = ({ city, index }: CityCard) => {
     <>
       <StyledDiv
         large={largeCard}
-        onMouseEnter={() => setShowSnippet(true)}
+        onMouseEnter={() => {
+          if (!showSnippet) {
+            setShowSnippet(true);
+          }
+        }}
         onMouseLeave={() => setShowSnippet(false)}
       >
         <div
@@ -57,6 +61,7 @@ const CityCard = ({ city, index }: CityCard) => {
             name={city.name}
             showSnippet={showSnippet}
             setShowSnippet={setShowSnippet}
+            slug={city.slug}
           />
         </div>
       </StyledDiv>

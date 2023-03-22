@@ -21,7 +21,6 @@ const SnippetStyle = styled.p`
 const CardSnippet = (city: any) => {
   const [showSnp, setShowSnp] = useState(false);
   const router = useRouter();
-  console.log('showSnp:', showSnp);
   return (
     <>
       <div
@@ -90,14 +89,18 @@ const CitiesSwiper = ({ data }: IProps) => {
                 id="image-wrapper"
                 className="h-[260px] xsm:h-[295px] relative rounded-lg !overflow-hidden"
               >
-                <Image
-                  src={city?.city?.cardMedia[0]?.url}
-                  alt={city?.city?.cardMedia[0]?.alt}
-                  // width={400}
-                  // height={400}
-                  fill
-                  className="xxsm:w-[90%] sm:w-[100%] sm:h-[100%] object-cover rounded-lg hover:scale-110 ease-in-out duration-200"
-                />
+                <Link href={city?.city.slug}>
+                  <Image
+                    src={city?.city?.cardMedia[0]?.url}
+                    alt={city?.city?.cardMedia[0]?.alt}
+                    // width={400}
+                    // height={400}
+                    quality={100}
+                    fill
+                    className="xxsm:w-[90%] sm:w-[100%] sm:h-[100%] object-cover rounded-lg hover:scale-110 ease-in-out duration-200"
+                  />
+                </Link>
+
                 {CardSnippet(city)}
               </div>
             </SwiperSlide>
