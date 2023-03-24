@@ -66,6 +66,29 @@ const CITIES_PAGE = {
   `
 };
 
+const CITIES = {
+  query: gql`
+    query CITIES_PAGE {
+      citiesPage {
+        featured: featured_cities {
+          city {
+            id
+            name
+            slug
+            cardSnippet: card_snippet
+            cardMedia: card_media {
+              name
+              alt: alternativeText
+              url
+              fragment: caption
+              type: provider_metadata
+            }
+          }
+        }
+      }
+    }
+  `
+};
 interface CITIES_PAGE_INTERFACE extends HEADER_STATS_INTERFACE {
   citiesPage: {
     header: string;
@@ -100,5 +123,5 @@ export interface CityInterface {
     cardMedia: [CARDMEDIAINTERFACE];
   };
 }
-export { CITIES_PAGE };
+export { CITIES_PAGE, CITIES };
 export type { CITIES_PAGE_INTERFACE };

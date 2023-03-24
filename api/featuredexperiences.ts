@@ -258,5 +258,82 @@ interface FEATURED_EXPERIENCES_INTERFACE {
     };
   };
 }
+interface HOMEPAFE {
+  header: string;
+  subheader: string;
+  allThings: [
+    {
+      product: {
+        id: string;
+        name: string;
+        slug: string;
+        duration: string;
+        price: string;
+        cardMessage: string;
+        cardSnippet: string;
+        cardMedia: [CARDMEDIAINTERFACE];
+        carousel: [CARDMEDIAINTERFACE];
+        reviews: {
+          id: string;
+          rating: string;
+        };
+      };
+    }
+  ];
+  dayTours: [
+    {
+      product: {
+        id: string;
+        name: string;
+        slug: string;
+        duration: string;
+        price: string;
+        cardMessage: string;
+        cardSnippet: string;
+        cardMedia: [CARDMEDIAINTERFACE];
+        reviews: {
+          id: string;
+          rating: string;
+        };
+      };
+    }
+  ];
+  multiday: [
+    {
+      product: {
+        id: string;
+        name: string;
+        slug: string;
+        duration: string;
+        price: string;
+        cardMessage: string;
+        cardSnippet: string;
+        cardMedia: [CARDMEDIAINTERFACE];
+        reviews: {
+          id: string;
+          rating: string;
+        };
+      };
+    }
+  ];
+  airportTransfers: [
+    {
+      product: {
+        id: string;
+        name: string;
+        slug: string;
+        duration: string;
+        price: string;
+        cardMessage: string;
+        cardSnippet: string;
+        cardMedia: [CARDMEDIAINTERFACE];
+        reviews: {
+          id: string;
+          rating: string;
+        };
+      };
+    }
+  ];
+}
 export default FEATUREDEXPERIENCES;
-export type { FEATURED_EXPERIENCES_INTERFACE };
+export type { FEATURED_EXPERIENCES_INTERFACE, HOMEPAFE };

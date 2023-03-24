@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <ApolloProvider client={client}>
         <NavBar />
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
         <Footer />
       </ApolloProvider>
     </>
