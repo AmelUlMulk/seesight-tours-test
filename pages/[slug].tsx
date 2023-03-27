@@ -67,15 +67,14 @@ interface IPROPS {
 }
 
 const City = ({ featuredExp, cities, city }: IPROPS) => {
-  console.log('the city', city);
   return (
     <>
       <section id="hero" className="relative">
         <PageHero
-          title={city.header}
+          title={city.header ? city.header : ''}
           snippet={'Size Matters'}
-          media="https://res.cloudinary.com/see-sight-tours/video/upload/v1658237954/landing-page-hero_mu19mc.mp4"
-          video={true}
+          media={city.heroMedia[0].url}
+          video={city.heroMedia[0].url.includes('mp4')}
         />
         <SearchCity />
       </section>
@@ -86,7 +85,9 @@ const City = ({ featuredExp, cities, city }: IPROPS) => {
 
       <FeaturedExperiences featuredExp={featuredExp} citydropdown={cities} />
 
-      <Attractions name={city.name} attractions={city.attractions} />
+      {city.attractions.length > 1 && (
+        <Attractions name={city.name} attractions={city.attractions} />
+      )}
       <p className="w-full px-[20%] leading-9 text-lg   mt-8  font-normal  ">
         {city.shortDescription}
       </p>
@@ -119,34 +120,51 @@ export async function getStaticPaths() {
       }
     `
   });
+  const invalid = [
+    'newport-tours',
+    'providence-tours',
+    'victoria-tours',
+    '',
+    null
+  ];
+  const validTours = getAllCities.data.cities.filter((item: any) => {
+    if (!invalid.includes(item.slug)) {
+      console.log('hello hello', item.slug);
+      return item;
+    }
+  });
+  console.log('the thing is', validTours);
   return {
-    paths: getAllCities.data.cities.map((city: any) => {
+    paths: validTours.map((city: any) => {
       return {
         params: { slug: city.slug.toString(), cities: getAllCities.data.cities }
       };
     }),
-    fallback: true
+    fallback: false
   };
 }
 
 export async function getStaticProps({ params: { slug } }: SLUG) {
-  const { data: featuredData } = await client.query<CITY_FILTER_INTERFACE>({
-    query: CITIES_FILTER,
-    variables: {
-      filter: {
-        slug: slug
-      }
-    }
-  });
   const { data: city } = await client.query<CITY_PAGE_INTERFACE>({
     query: FETCH_CITY,
     variables: {
       slug: slug
     }
   });
+
+  const { data: featuredData, error } =
+    await client.query<CITY_FILTER_INTERFACE>({
+      query: CITIES_FILTER,
+      variables: {
+        filter: {
+          slug: slug
+        }
+      }
+    });
+  console.log('the error', error);
   return {
     props: {
-      featuredExp: featuredData.cities[0],
+      featuredExp: featuredData.cities[0] ? featuredData.cities[0] : {},
       cities: featuredData.citiesList,
       city: city.cities[0]
     }
