@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import 'react-calendar/dist/Calendar.css';
 import type { AppProps } from 'next/app';
 import NavBar from '../layouts/NavBar';
 import Footer from '../layouts/Footer/footer';
@@ -10,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <ApolloProvider client={client}>
         <NavBar />
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
         <Footer />
       </ApolloProvider>
     </>

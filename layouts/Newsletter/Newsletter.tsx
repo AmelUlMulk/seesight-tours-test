@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
+import styled from 'styled-components';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Newsletter = ({}) => {
@@ -17,61 +18,76 @@ const Newsletter = ({}) => {
       setValidated(false);
     }
   }, [validated]);
-  return (
-    <>
-      <section className=" text-gray-800 bg-slate-100">
-        <ToastContainer
-          position="bottom-right"
-          toastStyle={{ backgroundColor: 'green', color: 'white' }}
-        />
-        <div className="mt-8 px-6 py-12 md:px-12 text-center lg:text-left">
-          <div className="container mx-auto xl:px-32">
-            <div className="grid lg:grid-cols-2 gap-12  items-center">
-              <div className="mt-12 lg:mt-0">
-                <h1 className="text-5xl md:text-6xl xl:text-6xl font-bold tracking-tight mb-12 color: hsl(218, 81%, 95%)">
-                  Do not miss <br />
-                  <span className="color: hsl(218, 81%, 75%)">any updates</span>
-                </h1>
-                <p className="mb-4 opacity-70 lead color: hsl(218, 81%, 85%)">
-                  We will write rarely and only high-quality content.
-                </p>
-              </div>
-              <div className="mb-12 lg:mb-0">
-                <div className="block rounded-lg shadow-lg bg-white px-6 py-12 md:px-12 lg:text-center">
-                  <h2 className="text-3xl font-bold mb-12 2xl:text-center">
-                    Subscribe to our newsletter
-                  </h2>
 
-                  <form onSubmit={handleSubmit}>
-                    <div className="flex items-stretch mt-12">
-                      <input
-                        className="bg-gray-100 rounded-lg rounded-r-none text-base leading-none text-gray-800 p-3 w-4/5 border border-transparent focus:outline-none focus:border-gray-500"
-                        placeholder="Email address"
-                        name="email"
-                        required
-                        type="email"
-                        onChange={e => setEmail(e.target.value)}
-                        maxLength={50}
-                        minLength={2}
-                        value={email}
-                      />
-                      <button
-                        className="disabled:bg-red-400 w-32 cursor-pointer rounded-l-none bg-red-500 rounded text-base font-medium leading-none text-white p-5 uppercase hover:bg-red-400 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-500 active:shadow-lg transition duration-150 ease-in-out"
-                        disabled={email.length <= 0}
-                        data-mdb-ripple="true"
-                        data-mdb-ripple-color="light"
-                      >
-                        subscribe
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
+  const NewsletterHeading = styled.h2`
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 44px;
+    text-align: center;
+    @media (max-width: 1100px) {
+      font-size: 35px;
+    }
+    @media (max-width: 500px) {
+      font-size: 30px;
+    }
+    font-size: 44px;
+  `;
+  const Newsletter = styled.p`
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    @media (max-width: 1100px) {
+      font-size: 24px;
+    }
+    @media (max-width: 500px) {
+      font-size: 20px;
+    }
+    text-align: center;
+  `;
+  return (
+    <section className="w-full flex justify-center items-center bg-[#F5F5F5] ">
+      <ToastContainer
+        position="bottom-right"
+        toastStyle={{ backgroundColor: 'green', color: 'white' }}
+      />
+      <div className="flex justify-center pt-10">
+        <div className=" w-4/5  md:w-8/12   lg:w-[55%]">
+          <NewsletterHeading className="2xl-text-3xl xl-text-3xl lg-text-2xl font-bold  2xl:text-center xl:text-center lg:text-center md:text-center sm:text-center xsm:text-center ">
+            Subscribe to our newsletter!
+          </NewsletterHeading>
+
+          <Newsletter className="2xl:text-center xl:text-center lg:text-center md:text-center sm:text-center xsm:text-center  ">
+            Signup to our newsletter and we will make sure to let you know
+            whenever we have news!
+          </Newsletter>
+
+          <form onSubmit={handleSubmit}>
+            <div className="flex mt-12 justify-center relative">
+              <input
+                className="bg-gray-100 lg:text-2xl   rounded-lg text-start md:pl-[10%]   text-gray-800 p-3 w-[100%] pr-[5%] border-2   border-gray-400   focus:outline-none focus:border-gray-500"
+                placeholder="Your e-mail address"
+                name="email"
+                required
+                type="email"
+                onChange={e => setEmail(e.target.value)}
+                maxLength={50}
+                minLength={2}
+                value={email}
+              />
+              <button
+                className={` lg:text-2xl w-[42%] xsm:w-[30%] lg:[w-25%] cursor-pointer absolute top-0 right-0   bg-red-500 border-red-500 rounded-lg  font-medium border-2  leading-none text-white p-4 lg:p-3   hover:bg-red-400 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-500 active:shadow-lg transition duration-150 ease-in-out`}
+                data-mdb-ripple="true"
+                data-mdb-ripple-color="light"
+              >
+                Subscribe
+              </button>
             </div>
-          </div>
+          </form>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
