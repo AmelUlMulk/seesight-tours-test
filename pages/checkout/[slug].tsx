@@ -170,7 +170,6 @@ const Checkout = ({
   slug,
   products
 }: PROPSDATA) => {
-  // console.log('boatnew:', boatnew_products);
   const stripePromise = loadStripe(String(process.env.NEXT_PUBLIC_STRIPE));
   const background = products[0].carousel_media[0].url;
 
