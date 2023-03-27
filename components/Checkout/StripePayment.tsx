@@ -103,7 +103,7 @@ const StripePayment = ({
   return (
     <div className="text-white relative z-50">
       {!clientSecret && (
-        <div className=" h-screen w-full flex    justify-center items-center  ">
+        <div className=" h-screen w-full flex justify-center items-center  ">
           <div className=" flex justify-center items-center    h-1/2   w-5/6">
             <h4 className="animate-pulse text-4xl text-white">Loading....</h4>
           </div>
