@@ -57,6 +57,14 @@ const StyledCelendar = styled(Calendar)`
       background: red;
     }
   }
+  .react-calendar__tile {
+    @media (max-width: 1024px) {
+      padding: 7px 4px;
+    }
+    @media (max-width: 768px) {
+      padding: 10px 6.5px;
+    }
+  }
 
   .react-calendar__month-view__days__day--neighboringMonth {
     display: none;
@@ -119,6 +127,13 @@ const DayContainer = styled.div<DayContainerProps>`
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
+  align-items: center;
+  @media (max-width: 1024px) {
+    padding: 0.2rem;
+  }
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+  }
 `;
 const TimeOptions = styled.div`
   background: #131313;
@@ -223,13 +238,9 @@ const DateAndPax = ({
     .filter(([key, value]) => value.count > 0)
     .map(([key, value]) => ({ [key]: value }));
 
-  // console.log('passengerPAX', passengerPax);
-  // console.log('filterPAX', selectedPaxObj);
-  // console.log('selectedTimeSlot:', selectedTimeSlot);
-  // console.log('totalPrice', totalPrice);
   return (
     <div className="md:flex w-[90%] lg:w-[80%] m-auto relative z-30">
-      <section id="availibilty" className="flex-none md:w-[50%] px-5">
+      <section id="availibilty" className="flex-none md:w-[50%] sm:px-5">
         <StyledCelendar
           tileContent={({ activeStartDate, date, view }) => (
             <DayContainer
@@ -237,10 +248,10 @@ const DateAndPax = ({
                 selectedDate === dayjs(date).format('YYYY-MM-DD') ? true : false
               }
             >
-              <p className="text-[14px] md:text-[16px] xl:text-[20px] font-[400]">
+              <p className="text-[14px] sm:text-[18px] md:text-[15px] lg:text-[16px] xl:text-[20px] font-[400]">
                 {date.getDate()}
               </p>
-              <p className=" text-[12px] xsm:text-[16px] xl:text-[20px] font-[500] sm:font-[700] ">
+              <p className=" text-[14px] sm:text-[18px] md:text-[15px] lg:text-[16px] xl:text-[20px] font-[700] sm:font-[700] ">
                 {priceCheck(date)}
               </p>
             </DayContainer>
@@ -258,7 +269,7 @@ const DateAndPax = ({
       </section>
       <section
         id="passenger_qty"
-        className="flex-none md:w-[50%] mt-5 md:mt-0 px-5"
+        className="flex-none md:w-[50%] mt-5 md:mt-0 sm:px-5"
       >
         <div className="flex flex-col">
           <div id="selected_date" className="text-white bg-black">

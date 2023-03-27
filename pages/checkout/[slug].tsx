@@ -345,9 +345,9 @@ const Checkout = ({
   return (
     <MainStyle
       image={background}
-      className="xsm:h-[150vh] md:h-[130vh] w-full bg-cover bg-no-repeat bg-center relative"
+      className="min-h-[130vh] h-auto w-full bg-cover bg-no-repeat bg-center relative"
     >
-      <div className="absolute top-0 left-0 xsm:h-[150vh] md:h-[130vh] w-full bg-[#000000d9] z-10 "></div>
+      <div className="absolute top-0 left-0 h-[100%] w-full bg-[#000000d9] z-10 "></div>
       {thankyou && <Thankyou open={thankyou} close={setThankYou} />}
       <Steps currentStepIndex={currentComponentIndex} />
       {component}
