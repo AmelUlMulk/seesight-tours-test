@@ -39,7 +39,7 @@ const CardSnippet = ({
         }}
       >
         <div
-          className={` bottom-0 left-0 text-[#ffffff] text-[14px] sm:text-[16px] lg:text-[18px] xl:text-[24px] 2xl:text-[28px] font-[500] ${
+          className={` bottom-0 left-0 text-[#ffffff] text-[14px] sm:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px] font-[500] ${
             showSnippet && 'width-[100%]'
           }`}
         >
@@ -48,7 +48,7 @@ const CardSnippet = ({
 
         {showSnippet && (
           <div
-            className={` w-[100%] text-[#FFFFFF] text-[12px] md:text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[22px] font-[400] ${
+            className={` w-[100%] text-[#FFFFFF] text-[12px] md:text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[19px] font-[400] ${
               showSnippet && 'pb-2'
             } `}
           >

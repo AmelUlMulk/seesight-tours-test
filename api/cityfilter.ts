@@ -24,6 +24,11 @@ const CITIES_FILTER = gql`
         }
       }
     }
+    citiesList: cities {
+      id
+      name
+      slug
+    }
   }
   ${FRAGMENT_PRODUCT_ORDER}
 `;
@@ -43,6 +48,13 @@ interface CITY_FILTER_INTERFACE {
       airportTransfers: {
         product: [FRAGMENT_PRODUCT_ORDER_INTERFACE];
       };
+    }
+  ];
+  citiesList: [
+    {
+      id: string;
+      name: string;
+      slug: string;
     }
   ];
 }
