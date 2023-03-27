@@ -337,11 +337,6 @@ const Checkout = ({
     />
   ]);
 
-  // console.log('selectedSlot:', selectedTimeSlot);
-  // console.log('booking data:', data);
-  console.log('thanks:', thankyou);
-  console.log('booking Id:', bookingId);
-  // console.log('custometr details:', customerDetails);
   return (
     <MainStyle
       image={background}

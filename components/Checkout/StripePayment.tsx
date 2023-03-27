@@ -100,9 +100,6 @@ const StripePayment = ({
       }
     }
   };
-  // console.log('client Secret:', clientSecret);
-  // console.log('Payment Intent:', paymentIntent);
-  // console.log('Customer Id:', customerId);
   return (
     <div className="text-white relative z-50">
       {!clientSecret && (

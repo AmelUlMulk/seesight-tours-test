@@ -9,7 +9,7 @@ const Thankyou = ({ open, close }: ThankYouProps) => {
   useEffect(() => {
     setTimeout(() => {
       router.push('/');
-    }, 5000);
+    }, 2000);
   }, []);
 
   return (
