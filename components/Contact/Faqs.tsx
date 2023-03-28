@@ -55,7 +55,7 @@ const Faqs = ({ header, subHeader, content }: IProps) => {
                 src="/dropdownRed.svg"
                 width={mediaQuery ? 25 : 35}
                 height={mediaQuery ? 25 : 35}
-                alt="faqs dropdown"
+                alt="dropdown icon"
                 className={`rotate-180 ${
                   toggleFaq[index] && 'rotate-0'
                 } hover:cursor-pointer transition-rotate duration-500`}
