@@ -1,5 +1,6 @@
 import React from 'react';
-import BOOKING_SEARCH, {
+import {
+  BOOKING_SEARCH,
   BOOKING_INTERFACE,
   MY_TOURS_PAGE_INTERFACE
 } from '../../api/myTour';

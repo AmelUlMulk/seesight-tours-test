@@ -28,21 +28,24 @@ function Modal({ open, setOpenModal }: ModalData) {
       onCompleted: value => {
         if (!value.boatnew_booking[0]) {
           setError(true);
+          return;
         }
-        Router.push(`/my-tours/${value.boatnew_booking[0].id}`);
         setInputValue('');
+        setOpenModal(false);
+        setError(false);
+        Router.push(`/my-tours/${value.boatnew_booking[0].id}`);
       }
     });
   };
   useEffect(() => {
-    return () => {
+    if (!open) {
       setInputValue('');
       setError(false);
-    };
-  }, []);
+    }
+  }, [open]);
   return (
     <div
-      className={`fixed inset-0 bg-black bg-opacity-50 flex justify-center items-start py-12  min-h-screen ${
+      className={`fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center xl:items-start py-12  min-h-screen ${
         !open && 'hidden'
       } `}
       onClick={e => {
@@ -50,7 +53,7 @@ function Modal({ open, setOpenModal }: ModalData) {
       }}
     >
       <div
-        className="bg-white p-4  w-full 2xl:max-w-[30%] text-center py-16 "
+        className="bg-white p-4  w-11/12 md:w-9/12 lg:w-8/12   xl:w-2/5   2xl:max-w-[30%] text-center py-16 "
         onClick={e => e.stopPropagation()}
       >
         <h2 className="text-lg font-bold mb-2 text-center ">My Tours</h2>
@@ -64,7 +67,7 @@ function Modal({ open, setOpenModal }: ModalData) {
                 className="block  font-bold mb-2 text-red-600 "
                 htmlFor="inputField"
               >
-                Booking Not Found Please Enter Valid Code
+                Booking Not Found, Please Enter A Valid Booking Code
               </label>
             )}
             <input

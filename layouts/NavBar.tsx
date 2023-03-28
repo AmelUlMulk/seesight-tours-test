@@ -139,7 +139,11 @@ const NavBar = () => {
           )}
         </div>
       </div>
-      <SideNav isOpen={isOpen} setOpen={setOpen} />
+      <SideNav
+        isOpen={isOpen}
+        setOpen={setOpen}
+        setOpenMyTours={setMyToursModal}
+      />
       <Modal open={myToursModal} setOpenModal={setMyToursModal} />
     </header>
   );
