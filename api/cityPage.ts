@@ -1,21 +1,57 @@
 import { gql } from '@apollo/client';
 import { CARDMEDIAINTERFACE } from './commonInterfaces';
 
-const FETCH_CITY = {
-  query: gql`
-    query FETCH_CITY($slug: JSON!) {
-      cities(where: { slug: $slug }) {
+const FETCH_CITY = gql`
+  query FETCH_CITY($slug: JSON!) {
+    cities(where: { slug: $slug }) {
+      name
+      slug
+      metaDescription: meta_description
+      canonical
+      pageTitle: page_title
+      header
+      subheader
+      shortDescription: short_description
+      longDescription: long_description
+      FAQ
+      featured
+      heroMedia: media_library {
+        name
+        alt: alternativeText
+        url
+        fragment: caption
+        type: provider_metadata
+      }
+      products {
+        id: boat_id
         name
         slug
-        metaDescription: meta_description
-        canonical
-        pageTitle: page_title
-        header
-        subheader
-        shortDescription: short_description
-        longDescription: long_description
-        FAQ
-        featured
+        snippet
+        duration
+        cardMedia: card_media {
+          name
+          alt: alternativeText
+          url
+          fragment: caption
+          type: provider_metadata
+        }
+        reviews {
+          id
+          rating
+        }
+      }
+      attractions {
+        id
+        name
+        slug
+        snippet
+        cardMedia: card_media {
+          name
+          alt: alternativeText
+          url
+          fragment: caption
+          type: provider_metadata
+        }
         heroMedia: media_library {
           name
           alt: alternativeText
@@ -23,53 +59,21 @@ const FETCH_CITY = {
           fragment: caption
           type: provider_metadata
         }
-        products {
-          id: boat_id
-          name
-          slug
-          snippet
-          duration
-          cardMedia: card_media {
-            name
-            alt: alternativeText
-            url
-            fragment: caption
-            type: provider_metadata
-          }
-          reviews {
-            id
-            rating
-          }
-        }
-        attractions {
+        city {
           id
           name
           slug
-          snippet
-          cardMedia: card_media {
-            name
-            alt: alternativeText
-            url
-            fragment: caption
-            type: provider_metadata
-          }
-          heroMedia: media_library {
-            name
-            alt: alternativeText
-            url
-            fragment: caption
-            type: provider_metadata
-          }
-          city {
-            id
-            name
-            slug
-          }
         }
       }
     }
-  `
-};
+    citiesDropdown: cities {
+      id
+      name
+      slug
+    }
+  }
+`;
+
 interface CITY_PAGE_INTERFACE {
   cities: [CITYDATEINTERFACE];
 }
