@@ -8,7 +8,7 @@ interface IProps {
   content: any;
 }
 const ContentStyle = styled.p`
-  animation: slowDown 500ms ease-in-out;
+  animation: slowDown 500ms linear forwards;
   @keyframes slowDown {
     0% {
       transform: scaleY(0);
