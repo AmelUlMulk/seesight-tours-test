@@ -62,7 +62,20 @@ const BOOKING_SEARCH = gql`
     }
   }
 `;
-
+const FIND_BOOKING = gql`
+  query FIND_BOOKING($id: String!) {
+    boatnew_booking(where: { id: { _eq: $id } }) {
+      id
+    }
+  }
+`;
+interface FIND_BOOKING_INTERFACE {
+  boatnew_booking: [
+    {
+      id: string;
+    }
+  ];
+}
 interface MY_TOURS_PAGE_INTERFACE {
   booking: [
     {
@@ -218,5 +231,9 @@ interface BOOKING_INTERFACE {
     }
   ];
 }
-export default BOOKING_SEARCH;
-export type { MY_TOURS_PAGE_INTERFACE, BOOKING_INTERFACE };
+export { FIND_BOOKING, BOOKING_SEARCH };
+export type {
+  MY_TOURS_PAGE_INTERFACE,
+  BOOKING_INTERFACE,
+  FIND_BOOKING_INTERFACE
+};
