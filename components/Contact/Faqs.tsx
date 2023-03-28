@@ -1,11 +1,26 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { useMediaQuery } from '../../hooks/mediaQuery';
+import styled from 'styled-components';
 interface IProps {
   header: string;
   subHeader: string;
   content: any;
 }
+const ContentStyle = styled.p`
+  animation: slowDown 500ms ease-in-out;
+  @keyframes slowDown {
+    0% {
+      transform: scaleY(0);
+    }
+    80% {
+      transform: scaleY(1.1);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+`;
 
 const Faqs = ({ header, subHeader, content }: IProps) => {
   const [toggleFaq, setToggleFaq] = useState<boolean[]>(
@@ -14,7 +29,7 @@ const Faqs = ({ header, subHeader, content }: IProps) => {
   const mediaQuery = useMediaQuery(640);
   const handleToggleFaq = (index: number) => {
     setToggleFaq(prev =>
-      prev.map((value, i) => (i === index ? !value : value))
+      prev.map((value, i) => (i === index ? !value : false))
     );
   };
   return (
@@ -41,18 +56,20 @@ const Faqs = ({ header, subHeader, content }: IProps) => {
                 width={mediaQuery ? 25 : 35}
                 height={mediaQuery ? 25 : 35}
                 alt="faqs dropdown"
-                className={`rotate-180 ${toggleFaq[index] && 'rotate-0'}`}
+                className={`rotate-180 ${
+                  toggleFaq[index] && 'rotate-0'
+                } hover:cursor-pointer transition-rotate duration-500`}
               />
             </div>
           </div>
 
           {toggleFaq[index] && (
-            <p
+            <ContentStyle
               id="faq-ans"
-              className="text-[12px] sm:text-[14px] lg:text-[20px] font-[400]"
+              className={`text-[12px] sm:text-[14px] lg:text-[20px] font-[400] `}
             >
               {Object.values(section)[0]}
-            </p>
+            </ContentStyle>
           )}
         </div>
       ))}
