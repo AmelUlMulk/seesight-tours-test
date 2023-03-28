@@ -6,6 +6,7 @@ import Hamburger from 'hamburger-react';
 import SideNav from './SideNav';
 import logo from '../assets/svg/logo.svg';
 import Router from 'next/router';
+import Modal from '../components/MyTours/BookingSearchModal';
 
 export const useMediaQuery = (width: number) => {
   const [targetReached, setTargetReached] = useState(false);
@@ -33,6 +34,7 @@ export const useMediaQuery = (width: number) => {
 };
 const NavBar = () => {
   const [isOpen, setOpen] = useState<boolean>(false);
+  const [myToursModal, setMyToursModal] = useState(false);
   const router = useRouter();
   const mediaQuery = useMediaQuery(1024);
   // eslint-disable-next-line no-console
@@ -122,7 +124,7 @@ const NavBar = () => {
               </div>
               <div className="flex w-1/5 justify-center ">
                 <button
-                  onClick={() => Router.push('/my-tours')}
+                  onClick={() => setMyToursModal(true)}
                   className={` bg-[#F15C5A] p-3 text-white rounded-lg text-center  ${
                     router.pathname.split('/')[1] == 'my-tours'
                       ? ' hover:bg-red-500   '
@@ -138,6 +140,7 @@ const NavBar = () => {
         </div>
       </div>
       <SideNav isOpen={isOpen} setOpen={setOpen} />
+      <Modal open={myToursModal} setOpenModal={setMyToursModal} />
     </header>
   );
 };
