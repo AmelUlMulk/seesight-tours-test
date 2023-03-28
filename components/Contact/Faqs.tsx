@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { useState } from 'react';
+import { useMediaQuery } from '../../hooks/mediaQuery';
 interface IProps {
   header: string;
   subHeader: string;
@@ -10,16 +11,20 @@ const Faqs = ({ header, subHeader, content }: IProps) => {
   const [toggleFaq, setToggleFaq] = useState<boolean[]>(
     content.map(() => false)
   );
-
+  const mediaQuery = useMediaQuery(640);
   const handleToggleFaq = (index: number) => {
     setToggleFaq(prev =>
       prev.map((value, i) => (i === index ? !value : value))
     );
   };
   return (
-    <div id="faqs" className="w-[80%] mx-auto py-10">
-      <h2 className="text-[36px] font-[600] text-[#333333]">{header}</h2>
-      <h4 className="text-[24px] font-[400] text-[#333333]">{subHeader}</h4>
+    <div id="faqs" className="w-full md:w-[90%] mx-auto py-10">
+      <h2 className="text-[18px] sm:text-[26px] lg:text-[36px] font-[600] text-[#333333] w-[90%] md:w-full mx-auto">
+        {header}
+      </h2>
+      <h4 className="text-[16px] sm:text-[18px] lg:text-[24px] font-[400] text-[#333333] w-[90%] md:w-full mx-auto mb-2">
+        {subHeader}
+      </h4>
       {content.map((section: Record<string, any>, index: number) => (
         <div
           id="faq"
@@ -27,14 +32,14 @@ const Faqs = ({ header, subHeader, content }: IProps) => {
           className="bg-[#DFDFDF] rounded-[10px] mb-3 p-3"
         >
           <div className="flex justify-between items-center">
-            <p className="text-[20px] font-[400] mb-3">
+            <p className="text-[14px] sm:text-[16px] lg:text-[20px] font-[400] mb-3">
               {Object.keys(section)[0]}
             </p>
             <div onClick={() => handleToggleFaq(index)}>
               <Image
                 src="/dropdownRed.svg"
-                width={35}
-                height={35}
+                width={mediaQuery ? 25 : 35}
+                height={mediaQuery ? 25 : 35}
                 alt="faqs dropdown"
                 className={`rotate-180 ${toggleFaq[index] && 'rotate-0'}`}
               />
@@ -42,7 +47,10 @@ const Faqs = ({ header, subHeader, content }: IProps) => {
           </div>
 
           {toggleFaq[index] && (
-            <p id="faq-ans" className="text-[20px] font-[400]">
+            <p
+              id="faq-ans"
+              className="text-[12px] sm:text-[14px] lg:text-[20px] font-[400]"
+            >
               {Object.values(section)[0]}
             </p>
           )}

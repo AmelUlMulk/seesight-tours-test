@@ -5,9 +5,9 @@ interface IProps {
 
 const OurLocation = ({ canada_address, usa_address }: IProps) => {
   return (
-    <section id="location" className="sm:w-[85%] mx-auto py-10">
+    <section id="location" className="w-full md:w-[90%] mx-auto py-6">
       <div className="location1_content ">
-        <div className="w-[85%] sm:w-full mx-auto">
+        <div className="w-[90%] md:w-full mx-auto">
           <h2 className="text-[18px] sm:text-[38px] lg:text-[44px] font-[600]">
             Where are we Canada
           </h2>
@@ -27,8 +27,8 @@ const OurLocation = ({ canada_address, usa_address }: IProps) => {
           />
         </div>
       </div>
-      <div id="location2_content">
-        <div className="w-[85%] sm:w-full mx-auto">
+      <div id="location2_content" className="mt-3">
+        <div className="w-[90%] md:w-full mx-auto">
           <h2 className="text-[18px] sm:text-[38px] lg:text-[44px] font-[600]">
             Where are we USA
           </h2>

@@ -9,6 +9,7 @@ import { useQuery } from '@apollo/client';
 import { FAQ_CONTENT, FAQ_PAGE_INTERFACE } from '../api/faqPage';
 import client from '../apollo-client';
 import Faqs from '../components/Contact/Faqs';
+import Newsletter from '../layouts/Newsletter/Newsletter';
 
 interface IProps {
   faqs: any;
@@ -41,6 +42,7 @@ const Contact = ({ faqs }: IProps) => {
         content={faqs?.sectionContent}
       />
       <Adventure />
+      <Newsletter />
     </div>
   );
 };

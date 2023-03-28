@@ -5,7 +5,8 @@ import NavBar from '../layouts/NavBar';
 import Footer from '../layouts/Footer/footer';
 import { ApolloProvider } from '@apollo/client';
 import client from '../apollo-client';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -14,6 +15,18 @@ export default function App({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
         <Footer />
       </ApolloProvider>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        limit={1}
+      />
     </>
   );
 }
