@@ -27,7 +27,7 @@ const TestimonialStyle = styled.section`
 export const TextShadow = styled.h1`
   text-shadow: 1px -42px 1px rgba(51, 51, 51, 0.1);
 `;
-const sourceIcon = (source: string) => {
+export const sourceIcon = (source: string) => {
   switch (source) {
     case 'WEBSITE':
       return 'Website';
