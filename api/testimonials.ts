@@ -3,11 +3,13 @@ import { CARDMEDIAINTERFACE } from './commonInterfaces';
 
 const TESTIMONIALS = gql`
   query TESTIMONIAL_REVIEWS {
-    reviews(limit: 60) {
+  reviews(limit: 60) {
       id
       review
+      title
       traveller
       rating
+      date
       source
     }
   }
