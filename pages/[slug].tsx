@@ -75,6 +75,7 @@ const City = ({ featuredExp, cities, city }: IPROPS) => {
           snippet={'Size Matters'}
           media={city.heroMedia[0].url}
           video={city.heroMedia[0].url.includes('mp4')}
+          landing
         />
         <SearchCity />
       </section>
