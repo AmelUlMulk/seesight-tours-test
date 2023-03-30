@@ -1,8 +1,7 @@
 const Header = () => {
   return (
-    <section id="header" className="px-20 mt-10">
-      <h1 className="text-[48px] font-[700] text-center">Local Experiences</h1>
-      <p className="text-[18px] font-[400] text-center">
+    <section id="header" className="px-10 md:px-28 mt-10">
+      <p className="text-[12px] sm:text-[18px] font-[400] text-center leading-[37px]">
         We believe in supporting the communities we live and operate in. By
         hiring locally, we create jobs to support the local economy and ensure
         guests receive an authentic experience. Our guides aim to create

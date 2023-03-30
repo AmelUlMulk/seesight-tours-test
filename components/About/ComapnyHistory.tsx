@@ -1,85 +1,122 @@
 import Image from 'next/image';
+import { useMediaQuery } from '../../hooks/mediaQuery';
 
 const CompanyyHistory = () => {
+  const mediaQuery = useMediaQuery(768);
   return (
     <>
-      <section id="tour-experience" className="px-20 py-5 bg-[#E4F6F1]">
-        <div className="flex  items-center w-[100%]">
-          <div className="flex-none w-[60%] px-20 py-10">
-            <h2 className="text-[36px] font-[600]">
-              Immersive tour experiences
+      <section id="tour-experience" className="py-16 bg-[#E4F6F1] mt-20">
+        <div className="flex flex-col-reverse md:flex-row w-[75%] mx-auto">
+          <div className="flex-none text-center md:text-start md:w-[60%] md:pr-10 lg:pr-20 mt-5 md:mt-0">
+            <h2 className="text-[18px] sm:text-[26px] lg:text-[36px] font-[600] text-[#333333]">
+              What Started See Sight Tours
             </h2>
-            <p className="text-[18px] font-[400] text-justify">
-              Founded in Niagara Falls, Canada in 2006, We have developed a
-              wealth of experience delivering uniquely intimate and immersive
-              tour experiences. Our tour guides take pride in their personal
-              expertise in showcasing the hidden beauty of the local areas where
-              we operate and are determined to create lasting impressions on our
-              guests from around the world.
+            <p className="text-[12px] sm:text-[14px] lg:text-[18px] font-[400] text-[#333333] text-justify leading-[37px]">
+              Daud Grewal was always inspired by his mentor who taught him it’s
+              never too early when it comes to starting a business which got
+              stuck with Daud. He was looking for an opportunity that would not
+              require a heavy initial investment while supporting his family and
+              benefiting the local community. And then the opportunity presented
+              itself. While working as an usher at an IMAX theater in Niagara
+              Falls, Daud saw large tour groups, all crammed in those big tour
+              buses, and realized that he can do it way better than them. 
             </p>
           </div>
-          <div className="flex-none w-[40%]">
+          <div className="flex justify-center md:flex-none md:w-[40%] px-5 md:px-0">
             <Image
               src="/tour_experiences.png"
-              width={400}
-              height={400}
+              width={mediaQuery ? 240 : 500}
+              height={mediaQuery ? 240 : 500}
               quality={100}
               alt="tour experience"
-              className="rounded-lg shadow-tourExpImgBox"
+              className="rounded-lg shadow-tourExpImgBox min-h-[220px] md:min-h-[350px]"
             />
           </div>
         </div>
       </section>
-      <section id="how-it-started" className="px-20 py-5>">
-        <div className="flex  items-center w-[100%]">
-          <div className="flex-none w-[40%]">
+      <section id="how-it-started" className="py-16">
+        <div className="flex flex-col md:flex-row w-[75%] mx-auto">
+          <div className="flex justify-center md:flex-none md:w-[40%] md:pr-10">
             <Image
               src="/tour_experiences.png"
-              width={400}
-              height={400}
+              width={mediaQuery ? 240 : 500}
+              height={mediaQuery ? 240 : 500}
               quality={100}
               alt="tour experience"
-              className="rounded-lg shadow-tourExpImgBox"
+              className="rounded-lg shadow-tourExpImgBox min-w-[250px] min-h-[250px] md:min-h-[350px]"
             />
           </div>
-          <div className="flex-none w-[60%] px-5 py-10">
-            <h2 className="text-[36px] font-[600]">How it all started</h2>
-            <p className="text-[18px] font-[400] text-justify">
-              Daud Grewal, the company’s Founder was born and raised in Niagara
-              Falls. He started See Sight Tours with the help of his beloved
-              mother while still in high school. He came up with the idea while
-              working as a parking lot attendant at a local tourist attraction.
-              While working, he would often see big sightseeing buses crammed
-              with tourists and he was sure there was a much more comfortable
-              and personal way to provide sightseeing tours. His idea was simple
-              - he would give personable, private tour experiences using his
-              mother’s minivan.
+          <div className="flex-none md:w-[60%]">
+            <h2 className="text-[18px] sm:text-[26px] lg:text-[36px] text-[#333333] text-center md:text-start font-[600] mt-5 md:mt-0">
+              Next…
+            </h2>
+            <p className="text-[12px] sm:text-[14px] lg:text-[18px] text-[#333333] font-[400] text-justify leading-[37px] xl:pr-10">
+              Daud’s idea was simple - he would give personable, private tour
+              experiences using his mother’s minivan. He hastily drafted an
+              18-point plan on the back of a parking lot sheet and attempted to
+              sell his tours from a makeshift booth with a handmade sign. After
+              weeks with no success, Daud almost gave up and sought another job.
+              But, on July 1st, 2006, he made his first sale, which marked the
+              beginning of a remarkable journey- The Beginning of See Sight
+              Tours
             </p>
           </div>
         </div>
       </section>
-      <section id="tour-experience" className="px-20 py-5 bg-[#E4F6F1]">
-        <div className="flex  items-center w-[100%]">
-          <div className="flex-none w-[60%] px-20 py-10">
-            <h2 className="text-[36px] font-[600]">Our culture</h2>
-            <p className="text-[18px] font-[400] text-justify">
-              Founded in Niagara Falls, Canada in 2006, We have developed a
-              wealth of experience delivering uniquely intimate and immersive
-              tour experiences. Our tour guides take pride in their personal
-              expertise in showcasing the hidden beauty of the local areas where
-              we operate and are determined to create lasting impressions on our
-              guests from around the world.
+      <section id="company-progess" className="py-16 bg-[#E4F6F1] mt-20">
+        <div className="flex flex-col-reverse md:flex-row w-[75%] mx-auto">
+          <div className="flex-none text-center md:text-start md:w-[60%] md:pr-10 lg:pr-20 mt-5 md:mt-0">
+            <h2 className="text-[18px] sm:text-[26px] lg:text-[36px] font-[600] text-[#333333]">
+              On and On We Go!
+            </h2>
+            <p className="text-[12px] sm:text-[14px] lg:text-[18px] font-[400] text-[#333333] text-justify leading-[37px]">
+              Since its inception in 2006, See Sight Tours has grown
+              significantly, expanding its reach to multiple cities across North
+              America, including Toronto, Vancouver, Boston, Niagara Falls, and
+              more. The company has continually evolved to meet the changing
+              needs of the tourism industry. Today, See Sight Tours has
+              partnerships with major hotels and travel companies, a reputation
+              for quality service, and has become a leading tour operator in
+              North America.
             </p>
           </div>
-          <div className="flex-none w-[40%]">
+          <div className="flex justify-center md:flex-none md:w-[40%] px-5 md:px-0">
             <Image
               src="/tour_experiences.png"
-              width={400}
-              height={400}
+              width={mediaQuery ? 240 : 500}
+              height={mediaQuery ? 240 : 500}
               quality={100}
               alt="tour experience"
-              className="rounded-lg shadow-tourExpImgBox"
+              className="rounded-lg shadow-tourExpImgBox min-h-[220px] md:min-h-[350px]"
             />
+          </div>
+        </div>
+      </section>
+      <section id="how-it-started" className="py-16">
+        <div className="flex flex-col md:flex-row w-[75%] mx-auto">
+          <div className="flex justify-center md:flex-none md:w-[40%] md:pr-10">
+            <Image
+              src="/tour_experiences.png"
+              width={mediaQuery ? 240 : 500}
+              height={mediaQuery ? 240 : 500}
+              quality={100}
+              alt="tour experience"
+              className="rounded-lg shadow-tourExpImgBox min-w-[250px] min-h-[250px] md:min-h-[350px]"
+            />
+          </div>
+          <div className="flex-none md:w-[60%]">
+            <h2 className="text-[18px] sm:text-[26px] lg:text-[36px] text-[#333333] text-center md:text-start font-[600] mt-5 md:mt-0">
+              And We Rose Like a Boss!
+            </h2>
+            <p className="text-[12px] sm:text-[14px] lg:text-[18px] text-[#333333] font-[400] text-justify leading-[37px] xl:pr-10">
+              See Sight Tours was hit hard by the COVID-19 pandemic, resulting
+              in temporary shutdowns, cancellations of tours, layoffs, and
+              financial difficulties. However, the company adapted by adhering
+              to safety protocols to maintain customer and employee safety. No
+              matter how many years have passed and what challenges we faced, we
+              always kept our vision: providing local, personable experiences to
+              tourists, and making them feel closer to the destination. 
+            </p>
           </div>
         </div>
       </section>
