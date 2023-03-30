@@ -19,6 +19,9 @@ const BOOKING_SEARCH = gql`
         phone
         secondaryPhone: secondary_phone
       }
+      guide {
+        full_name
+      }
       product {
         id
         name
@@ -53,11 +56,6 @@ const BOOKING_SEARCH = gql`
       }
       REZDY: rezdy {
         id
-      }
-    }
-    productDetails(where: { slug: { _eq: $slug } }) {
-      card_media(limit: 1) {
-        url
       }
     }
   }
@@ -95,6 +93,9 @@ interface MY_TOURS_PAGE_INTERFACE {
         phone: string;
         secondaryPhone: string;
       };
+      guide: {
+        full_name: string;
+      };
       product: {
         id: string;
         slug: string;
@@ -120,14 +121,16 @@ interface MY_TOURS_PAGE_INTERFACE {
           }
         ];
       };
-      transactions: {
-        stripeId: string;
-        date: string;
-        type: string;
-        value: string;
-        card_type: string;
-        cardValue: string;
-      };
+      transactions: [
+        {
+          stripeId: string;
+          date: string;
+          type: string;
+          value: string;
+          card_type: string;
+          cardValue: string;
+        }
+      ];
       passengers: [
         {
           quantity: number;
@@ -172,6 +175,9 @@ interface BOOKING_INTERFACE {
     phone: string;
     secondaryPhone: string;
   };
+  guide: {
+    full_name: string;
+  };
   product: {
     id: string;
     name: string;
@@ -197,14 +203,16 @@ interface BOOKING_INTERFACE {
       }
     ];
   };
-  transactions: {
-    stripeId: string;
-    date: string;
-    type: string;
-    value: string;
-    card_type: string;
-    cardValue: string;
-  };
+  transactions: [
+    {
+      stripeId: string;
+      date: string;
+      type: string;
+      value: string;
+      card_type: string;
+      cardValue: string;
+    }
+  ];
   passengers: [
     {
       quantity: number;
