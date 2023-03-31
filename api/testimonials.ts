@@ -6,8 +6,23 @@ const TESTIMONIALS = gql`
     reviews(limit: 60) {
       id
       review
+      title
       traveller
       rating
+      date
+      source
+    }
+  }
+`;
+const Our_Reviews = gql`
+  query OUR_REVIEWS {
+    reviews(limit: 60, sort: "date:desc") {
+      id
+      review
+      title
+      traveller
+      rating
+      date
       source
     }
   }
@@ -25,5 +40,5 @@ interface TESTIMONIAL_INTERFACE {
   ];
 }
 
-export { TESTIMONIALS };
+export { TESTIMONIALS, Our_Reviews };
 export type { TESTIMONIAL_INTERFACE };
