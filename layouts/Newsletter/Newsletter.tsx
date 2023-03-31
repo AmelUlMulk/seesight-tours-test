@@ -77,7 +77,7 @@ const Newsletter = ({}) => {
                 value={email}
               />
               <button
-                className={` lg:text-2xl w-[42%] xsm:w-[30%] lg:[w-25%] cursor-pointer absolute top-0 right-0   bg-red-500 border-red-500 rounded-lg  font-medium border-2  leading-none text-white p-4 lg:p-3   hover:bg-red-400 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-500 active:shadow-lg transition duration-150 ease-in-out`}
+                className={` lg:text-2xl w-[42%] xsm:w-[36%] lg:[w-25%] cursor-pointer absolute top-0 right-0   bg-red-500 border-red-500 rounded-lg  font-medium border-2  leading-none text-white p-4 lg:p-3   hover:bg-red-400 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-500 active:shadow-lg transition duration-150 ease-in-out`}
                 data-mdb-ripple="true"
                 data-mdb-ripple-color="light"
               >

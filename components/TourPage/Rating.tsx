@@ -19,7 +19,10 @@ const pr = (number: number) => {
 const Rating = ({ productName, ratingCounts, reviews }: Rating) => {
   console.log('the reviews', reviews);
   return (
-    <div className=" px-[2%] 2xl:px-[10%] py-[2%] flex flex-col md:flex-row md:gap-10 item-center     ">
+    <div
+      id="reviews"
+      className=" px-[2%] 2xl:px-[10%] py-[2%] flex flex-col md:flex-row md:gap-10 item-center     "
+    >
       <div className="flex flex-col mt-14 md:w-1/2 ">
         <div className="flex items-center  font-semibold mb-2 ">
           <span className="w-[10%]">5 Stars </span>

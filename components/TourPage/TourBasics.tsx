@@ -96,7 +96,7 @@ const TourBasics = ({ price, duration, type, rating, totalRatings }: TOUR) => {
         </div>
         <div className=" md:relative items-center fixed bottom-0 right-2 z-20 w-full  md:bg-transparent  bg-[#2191FA] md:w-[30%] py-6 flex justify-evenly md:justify-end gap-8  ">
           <p className={`md:hidden text-white`}> Starting at ${price} </p>
-          <button className="py-2 px-6 bg-[#F15C5A] text-white rounded-sm   ">
+          <button className="py-2 px-4 md:px-6 bg-[#F15C5A] text-white rounded-md    ">
             Book Now
           </button>
         </div>
