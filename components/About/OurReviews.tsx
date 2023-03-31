@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { TESTIMONIALS, TESTIMONIAL_INTERFACE } from '../../api/testimonials';
+import { Our_Reviews, TESTIMONIAL_INTERFACE } from '../../api/testimonials';
 import ReviewCard from '../Reviews/ReviewCard';
 SwiperCore.use([Navigation]);
 const OurReviews = () => {
@@ -12,18 +12,19 @@ const OurReviews = () => {
     data: { reviews = [] } = {},
     loading,
     error
-  } = useQuery<TESTIMONIAL_INTERFACE>(TESTIMONIALS);
+  } = useQuery<TESTIMONIAL_INTERFACE>(Our_Reviews);
   //reviews with max 120 characters
   const filterReviews = reviews?.filter((review: any) => {
     if (review?.review !== null) {
       return review?.rating === 5 && review?.review.length < 120;
     }
   });
-  console.log(filterReviews);
 
   return (
-    <div className="mt-5 mx-40">
-      <h1 className=" text-[36px] font-[600] text-[#333333]">Our Reviews</h1>
+    <div className="mt-5 w-[90%] mx-auto">
+      <h1 className=" text-[18px] sm:text-[26px] lg:text-[36px] font-[600] text-[#333333]">
+        Our Reviews
+      </h1>
       <Swiper
         slidesPerView={1}
         grabCursor
@@ -39,9 +40,9 @@ const OurReviews = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="text-right mt-5">
-        <button className="bg-[#CCCCCC] text-white w-10 h-10 rounded-full prevButton">{`<`}</button>
-        <button className="bg-[#F15C5A] text-white w-10 h-10 ml-2 rounded-full nextButton">{`>`}</button>
+      <div className="text-right sm:mt-5">
+        <button className="bg-[#CCCCCC] text-white text-[16px] sm:text-[20px] w-8 h-8 sm:w-10 sm:h-10 rounded-full prevButton">{`<`}</button>
+        <button className="bg-[#F15C5A] text-white text-[16px] sm:text-[20px] w-8 h-8 sm:w-10 sm:h-10 ml-3 sm:ml-5 rounded-full nextButton">{`>`}</button>
       </div>
     </div>
   );

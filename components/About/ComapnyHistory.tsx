@@ -5,7 +5,7 @@ const CompanyyHistory = () => {
   const mediaQuery = useMediaQuery(768);
   return (
     <>
-      <section id="tour-experience" className="py-16 bg-[#E4F6F1] mt-20">
+      <section id="how-started" className="py-16 bg-[#E4F6F1] mt-20">
         <div className="flex flex-col-reverse md:flex-row w-[75%] mx-auto">
           <div className="flex-none text-center md:text-start md:w-[60%] md:pr-10 lg:pr-20 mt-5 md:mt-0">
             <h2 className="text-[18px] sm:text-[26px] lg:text-[36px] font-[600] text-[#333333]">
@@ -25,25 +25,25 @@ const CompanyyHistory = () => {
           <div className="flex justify-center md:flex-none md:w-[40%] px-5 md:px-0">
             <Image
               src="/tour_experiences.png"
-              width={mediaQuery ? 240 : 500}
-              height={mediaQuery ? 240 : 500}
+              width={mediaQuery ? 200 : 500}
+              height={mediaQuery ? 200 : 500}
               quality={100}
               alt="tour experience"
-              className="rounded-lg shadow-tourExpImgBox min-h-[220px] md:min-h-[350px]"
+              className="rounded-lg shadow-tourExpImgBox min-h-[180px] md:max-h-[350px]"
             />
           </div>
         </div>
       </section>
-      <section id="how-it-started" className="py-16">
+      <section id="next" className="py-16">
         <div className="flex flex-col md:flex-row w-[75%] mx-auto">
           <div className="flex justify-center md:flex-none md:w-[40%] md:pr-10">
             <Image
               src="/tour_experiences.png"
-              width={mediaQuery ? 240 : 500}
-              height={mediaQuery ? 240 : 500}
+              width={mediaQuery ? 200 : 500}
+              height={mediaQuery ? 200 : 500}
               quality={100}
               alt="tour experience"
-              className="rounded-lg shadow-tourExpImgBox min-w-[250px] min-h-[250px] md:min-h-[350px]"
+              className="rounded-lg shadow-tourExpImgBox md:min-w-[250px] min-h-[180px] md:max-h-[350px]"
             />
           </div>
           <div className="flex-none md:w-[60%]">
@@ -63,7 +63,7 @@ const CompanyyHistory = () => {
           </div>
         </div>
       </section>
-      <section id="company-progess" className="py-16 bg-[#E4F6F1] mt-20">
+      <section id="company-growth" className="py-16 bg-[#E4F6F1]">
         <div className="flex flex-col-reverse md:flex-row w-[75%] mx-auto">
           <div className="flex-none text-center md:text-start md:w-[60%] md:pr-10 lg:pr-20 mt-5 md:mt-0">
             <h2 className="text-[18px] sm:text-[26px] lg:text-[36px] font-[600] text-[#333333]">
@@ -83,25 +83,25 @@ const CompanyyHistory = () => {
           <div className="flex justify-center md:flex-none md:w-[40%] px-5 md:px-0">
             <Image
               src="/tour_experiences.png"
-              width={mediaQuery ? 240 : 500}
-              height={mediaQuery ? 240 : 500}
+              width={mediaQuery ? 200 : 500}
+              height={mediaQuery ? 200 : 500}
               quality={100}
               alt="tour experience"
-              className="rounded-lg shadow-tourExpImgBox min-h-[220px] md:min-h-[350px]"
+              className="rounded-lg shadow-tourExpImgBox min-h-[180px] md:max-h-[350px]"
             />
           </div>
         </div>
       </section>
-      <section id="how-it-started" className="py-16">
+      <section id="challenges" className="py-16">
         <div className="flex flex-col md:flex-row w-[75%] mx-auto">
           <div className="flex justify-center md:flex-none md:w-[40%] md:pr-10">
             <Image
               src="/tour_experiences.png"
-              width={mediaQuery ? 240 : 500}
-              height={mediaQuery ? 240 : 500}
+              width={mediaQuery ? 200 : 500}
+              height={mediaQuery ? 200 : 500}
               quality={100}
               alt="tour experience"
-              className="rounded-lg shadow-tourExpImgBox min-w-[250px] min-h-[250px] md:min-h-[350px]"
+              className="rounded-lg shadow-tourExpImgBox md:min-w-[250px] min-h-[180px] md:max-h-[350px]"
             />
           </div>
           <div className="flex-none md:w-[60%]">
@@ -118,6 +118,20 @@ const CompanyyHistory = () => {
               tourists, and making them feel closer to the destination. 
             </p>
           </div>
+        </div>
+      </section>
+      <section id="our-culture">
+        <div className="w-[75%] mx-auto">
+          <h2 className="text-center text-[18px] sm:text-[26px] lg:text-[36px] font-[600] text-[#333333]">
+            Our Culture
+          </h2>
+          <p className="text-center text-[12px] sm:text-[14px] lg:text-[18px] font-[400] mt-5 leading-[37px] text-[#333333]">
+            See Sight Tours believes in creating a welcoming space where
+            everyone can feel valued, regardless of their background or
+            experience. From our tour guides to our customers, we strive to
+            provide an inclusive community where every voice is heard,
+            respected, and given the opportunity to thrive. 
+          </p>
         </div>
       </section>
     </>
