@@ -22,7 +22,7 @@ interface REVIEWSWIPPERINTERFACE {
 }
 const ReviewSwipper = ({ reviews }: REVIEWSWIPPERINTERFACE) => {
   return (
-    <div className="flex  w-[45%] justify-center items-center mt-14 max-h-[472px]   ">
+    <div className="flex  md:w-[45%] justify-center items-center mt-14 max-h-[472px]   ">
       <StyledSwipper
         slidesPerView="auto"
         spaceBetween={20}

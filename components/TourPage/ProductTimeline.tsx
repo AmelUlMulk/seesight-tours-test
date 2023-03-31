@@ -18,18 +18,21 @@ const ProductTimeline = ({ description }: Iprops): JSX.Element => {
     timeline = [desc];
   }
   return (
-    <div className="chrono-cnt">
+    <div className="chrono-cnt px-[2%] ">
       {timeline.map((value, index) => {
         return (
-          <div key={value} className="flex gap-4 items-center w-full">
+          <div
+            key={value}
+            className="flex gap-4 items-start md:items-center w-full"
+          >
             <Image
               src="/hand.png"
               width={30}
               height={20}
               alt="hand-icon"
-              className=" max-h-6 "
+              className="  md:max-h-6 max-h-3 max-w-[20px] md:max-w-[40px] mt-[6px]   "
             />
-            <p className="py-4 text-2xl w-[95%] ">{value}</p>
+            <p className="pb-4 text-sm md:text-2xl w-[95%] ">{value}</p>
           </div>
         );
       })}
