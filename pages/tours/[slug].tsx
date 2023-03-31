@@ -24,8 +24,8 @@ const TourPage = ({
   /* const swiper = useSwiper(); */
   console.log('the reviews', product.relatedProducts);
   return (
-    <div className="flex flex-col ">
-      <h1 className="w-full text-2xl lg:text-3xl xl:text-5xl  font-extrabold text-center pt-12  pb-7 px-1 xl:px-8  ">
+    <div className="  flex flex-col ">
+      <h1 className="w-full text-xl lg:text-3xl xl:text-5xl  font-extrabold text-center  pt-4 xl:pt-12  pb-7 px-1 xl:px-8  ">
         {product.cities[0] && (
           <>
             {product.cities[0].name}
@@ -46,6 +46,9 @@ const TourPage = ({
         data={product.tourIncludes}
         attractions={product.attractions}
       />
+      <h2 className="w-full px-[2%] 2xl:px-[10%] text-black text-xl md:text-3xl font-bold  ">
+        {product.name}
+      </h2>
       <Rating
         productName={product.name}
         ratingCounts={ratingCounts}
