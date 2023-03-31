@@ -198,7 +198,7 @@ const Footer = () => {
           id="copyright"
           className="lg:pl-[55px] lg:py-2 md:pl-16 py-10 text-center text-[14px] font-[400]"
         >
-          <p>Copyright © 2022 See Sight Tours. All rights reserved.</p>
+          <p>Copyright © 2023 See Sight Tours. All rights reserved.</p>
         </div>
         <div
           id="follow_us"

@@ -1,19 +1,32 @@
 import '../styles/globals.css';
+import 'react-calendar/dist/Calendar.css';
 import type { AppProps } from 'next/app';
 import NavBar from '../layouts/NavBar';
 import Footer from '../layouts/Footer/footer';
 import { ApolloProvider } from '@apollo/client';
 import client from '../apollo-client';
-import PageHero from '../components/Contact/PageHero';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <ApolloProvider client={client}>
         <NavBar />
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
         <Footer />
       </ApolloProvider>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        limit={1}
+      />
     </>
   );
 }

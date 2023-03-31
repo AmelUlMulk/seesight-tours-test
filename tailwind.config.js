@@ -1,3 +1,4 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -19,8 +20,25 @@ module.exports = {
 
       xl: '1280px',
 
-      '2xl': '1536px'
+      '2xl': '1536px',
+
+      '3xl': '1800px',
+
+      '4xl': '2200px'
+    },
+    extend: {
+      fontFamily: {
+        sans: ['Poppins', ...defaultTheme.fontFamily.sans]
+      },
+      colors: {
+        modalWrapper: 'rgba(28, 28, 28, 0.8)'
+      },
+      boxShadow: {
+        guidesBox: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+        guideimageBox: '-10px -11px 0px 1px #2191fa',
+        moreguideBox: '0px 9px 9px rgb(0 0 0 / 25%)'
+      }
     }
   },
-  plugins: []
+  plugins: [require('tailwind-scrollbar-hide')]
 };

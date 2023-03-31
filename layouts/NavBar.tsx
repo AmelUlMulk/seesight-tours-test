@@ -3,11 +3,12 @@ import Image from 'next/image';
 import React, { useState, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Hamburger from 'hamburger-react';
-import Container from 'react-bootstrap/Container';
 import SideNav from './SideNav';
 import logo from '../assets/svg/logo.svg';
+import Router from 'next/router';
+import Modal from '../components/MyTours/BookingSearchModal';
 
-const useMediaQuery = (width: number) => {
+export const useMediaQuery = (width: number) => {
   const [targetReached, setTargetReached] = useState(false);
 
   const updateTarget = useCallback((e: { matches: any }) => {
@@ -33,105 +34,117 @@ const useMediaQuery = (width: number) => {
 };
 const NavBar = () => {
   const [isOpen, setOpen] = useState<boolean>(false);
+  const [myToursModal, setMyToursModal] = useState(false);
   const router = useRouter();
-  const mediaQuery = useMediaQuery(900);
+  const mediaQuery = useMediaQuery(1024);
   // eslint-disable-next-line no-console
   return (
-    <header className="Navbar relative py-5 bg-gray-100">
-      <Container>
-        <div className="flex justify-between items-center px-5">
-          <Link href="/">
-            <div className="logo">
+    <header className="Navbar sticky top-0 z-[1020] bg-gray-100 ">
+      <div className="py-2 md:py-5 mx-auto w-full  ">
+        <div className="flex justify-between items-center gap-12">
+          <div className="logo pl-4 w-1/5 flex justify-center  ">
+            <Link href="/">
               <Image
                 alt="sea sight tours logo"
                 src="/logo.svg"
                 width={200}
-                height={200}
+                height={57}
+                className="max-h-[56px]"
               />
-            </div>
-          </Link>
+            </Link>
+          </div>
 
           {mediaQuery ? (
-            <div className="pr-10">
+            <div className="xxsm:pr-[15px] sm:pr-[10px] w-[50%] flex justify-end ">
               <Hamburger toggled={isOpen} toggle={() => setOpen(!isOpen)} />
             </div>
           ) : (
-            <div className="Navlinks flex gap-4">
-              <Link
-                href="/tours"
-                className={
-                  router.pathname.split('/')[1] == 'tours'
-                    ? 'active hover:text-blue-400 px-1'
-                    : 'hover:text-blue-400 px-1'
-                }
-              >
-                Tours
-              </Link>
-              <Link
-                href="/cities"
-                className={
-                  router.pathname.split('/')[1] == 'cities'
-                    ? 'active hover:text-blue-400 px-1'
-                    : 'hover:text-blue-400 px-1'
-                }
-              >
-                Our Cities
-              </Link>
-              <Link
-                href="/guides"
-                className={
-                  router.pathname.split('/')[1] == 'guides'
-                    ? 'active hover:text-blue-400 px-1 '
-                    : 'hover:text-blue-400 px-1'
-                }
-              >
-                Our Guides
-              </Link>
-              <Link
-                href="/reviews"
-                className={
-                  router.pathname.split('/')[1] == 'reviews'
-                    ? 'active hover:text-blue-400 px-1'
-                    : 'hover:text-blue-400 px-1'
-                }
-              >
-                Reviews
-              </Link>
-              <Link
-                href="/about"
-                className={
-                  router.pathname.split('/')[1] == 'about'
-                    ? 'active hover:text-blue-400 px-1'
-                    : 'hover:text-blue-400 px-1'
-                }
-              >
-                About Us
-              </Link>
-              <Link
-                href="/contact"
-                className={
-                  router.pathname.split('/')[1] == 'contact'
-                    ? 'active hover:text-blue-400 px-1 border-r-[1px] border-black '
-                    : 'hover:text-blue-400 px-2 border-r-[1px] border-gray-300'
-                }
-              >
-                Contact Us
-              </Link>
-              <Link
-                href="/my-tours"
-                className={
-                  router.pathname.split('/')[1] == 'my-tours'
-                    ? 'active hover:text-blue-400 px-1 '
-                    : 'hover:text-blue-400 pl-1'
-                }
-              >
-                My Tours
-              </Link>
-            </div>
+            <>
+              <div className="Navlinks w-4/5 flex text-[#060606] justify-center text-lg  gap-[44px]  ">
+                <Link
+                  href="/tours"
+                  className={
+                    router.pathname.split('/')[1] == 'tours'
+                      ? 'active hover:text-blue-400 px-1'
+                      : 'hover:text-blue-400 px-1'
+                  }
+                >
+                  Tours
+                </Link>
+                <Link
+                  href="/cities"
+                  className={
+                    router.pathname.split('/')[1] == 'cities'
+                      ? 'active hover:text-blue-400 px-1'
+                      : 'hover:text-blue-400 px-1'
+                  }
+                >
+                  Our Cities
+                </Link>
+                <Link
+                  href="/guides"
+                  className={
+                    router.pathname.split('/')[1] == 'guides'
+                      ? 'active hover:text-blue-400 px-1 '
+                      : 'hover:text-blue-400 px-1'
+                  }
+                >
+                  Our Guides
+                </Link>
+                <Link
+                  href="/reviews"
+                  className={
+                    router.pathname.split('/')[1] == 'reviews'
+                      ? 'active hover:text-blue-400 px-1'
+                      : 'hover:text-blue-400 px-1'
+                  }
+                >
+                  Reviews
+                </Link>
+                <Link
+                  href="/about"
+                  className={
+                    router.pathname.split('/')[1] == 'about'
+                      ? 'active hover:text-blue-400 px-1'
+                      : 'hover:text-blue-400 px-1'
+                  }
+                >
+                  About Us
+                </Link>
+                <Link
+                  href="/contact"
+                  className={
+                    router.pathname.split('/')[1] == 'contact'
+                      ? 'active hover:text-blue-400 px-2 border-r-[1px] border-black '
+                      : 'hover:text-blue-400 pl-2 md:pr-2 lg:pr-4  border-gray-300'
+                  }
+                >
+                  Contact Us
+                </Link>
+              </div>
+              <div className="flex w-1/5 justify-center ">
+                <button
+                  onClick={() => setMyToursModal(true)}
+                  className={` bg-[#F15C5A] p-3 text-white rounded-lg text-center  ${
+                    router.pathname.split('/')[1] == 'my-tours'
+                      ? ' hover:bg-red-500   '
+                      : 'hover:text-white '
+                  }
+              `}
+                >
+                  My Tours
+                </button>
+              </div>
+            </>
           )}
         </div>
-      </Container>
-      <SideNav isOpen={isOpen} setOpen={setOpen} />
+      </div>
+      <SideNav
+        isOpen={isOpen}
+        setOpen={setOpen}
+        setOpenMyTours={setMyToursModal}
+      />
+      <Modal open={myToursModal} setOpenModal={setMyToursModal} />
     </header>
   );
 };
