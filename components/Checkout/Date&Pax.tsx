@@ -275,7 +275,7 @@ const DateAndPax = ({
           <div id="selected_date" className="text-white bg-black">
             <div className="flex flex-col sm:w-full ">
               <div className=" flex flex-wrap w-full gap-2 bg-[#131313]">
-                {availability.map(item => (
+                {availability.map((item: any, index: number) => (
                   <TimeOptions key={item.startTime}>
                     <input
                       type="checkbox"
@@ -328,10 +328,10 @@ const DateAndPax = ({
                 <div className="py-2 px-6 sm:px-10 md:px-5 xl:px-10">
                   {Object.keys(passengerPax)
                     .slice(0, -1)
-                    .map((key: string) => {
+                    .map((key: string, index: number) => {
                       return (
                         <div
-                          key={key}
+                          key={index}
                           className="flex justify-between items-start xsm:py-2 sm:py-0"
                         >
                           <div>
