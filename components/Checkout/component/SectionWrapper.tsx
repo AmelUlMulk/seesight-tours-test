@@ -51,7 +51,7 @@ const SectionWrapper = ({ title, children, slug, name }: WrapperProps) => {
       />
       {slug && (
         <h2
-          className=" text-xl   md:text-2xl cursor-pointer  mt-8 text-white mb-2"
+          className=" text-xl md:text-2xl cursor-pointer  mt-8 text-white mb-2"
           onClick={() => setProductDetails(true)}
         >
           {name}
