@@ -11,7 +11,7 @@ const LocationMap = ({ name, address, data }: Iprops) => {
     ?.split('\n')
     .filter((e: any) => e);
   return (
-    <div className="px-3 ">
+    <div className="py-5 mt-10">
       <div
         id="map-wrapper"
         className="px-5 py-10 border-slate-300 rounded-lg border-[1px]"
@@ -45,15 +45,24 @@ const LocationMap = ({ name, address, data }: Iprops) => {
             </>
           )}
         </div>
-        <div className="hours of operation">
+        <div id="hours of operation" className="text-[#333333]">
           {data?.hoursOfOperation && (
-            <h2 className="text-xl font-[600]">Hours of Operation</h2>
+            <h2 className="text-[18px] sm:text-[20px] lg:text-[28px] font-[600]">
+              Hours of Operation
+            </h2>
           )}
           {hoursOfOperation && (
             <div className="Operation_data">
               <ul className="marker:text-black list-disc px-6 py-2">
                 {hoursOfOperation.map((item: any, index: number) => {
-                  return <li key={index}>{item}</li>;
+                  return (
+                    <li
+                      key={index}
+                      className="text-[12px] sm:text-[14px] lg:text-[18px] font-[400]"
+                    >
+                      {item}
+                    </li>
+                  );
                 })}
               </ul>
             </div>

@@ -8,6 +8,109 @@ import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import Carousel from '../../components/ProductPage/caroursel';
 import LocationMap from '../../components/Attraction/locationmap';
+import PageHero from '../../layouts/PageHero';
+import {
+  ATTRACTION_PAGE,
+  ATTRACTION_PAGE_SLUGS,
+  ATTRACTION_SLUGS_INTERFACE
+} from '../../api/attraction';
+import styled from 'styled-components';
+
+const StyleMarkdown = styled.div`
+  color: #333333;
+  h2 {
+    font-size: 28px;
+    font-weight: 600;
+    @media (max-width: 1024px) {
+      font-size: 20px;
+    }
+    @media (max-width: 640px) {
+      font-size: 18px;
+    }
+  }
+  p {
+    font-size: 18px;
+    font-weight: 400;
+    @media (max-width: 1024px) {
+      font-size: 14px;
+    }
+    @media (max-width: 640px) {
+      font-size: 12px;
+    }
+  }
+  .center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .cta-two-tone {
+    background-image: url('https://res.cloudinary.com/see-sight-tours/image/upload/v1669883122/dark-back_tqnwfs.png');
+    width: 70%;
+    @media (max-width: 1200px) {
+      width: 100%;
+    }
+    min-height: 200px;
+    border-radius: 20px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    p {
+      margin-top: 1rem;
+      color: white;
+      padding: 0 0.5rem;
+      font-size: 29px;
+      text-align: center;
+      min-height: 50%;
+      position: relative;
+      @media (max-width: 900px) {
+        text-align: center;
+      }
+      @media (max-width: 500px) {
+        text-align: center;
+        height: 80%;
+        font-size: 24px;
+      }
+    }
+    .button-container {
+      width: 100%;
+      display: flex;
+      background-image: url('https://res.cloudinary.com/see-sight-tours/image/upload/v1669883122/light-water_pjgzcg.png');
+      background-position: center;
+      justify-content: center;
+      position: relative;
+      min-height: 30%;
+      border-radius: 0px 0px 20px 20px;
+      @media (max-width: 500px) {
+        height: 20%;
+      }
+      a {
+        position: absolute;
+        top: -35%;
+        background: #fd5d5a !important;
+        border-radius: 20px;
+        width: 45%;
+        height: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white !important;
+        font-size: 21px;
+        font-weight: bold;
+        @media (max-width: 500px) {
+          width: 60%;
+          height: 60%;
+          font-size: 19px;
+        }
+        &:hover {
+          background: #fd3f3c;
+        }
+      }
+    }
+  }
+`;
 interface IProps {
   attraction: ATTRACTION;
   params: Record<string, any>;
@@ -39,9 +142,7 @@ interface PRODUCTINTERFACE {
 interface SLUG_INTERFACE {
   slug: string;
 }
-interface ATTRACTION_SLUGS_INTERFACE {
-  cities: [attractions: [{ slug: string }]];
-}
+
 interface ATTRACTION_PAGE_INTERFACE {
   attractions: [ATTRACTION];
 }
@@ -62,64 +163,7 @@ interface ATTRACTION {
   cardMedia: [CARDMEDIAINTERFACE];
   heroMedia: [CARDMEDIAINTERFACE];
 }
-const ATTRACTION_PAGE_SLUGS = gql`
-  query ATTRACTION_SLUGS {
-    cities {
-      attractions {
-        slug
-      }
-    }
-  }
-`;
-const ATTRACTION_PAGE = gql`
-  query FETCH_ATTRACTION($slug: JSON!) {
-    attractions(where: { slug: $slug }) {
-      name
-      canonical
-      metaDescription: meta_description
-      longDescription: long_description
-      hoursOfOperation: hours_of_operation
-      city {
-        id
-        name
-        slug
-      }
-      products {
-        id: boat_id
-        name
-        slug
-        duration
-        price
-        cardMessage: card_message
-        cardSnippet: snippet
-        cardMedia: card_media {
-          name
-          alt: alternativeText
-          url
-          fragment: caption
-        }
-        reviews {
-          id
-          rating
-        }
-      }
-      address
-      cardMedia: card_media {
-        name
-        alt: alternativeText
-        url
-        fragment: caption
-      }
-      heroMedia: media_library {
-        name
-        alt: alternativeText
-        url
-        fragment: caption
-        type: provider_metadata
-      }
-    }
-  }
-`;
+
 export async function getStaticPaths() {
   const { data } = await client.query<ATTRACTION_SLUGS_INTERFACE>({
     query: ATTRACTION_PAGE_SLUGS
@@ -172,8 +216,8 @@ export async function getStaticProps({ params }: IProps) {
   };
 }
 const SubSlug = ({ attraction }: IProps) => {
-  const [imagesAr, setimagesAr] = useState<Array<Record<string, unknown>>>([]);
-  const router = useRouter();
+  // const [imagesAr, setimagesAr] = useState<Array<Record<string, unknown>>>([]);
+  // const router = useRouter();
   const {
     name,
     canonical,
@@ -185,65 +229,52 @@ const SubSlug = ({ attraction }: IProps) => {
     cardMedia,
     heroMedia
   } = attraction || ({} as ATTRACTION);
-  useEffect(() => {
-    let img = [] as any;
-    if (cardMedia?.length > 0) {
-      cardMedia.forEach((item: Record<string, any>, index: number) => {
-        img.push({
-          key: index + 1,
-          imageURL: item.url
-        });
-      });
-    } else {
-      heroMedia?.length > 0 &&
-        heroMedia.forEach((item: Record<string, any>, index: number) => {
-          img.push({
-            key: index + 1,
-            imageURL: item.url
-          });
-        });
-    }
-    if (img.length > 0) {
-      setimagesAr(img);
-    }
-  }, [heroMedia]);
+  // useEffect(() => {
+  //   const img = [] as any;
+  //   if (cardMedia?.length > 0) {
+  //     cardMedia.forEach((item: Record<string, any>, index: number) => {
+  //       img.push({
+  //         key: index + 1,
+  //         imageURL: item.url
+  //       });
+  //     });
+  //   } else {
+  //     heroMedia?.length > 0 &&
+  //       heroMedia.forEach((item: Record<string, any>, index: number) => {
+  //         img.push({
+  //           key: index + 1,
+  //           imageURL: item.url
+  //         });
+  //       });
+  //   }
+  //   if (img.length > 0) {
+  //     setimagesAr(img);
+  //   }
+  // }, [heroMedia]);
+  console.log('Attraction:', attraction);
   return (
-    <div id="Attractions" className="px-16">
-      <div id="header">
-        <p className="text-xl py-3">
-          <span
-            className="cursor-pointer hover:text-slate-600"
-            onClick={() => Router.push(`/${router.query.slug}`)}
-          >
-            {router.query && router.query.slug}
-          </span>
-          {' > '} <span>{router.query.slug2}</span>{' '}
-        </p>
+    <>
+      <PageHero
+        title="Hornblower Niagara Cruises"
+        snippet="Niagara Falls, Canada"
+        media="/attractionBanner.jpg"
+        video={false}
+      />
+      <LocationMap
+        name={name}
+        address={address}
+        data={{ hoursOfOperation, address }}
+      />
+      <div id="Attractions" className="px-10 sm:px-16">
+        <StyleMarkdown id="long-description" className="mt-5">
+          {longDescription && (
+            <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+              {longDescription}
+            </ReactMarkdown>
+          )}
+        </StyleMarkdown>
       </div>
-      <div className="md:grid md:grid-cols-2 sm:block">
-        <div id="Image" className="px-3">
-          <Carousel imagesArr={imagesAr} />
-          <div id="description" className="flex flex-col">
-            <div className="flex justify-between pt-2">
-              {name && <h1 className="text-2xl font-[500]">{name}</h1>}
-              {city && <p className="py-1 font-[600]">{city.name}</p>}
-            </div>
-            <div id="long-description" className="mt-5">
-              {longDescription && (
-                <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-                  {longDescription}
-                </ReactMarkdown>
-              )}
-            </div>
-          </div>
-        </div>
-        <LocationMap
-          name={name}
-          address={address}
-          data={{ hoursOfOperation, address }}
-        />
-      </div>
-    </div>
+    </>
   );
 };
 
