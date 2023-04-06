@@ -71,10 +71,10 @@ const GuidesDesk = ({ guidesData }: IProps) => {
                     id="guide-bio"
                     className="flex-none md:w-[58%] lg:w-[64%] xl:w-[70%] 2xl:w-[65%] 3xl:w-[70%] px-5  right-0"
                   >
-                    <h3 className="text-[18px] sm:text-[26px] lg:text-[32px] xl:text-[40px] 2xl:text-[46px] font-[700]">
+                    <h3 className="text-[16px] sm:text-[22px] lg:text-[28px] font-[600]">
                       {guide?.firstName.toLocaleUpperCase()} {guide?.lastName}
                     </h3>
-                    <p className="text-[#828282] text-justify md:max-h-[240px] lg:max-h-[260px] xl:max-h-[300px] 2xl:max-h-[500px] h-[100%] overflow-auto xl:text-[20px] font-[500] px-1 ">{`${guide?.biography}`}</p>
+                    <p className="text-[#828282] text-justify md:max-h-[240px] lg:max-h-[260px] xl:max-h-[300px] 2xl:max-h-[500px] h-[100%] overflow-auto text-[12px] sm:text-[14px] lg:text-[20px] font-[400] px-1 ">{`${guide?.biography}`}</p>
                   </div>
                 </div>
               </SwiperSlide>
