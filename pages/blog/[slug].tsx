@@ -6,7 +6,6 @@ import client from '../../apollo-client';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 
-import BlogHero from '../../components/BlogHero/BlogHero';
 interface Params {
   params: {
     slug: string;
@@ -199,13 +198,13 @@ const Blog = ({ blogs }: BLOG_PAGE_INTERFACE) => {
     ?.trim();
   return (
     <div>
-      <BlogHero
+      {/*  <BlogHero
         title={blogs[0].pageTitle}
         snippet={blogs[0].subheader}
         media={blogs[0].heroMedia[0].url}
         publicationDate={blogs[0].publicationDate}
         author={blogs[0].author}
-      />
+      /> */}
       <BLOGPAGE>
         <div className="w-4/6 flex-col shadow-lg shadow-gray-700 px-10 py-10 ">
           <h2>{blogs[0].pageTitle}</h2>
