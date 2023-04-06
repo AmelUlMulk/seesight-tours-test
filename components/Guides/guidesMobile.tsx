@@ -69,10 +69,10 @@ const GuidesMobile = ({ guidesData }: IProps) => {
                     />
                   </div>
                   <div className="text-justify">
-                    <h3 className="xsm:text-[18px] sm:text-[30px] font-[700]">
+                    <h3 className="xsm:text-[16px] sm:text-[22px] font-[600]">
                       {guide?.firstName.toUpperCase()}
                     </h3>
-                    <p className="text-[#828282] text-right overflow-auto xxsm:text-[12px] sm:text-[20px] font-[500] pl-5 inline ">
+                    <p className="text-[#828282] text-right overflow-auto text-[12px] sm:text-[14px] font-[400] pl-5 inline ">
                       {`${guide?.biography}`}
                     </p>
                   </div>

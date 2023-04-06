@@ -20,29 +20,27 @@ const Newsletter = ({}) => {
   }, [validated]);
 
   const NewsletterHeading = styled.h2`
-    font-family: 'Poppins';
-    font-style: normal;
     font-weight: 600;
-    font-size: 44px;
+    font-size: 36px;
     text-align: center;
+    color: #333333;
     @media (max-width: 1100px) {
-      font-size: 35px;
+      font-size: 26px;
     }
     @media (max-width: 500px) {
-      font-size: 30px;
+      font-size: 18px;
     }
-    font-size: 44px;
   `;
   const Newsletter = styled.p`
-    font-family: 'Poppins';
-    font-style: normal;
     font-weight: 400;
-    font-size: 32px;
+    font-size: 18px;
+    text-align: center;
+    color: #4f4f4f;
     @media (max-width: 1100px) {
-      font-size: 24px;
+      font-size: 14px;
     }
     @media (max-width: 500px) {
-      font-size: 20px;
+      font-size: 12px;
     }
     text-align: center;
   `;
@@ -53,18 +51,16 @@ const Newsletter = ({}) => {
         toastStyle={{ backgroundColor: 'green', color: 'white' }}
       />
       <div className="flex justify-center pt-10">
-        <div className=" w-4/5  md:w-8/12   lg:w-[55%]">
-          <NewsletterHeading className="2xl-text-3xl xl-text-3xl lg-text-2xl font-bold  2xl:text-center xl:text-center lg:text-center md:text-center sm:text-center xsm:text-center ">
-            Subscribe to our newsletter!
-          </NewsletterHeading>
+        <div className=" w-4/5 md:w-8/12 lg:w-[65%]">
+          <NewsletterHeading>Subscribe to our newsletter!</NewsletterHeading>
 
-          <Newsletter className="2xl:text-center xl:text-center lg:text-center md:text-center sm:text-center xsm:text-center  ">
+          <Newsletter className="px-20 lg:px-10">
             Signup to our newsletter and we will make sure to let you know
             whenever we have news!
           </Newsletter>
 
           <form onSubmit={handleSubmit}>
-            <div className="flex mt-12 justify-center relative">
+            <div className="flex mt-6 lg:mt-12 justify-center relative">
               <input
                 className="bg-gray-100 lg:text-2xl   rounded-lg text-start md:pl-[10%]   text-gray-800 p-3 w-[100%] pr-[5%] border-2   border-gray-400   focus:outline-none focus:border-gray-500"
                 placeholder="Your e-mail address"
