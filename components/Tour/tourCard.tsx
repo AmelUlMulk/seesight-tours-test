@@ -59,7 +59,6 @@ const TourCard = ({ product, productType }: IProps) => {
     });
     totalAvg = Number((total / product?.reviews?.length).toFixed(1));
   }
-
   return (
     <div
       id="tour-section"
@@ -177,15 +176,17 @@ const TourCard = ({ product, productType }: IProps) => {
         className="flex justify-between px-3 py-2 w-full "
       >
         <Link
-          href={`/tours/${product.slug}`}
+          href={`/tours/${product?.slug}`}
           className="flex-none w-[37%] py-2 text-[#131313] text-center text-[12px] xsm:text-[14px] xl:text-[16px] 2xl:text-[18px] font-[500] bg-[#FFFFFF] border-[1px] border-[#F15C5A] rounded-[8px] md:rounded-[10px] hover:border-none hover:text-white hover:bg-slate-400"
         >
           <button>See Details</button>
         </Link>
-
-        <button className="flex-none w-[37%] py-2 text-[#FFFFFF] text-center font-[500] text-[12px] xsm:text-[14px] xl:text-[16px] 2xl:text-[18px] bg-[#F15C5A] rounded-[8px] md:rounded-[10px]">
-          Book Now
-        </button>
+        <Link
+          href={`/checkout/${product?.slug}`}
+          className="flex-none w-[37%] py-2 text-[#FFFFFF] text-center font-[500] text-[12px] xsm:text-[14px] xl:text-[16px] 2xl:text-[18px] bg-[#F15C5A] rounded-[8px] md:rounded-[10px]"
+        >
+          <button>Book Now</button>
+        </Link>
       </div>
     </div>
   );
