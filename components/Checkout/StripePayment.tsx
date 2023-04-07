@@ -56,18 +56,6 @@ const StripePayment = ({
           ...body
         }
       );
-      // const res = await fetch(
-      //   `${process.env.NEXT_PUBLIC_PAYMENT_API}/create-payment-intent`,
-      //   {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json'
-      //     },
-      //     body: JSON.stringify(body)
-      //   }
-      // );
-      // const data = await res.json();
-      console.log(' Payment Intent Response:', res.data);
       setClientSecret(res.data.clientSecret);
       setPaymentIntent(res.data.paymentIntent);
       setCustomerId(res.data.customer);
