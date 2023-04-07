@@ -9,8 +9,16 @@ const StyledImage = styled(Image)`
   min-height: 450px !important;
   max-height: 450px;
   @media (max-width: 1000px) {
-    max-height: 200px;
-    min-height: 200px !important;
+    max-height: 300px;
+    min-height: 300px !important;
+  }
+`;
+const StyledVideo = styled.video`
+  min-height: 450px !important;
+  max-height: 450px;
+  @media (max-width: 1000px) {
+    max-height: 300px;
+    min-height: 300px !important;
   }
 `;
 interface SwipperProps {
@@ -56,21 +64,28 @@ const HeroSwipper = ({ media }: SwipperProps) => {
   return (
     //@ts-ignore
     <Swiper {...SwipperParams}>
-      {media.map(media => {
-        if (media.url.includes('jpg')) {
-          console.log('the url', media.url);
-          return (
-            <SwiperSlide key={media.url} className="w-2/6  min-h-96   ">
+      {media.map((media, index) => {
+        return (
+          <SwiperSlide key={media.url} className="w-2/6 min-h-full  ">
+            {media.url.includes('jpg') ? (
               <StyledImage
                 src={media.url}
                 width={500}
                 height={300}
                 alt={media.url}
-                className="  w-full  rounded-md  "
+                className="w-full object-fill h-full  "
               />
-            </SwiperSlide>
-          );
-        }
+            ) : (
+              <StyledVideo
+                autoPlay
+                muted
+                loop
+                className="w-full object-fill h-full  "
+                src={media.url}
+              />
+            )}
+          </SwiperSlide>
+        );
       })}
       {/* <div
           onClick={() => swiper.slideNext()}

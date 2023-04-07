@@ -27,25 +27,49 @@ const TestimonialStyle = styled.section`
 export const TextShadow = styled.h1`
   text-shadow: 1px -42px 1px rgba(51, 51, 51, 0.1);
 `;
-const sourceIcon = (source: string) => {
+export const sourceIcon = (source: string) => {
   switch (source) {
     case 'WEBSITE':
-      return 'Website';
+      return '/logo.svg';
       break;
     case 'GOOGLE':
-      return 'Google';
+      return '/google-icon.svg';
       break;
     case 'EXPEDIA':
-      return 'Expedia';
+      return '/expediaIcon.svg';
       break;
     case 'TRIPADVISOR':
-      return 'Tripadvisor';
+      return '/tripadvisorIcon.svg';
       break;
     case 'VIATOR':
-      return 'Viator';
+      return '/viatorIcon.svg';
       break;
     case 'GETYOURGUIDE':
-      return 'GetYourGuide';
+      return '/getyourguide.svg';
+      break;
+    default:
+      return source;
+  }
+};
+export const sourceIconDim = (source: string) => {
+  switch (source) {
+    case 'WEBSITE':
+      return '/logo.svg';
+      break;
+    case 'GOOGLE':
+      return '/google-icon.svg';
+      break;
+    case 'EXPEDIA':
+      return '/expediaIcon.svg';
+      break;
+    case 'TRIPADVISOR':
+      return '/tripadvisorIcon.svg';
+      break;
+    case 'VIATOR':
+      return '/viatorIcon.svg';
+      break;
+    case 'GETYOURGUIDE':
+      return '/getyourguide.svg';
       break;
     default:
       return source;
@@ -58,11 +82,22 @@ const Testimonials = () => {
     error
   } = useQuery<TESTIMONIAL_INTERFACE>(TESTIMONIALS);
   //reviews with max 120 characters
-  const filterReviews = reviews?.filter((review: any) => {
-    if (review?.review !== null) {
-      return review?.rating === 5 && review?.review.length < 120;
-    }
-  });
+  const filterReviews = reviews
+    ?.filter((review: any) => {
+      if (review?.review !== null) {
+        return review?.rating === 5 && review?.review.length < 120;
+      }
+    })
+    // sorting by google reviews
+    .sort((a, b) => {
+      if (a.source === 'GOOGLE' && b.source !== 'GOOGLE') {
+        return -1;
+      } else if (a.source !== 'GOOGLE' && b.source === 'GOOGLE') {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
 
   return (
     <TestimonialStyle
@@ -70,7 +105,7 @@ const Testimonials = () => {
       className="px-10 sm:px-20 md:px-20 lg:px-32 2xl:px-40 bg-no-repeat bg-cover my-10 py-5"
     >
       <div>
-        <h1 className="text-[#333333] text-[28px] sm:text-[36px] lg:text-[42px] xl:text-[50px] 2xl:text-[56px] font-[700] pb-3">
+        <h1 className="text-[#333333] text-[18px] sm:text-[26px] lg:text-[36px] font-[600] pb-3">
           TESTIMONIALS
         </h1>
       </div>
@@ -80,8 +115,8 @@ const Testimonials = () => {
           className="flex justify-between items-center gap-2 sm:gap-5"
         >
           <div className="flex justify-center items-center">
-            <button className="text-white bg-[#F15C5A] rounded-[50%] p-4 w-[45px] h-[45px] prevBtn">
-              <PrevslideIcon />
+            <button className="text-white text-2xl sm:text-3xl bg-[#B4B4B4] rounded-full w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] prevBtn">
+              {`<`}
             </button>
           </div>
           <Swiper
@@ -115,7 +150,14 @@ const Testimonials = () => {
             {filterReviews.slice(0, 10).map(dt => (
               <SwiperSlide key={dt.id}>
                 <div>
-                  <div className="flex flex-col relative bg-[#000000] opacity-80  text-white xxsm:min-h-[140px] xsm:min-h-[150px]  sm:min-h-[140px] md:min-h-[160px] xl:min-h-[180px] 2xl:min-h-[165px] 3xl:max-h-[170px] 4xl:max-h-[170px] h-[100%] px-3 xsm:px-5 md:px-5 lg:px-6 xl:px-10 pt-3 xsm:pt-5 md:pt-5 lg:pt-6 pb-2 rounded-lg">
+                  <div className="flex flex-col relative bg-[#000000] opacity-80 text-white min-h-[140px] lg:min-h-[160px] h-[100%] px-3 xsm:px-5 lg:px-6 xl:px-10 pt-3 xsm:pt-5 lg:pt-6 pb-2 rounded-lg">
+                    <Image
+                      src={sourceIcon(dt.source)}
+                      width={60}
+                      height={60}
+                      alt="review source"
+                      className="absolute top-2 right-3"
+                    />
                     <Image
                       src="/quote.png"
                       width={30}
@@ -123,12 +165,10 @@ const Testimonials = () => {
                       alt=""
                       className="w-[20px] "
                     />
-                    <p className="text-[12px] sm:text-[15px] xl:text-[16px] font-[400]">
+                    <p className="text-[12px] xl:text-[14px] font-[400] text-justify">
                       {dt.review}
                     </p>
-                    <p className="absolute top-1 right-2 text-right text-[10px] sm:text-[12px] xl:text-[14px] font-[400] italic">
-                      {sourceIcon(dt.source)}
-                    </p>
+
                     <div
                       className="bg-[#000000] opacity-[80%] w-[30px] h-[30px] absolute top-[100%] left-8"
                       style={{
@@ -144,8 +184,8 @@ const Testimonials = () => {
             ))}
           </Swiper>
           <div className="flex justify-center items-center">
-            <button className="bg-[#F15C5A] text-white rounded-[50%] p-4 w-[45px] h-[45px] nextBtn">
-              <NextslideIcon />
+            <button className="text-white text-2xl sm:text-3xl bg-[#F15C5A] rounded-full w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] nextBtn">
+              {`>`}
             </button>
           </div>
         </div>

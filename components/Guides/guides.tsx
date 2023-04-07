@@ -14,7 +14,7 @@ const OurGuides = ({ guidesData }: IProps) => {
         id="guides-container"
         className=" pt-10 pb-40 mx-10 sm:mx-20 md:mx-20 lg:mx-32 2xl:mx-40 border-y border-[#C5C5C5]"
       >
-        <h1 className="text-[#333333] text-[28px] sm:text-[36px] lg:text-[42px] xl:text-[50px] 2xl:text-[56px] font-[700]">
+        <h1 className="text-[#333333] text-[18px] sm:text-[26px] lg:text-[36px] font-[600]">
           OUR GUIDES
         </h1>
         {mediaQuery ? (

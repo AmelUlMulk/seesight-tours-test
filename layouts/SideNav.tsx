@@ -17,6 +17,7 @@ import YoutubeIcon from '../assets/svg/fayoutubesquare.svg';
 interface IProps {
   isOpen: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenMyTours: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const SideNav_Wrapper = styled.div`
   .pro-sidebar {
@@ -89,7 +90,7 @@ const SideNav_Wrapper = styled.div`
     }
   }
 `;
-const SideNav = ({ isOpen, setOpen }: IProps) => {
+const SideNav = ({ isOpen, setOpen, setOpenMyTours }: IProps) => {
   return (
     <div
       id="nav-overlay"
@@ -137,9 +138,15 @@ const SideNav = ({ isOpen, setOpen }: IProps) => {
               <Link href="/partner" onClick={() => setOpen(true)}>
                 <MenuItem className="py-1">Become A Partner</MenuItem>
               </Link>
-              <Link href="/my-tours" onClick={() => setOpen(true)}>
+              <span
+                onClick={() => {
+                  setOpenMyTours(true);
+                  setOpen(true);
+                }}
+                className="text-white"
+              >
                 <MenuItem className="">My Tours</MenuItem>
-              </Link>
+              </span>
             </Menu>
           </SidebarContent>
           <SidebarFooter>

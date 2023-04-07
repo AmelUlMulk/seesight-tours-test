@@ -35,12 +35,13 @@ export default function Home({
       <main className="pb-20 bg-[#F5F5F5]">
         <section id="hero" className="relative">
           <PageHero
-            title={'The Best Way to See The World'}
+            title={'Small Group Tours'}
             snippet={
               'Best Small Group Tours. Operating Across Canada and the United States'
             }
             media="https://res.cloudinary.com/see-sight-tours/video/upload/v1658237954/landing-page-hero_mu19mc.mp4"
             video={true}
+            landing
           />
           <SearchCity />
         </section>

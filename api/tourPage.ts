@@ -68,6 +68,14 @@ const FETCH_PRODUCT = gql`
         price
         cardSnippet: snippet
         cardMessage: card_message
+        carousel: carousel_media {
+          id
+          name
+          alt: alternativeText
+          url
+          fragment: caption
+          type: provider_metadata
+        }
         cardMedia: card_media {
           id
           name
@@ -134,6 +142,13 @@ interface PRODUCTINTERFACE1 {
     url: string;
   };
   private: string;
+  reviews: [
+    {
+      rating: number;
+      review: string;
+      travellor: string;
+    }
+  ];
 }
 interface CARDMEDIAINTERFACE {
   name: string;
@@ -166,6 +181,7 @@ interface PRODUCTINTERFACE {
   cardMessage: string;
   cardSnippet: string;
   cardMedia: [CARDMEDIAINTERFACE];
+  carousel: [CARDMEDIAINTERFACE];
   reviews: [
     {
       id: string;

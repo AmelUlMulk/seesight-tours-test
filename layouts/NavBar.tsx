@@ -6,6 +6,7 @@ import Hamburger from 'hamburger-react';
 import SideNav from './SideNav';
 import logo from '../assets/svg/logo.svg';
 import Router from 'next/router';
+import Modal from '../components/MyTours/BookingSearchModal';
 
 export const useMediaQuery = (width: number) => {
   const [targetReached, setTargetReached] = useState(false);
@@ -33,6 +34,7 @@ export const useMediaQuery = (width: number) => {
 };
 const NavBar = () => {
   const [isOpen, setOpen] = useState<boolean>(false);
+  const [myToursModal, setMyToursModal] = useState(false);
   const router = useRouter();
   const mediaQuery = useMediaQuery(1024);
   // eslint-disable-next-line no-console
@@ -40,14 +42,14 @@ const NavBar = () => {
     <header className="Navbar sticky top-0 z-[1020] bg-gray-100 ">
       <div className="py-2 md:py-5 mx-auto w-full  ">
         <div className="flex justify-between items-center gap-12">
-          <div className="logo pl-4 w-1/5 flex justify-center  ">
+          <div className="logo pl-4 md:w-1/5 flex justify-center  ">
             <Link href="/">
               <Image
                 alt="sea sight tours logo"
                 src="/logo.svg"
                 width={200}
                 height={57}
-                className="max-h-[56px]"
+                className="max-h-[100px] w-32 md:w-44 "
               />
             </Link>
           </div>
@@ -122,7 +124,7 @@ const NavBar = () => {
               </div>
               <div className="flex w-1/5 justify-center ">
                 <button
-                  onClick={() => Router.push('/my-tours')}
+                  onClick={() => setMyToursModal(true)}
                   className={` bg-[#F15C5A] p-3 text-white rounded-lg text-center  ${
                     router.pathname.split('/')[1] == 'my-tours'
                       ? ' hover:bg-red-500   '
@@ -137,7 +139,12 @@ const NavBar = () => {
           )}
         </div>
       </div>
-      <SideNav isOpen={isOpen} setOpen={setOpen} />
+      <SideNav
+        isOpen={isOpen}
+        setOpen={setOpen}
+        setOpenMyTours={setMyToursModal}
+      />
+      <Modal open={myToursModal} setOpenModal={setMyToursModal} />
     </header>
   );
 };
