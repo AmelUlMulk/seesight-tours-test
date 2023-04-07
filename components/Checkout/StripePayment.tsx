@@ -67,7 +67,7 @@ const StripePayment = ({
       //   }
       // );
       // const data = await res.json();
-      console.log('res:', res.data);
+      console.log(' Payment Intent Response:', res.data);
       setClientSecret(res.data.clientSecret);
       setPaymentIntent(res.data.paymentIntent);
       setCustomerId(res.data.customer);
