@@ -337,7 +337,7 @@ const Checkout = ({
   return (
     <MainStyle
       image={background}
-      className="min-h-[130vh] h-auto w-full bg-cover bg-no-repeat bg-center relative"
+      className="md:min-h-[130vh] h-auto w-full bg-cover bg-no-repeat bg-center relative"
     >
       <div className=" relative md:absolute top-0 left-0 h-[100%] w-full bg-black bg-opacity-50  z-10 ">
         {thankyou && <Thankyou open={thankyou} close={setThankYou} />}
