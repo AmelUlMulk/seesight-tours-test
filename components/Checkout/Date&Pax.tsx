@@ -12,7 +12,8 @@ import Summary from './component/summary';
 import SectionWrapper from './component/SectionWrapper';
 
 const StyledCelendar = styled(Calendar)`
-  min-width: 566px;
+  width: 100%;
+  margin-bottom: 3rem;
   @media (max-width: 1212px) {
     min-width: 100%;
   }
@@ -227,7 +228,7 @@ const DateAndPax = ({
   name
 }: DATEANDPAXPROPS) => {
   const [isOpen, setIsOpen] = useState(true);
-
+  const [mobileCalendar, setMobileCalendar] = useState<boolean>(true);
   const [availabilityArray] = useState(() =>
     productAvailabities.map(item => dayjs(item.startTime).format('YYYY-MM-DD'))
   );
@@ -298,32 +299,64 @@ const DateAndPax = ({
   return (
     <SectionWrapper title="Select Date & no of Person" slug={slug} name={name}>
       <div className="md:flex w-[90%] lg:w-[100%] m-auto relative gap-4  z-30">
-        <section id="availibilty" className="flex justify-center md:w-[50%]">
-          <StyledCelendar
-            tileContent={({ activeStartDate, date, view }) => (
-              <DayContainer
-                active={
-                  selectedDate === dayjs(date).format('YYYY-MM-DD')
-                    ? true
-                    : false
-                }
+        <section
+          id="availibilty"
+          className="flex justify-center md:w-[50%] items-start"
+        >
+          <div className="flex-col  w-full    max-w-[556px]">
+            <div className="flex w-full bg-white md:hidden items-center py-3 px-2 rounded  justify-between ">
+              Tour Date :
+              <span className=" flex-1 px-4 font-bold ">
+                {' '}
+                {dayjs(selectedDate).format('DD MMM YYYY')}{' '}
+              </span>
+              <div
+                className={`rotate-180 ${mobileCalendar && 'rotate-0'}  `}
+                onClick={() => setMobileCalendar(!mobileCalendar)}
               >
-                <p>{date.getDate()}</p>
-                <p className=" date text-sm md:text-lg ">{priceCheck(date)}</p>
-              </DayContainer>
+                <Image
+                  src="/dropDown.png"
+                  width={10}
+                  height={10}
+                  alt="dropdown"
+                />
+              </div>
+            </div>
+            {mobileCalendar && (
+              <StyledCelendar
+                tileContent={({ activeStartDate, date, view }) => (
+                  <DayContainer
+                    active={
+                      selectedDate === dayjs(date).format('YYYY-MM-DD')
+                        ? true
+                        : false
+                    }
+                  >
+                    <p>{date.getDate()}</p>
+                    <p className=" date text-sm md:text-lg ">
+                      {priceCheck(date)}
+                    </p>
+                  </DayContainer>
+                )}
+                onClickDay={value => {
+                  setSelectedDate(dayjs(value).format('YYYY-MM-DD'));
+                  if (
+                    window.matchMedia('screen and (max-width: 767px)').matches
+                  ) {
+                    setMobileCalendar(!mobileCalendar);
+                  }
+                }}
+                tileDisabled={({ activeStartDate, date, view }) => {
+                  if (
+                    availabilityArray.includes(dayjs(date).format('YYYY-MM-DD'))
+                  ) {
+                    return false;
+                  }
+                  return true;
+                }}
+              />
             )}
-            onClickDay={value => {
-              setSelectedDate(dayjs(value).format('YYYY-MM-DD'));
-            }}
-            tileDisabled={({ activeStartDate, date, view }) => {
-              if (
-                availabilityArray.includes(dayjs(date).format('YYYY-MM-DD'))
-              ) {
-                return false;
-              }
-              return true;
-            }}
-          />
+          </div>
         </section>
         <section
           id="passenger_qty"
