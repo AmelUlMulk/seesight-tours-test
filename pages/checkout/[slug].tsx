@@ -170,7 +170,6 @@ const Checkout = ({
   slug,
   products
 }: PROPSDATA) => {
-  // console.log(boatnew_products);
   const stripePromise = loadStripe(String(process.env.NEXT_PUBLIC_STRIPE));
   const background = products[0].carousel_media[0].url;
 
@@ -192,9 +191,7 @@ const Checkout = ({
         id: bookingId
       }
     });
-  if (data) {
-    console.log('bookings data:', data);
-  }
+
   const [selectedDate, setSelectedDate] = useState<string>(
     dayjs(product_Availability[0].startTime).format('YYYY-MM-DD')
   );

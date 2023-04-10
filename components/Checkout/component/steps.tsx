@@ -39,8 +39,8 @@ type StepsProp = {
 //Comparing stating with zero bacause step 1 = [0]
 const Steps = ({ currentStepIndex = 0 }: StepsProp) => {
   return (
-    <div className="w-full  mb-4  flex justify-center">
-      <div className="relative w-4/5 md:w-1/2 lg-1/4  flex  align-middle justify-between items-center z-[100] my-10 ">
+    <div className="w-full flex justify-center">
+      <div className="relative w-4/5 md:w-1/2 lg-1/4  flex  align-middle justify-between items-center z-[100]">
         <Line />
         <Step selected={currentStepIndex === 0 ? true : false}>
           <h1>1</h1>

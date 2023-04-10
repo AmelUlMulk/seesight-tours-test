@@ -9,6 +9,7 @@ import {
   PASSENGERINFO
 } from '../../pages/checkout/[slug]';
 import Summary from './component/summary';
+import SectionWrapper from './component/SectionWrapper';
 
 const StyledCelendar = styled(Calendar)`
   width: 100%;
@@ -239,146 +240,152 @@ const DateAndPax = ({
     .map(([key, value]) => ({ [key]: value }));
 
   return (
-    <div className="md:flex w-[90%] lg:w-[80%] m-auto relative z-30">
-      <section id="availibilty" className="flex-none md:w-[50%] sm:px-5">
-        <StyledCelendar
-          tileContent={({ activeStartDate, date, view }) => (
-            <DayContainer
-              active={
-                selectedDate === dayjs(date).format('YYYY-MM-DD') ? true : false
-              }
-            >
-              <p className="text-[14px] sm:text-[18px] md:text-[15px] lg:text-[16px] xl:text-[20px] font-[400]">
-                {date.getDate()}
-              </p>
-              <p className=" text-[14px] sm:text-[18px] md:text-[15px] lg:text-[16px] xl:text-[20px] font-[700] sm:font-[700] ">
-                {priceCheck(date)}
-              </p>
-            </DayContainer>
-          )}
-          onClickDay={value => {
-            setSelectedDate(dayjs(value).format('YYYY-MM-DD'));
-          }}
-          tileDisabled={({ activeStartDate, date, view }) => {
-            if (availabilityArray.includes(dayjs(date).format('YYYY-MM-DD'))) {
-              return false;
-            }
-            return true;
-          }}
-        />
-      </section>
-      <section
-        id="passenger_qty"
-        className="flex-none md:w-[50%] mt-5 md:mt-0 sm:px-5"
-      >
-        <div className="flex flex-col">
-          <div id="selected_date" className="text-white bg-black">
-            <div className="flex flex-col sm:w-full ">
-              <div className=" flex flex-wrap w-full gap-2 bg-[#131313]">
-                {availability.map((item: any, index: number) => (
-                  <TimeOptions key={item.startTime}>
-                    <input
-                      type="checkbox"
-                      className=" w-4 mr-2  "
-                      onClick={() => setSelectedTimeSlot(item)}
-                      checked={item.id === selectedTimeSlot.id}
-                    />
-
-                    <span className="text-lg text-white">
-                      {dayjs(item.startTime).format(' MMM-DD-YYYY , HH:mm A')}
-                    </span>
-                  </TimeOptions>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div id="update_pax" className="bg-white flex flex-col">
-            <div className="flex justify-between items-center px-5 py-2">
-              <div>
-                {selectedPaxObj && selectedPaxObj.length > 0 && (
-                  <div className="flex">
-                    {selectedPaxObj?.map((item: Record<string, any>) => {
-                      const key = Object.keys(item)[0];
-                      return (
-                        <p key={item.label}>{`${
-                          key[0].toUpperCase() + key.slice(1)
-                        }-X${item[key].count}`}</p>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-              <div
-                className={`rotate-180 ${isOpen && 'rotate-0'}`}
-                onClick={() => setIsOpen(!isOpen)}
+    <SectionWrapper title="Select Date & no of Person" slug={slug} name={name}>
+      <div className="md:flex w-[90%] lg:w-[100%] m-auto relative z-30">
+        <section id="availibilty" className="flex-none md:w-[50%]">
+          <StyledCelendar
+            tileContent={({ activeStartDate, date, view }) => (
+              <DayContainer
+                active={
+                  selectedDate === dayjs(date).format('YYYY-MM-DD')
+                    ? true
+                    : false
+                }
               >
-                <Image
-                  src="/dropDown.png"
-                  width={10}
-                  height={10}
-                  alt="dropdown"
-                />
+                <p className="text-[14px] sm:text-[18px] md:text-[15px] lg:text-[16px] xl:text-[20px] font-[400]">
+                  {date.getDate()}
+                </p>
+                <p className=" text-[14px] sm:text-[18px] md:text-[15px] lg:text-[16px] xl:text-[20px] font-[700] sm:font-[700] ">
+                  {priceCheck(date)}
+                </p>
+              </DayContainer>
+            )}
+            onClickDay={value => {
+              setSelectedDate(dayjs(value).format('YYYY-MM-DD'));
+            }}
+            tileDisabled={({ activeStartDate, date, view }) => {
+              if (
+                availabilityArray.includes(dayjs(date).format('YYYY-MM-DD'))
+              ) {
+                return false;
+              }
+              return true;
+            }}
+          />
+        </section>
+        <section
+          id="passenger_qty"
+          className="flex-none md:w-[50%] mt-5 md:mt-0 sm:px-5"
+        >
+          <div className="flex flex-col">
+            <div id="selected_date" className="text-white bg-black">
+              <div className="flex flex-col sm:w-full ">
+                <div className=" flex flex-wrap w-full gap-2 bg-[#131313]">
+                  {availability.map((item: any, index: number) => (
+                    <TimeOptions key={item.startTime}>
+                      <input
+                        type="checkbox"
+                        className=" w-4 mr-2  "
+                        onClick={() => setSelectedTimeSlot(item)}
+                        checked={item.id === selectedTimeSlot.id}
+                      />
+
+                      <span className="text-lg text-white">
+                        {dayjs(item.startTime).format(' MMM-DD-YYYY , HH:mm A')}
+                      </span>
+                    </TimeOptions>
+                  ))}
+                </div>
               </div>
             </div>
-            {isOpen && (
-              <>
-                {seatsFull && (
-                  <div className="text-red-400">Seats are full</div>
-                )}
-                <div className="py-2 px-6 sm:px-10 md:px-5 xl:px-10">
-                  {Object.keys(passengerPax)
-                    .slice(0, -1)
-                    .map((key: string, index: number) => {
-                      return (
-                        <div
-                          key={index}
-                          className="flex justify-between items-start xsm:py-2 sm:py-0"
-                        >
-                          <div>
-                            <p className="text-[12px] sm:text-[16px] xl:text-[20px] font-[600] ">
-                              {key[0].toLocaleUpperCase() + key.slice(1)}
-                            </p>
-                            <p className="text-[12px] sm:text-[14px] lg:text-[16px] font-[400]">
-                              {ageLimit(key)}
-                            </p>
-                          </div>
-                          <p className="text-[12px] sm:text-[14px] xl:text-[18px] font-[600]">
-                            {/* @ts-ignore */}$
-                            {passengerPax[key as keyof PASSENGERPAX]?.price}
-                          </p>
-                          <div className="flex justify-between items-center">
-                            <button
-                              id="minus"
-                              name={key}
-                              className="border border-slate-400 w-6 h-6 xsm:w-8 xsm:h-8  sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full hover:bg-red-500 hover:text-white hover:border-none"
-                              onClick={e => updatePassengerPAX(e)}
-                            >
-                              -
-                            </button>
-                            <p className="px-3 sm:px-10 md:px-5 lg:px-8 xl:px-12">
-                              {/* @ts-ignore */}
-                              {passengerPax[key as keyof PASSENGERPAX]?.count}
-                            </p>
-                            <button
-                              id="plus"
-                              name={key}
-                              className="border border-slate-400 w-6 h-6  xsm:w-8 xsm:h-8  sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full hover:bg-green-500 hover:text-white hover:border-none"
-                              onClick={e => updatePassengerPAX(e)}
-                            >
-                              +
-                            </button>
-                          </div>
-                        </div>
-                      );
-                    })}
+            <div id="update_pax" className="bg-white flex flex-col">
+              <div className="flex justify-between items-center px-5 py-2">
+                <div>
+                  {selectedPaxObj && selectedPaxObj.length > 0 && (
+                    <div className="flex">
+                      {selectedPaxObj?.map((item: Record<string, any>) => {
+                        const key = Object.keys(item)[0];
+                        return (
+                          <p key={item.label}>{`${
+                            key[0].toUpperCase() + key.slice(1)
+                          }-X${item[key].count}`}</p>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
-              </>
-            )}
+                <div
+                  className={`rotate-180 ${isOpen && 'rotate-0'}`}
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  <Image
+                    src="/dropDown.png"
+                    width={10}
+                    height={10}
+                    alt="dropdown"
+                  />
+                </div>
+              </div>
+              {isOpen && (
+                <>
+                  {seatsFull && (
+                    <div className="text-red-400">Seats are full</div>
+                  )}
+                  <div className="py-2 px-6 sm:px-10 md:px-5 xl:px-10">
+                    {Object.keys(passengerPax)
+                      .slice(0, -1)
+                      .map((key: string, index: number) => {
+                        return (
+                          <div
+                            key={index}
+                            className="flex justify-between items-start xsm:py-2 sm:py-0"
+                          >
+                            <div>
+                              <p className="text-[12px] sm:text-[16px] xl:text-[20px] font-[600] ">
+                                {key[0].toLocaleUpperCase() + key.slice(1)}
+                              </p>
+                              <p className="text-[12px] sm:text-[14px] lg:text-[16px] font-[400]">
+                                {ageLimit(key)}
+                              </p>
+                            </div>
+                            <p className="text-[12px] sm:text-[14px] xl:text-[18px] font-[600]">
+                              {/* @ts-ignore */}$
+                              {passengerPax[key as keyof PASSENGERPAX]?.price}
+                            </p>
+                            <div className="flex justify-between items-center">
+                              <button
+                                id="minus"
+                                name={key}
+                                className="border border-slate-400 w-6 h-6 xsm:w-8 xsm:h-8  sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full hover:bg-red-500 hover:text-white hover:border-none"
+                                onClick={e => updatePassengerPAX(e)}
+                              >
+                                -
+                              </button>
+                              <p className="px-3 sm:px-10 md:px-5 lg:px-8 xl:px-12">
+                                {/* @ts-ignore */}
+                                {passengerPax[key as keyof PASSENGERPAX]?.count}
+                              </p>
+                              <button
+                                id="plus"
+                                name={key}
+                                className="border border-slate-400 w-6 h-6  xsm:w-8 xsm:h-8  sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full hover:bg-green-500 hover:text-white hover:border-none"
+                                onClick={e => updatePassengerPAX(e)}
+                              >
+                                +
+                              </button>
+                            </div>
+                          </div>
+                        );
+                      })}
+                  </div>
+                </>
+              )}
+            </div>
+            <Summary passengerPax={passengerPax} totalPrice={totalPrice} />
           </div>
-          <Summary passengerPax={passengerPax} totalPrice={totalPrice} />
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </SectionWrapper>
   );
 };
 
