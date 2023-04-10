@@ -362,7 +362,7 @@ const DateAndPax = ({
                             <p key={item.label}>{`${
                               key[0].toUpperCase() + key.slice(1)
                             } x ${item[key].count} ${
-                              index <= 2 ? ',' : ''
+                              index <= 1 ? ',' : ''
                             } `}</p>
                           );
                         }
