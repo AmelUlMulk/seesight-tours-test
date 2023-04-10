@@ -12,7 +12,7 @@ const Summary = ({
   const childrenPax = children ? children.count : 0;
   const infantPax = infants ? infants.count : 0;
   return (
-    <div className="flex flex-col  text-white  bg-[#131313] py-5 justify-center items-center min-height-[220] min-width-[500px]">
+    <div className="flex flex-col  text-white bg-blue-600   py-5 justify-center items-center min-height-[220] min-width-[500px]">
       <div className="flex px-2 w-4/5  xl:w-1/2 justify-between border-b-white border-b-2 ">
         <div className="border-r-white border-r-2 w-1/2 py-2">
           <h2>Adults</h2>

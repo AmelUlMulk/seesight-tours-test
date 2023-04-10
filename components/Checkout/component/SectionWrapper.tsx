@@ -11,14 +11,14 @@ type WrapperProps = {
 const WRAPPER = styled.div`
   position: relative;
   z-index: 50;
-  padding: 0px 146px;
+  padding: 0px 120px;
   padding-bottom: 0;
   @media (max-width: 1500px) {
     padding: 10px 50px;
     padding-bottom: 0;
   }
   @media (max-width: 700px) {
-    padding: 70px 10px;
+    padding: 10px 10px;
     padding-bottom: 0;
   }
   /* padding-top: 100px !important; */
@@ -51,7 +51,7 @@ const SectionWrapper = ({ title, children, slug, name }: WrapperProps) => {
       />
       {slug && (
         <h2
-          className=" text-xl md:text-2xl cursor-pointer  mt-8 text-white mb-2"
+          className=" text-xl md:text-2xl cursor-pointer   text-white mb-2"
           onClick={() => setProductDetails(true)}
         >
           {name}
