@@ -38,7 +38,7 @@ const LandingPageInfo = () => {
       id="landing_page_info"
       className="py-12 mx-10 sm:mx-20 md:mx-20 lg:mx-32 2xl:mx-40 border-b border-[#C5C5C5]"
     >
-      <h1 className="text-[#333333] text-[28px] sm:text-[36px] lg:text-[42px] xl:text-[50px] 2xl:text-[56px] font-[700] pb-3">
+      <h1 className="text-[#333333] text-[18px] sm:text-[26px] lg:text-[36px] font-[700] pb-3">
         WHY US
       </h1>
       <div className="md:flex">
@@ -119,7 +119,7 @@ const LandingPageInfo = () => {
                         </h1>
                       </div>
                       <div className="md:pl-6 lg:pl-8 xl:pl-14">
-                        <h1 className="md:text-[22px] lg:text-[26px] xl:text-[32px] font-[600] text-[#333333]">
+                        <h1 className="text-[16px] sm:text-[22px] lg:text-[28px] font-[600] text-[#333333]">
                           {infoData.header}
                         </h1>
                         <p className="text-[#828282] md:text-[14px] lg:text-[14px] xl:text-[16px] md:pt-2 lg:pt-5 font-[500]">

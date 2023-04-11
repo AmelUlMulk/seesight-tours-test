@@ -42,14 +42,14 @@ const NavBar = () => {
     <header className="Navbar sticky top-0 z-[1020] bg-gray-100 ">
       <div className="py-2 md:py-5 mx-auto w-full  ">
         <div className="flex justify-between items-center gap-12">
-          <div className="logo pl-4 w-1/5 flex justify-center  ">
+          <div className="logo pl-4 md:w-1/5 flex justify-center  ">
             <Link href="/">
               <Image
                 alt="sea sight tours logo"
                 src="/logo.svg"
                 width={200}
                 height={57}
-                className="max-h-[56px]"
+                className="max-h-[100px] w-32 md:w-44 "
               />
             </Link>
           </div>

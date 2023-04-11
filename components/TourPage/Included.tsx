@@ -17,24 +17,30 @@ const Included = ({ data, attractions, longDescription }: INCLUDED) => {
   return (
     <>
       <div
-        className="2xl:px-[10%]  w-full flex flex-col justify-between py-4"
+        className=" px-2 2xl:px-[10%]  w-full flex flex-col justify-between py-2 md:py-4"
         ref={ref}
       >
-        <h1 id="whatsincluded" className="text-5xl font-extrabold mb-6 ">
+        <h1
+          id="whatsincluded"
+          className="  text-xl md:text-4xl font-extrabold md:mb-6 "
+        >
           What's Included
         </h1>
-        <ul className=" list-disc w-3/4 ">
+        <ul className=" list-disc md:w-3/4  ">
           {data.map(item => (
             //@ts-ignore
-            <li key={item} className="py-4 text-2xl   ">
+            <li key={item} className="py-4  md:text-2xl   ">
               {/*@ts-ignore*/}
               {item.value ? item.value : item}
             </li>
           ))}
         </ul>
       </div>
-      <div className="2xl:pl-[10%]  flex flex-col justify-between py-4 w-full">
-        <h1 className="text-5xl font-extrabold mb-6 " id="what-you-will-see">
+      <div className=" px-[2%] 2xl:pl-[10%]  flex flex-col justify-between py-4 w-full">
+        <h1
+          className=" text-xl md:text-4xl font-extrabold mb-6 "
+          id="what-you-will-see"
+        >
           What you'll see
         </h1>
         <Swiper
@@ -49,6 +55,9 @@ const Included = ({ data, attractions, longDescription }: INCLUDED) => {
           observeParents
           observeSlideChildren
           breakpoints={{
+            300: {
+              slidesPerView: 1.3
+            },
             400: {
               slidesPerView: 1.3
             },
@@ -79,7 +88,10 @@ const Included = ({ data, attractions, longDescription }: INCLUDED) => {
         className="2xl:px-[10%]  w-full flex flex-col justify-between py-4"
         ref={ref}
       >
-        <h1 id="to-do" className="text-5xl font-extrabold my-6 ">
+        <h1
+          id="to-do"
+          className=" px-[2%] text-xl md:text-4xl font-extrabold my-6 "
+        >
           What you’ll do
         </h1>
 
