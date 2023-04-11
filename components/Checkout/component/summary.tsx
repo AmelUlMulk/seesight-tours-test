@@ -13,7 +13,7 @@ const Summary = ({
   const infantPax = infants ? infants.count : 0;
   return (
     <div className="flex flex-col  text-white bg-blue-600   py-5 justify-center items-center min-height-[220] min-width-[500px]">
-      <div className="flex px-2 w-4/5  xl:w-1/2 justify-between border-b-white border-b-2 ">
+      <div className="flex px-2 w-4/5   justify-between border-b-white border-b-2 ">
         <div className="border-r-white border-r-2 w-1/2 py-2">
           <h2>Adults</h2>
         </div>
@@ -23,7 +23,7 @@ const Summary = ({
         </div>
       </div>
       {children && (
-        <div className="flex px-2 w-4/5  xl:w-1/2 justify-between border-b-white border-b-2 ">
+        <div className="flex px-2 w-4/5   justify-between border-b-white border-b-2 ">
           <div className="border-r-white border-r-2 w-1/2 py-2">
             <h2>Children</h2>
           </div>
@@ -34,7 +34,7 @@ const Summary = ({
         </div>
       )}
       {infants && (
-        <div className="flex px-2 w-4/5  xl:w-1/2 justify-between border-b-white border-b-2 ">
+        <div className="flex px-2 w-4/5   justify-between border-b-white border-b-2 ">
           <div className="border-r-white border-r-2 w-1/2 py-2">
             <h2>Infants</h2>
           </div>
@@ -44,7 +44,7 @@ const Summary = ({
           </div>
         </div>
       )}
-      <div className=" flex px-2  w-4/5  xl:w-1/2 justify-between border-b-white border-b-2 ">
+      <div className=" flex px-2  w-4/5   justify-between border-b-white border-b-2 ">
         <div className="border-r-white border-r-2 w-1/2 py-2">
           <h2>Total</h2>
         </div>
@@ -53,7 +53,7 @@ const Summary = ({
             {' '}
             x {} {childrenPax + infantPax + adults.count}
           </h2>
-          <h2>$ {totalPrice.toFixed(2)}</h2>
+          <h2 className=" font-semibold ">$ {totalPrice.toFixed(2)}</h2>
         </div>
       </div>
     </div>
