@@ -380,7 +380,6 @@ const Checkout = ({
               className="back"
               onClick={() => {
                 setThankYou(true);
-                next();
               }}
             >
               Confirm Later

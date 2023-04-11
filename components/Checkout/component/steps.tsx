@@ -81,7 +81,7 @@ const Steps = ({ currentStepIndex = 0 }: StepsProp) => {
             index={2}
           >
             {' '}
-            {currentStepIndex >= 2 && (
+            {currentStepIndex > 2 && (
               <Image src="/check.png" width={20} height={20} alt="check icon" />
             )}
             <h1>Confirm</h1>
