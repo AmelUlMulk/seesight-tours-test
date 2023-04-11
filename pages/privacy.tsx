@@ -69,17 +69,16 @@ const Privacy = ({ privacyPage }: PRIVACY_PAGE_INTERFACE) => {
       color: #56b8e7;
     }
   `;
-
   return (
     <>
       <Head>
         <title>{PrivacyPage.pageTitle}</title>
         <meta
           property="og:description"
-          content={PrivacyPage.metaDescription}
+          content={PrivacyPage?.metaDescription}
           key="metadescription"
         />
-        <link href={PrivacyPage.canonical} rel="canonical" key="canonical" />
+        <link href={PrivacyPage?.canonical} rel="canonical" key="canonical" />
       </Head>
       <PageHero
         title={'Our Privacy Policy'}

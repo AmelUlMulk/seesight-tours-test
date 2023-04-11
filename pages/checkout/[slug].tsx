@@ -12,6 +12,7 @@ import StripePayment from '../../components/Checkout/StripePayment';
 import ConfirmBooking from '../../components/Checkout/ConfirmBooking';
 import Steps from '../../components/Checkout/component/steps';
 import Thankyou from '../../components/Checkout/Thanks';
+import Head from 'next/head';
 
 const ButtonDiv = styled.div`
   padding: 50px 146px;
@@ -335,50 +336,55 @@ const Checkout = ({
   ]);
 
   return (
-    <MainStyle
-      image={background}
-      className="min-h-[130vh] h-auto w-full bg-cover bg-no-repeat bg-center relative"
-    >
-      <div className="absolute top-0 left-0 h-[100%] w-full bg-[#000000d9] z-10 "></div>
-      {thankyou && <Thankyou open={thankyou} close={setThankYou} />}
-      <Steps currentStepIndex={currentComponentIndex} />
-      {component}
-      <ButtonDiv>
-        {currentComponentIndex > 0 && currentComponentIndex !== 2 && (
-          <button className="back" onClick={back}>
-            Back
-          </button>
-        )}
-        {currentComponentIndex === 0 && (
-          <button type="submit" form="main-form" onClick={next}>
-            Next
-          </button>
-        )}
-        {currentComponentIndex === 1 && (
-          <button type="submit" form="main-form">
-            {!paymentLoading && <> PAY </>}
-            {paymentLoading && (
-              <span className=" animate-pulse text-xl  ">
-                Processing Please wait
-              </span>
-            )}
-          </button>
-        )}
-        {currentComponentIndex === 2 && (
-          <button className="back" onClick={() => setThankYou(true)}>
-            Confirm Later
-          </button>
-        )}
-        {currentComponentIndex === 2 && (
-          <button type="submit" form="confirmation-form">
-            {!confirmationLoading && <> Confirm </>}
-            {confirmationLoading && (
-              <span className=" animate-pulse text-xl  ">Confirming</span>
-            )}
-          </button>
-        )}
-      </ButtonDiv>
-    </MainStyle>
+    <>
+      <Head>
+        <title>{`Checkout | ${slug}`}</title>
+      </Head>
+      <MainStyle
+        image={background}
+        className="min-h-[130vh] h-auto w-full bg-cover bg-no-repeat bg-center relative"
+      >
+        <div className="absolute top-0 left-0 h-[100%] w-full bg-[#000000d9] z-10 "></div>
+        {thankyou && <Thankyou open={thankyou} close={setThankYou} />}
+        <Steps currentStepIndex={currentComponentIndex} />
+        {component}
+        <ButtonDiv>
+          {currentComponentIndex > 0 && currentComponentIndex !== 2 && (
+            <button className="back" onClick={back}>
+              Back
+            </button>
+          )}
+          {currentComponentIndex === 0 && (
+            <button type="submit" form="main-form" onClick={next}>
+              Next
+            </button>
+          )}
+          {currentComponentIndex === 1 && (
+            <button type="submit" form="main-form">
+              {!paymentLoading && <> PAY </>}
+              {paymentLoading && (
+                <span className=" animate-pulse text-xl  ">
+                  Processing Please wait
+                </span>
+              )}
+            </button>
+          )}
+          {currentComponentIndex === 2 && (
+            <button className="back" onClick={() => setThankYou(true)}>
+              Confirm Later
+            </button>
+          )}
+          {currentComponentIndex === 2 && (
+            <button type="submit" form="confirmation-form">
+              {!confirmationLoading && <> Confirm </>}
+              {confirmationLoading && (
+                <span className=" animate-pulse text-xl  ">Confirming</span>
+              )}
+            </button>
+          )}
+        </ButtonDiv>
+      </MainStyle>
+    </>
   );
 };
 

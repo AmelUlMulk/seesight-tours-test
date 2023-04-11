@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import {
   BOOKING_SEARCH,
   BOOKING_INTERFACE,
@@ -42,6 +43,9 @@ const MyToursByID = ({
   console.log('the transactions', transactions);
   return (
     <>
+      <Head>
+        <title>My Tours</title>
+      </Head>
       {notFound ? (
         <h2>No Booking Found with the given id</h2>
       ) : (

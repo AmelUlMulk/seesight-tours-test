@@ -47,17 +47,16 @@ const BLOGS_PAGE = {
 };
 
 interface BLOG_PAGE_INTERFACE {
-  blogsPage: [
-    {
-      header: string;
-      subheader: string;
-      pageTitle: string;
-      slug: string;
-      metaDescription: string;
-      canonical: string;
-      heroMedia: [CARDMEDIAINTERFACE];
-    }
-  ];
+  blogsPage: {
+    header: string;
+    subheader: string;
+    pageTitle: string;
+    slug: string;
+    metaDescription: string;
+    canonical: string;
+    heroMedia: [CARDMEDIAINTERFACE];
+  };
+
   blogCategories: [
     {
       id: string;
