@@ -298,12 +298,12 @@ const DateAndPax = ({
 
   return (
     <SectionWrapper title="Select Date & no of Person" slug={slug} name={name}>
-      <div className="md:flex w-[90%] lg:w-[100%] m-auto relative gap-4  z-30">
+      <div className="md:flex w-[90%] lg:w-[100%] m-auto relative gap-8  z-30">
         <section
           id="availibilty"
-          className="flex justify-center md:w-[50%] items-start"
+          className="flex justify-end md:w-[50%] items-start"
         >
-          <div className="flex-col  w-full    max-w-[556px]">
+          <div className="flex-col  w-full   ">
             <div className="flex w-full bg-white md:hidden items-center py-3 px-2 rounded  justify-between ">
               Tour Date :
               <span className=" flex-1 px-4 font-bold ">
@@ -362,7 +362,7 @@ const DateAndPax = ({
           id="passenger_qty"
           className="flex-none md:w-[50%] mt-5 md:mt-0 "
         >
-          <div className="flex flex-col justify-center xl:w-[566px]">
+          <div className="flex flex-col justify-center ">
             <div id="selected_date" className="text-white ">
               <div className="flex flex-col sm:w-full ">
                 <div className=" flex flex-wrap w-full gap-2 justify-between bg-white  p-2 ">

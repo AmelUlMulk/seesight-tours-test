@@ -11,7 +11,7 @@ type WrapperProps = {
 const WRAPPER = styled.div`
   position: relative;
   z-index: 50;
-  padding: 0px 120px;
+  padding: 0px 20%;
   padding-bottom: 0;
   @media (max-width: 1500px) {
     padding: 10px 50px;
@@ -51,13 +51,13 @@ const SectionWrapper = ({ title, children, slug, name }: WrapperProps) => {
       />
       {slug && (
         <h2
-          className=" text-xl md:text-2xl cursor-pointer   text-white mb-2"
+          className="    text-xl md:text-3xl cursor-pointer   text-white mb-2"
           onClick={() => setProductDetails(true)}
         >
           {name}
         </h2>
       )}
-      <h1 className="md:text-3xl text-2xl  text-white mb-8">{title}</h1>
+      <h1 className="  md:text-2xl text-2xl  text-white mb-8">{title}</h1>
       {children}
     </WRAPPER>
   );

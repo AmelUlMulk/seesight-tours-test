@@ -1,9 +1,10 @@
+import Image from 'next/image';
 import React from 'react';
 import styled from 'styled-components';
 const Line = styled.div`
   position: absolute;
   height: 1px;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid gray;
   bottom: 50%;
   width: 100%;
   z-index: 1;
@@ -23,20 +24,22 @@ const Step = styled.div<StepProps>`
     /* height: ${props => (props.selected ? '90px' : '50px')}; */
     font-size: ${props => (props.selected ? '24px' : '17px')};
   }
+  @media (max-width: 768px) {
+    width: ${props => (props.selected ? '80px' : '70px')};
+    /* height: ${props => (props.selected ? '90px' : '50px')}; */
+    font-size: ${props => (props.selected ? '21px' : '16px')};
+  }
   display: flex;
   transition: all 0.2s ease-in-out;
-  color: ${props =>
-    props.currentIndex > props.index
-      ? 'green'
-      : props.selected
-      ? '#fb923c'
-      : '#8B8B8B'};
-
+  color: #8b8b8b;
+  h1 {
+    background: white;
+  }
   justify-content: center;
   align-items: center;
   font-size: ${props => (props.selected ? '24px' : '17px')};
   z-index: 1;
-
+  flex-direction: column;
   background: white;
   /* border: ${props => (props.selected ? '2px solid #ad2025' : '')}; */
 `;
@@ -46,6 +49,7 @@ type StepsProp = {
 };
 //Comparing stating with zero bacause step 1 = [0]
 const Steps = ({ currentStepIndex = 0 }: StepsProp) => {
+  console.log('the current index', currentStepIndex);
   return (
     <div className="w-full flex justify-center ">
       <div className="w-5/6 lg:w-1/2 flex justify-center relative bg-white   rounded-lg my-4  py-4">
@@ -56,7 +60,9 @@ const Steps = ({ currentStepIndex = 0 }: StepsProp) => {
             currentIndex={currentStepIndex}
             index={0}
           >
-            {' '}
+            {currentStepIndex > 0 && (
+              <Image src="/check.png" width={20} height={20} alt="check icon" />
+            )}
             <h1>Date</h1>
           </Step>
           <Step
@@ -64,6 +70,9 @@ const Steps = ({ currentStepIndex = 0 }: StepsProp) => {
             currentIndex={currentStepIndex}
             index={1}
           >
+            {currentStepIndex > 1 && (
+              <Image src="/check.png" width={20} height={20} alt="check icon" />
+            )}
             <h1>Payment</h1>
           </Step>
           <Step
@@ -71,6 +80,10 @@ const Steps = ({ currentStepIndex = 0 }: StepsProp) => {
             currentIndex={currentStepIndex}
             index={2}
           >
+            {' '}
+            {currentStepIndex >= 2 && (
+              <Image src="/check.png" width={20} height={20} alt="check icon" />
+            )}
             <h1>Confirm</h1>
           </Step>
         </div>

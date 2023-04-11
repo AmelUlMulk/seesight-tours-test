@@ -14,11 +14,18 @@ import Steps from '../../components/Checkout/component/steps';
 import Thankyou from '../../components/Checkout/Thanks';
 
 const ButtonDiv = styled.div`
-  padding: 50px 15%;
+  padding: 50px 20%;
   position: relative;
   z-index: 100;
   @media (max-width: 1200px) {
     padding: 50px 50px;
+  }
+  @media (max-width: 768px) {
+    padding: 20px 20px;
+    button: {
+      width: 130px;
+      height: 30px;
+    }
   }
   display: flex;
   justify-content: end;
@@ -297,6 +304,9 @@ const Checkout = ({
       getBookings();
     }
   }, [bookingId]);
+  const tiggerNext = () => {
+    next();
+  };
   const { component, currentComponentIndex, next, back } = useComponentSwipper([
     <DateAndPax
       key="date-and-pax"
@@ -331,6 +341,7 @@ const Checkout = ({
       booking={data?.booking[0]}
       setThankYou={setThankYou}
       setConfirmationLoading={setConfirmationLoading}
+      next={tiggerNext}
     />
   ]);
 
@@ -365,7 +376,13 @@ const Checkout = ({
             </button>
           )}
           {currentComponentIndex === 2 && (
-            <button className="back" onClick={() => setThankYou(true)}>
+            <button
+              className="back"
+              onClick={() => {
+                setThankYou(true);
+                next();
+              }}
+            >
               Confirm Later
             </button>
           )}

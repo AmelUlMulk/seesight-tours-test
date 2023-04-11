@@ -1,7 +1,7 @@
 import React, { ReactElement, useState } from 'react';
 
 const useComponentSwipper = (components: ReactElement[]) => {
-  const [currentComponentIndex, setCurrentComponentIndex] = useState<number>(0);
+  const [currentComponentIndex, setCurrentComponentIndex] = useState<number>(2);
 
   const next = () => {
     setCurrentComponentIndex(i => {

@@ -14,7 +14,7 @@ interface IProps extends FormProps {
 }
 const StyledPhoneInput = styled(PhoneInput)`
   input {
-    font-size: 1.5rem;
+    font-size: 18px;
     border-top-right-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
     padding: 0.5rem;
@@ -152,7 +152,7 @@ const PaymentForm = (
               <span> Name </span>
               <input
                 type="text"
-                className="text-2xl py-2 text-black rounded-bl-lg rounded-tr-lg    "
+                className=" text-[18px] px-1 py-2 text-black rounded-bl-lg rounded-tr-lg    "
                 required
                 value={customerDetails.name}
                 onChange={e =>
@@ -168,7 +168,7 @@ const PaymentForm = (
             <div className="flex flex-col ">
               <span> Email </span>
               <input
-                className="text-2xl py-2 text-black rounded-bl-lg rounded-tr-lg"
+                className=" text-[18px] px-1 py-2 text-black rounded-bl-lg rounded-tr-lg"
                 type="email"
                 value={customerDetails.email}
                 required

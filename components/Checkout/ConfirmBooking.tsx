@@ -7,12 +7,14 @@ interface ConfirmationProps {
   booking: BOOKING | undefined;
   setThankYou: React.Dispatch<React.SetStateAction<boolean>>;
   setConfirmationLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  next: () => void;
 }
 
 const ConfirmBooking = ({
   booking,
   setThankYou,
-  setConfirmationLoading
+  setConfirmationLoading,
+  next
 }: ConfirmationProps) => {
   const [pickupLocation, setPickUpLocation] = useState<string>('');
 
@@ -49,6 +51,7 @@ const ConfirmBooking = ({
               phone={booking.customer.phone}
               setThankYou={setThankYou}
               setConfirmationLoading={setConfirmationLoading}
+              next={next}
             />
           )}
         </div>
