@@ -39,6 +39,7 @@ interface MapProps {
   phone: string;
   setThankYou: React.Dispatch<React.SetStateAction<boolean>>;
   setConfirmationLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  next: () => void;
 }
 
 function Map({
@@ -55,7 +56,8 @@ function Map({
   status,
   phone,
   setThankYou,
-  setConfirmationLoading
+  setConfirmationLoading,
+  next
 }: MapProps) {
   const [pickupCoords, setPickupCoords] = useState<any>(null);
   const [autocomplete, setAutocomplete] = useState<any>(null);
@@ -169,8 +171,8 @@ function Map({
     );
     setConfirmationLoading(false);
     if (response.status === 200) {
-      console.log('confirmation Res:', response);
       setThankYou(true);
+      next();
     }
   };
   console.log('pickupBound:', pickupBounds);
