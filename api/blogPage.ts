@@ -59,6 +59,15 @@ const BLOG_PAGE = gql`
   }
 `;
 interface BLOG_PAGE_INTERFACE {
+  blogsPage: {
+    header: string;
+    subheader: string;
+    pageTitle: string;
+    slug: string;
+    metaDescription: string;
+    canonical: string;
+    heroMedia: [CARDMEDIAINTERFACE];
+  };
   blogs: [
     {
       header: string;

@@ -12,6 +12,7 @@ import StripePayment from '../../components/Checkout/StripePayment';
 import ConfirmBooking from '../../components/Checkout/ConfirmBooking';
 import Steps from '../../components/Checkout/component/steps';
 import Thankyou from '../../components/Checkout/Thanks';
+import Head from 'next/head';
 
 const ButtonDiv = styled.div`
   padding: 50px 20%;
@@ -346,11 +347,16 @@ const Checkout = ({
   ]);
 
   return (
-    <MainStyle
-      image={background}
-      className="md:min-h-[130vh] h-auto w-full bg-cover bg-no-repeat bg-center relative"
-    >
-      <div className=" relative md:absolute top-0 left-0 h-[100%] w-full bg-black bg-opacity-50  z-10 ">
+    <>
+      <Head>
+        <title>{`Checkout | ${slug}`}</title>
+      </Head>
+      <MainStyle
+        image={background}
+        className="min-h-[130vh] h-auto w-full bg-cover bg-no-repeat bg-center relative"
+      >
+        <div className="absolute top-0 left-0 h-[100%] w-full bg-[#000000d9] z-10 "></div>
+
         {thankyou && <Thankyou open={thankyou} close={setThankYou} />}
         <Steps currentStepIndex={currentComponentIndex} />
         {component}
@@ -394,8 +400,8 @@ const Checkout = ({
             </button>
           )}
         </ButtonDiv>
-      </div>
-    </MainStyle>
+      </MainStyle>
+    </>
   );
 };
 
