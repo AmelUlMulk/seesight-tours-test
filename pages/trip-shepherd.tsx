@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PageHero from '../components/Contact/PageHero';
 import styled from 'styled-components';
 import FormModal from '../layouts/FormModal/FormModal';
+import Head from 'next/head';
 
 const TripShepherdCard = styled.div`
   background-color: #57b8e8;
@@ -11,6 +12,14 @@ const TripShepherd = () => {
   const [show, setShowModal] = useState<boolean>(false);
   return (
     <>
+      <Head>
+        <title>Trip-Sheperd</title>
+        <link
+          href="https://www.seesight-tours.com/trip-shepherd"
+          rel="canonical"
+          key="canonical"
+        />
+      </Head>
       <PageHero
         title={'Trip Shepherd'}
         snippet={

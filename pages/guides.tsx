@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Head from 'next/head';
 import PageHero from '../layouts/PageHero';
 import client from '../apollo-client';
 import { GUIDES_PAGE, GUIDES_PAGE_INTERFACE } from '../api/guidesPage';
@@ -79,9 +80,16 @@ const SeeMoreButton = styled.button`
 
 const Guides = ({ guidesPage }: GUIDES_PAGE_INTERFACE) => {
   const [guidesCount, setGuidesCount] = useState(4);
-
   return (
     <>
+      <Head>
+        <title className="text-3xl font-bold underline">
+          {guidesPage?.pageTitle ? guidesPage?.pageTitle : ''}
+        </title>
+        <meta property="og:description" content={guidesPage?.metaDescription} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href={guidesPage?.canonical} />
+      </Head>
       <PageHero
         title={'Our Guides'}
         snippet={'Meet Our Energetic Team'}

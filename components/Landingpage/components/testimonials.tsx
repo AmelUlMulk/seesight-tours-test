@@ -84,9 +84,11 @@ const Testimonials = () => {
   //reviews with max 120 characters
   const filterReviews = reviews
     ?.filter((review: any) => {
-      if (review?.review !== null) {
-        return review?.rating === 5 && review?.review.length < 120;
+      //filter out null value objects
+      if (Object.values(review).some(value => value === null)) {
+        return false;
       }
+      return review?.rating === 5 && review?.review.length < 120;
     })
     // sorting by google reviews
     .sort((a, b) => {
@@ -98,7 +100,6 @@ const Testimonials = () => {
         return 0;
       }
     });
-
   return (
     <TestimonialStyle
       id="testimonials"
