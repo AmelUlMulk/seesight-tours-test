@@ -130,11 +130,9 @@ export async function getStaticPaths() {
   ];
   const validTours = getAllCities.data.cities.filter((item: any) => {
     if (!invalid.includes(item.slug)) {
-      console.log('hello hello', item.slug);
       return item;
     }
   });
-  console.log('the thing is', validTours);
   return {
     paths: validTours.map((city: any) => {
       return {
