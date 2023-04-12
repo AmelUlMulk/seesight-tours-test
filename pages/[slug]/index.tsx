@@ -2,23 +2,23 @@ import { gql } from '@apollo/client';
 import { get } from 'https';
 import React from 'react';
 import styled from 'styled-components';
-import { CITIES_FILTER, CITY_FILTER_INTERFACE } from '../api/cityfilter';
+import { CITIES_FILTER, CITY_FILTER_INTERFACE } from '../../api/cityfilter';
 import {
   CITYDATEINTERFACE,
   CITY_PAGE_INTERFACE,
   FETCH_CITY
-} from '../api/cityPage';
+} from '../../api/cityPage';
 import FEATUREDEXPERIENCES, {
   FEATURED_EXPERIENCES_INTERFACE
-} from '../api/featuredexperiences';
-import client from '../apollo-client';
-import Attractions from '../components/CityPage/attractions';
-import FeaturedExperiences from '../components/FeaturedExperiences/FeaturedExperiences';
-import SearchCity from '../components/Searchbar/searchCity';
-import ProductTimeline from '../components/TourPage/ProductTimeline';
-import Trustbar from '../components/Trust/Trustbar';
-import Newsletter from '../layouts/Newsletter/Newsletter';
-import PageHero from '../layouts/PageHero';
+} from '../../api/featuredexperiences';
+import client from '../../apollo-client';
+import Attractions from '../../components/CityPage/attractions';
+import FeaturedExperiences from '../../components/FeaturedExperiences/FeaturedExperiences';
+import SearchCity from '../../components/Searchbar/searchCity';
+import ProductTimeline from '../../components/TourPage/ProductTimeline';
+import Trustbar from '../../components/Trust/Trustbar';
+import Newsletter from '../../layouts/Newsletter/Newsletter';
+import PageHero from '../../layouts/PageHero';
 
 const StyledDiv = styled.div`
   margin-top: 2rem;
@@ -130,11 +130,9 @@ export async function getStaticPaths() {
   ];
   const validTours = getAllCities.data.cities.filter((item: any) => {
     if (!invalid.includes(item.slug)) {
-      console.log('hello hello', item.slug);
       return item;
     }
   });
-  console.log('the thing is', validTours);
   return {
     paths: validTours.map((city: any) => {
       return {
