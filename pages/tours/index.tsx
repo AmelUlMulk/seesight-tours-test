@@ -17,10 +17,26 @@ import FeaturedExperiences from '../../components/FeaturedExperiences/FeaturedEx
 import SearchCity from '../../components/Searchbar/searchCity';
 import Trustbar from '../../components/Trust/Trustbar';
 import PageHero from '../../layouts/PageHero';
+import {
+  DAYTOURS_PAGE,
+  DAYTOURS_PAGE_INTERFACE,
+  DAY_TOUR_INTERFACE
+} from '../../api/dayToursPage';
+import { useQuery } from '@apollo/client';
+import Head from 'next/head';
 
-const Tours = ({ featuredExp, citydropdown, cities }: IProps) => {
+const Tours = ({ featuredExp, citydropdown, cities, dayTour }: IProps) => {
   return (
-    <div>
+    <>
+      <Head>
+        <title>{dayTour?.pageTitle}</title>
+        <meta
+          property="og:description"
+          content={dayTour?.metaDescription}
+          key="metadescription"
+        />
+        <link href={dayTour?.canonical} rel="canonical" key="canonical" />
+      </Head>
       <section id="hero" className="relative">
         <PageHero
           title={'The Best Way to See The World'}
@@ -79,7 +95,7 @@ const Tours = ({ featuredExp, citydropdown, cities }: IProps) => {
             ))}
         </Swiper>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -95,11 +111,17 @@ export async function getStaticProps() {
   const { data: citiesData } = await client.query<CITIES_PAGE_INTERFACE>(
     CITIES
   );
+
+  const { data: { dayTour } = {} } =
+    await client.query<DAYTOURS_PAGE_INTERFACE>({
+      query: DAYTOURS_PAGE
+    });
   return {
     props: {
       featuredExp: data.homePage,
       citydropdown: data.citiesDropdown,
-      cities: citiesData.citiesPage.featured
+      cities: citiesData.citiesPage.featured,
+      dayTour
     }
   };
 }
@@ -123,5 +145,6 @@ interface IProps {
       };
     }
   ];
+  dayTour: DAY_TOUR_INTERFACE;
 }
 export default Tours;
