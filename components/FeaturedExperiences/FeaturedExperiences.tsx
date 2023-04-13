@@ -114,7 +114,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
         : city === 'All Cities'
         ? featuredExp[activeNav]
         : [];
-    if (cityFilterLoading) {
+    if (city !== 'All Cities' && cityFilterLoading) {
       return <h3>Loading....</h3>;
     }
     if (filteredProduct && filteredProduct.length === 0) {
