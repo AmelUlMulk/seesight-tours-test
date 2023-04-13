@@ -19,6 +19,7 @@ import ProductTimeline from '../../components/TourPage/ProductTimeline';
 import Trustbar from '../../components/Trust/Trustbar';
 import Newsletter from '../../layouts/Newsletter/Newsletter';
 import PageHero from '../../layouts/PageHero';
+import Head from 'next/head';
 
 const StyledDiv = styled.div`
   margin-top: 2rem;
@@ -69,6 +70,15 @@ interface IPROPS {
 const City = ({ featuredExp, cities, city }: IPROPS) => {
   return (
     <>
+      <Head>
+        <title>{city?.pageTitle}</title>
+        <meta
+          property="og:description"
+          content={city?.metaDescription}
+          key="metadescription"
+        />
+        <link href={city?.canonical} rel="canonical" key="canonical" />
+      </Head>
       <section id="hero" className="relative">
         <PageHero
           title={city.header ? city.header : ''}
