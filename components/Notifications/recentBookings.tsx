@@ -25,7 +25,8 @@ const RecentConfirmBookings = () => {
       return () => clearTimeout(bookingDelay);
     }, 10000);
   }, []);
-
+  console.log('recent Booking');
+  console.log(data?.bookings);
   useEffect(() => {
     data?.bookings.map((booking, index) => {
       const recall = window.setTimeout(() => {
