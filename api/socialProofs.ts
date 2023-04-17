@@ -17,10 +17,7 @@ export const RECENT_BOOKINGS = gql`
 export const CONFIRMED_BOOKING_BY_DATE = gql`
   query CONFIRMED_BOOKING_BY_DATE($pastDate: timestamptz, $today: timestamptz) {
     bookings: boatnew_booking(
-      where: {
-        status: { _eq: "CONFIRMED" }
-        created_at: { _gte: $pastDate, _lte: $today }
-      }
+      where: { created_at: { _gte: $pastDate, _lte: $today } }
       order_by: { created_at: desc }
     ) {
       customer {
