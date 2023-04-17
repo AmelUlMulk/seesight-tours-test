@@ -9,24 +9,22 @@ import { toast } from 'react-toastify';
 
 const RecentConfirmBookings = () => {
   const [triggerBookings, { data, loading, error }] =
-    useLazyQuery<RECENTCONFIRMEDBOOKINGS>(CONFIRMED_BOOKING_BY_DATE);
-
+    useLazyQuery<RECENTCONFIRMEDBOOKINGS>(CONFIRMED_BOOKING_BY_DATE, {
+      variables: {
+        pastDate: dayjs().subtract(1, 'days').format('YYYY-MM-DD'),
+        today: dayjs().format('YYYY-MM-DD')
+      }
+    });
   const timeIdArray: number[] = [];
 
   useEffect(() => {
     const bookingDelay = setTimeout(() => {
-      triggerBookings({
-        variables: {
-          pastDate: dayjs().subtract(1, 'days').format('YYYY-MM-DD'),
-          today: dayjs().format('YYYY-MM-DD')
-        }
-      });
+      triggerBookings();
       //clean up
       return () => clearTimeout(bookingDelay);
     }, 10000);
   }, []);
-  console.log('recent Booking');
-  console.log(data?.bookings);
+
   useEffect(() => {
     data?.bookings.map((booking, index) => {
       const recall = window.setTimeout(() => {
