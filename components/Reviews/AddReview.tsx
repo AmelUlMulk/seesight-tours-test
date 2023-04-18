@@ -83,12 +83,12 @@ const AddReview = ({
   return (
     <div
       id="review-modal-wrapper"
-      className="w-[100%] h-[100vh] fixed top-0 left-0 z-20 bg-modalWrapper flex justify-center items-start"
+      className="w-[100%] h-[100vh] fixed top-0 left-0 z-[100] bg-modalWrapper flex justify-center items-start"
       onClick={() => setDispModal(!dispModal)}
     >
       <div
         id="review-modal"
-        className="z-50 bg-[#FFFFFF] w-[78%] sm:w-[70%] mt-24 sm:mt-32 lg:mt-36 absolute"
+        className=" bg-[#FFFFFF] w-[78%] sm:w-[70%] mt-24 sm:mt-32 lg:mt-36 absolute"
         onClick={e => {
           e.stopPropagation();
           setDispCalendar(false);

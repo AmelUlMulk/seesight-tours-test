@@ -150,10 +150,7 @@ const ReviewForm = ({
     >
       {({ isSubmitting, setFieldValue, values }) => (
         <Form>
-          <label
-            htmlFor="name"
-            className="block text-[12px] md:text-[14px] xl:text-[16px] text-[#4F4F4F] font-[500] mt-3"
-          >
+          <label className="block text-[12px] md:text-[14px] xl:text-[16px] text-[#4F4F4F] font-[500] mt-3">
             Name
           </label>
           <Field
@@ -161,7 +158,9 @@ const ReviewForm = ({
             name="traveller"
             type="text"
             placeholder="Name"
-            className="focus:outline-none bg-[#EEEEEE] py-2 lg:py-3 px-3 w-[100%] rounded-[5px] lg:rounded-[10px] mt-1"
+            autocomplete="off"
+            required
+            className="focus:outline-none bg-[#EEEEEE] text-[12px] md:text-[14px] xl:text-[16px] py-2 lg:py-3 px-3 w-[100%] rounded-[5px] lg:rounded-[10px] mt-1"
           />
           <ErrorMessage
             name="traveller"
@@ -169,10 +168,7 @@ const ReviewForm = ({
             className="text-red-400"
           />
 
-          <label
-            htmlFor="title"
-            className="block text-[12px] md:text-[14px] xl:text-[16px] text-[#4F4F4F] font-[500] mt-3"
-          >
+          <label className="block text-[12px] md:text-[14px] xl:text-[16px] text-[#4F4F4F] font-[500] mt-3">
             Title
           </label>
           <Field
@@ -180,7 +176,9 @@ const ReviewForm = ({
             name="title"
             type="text"
             placeholder="Title"
-            className="focus:outline-none bg-[#EEEEEE] py-2 lg:py-3 px-3 w-[100%] rounded-[5px] lg:rounded-[10px] mt-1"
+            autocomplete="off"
+            required
+            className="focus:outline-none bg-[#EEEEEE] text-[12px] md:text-[14px] xl:text-[16px] py-2 lg:py-3 px-3 w-[100%] rounded-[5px] lg:rounded-[10px] mt-1"
           />
           <ErrorMessage name="title" component="div" className="text-red-400" />
 

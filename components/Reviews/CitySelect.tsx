@@ -40,10 +40,8 @@ const CitySelect = ({
     <button
       className="w-[100%] relative bg-[#EEEEEE] flex justify-between items-center sm:px-3 py-3 lg:py-3  rounded-[5px] lg:rounded-[10px] mt-5"
       onClick={() => {
+        setTourDropdownToggle(false);
         setCityDropdownToggle(!cityDropdownToggle);
-        if (tourDropdownToggle) {
-          setTourDropdownToggle(false);
-        }
       }}
     >
       <div className="flex justify-center items-center ">

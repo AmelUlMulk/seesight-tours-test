@@ -11,13 +11,19 @@ const CalendarStyle = styled(Calendar)`
   width: 100%;
   border-radius: 10px;
   background-color: #eeeeee;
-  @media (max-width: 370px) {
+  .react-calendar__navigation__label {
+    @media (max-width: 460px) {
+      font-size: 12px;
+    }
+  }
+  @media (max-width: 570px) {
     .react-calendar__month-view__weekdays__weekday {
       font-size: 9px;
     }
     .react-calendar__navigation button {
-      min-width: 38px;
+      min-width: 35px;
     }
+
     button {
       font-size: 12px;
     }

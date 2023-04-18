@@ -46,7 +46,10 @@ const CityTours = ({
     <>
       <button
         className="w-[100%] relative bg-[#EEEEEE] flex justify-between items-center sm:px-3 py-3 rounded-[5px] lg:rounded-[10px] mt-5"
-        onClick={() => setTourDropdownToggle(!tourDropdownToggle)}
+        onClick={() => {
+          setCityDropdownToggle(false);
+          setTourDropdownToggle(!tourDropdownToggle);
+        }}
       >
         <div className="flex justify-center items-center ">
           <span className="px-3">
