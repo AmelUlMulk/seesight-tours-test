@@ -79,7 +79,6 @@ const AddReview = ({
       };
     });
   }, [selectedCity]);
-  console.log(cityDropdownToggle, tourDropdownToggle);
   return (
     <div
       id="review-modal-wrapper"

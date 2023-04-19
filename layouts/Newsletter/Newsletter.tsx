@@ -62,7 +62,7 @@ const Newsletter = ({}) => {
           <form onSubmit={handleSubmit}>
             <div className="flex mt-6 lg:mt-12 justify-center relative">
               <input
-                className="bg-gray-100 text-[12px] sm:text-sm lg:text-xl   rounded-xl text-start md:pl-[3%]   text-gray-800 p-3 w-[100%] pr-[5%] border-2   border-gray-400   focus:outline-none focus:border-gray-500"
+                className="bg-gray-100 text-[10px] sm:text-sm lg:text-xl   rounded-xl text-start md:pl-[3%]   text-gray-800 p-2 xsm:p-3 w-[100%] pr-[5%] border-2   border-gray-400   focus:outline-none focus:border-gray-500"
                 placeholder="Your e-mail address"
                 name="email"
                 required
@@ -73,7 +73,7 @@ const Newsletter = ({}) => {
                 value={email}
               />
               <button
-                className={`text-[16px] sm:text-sm lg:text-xl w-[35%] sm:w-[30%] lg:w-[25%] cursor-pointer absolute top-0 right-0   bg-red-500 border-red-500 rounded-xl  font-medium border-2  leading-none text-white p-3   hover:bg-red-400 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-500 active:shadow-lg transition duration-150 ease-in-out`}
+                className={`text-[14px] xsm:text-[15px] sm:text-sm lg:text-xl w-[35%] sm:w-[30%] lg:w-[25%] cursor-pointer absolute top-0 right-0   bg-red-500 border-red-500 rounded-xl  font-medium border-2  leading-none text-white p-2 xsm:p-3   hover:bg-red-400 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-500 active:shadow-lg transition duration-150 ease-in-out`}
                 data-mdb-ripple="true"
                 data-mdb-ripple-color="light"
               >

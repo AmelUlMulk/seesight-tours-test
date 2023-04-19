@@ -172,7 +172,6 @@ const SearchCity = () => {
   const SubmitHandler = (e: any) => {
     e.preventDefault();
     const validCity = Cities.find(cty => cty.name === city);
-    console.log(city, validCity);
     if (validCity) {
       return router.push(validCity.slug);
     } else {
@@ -245,11 +244,11 @@ const SearchCity = () => {
             isOpen={suggestedToggle || filterToggle}
             className="flex items-center bg-[#E1E1E1]"
           >
-            <div className="flex items-center w-[65%] sm:w-[70%] md:w-[75%] hover:cursor-pointer">
+            <div className="flex justify-between items-center w-[70%] md:w-[75%] hover:cursor-pointer">
               <div className="ml-3 flex-none w-[10%] xsm:w-[10%] sm:w-[5%] lg:w-[4%]">
                 <SearchfilterIcon />
               </div>
-              <div className="bg-[#E1E1E1] flex-none w-[56%] xsm:w-[60%] sm:w-[65%] lg:w-[75%] pl-2 xxsm:rounded-[54px] md:rounded-none">
+              <div className="bg-[#E1E1E1] flex-none w-[56%] xsm:w-[75%] sm:w-[75%] md:w-[80%] lg:w-[80%] pl-2 xxsm:rounded-[54px] md:rounded-none">
                 <input
                   name="search"
                   id="search"
@@ -261,7 +260,7 @@ const SearchCity = () => {
                 />
               </div>
               <div
-                className={`flex-none p-2 lg:p-6 justify-center items-center ${
+                className={`flex-none py-2 justify-center items-center w-[10%] lg:w-[8%] ${
                   suggestedToggle && 'rotate-180'
                 } `}
                 onClick={() => {
@@ -274,7 +273,7 @@ const SearchCity = () => {
               </div>
             </div>
 
-            <div className="flex-none w-[35%] md:w-[25%]">
+            <div className="flex-none w-[30%] md:w-[25%]">
               <SearchButtonStyle className="text-[12px] md:text-lg   w-[100%] text-white font-[400] bg-[#F15C5A] xxsm:py-3 md:py-5 lg:px-6">
                 Search
               </SearchButtonStyle>
