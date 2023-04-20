@@ -11,6 +11,7 @@ interface IProps {
   landing?: boolean;
   totalReviews?: Record<string, any>;
   rating?: number;
+  trustworthy?: boolean;
 }
 const PageHeroStyle = styled.div`
   height: 55vh;
@@ -62,7 +63,8 @@ const PageHero = ({
   media,
   video,
   landing,
-  totalReviews
+  totalReviews,
+  trustworthy
 }: IProps): JSX.Element => {
   const reviewsConnection = totalReviews?.reviewsConnection;
   const rating = parseFloat(reviewsConnection?.aggregate?.avg?.rating).toFixed(
@@ -96,6 +98,13 @@ const PageHero = ({
             <p className="w-full text-xl sm:text-3xl  text-center text-white  ">
               {snippet}
             </p>
+          )}
+          {trustworthy && (
+            <div className="text-white text-center">
+              <h3 className="text-2xl sm:text-3xl font-[600]">
+                Personal | Authentic | Local
+              </h3>
+            </div>
           )}
           {totalReviews && (
             <div id="ratings" className="text-center text-white">

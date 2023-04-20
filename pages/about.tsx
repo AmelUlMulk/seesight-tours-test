@@ -27,6 +27,7 @@ const About = ({ guidesData }: IProps) => {
       </Head>
       <div id="about-us">
         <PageHero
+          trustworthy={true}
           video={false}
           title="Our Story"
           snippet="We provide intimate small-group tours of popular destinations across North America."
