@@ -13,6 +13,9 @@ interface IProps {
   rating?: number;
   trustworthy?: boolean;
 }
+interface StyleProps {
+  isVideo: boolean;
+}
 const PageHeroStyle = styled.div`
   height: 55vh;
   position: relative;
@@ -38,7 +41,7 @@ const PageHeroStyle = styled.div`
     flex-direction: column;
     gap: 1.5rem;
     width: 100%;
-    z-index: 1;
+    z-index: 30;
     @media (max-width: 540px) {
       gap: 1rem;
     }
@@ -74,10 +77,19 @@ const PageHero = ({
   const mediaQuery = useMediaQuery(540);
   return (
     <section className="Hero_Section overflow-hidden">
-      <PageHeroStyle className="PageHero bg-no-repeat bg-cover bg-center flex justify-start items-center ">
+      <PageHeroStyle
+        id="PageHero"
+        className="relative bg-no-repeat bg-cover bg-center flex justify-start items-center "
+      >
+        <div
+          className={`${
+            !video &&
+            'absolute top-0 left-0 w-[100%] h-[inherit] bg-gradient-to-tr from-[#00000092] to-transparent z-20'
+          }`}
+        ></div>
         {!video && <StyledImage alt="guidesImage" src={media} layout="fill" />}
         {video && <StyledVideo src={media} muted loop autoPlay playsInline />}
-        <div className="PageHero_container flex flex-col">
+        <div className="PageHero_container flex flex-col ">
           <div className="font-bold flex-col  text-white text-center w-full ">
             <h1 className="text-2xl sm:text-4xl lg:text-6xl text-white  ">
               {' '}
