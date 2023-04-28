@@ -65,19 +65,16 @@ const GuidesMobile = ({ guidesData }: IProps) => {
                       // height={110}
                       fill
                       alt={guide?.professional[0]?.alt}
-                      className=" ml-5 mt-5 border-[7px] h-[60px] xsm:h-[150px] sm:h-[100%] border-[#FFFFFF] rounded-[5px] shadow-guideimageBox"
+                      className=" ml-5 mt-5 border-[7px] xxsm:h-[130px] xsm:h-[150px] sm:h-[100%] border-[#FFFFFF] rounded-[5px] shadow-smallguideimageBox"
                     />
                   </div>
-                  <div className="text-justify pr-4">
+                  <div className="text-justify pr-3">
                     <h3 className="xsm:text-[16px] sm:text-[22px] font-[600]">
                       {guide?.firstName.toUpperCase()}
                     </h3>
                     <p
-                      style={{
-                        whiteSpace: 'break-spaces',
-                        letterSpacing: '0.2px'
-                      }}
-                      className="text-[#828282] text-justify overflow-auto text-[12px] sm:text-[14px] font-[400] pl-5 inline whiteS"
+                      style={{ whiteSpace: 'break-spaces' }}
+                      className="text-[#828282] text-right overflow-auto text-[12px] sm:text-[14px] font-[400] pr-3 inline tracking-[-0.01rem]"
                     >
                       {`${guide?.biography}`}
                     </p>

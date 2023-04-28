@@ -69,7 +69,7 @@ const GuidesDesk = ({ guidesData }: IProps) => {
 
                   <div
                     id="guide-bio"
-                    className="flex-none md:w-[58%] lg:w-[64%] xl:w-[70%] 2xl:w-[65%] 3xl:w-[70%] px-5  right-0"
+                    className="flex-none md:w-[58%] lg:w-[64%] xl:w-[70%] 2xl:w-[65%] 3xl:w-[70%] px-5 md:max-h-[240px] lg:max-h-[260px] xl:max-h-[300px] 2xl:max-h-[500px] overflow-auto  right-0"
                   >
                     <h3 className="text-[16px] sm:text-[22px] lg:text-[28px] font-[600]">
                       {guide?.firstName.toLocaleUpperCase()} {guide?.lastName}
@@ -83,7 +83,7 @@ const GuidesDesk = ({ guidesData }: IProps) => {
       </div>
       <div
         id="bottom-guides-wrapper"
-        className="md:max-w-[442px] md:max-h-[150px] lg:max-w-[442px] lg:max-h-[153px] 2xl:max-w-[582px] 2xl:max-h-[193px] w-[100%] h-[100%] px-5 rounded-[10px] shadow-moreguideBox absolute xsm:top-[92%] md:top-[88%] lg:top-[92%] 2xl:top-[84%] xsm:left-[25%] md:left-[35%] lg:left-[57%] xl:left-[64%] bg-[#FFFFFF]"
+        className="z-50 md:max-w-[442px] md:max-h-[150px] lg:max-w-[442px] lg:max-h-[153px] 2xl:max-w-[582px] 2xl:max-h-[193px] w-[100%] h-[100%] px-5 rounded-[10px] shadow-moreguideBox absolute xsm:top-[92%] md:top-[88%] lg:top-[92%] 2xl:top-[84%] xsm:left-[25%] md:left-[35%] lg:left-[57%] xl:left-[64%] bg-[#FFFFFF]"
       >
         <div className=" md:pt-2 lg:pt-3">
           <div>

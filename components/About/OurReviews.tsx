@@ -29,8 +29,8 @@ const OurReviews = () => {
         slidesPerView={1}
         grabCursor
         navigation={{
-          nextEl: '.nextButton',
-          prevEl: '.prevButton'
+          nextEl: '.nextBtn',
+          prevEl: '.prevBtn'
         }}
         loop
       >
@@ -41,8 +41,8 @@ const OurReviews = () => {
         ))}
       </Swiper>
       <div className="text-right sm:mt-5">
-        <button className="bg-[#CCCCCC] text-white text-[16px] sm:text-[20px] w-8 h-8 sm:w-10 sm:h-10 rounded-full prevButton">{`<`}</button>
-        <button className="bg-[#F15C5A] text-white text-[16px] sm:text-[20px] w-8 h-8 sm:w-10 sm:h-10 ml-3 sm:ml-5 rounded-full nextButton">{`>`}</button>
+        <button className="bg-[#CCCCCC] text-white text-[16px] sm:text-[20px] w-8 h-8 sm:w-10 sm:h-10 rounded-full prevBtn">{`<`}</button>
+        <button className="bg-[#F15C5A] text-white text-[16px] sm:text-[20px] w-8 h-8 sm:w-10 sm:h-10 ml-3 sm:ml-5 rounded-full nextBtn">{`>`}</button>
       </div>
     </div>
   );
