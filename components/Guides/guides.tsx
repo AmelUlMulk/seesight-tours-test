@@ -12,10 +12,10 @@ const OurGuides = ({ guidesData }: IProps) => {
     <section id="our_guides" className="mt-20 bg-[#F5F5F5]">
       <div
         id="guides-container"
-        className=" pt-10 pb-40 mx-10 sm:mx-20 md:mx-20 lg:mx-32 2xl:mx-40 border-y border-[#C5C5C5]"
+        className=" pt-10 pb-40 w-[90%] mx-auto border-y border-[#C5C5C5]"
       >
         <h1 className="text-[#333333] text-[18px] sm:text-[26px] lg:text-[36px] font-[600]">
-          OUR GUIDES
+          Our Guides
         </h1>
         {mediaQuery ? (
           <GuidesMobile guidesData={guidesData?.guides} />
