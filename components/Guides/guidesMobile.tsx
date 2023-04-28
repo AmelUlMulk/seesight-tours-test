@@ -61,8 +61,6 @@ const GuidesMobile = ({ guidesData }: IProps) => {
                   <div className="relative w-[90px] xxsm:h-[100px]  sm:w-[170px] sm:h-[180px] float-left mr-8 mb-[16px] ">
                     <Image
                       src={guide?.professional[0]?.url}
-                      // width={140}
-                      // height={110}
                       fill
                       alt={guide?.professional[0]?.alt}
                       className=" ml-5 mt-5 border-[7px] xxsm:h-[130px] xsm:h-[150px] sm:h-[100%] border-[#FFFFFF] rounded-[5px] shadow-smallguideimageBox"
