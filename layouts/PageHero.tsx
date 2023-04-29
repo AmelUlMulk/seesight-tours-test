@@ -59,6 +59,7 @@ const StyledVideo = styled.video`
     height: 69vh;
   }
   width: 100vw !important;
+  z-index: 1;
 `;
 const PageHero = ({
   title,
@@ -76,15 +77,17 @@ const PageHero = ({
   const totalReviewCount = reviewsConnection?.aggregate.count;
   const mediaQuery = useMediaQuery(540);
   return (
-    <section className="Hero_Section overflow-hidden">
+    <section className="Hero_Section  overflow-hidden">
       <PageHeroStyle
         id="PageHero"
         className="relative bg-no-repeat bg-cover bg-center flex justify-start items-center "
       >
+        <div className="absolute w-full h-full z-10 bg-opacity-40 bg-black " />
+
         <div
           className={`${
             !video &&
-            'absolute top-0 left-0 w-[100%] h-[inherit] bg-gradient-to-tr from-[#00000092] to-transparent z-20'
+            'absolute top-0 left-0 w-[100%] h-[inherit] bg-gradient-to-tr  z-20'
           }`}
         ></div>
         {!video && <StyledImage alt="guidesImage" src={media} layout="fill" />}

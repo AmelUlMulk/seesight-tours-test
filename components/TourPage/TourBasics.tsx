@@ -1,16 +1,25 @@
 import Image from 'next/image';
 import React from 'react';
 import scrollToElement from '../../utils/scrollIntoView';
-
+import { Router, useRouter } from 'next/router';
 interface TOUR {
   price: number;
   duration: number;
   type: string;
   rating: number;
   totalRatings: number;
+  slug: string;
 }
 
-const TourBasics = ({ price, duration, type, rating, totalRatings }: TOUR) => {
+const TourBasics = ({
+  price,
+  duration,
+  type,
+  rating,
+  totalRatings,
+  slug
+}: TOUR) => {
+  const router = useRouter();
   return (
     <>
       <div className=" px-[2%] 2xl:px-[10%] flex justify-between py-4 ">
@@ -96,7 +105,10 @@ const TourBasics = ({ price, duration, type, rating, totalRatings }: TOUR) => {
         </div>
         <div className=" md:relative items-center fixed bottom-0 right-2 z-20 w-full  md:bg-transparent  bg-[#2191FA] md:w-[30%] py-6 flex justify-evenly md:justify-end gap-8  ">
           <p className={`md:hidden text-white`}> Starting at ${price} </p>
-          <button className="py-2 px-4 md:px-6 bg-[#F15C5A] text-white rounded-md    ">
+          <button
+            className="py-2 px-4 md:px-6 bg-[#F15C5A] text-white rounded-md    "
+            onClick={() => router.push(`/checkout/${slug}`)}
+          >
             Book Now
           </button>
         </div>
