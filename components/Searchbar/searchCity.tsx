@@ -228,7 +228,7 @@ const SearchCity = () => {
   return (
     <section
       id="search-filter"
-      className="bg-[#FFFFFF] absolute xxsm:top-[94%] md:top-[92%] lg:top-[92%] bg-transparent w-[100%]"
+      className="bg-[#FFFFFF] absolute xxsm:top-[95%] md:top-[93%] lg:top-[92%] bg-transparent w-[100%]"
     >
       <div
         tabIndex={0}

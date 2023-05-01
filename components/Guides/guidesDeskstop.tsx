@@ -74,7 +74,7 @@ const GuidesDesk = ({ guidesData }: IProps) => {
                     <h3 className="text-[16px] sm:text-[22px] lg:text-[28px] font-[600]">
                       {guide?.firstName.toLocaleUpperCase()} {guide?.lastName}
                     </h3>
-                    <p className="text-[#828282] text-justify h-[100%] text-[12px] sm:text-[14px] lg:text-[20px] font-[400] pr-5 ">{`${guide?.biography}`}</p>
+                    <p className="text-[#828282] text-justify md:max-h-[240px] lg:max-h-[260px] xl:max-h-[300px] 2xl:max-h-[500px] h-[100%] overflow-auto text-[12px] sm:text-[14px] lg:text-[20px] font-[400] pl-1 pr-5 ">{`${guide?.biography}`}</p>
                   </div>
                 </div>
               </SwiperSlide>

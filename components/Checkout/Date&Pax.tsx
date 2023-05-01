@@ -79,7 +79,7 @@ const StyledCelendar = styled(Calendar)`
     font-size: 1.5rem;
     justify-content: center;
     gap: 1rem;
-    background: #ad2025;
+    background: #f15c5a;
   }
   .react-calendar__month-view__weekdays {
     display: flex;
@@ -171,11 +171,11 @@ interface DayContainerProps {
   active: boolean;
 }
 const DayContainer = styled.div<DayContainerProps>`
-  background: ${props => (props.active ? '#C53F3F' : 'transparent')};
+  background: ${props => (props.active ? '#F15C5A' : 'transparent')};
   color: ${props => (props.active ? 'white' : 'black')};
   display: flex;
   .date {
-    color: ${props => (!props.active ? '#C53F3F' : 'white')};
+    color: ${props => (!props.active ? '#F15C5A' : 'white')};
   }
   flex-direction: column;
   width: 100%;

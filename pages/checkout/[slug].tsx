@@ -33,7 +33,7 @@ const ButtonDiv = styled.div`
   gap: 2rem;
   .back {
     background: none;
-    border: 2px solid #ad2025;
+    border: 2px solid #f15c5a;
   }
   button {
     width: 181px;
@@ -41,8 +41,8 @@ const ButtonDiv = styled.div`
     color: white;
     left: calc(50% - 181px / 2 + 525.5px);
     top: 1098px;
-    background: #ad2025;
-    border-radius: 0px 15px;
+    background: #f15c5a;
+    border-radius: 10px;
   }
 `;
 interface StyleProps {
@@ -355,7 +355,7 @@ const Checkout = ({
         image={background}
         className="min-h-[130vh] h-auto w-full bg-cover bg-no-repeat bg-center relative"
       >
-        <div className="absolute top-0 left-0 h-[100%] w-full bg-[#000000d9] z-10 "></div>
+        <div className="absolute top-0 left-0 h-[100%] w-full bg-black bg-op z-0 bg-opacity-40 "></div>
 
         {thankyou && <Thankyou open={thankyou} close={setThankYou} />}
         <Steps currentStepIndex={currentComponentIndex} />

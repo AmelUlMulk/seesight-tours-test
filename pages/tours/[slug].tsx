@@ -40,6 +40,7 @@ const TourPage = ({
         type={product.type}
         rating={reviews.average}
         totalRatings={reviews.total}
+        slug={product.slug}
       />
       <Included
         longDescription={product.longDescription}

@@ -69,6 +69,7 @@ const Reviews = () => {
       See what customer are saying about SeeSight Tours"
         media={reviewsPage?.hero_media[0]?.url || ''}
         video={true}
+        totalReviews={totalReviews}
       />
       <div
         onClick={() => {
