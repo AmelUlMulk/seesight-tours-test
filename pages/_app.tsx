@@ -7,6 +7,7 @@ import { ApolloProvider } from '@apollo/client';
 import client from '../apollo-client';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import RecentConfirmBookings from '../components/Notifications/recentBookings';
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -14,6 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <NavBar />
         <Component {...pageProps} />
         <Footer />
+        <RecentConfirmBookings />
       </ApolloProvider>
       <ToastContainer
         position="bottom-right"

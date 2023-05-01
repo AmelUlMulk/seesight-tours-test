@@ -49,7 +49,6 @@ type StepsProp = {
 };
 //Comparing stating with zero bacause step 1 = [0]
 const Steps = ({ currentStepIndex = 0 }: StepsProp) => {
-  console.log('the current index', currentStepIndex);
   return (
     <div className="w-full flex justify-center ">
       <div className="w-5/6 lg:w-1/2 flex justify-center relative bg-white   rounded-lg my-4  py-4">
