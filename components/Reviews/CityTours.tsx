@@ -6,6 +6,7 @@ import { CITIES_PRODUCT_FILTER } from '../../api/reviews';
 import TourDropDown from './TourDropdown';
 import DropdownIcon from '../../assets/svg/review-filtercitydropdown.svg';
 import { useMediaQuery } from '../../layouts/NavBar';
+import { MyErrorObject } from './Header';
 
 interface IProps {
   cities: any;
@@ -21,8 +22,8 @@ interface IProps {
   setSubmitReview: React.Dispatch<SetStateAction<Record<string, any>>>;
   errorStates: Record<string, boolean>;
   setErrorStates: React.Dispatch<SetStateAction<Record<string, boolean>>>;
-  errorObject: Record<string, unknown>;
-  setErrorObject: React.Dispatch<SetStateAction<Record<string, unknown>>>;
+  errorObject: MyErrorObject;
+  setErrorObject: React.Dispatch<SetStateAction<MyErrorObject>>;
 }
 const CityTours = ({
   cities,
@@ -61,7 +62,7 @@ const CityTours = ({
             />
           </span>
           <span
-            className=" text-[10px] sm:[14px] md:text-[14px] lg:text-[14px] xl:text-[16px] font-[500] text-[#333333]"
+            className=" text-[10px] sm:[14px] md:text-[14px] lg:text-[14px] xl:text-[16px] font-[500] text-[#333333] text-start"
             onClick={() => setTourDropdownToggle(!cityDropdownToggle)}
           >
             {selectedCityProduct

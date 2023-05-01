@@ -6,6 +6,7 @@ import Calendar from 'react-calendar';
 
 import DropdownIcon from '../../assets/svg/review-filtercitydropdown.svg';
 import { useMediaQuery } from '../../layouts/NavBar';
+import { MyErrorObject } from './Header';
 
 const CalendarStyle = styled(Calendar)`
   width: 100%;
@@ -42,8 +43,8 @@ interface IProps {
   setSubmitReview: React.Dispatch<SetStateAction<Record<string, unknown>>>;
   errorStates: Record<string, boolean>;
   setErrorStates: React.Dispatch<SetStateAction<Record<string, boolean>>>;
-  errorObject: Record<string, unknown>;
-  setErrorObject: React.Dispatch<SetStateAction<Record<string, unknown>>>;
+  errorObject: MyErrorObject;
+  setErrorObject: React.Dispatch<SetStateAction<MyErrorObject>>;
 }
 
 const DateSelect = ({
@@ -103,7 +104,7 @@ const DateSelect = ({
             alt="calendar image"
           />
         </span>
-        <span className="text-[10px] xsm:text-[12px] sm:text-[14px] xl:text-[16px] font-[500] text-[#333333]">
+        <span className="text-[10px] sm:text-[14px] xl:text-[16px] font-[500] text-[#333333]">
           {selectedDate
             ? moment(selectedDate).format('MMM Do YYYY')
             : 'When Did You Go?'}

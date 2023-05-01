@@ -1,4 +1,5 @@
 import { SetStateAction } from 'react';
+import { MyErrorObject } from './Header';
 
 interface IProps {
   citiesDropDown: Record<string, any>;
@@ -10,8 +11,8 @@ interface IProps {
   setSubmitReview: React.Dispatch<SetStateAction<Record<string, any>>>;
   errorStates: Record<string, boolean>;
   setErrorStates: React.Dispatch<SetStateAction<Record<string, boolean>>>;
-  errorObject: Record<string, unknown>;
-  setErrorObject: React.Dispatch<SetStateAction<Record<string, unknown>>>;
+  errorObject: MyErrorObject;
+  setErrorObject: React.Dispatch<SetStateAction<MyErrorObject>>;
 }
 const CityDropdown = ({
   citiesDropDown,
@@ -50,7 +51,7 @@ const CityDropdown = ({
         citiesDropDown.featured?.map((city: any) => (
           <div
             key={city?.city.id}
-            className="border border-slate-300"
+            className="border border-slate-300 text-[10px] xsm:text-[12px] sm:text-[14px] xl:text-[16px]"
             onClick={() => handleCityClick(city?.city)}
           >
             {city?.city.name}
@@ -61,7 +62,7 @@ const CityDropdown = ({
         citiesDropDown.cities?.map((city: any) => (
           <div
             key={city?.city.id}
-            className="border border-slate-300"
+            className="border border-slate-300 text-[10px] xsm:text-[12px] sm:text-[14px] xl:text-[16px]"
             onClick={() => {
               setSelectedCity(city?.city.name);
               setCityDropdownToggle(!cityDropdownToggle);

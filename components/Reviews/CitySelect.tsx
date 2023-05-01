@@ -3,6 +3,7 @@ import { SetStateAction } from 'react';
 import CityDropdown from './CityDropdown';
 import DropdownIcon from '../../assets/svg/review-filtercitydropdown.svg';
 import { useMediaQuery } from '../../layouts/NavBar';
+import { MyErrorObject } from './Header';
 
 interface IProps {
   citiesDropDown: Record<string, any>;
@@ -16,8 +17,8 @@ interface IProps {
   setSubmitReview: React.Dispatch<SetStateAction<Record<string, any>>>;
   errorStates: Record<string, boolean>;
   setErrorStates: React.Dispatch<SetStateAction<Record<string, boolean>>>;
-  errorObject: Record<string, unknown>;
-  setErrorObject: React.Dispatch<SetStateAction<Record<string, unknown>>>;
+  errorObject: MyErrorObject;
+  setErrorObject: React.Dispatch<SetStateAction<MyErrorObject>>;
 }
 
 const CitySelect = ({
@@ -60,7 +61,7 @@ const CitySelect = ({
               setCityDropdownToggle(false);
             }
           }}
-          className=" text-[10px] xsm:text-[12px] sm:text-[14px] xl:text-[16px] font-[500] text-[#333333] text-justify"
+          className=" text-[10px] sm:text-[14px] xl:text-[16px] font-[500] text-[#333333] text-start"
         >
           {selectedCity ? selectedCity : 'Choose A city?'}
         </span>
