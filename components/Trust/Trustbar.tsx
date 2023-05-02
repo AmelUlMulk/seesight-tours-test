@@ -21,7 +21,7 @@ const data = [
   },
   {
     id: 'B112',
-    snippet: 'Free_Cancellation',
+    snippet: 'Free Cancellation',
     icon: '/Free_Cancellation.svg',
     link: '/faq'
   },
