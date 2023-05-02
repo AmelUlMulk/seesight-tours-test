@@ -43,7 +43,7 @@ const ReviewRatings = ({ totalReviews }: IProps) => {
           return (
             <div
               key={index}
-              className="flex justify-center mt-2 w-[90%] mx-auto"
+              className="flex justify-center items-center mt-2 w-[90%] mx-auto"
             >
               <span className="flex-none text-right w-[28%] xsm:w-[24%] sm:w-[16%] md:w-[25%] text-[12px] xsm:text-[16px] sm:text-[18px] md:text-[20px] xl:text-[22px] text-[#333333] font-[400] px-2 ">{`${item} Stars`}</span>
               <ProgressBar
