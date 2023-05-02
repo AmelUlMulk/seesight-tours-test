@@ -8,7 +8,7 @@ const AdventureStyle = styled.div`
 `;
 const Adventure = () => {
   return (
-    <AdventureStyle className="bg-no-repeat bg-cover bg-center h-[45vh] flex flex-col justify-center items-center mt-5">
+    <AdventureStyle className="bg-no-repeat bg-cover bg-center h-[35vh] md:h-[45vh] flex flex-col justify-center items-center mt-5">
       <div className="text-white text-center max-w-[88%]">
         <h1 className=" text-[20px] sm:text-[25px] md:text-[30px] lg:text-[40px] xl:text-[56px] 2xl:text-[66px] font-[400] ">
           Ready for an adventure?

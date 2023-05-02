@@ -14,6 +14,7 @@ import ReviewForm from './ReviewForm';
 import ErrorDisp from './ErrorDisp';
 import CrossButtonIcon from '../../assets/svg/radix-icons_cross-2.svg';
 import { useMediaQuery } from '../../layouts/NavBar';
+import { MyErrorObject } from './Header';
 interface IProps {
   dispModal: boolean;
   setDispModal: React.Dispatch<SetStateAction<boolean>>;
@@ -22,8 +23,8 @@ interface IProps {
   handleRating: (rate: number) => void;
   rating: number;
   setRating: React.Dispatch<SetStateAction<number>>;
-  errorObject: Record<string, unknown>;
-  setErrorObject: React.Dispatch<SetStateAction<Record<string, unknown>>>;
+  errorObject: MyErrorObject;
+  setErrorObject: React.Dispatch<SetStateAction<MyErrorObject>>;
 }
 
 const AddReview = ({
@@ -79,23 +80,22 @@ const AddReview = ({
       };
     });
   }, [selectedCity]);
-
   return (
     <div
       id="review-modal-wrapper"
-      className="w-[100%] h-[100vh] fixed top-0 left-0 z-20 bg-modalWrapper flex justify-center items-start"
+      className="w-[100%] h-[100vh] fixed top-0 left-0 z-[100] bg-modalWrapper flex justify-center items-start"
       onClick={() => setDispModal(!dispModal)}
     >
       <div
         id="review-modal"
-        className="z-50 bg-[#FFFFFF] w-[78%] sm:w-[70%] mt-24 sm:mt-32 lg:mt-36 absolute"
+        className=" bg-[#FFFFFF] w-[78%] sm:w-[70%] lg:w-[40%] mt-24 sm:mt-28 lg:mt-32 absolute mb-10"
         onClick={e => {
           e.stopPropagation();
           setDispCalendar(false);
         }}
       >
         <div
-          className="absolute top-1 xsm:top-2 right-2 sm:right-3 lg:right-5 2xl:right-10 hover:cursor-pointer"
+          className="hover:cursor-pointer w-6 ml-auto mr-3 mt-2"
           onClick={() => setDispModal(false)}
         >
           <Image
@@ -105,7 +105,7 @@ const AddReview = ({
             alt="cross-button"
           />
         </div>
-        <div className="px-6 lg:px-10 py-5 max-h-[75vh] xsm:max-h-[80vh] sm:max-h-[86vh] lg:max-h-[84vh] overflow-y-scroll">
+        <div className="px-8 lg:px-16 pb-5 max-h-[75vh] xsm:max-h-[80vh] 2xl:max-h-[85vh] overflow-auto">
           <h2 className="text-[14px] md:text-[16px] lg:text[18px] xl:text-[22px] font-[500]">
             Share your experience with us
           </h2>
@@ -128,8 +128,9 @@ const AddReview = ({
               setTourDropdownToggle={setTourDropdownToggle}
             />
             {errorObject.date && (
-              // @ts-ignore
-              <div className="text-red-400">{errorObject.date}</div>
+              <div className="text-red-400 text-[10px] sm:text-[14px] lg-text-[18px]">
+                {errorObject.date}
+              </div>
             )}
             <CitySelect
               citiesDropDown={citiesDropDown}
@@ -147,7 +148,7 @@ const AddReview = ({
               setErrorObject={setErrorObject}
             />
             {errorObject.cities && (
-              <div className="text-red-400 text-[12px] sm:text-[14px] lg-text-[18px]">
+              <div className="text-red-400 text-[10px] sm:text-[14px] lg-text-[18px]">
                 {/* @ts-ignore */}
                 {errorObject.cities}
               </div>

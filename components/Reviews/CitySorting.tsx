@@ -47,7 +47,7 @@ const CitiesSorting = ({
         </button>
       </div>
       {citiesToggle && (
-        <div className="bg-[#FFFFFF] rounded-b-[5px] max-h-[300px] overflow-y-auto absolute top-[100%] w-[100%] z-50">
+        <div className="bg-[#FFFFFF] rounded-b-[5px] max-h-[300px] overflow-y-auto absolute top-[100%] w-[100%] z-[60]">
           <div
             onClick={() => {
               setCityFilter(null);
