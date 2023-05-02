@@ -46,10 +46,6 @@ const Newsletter = ({}) => {
   `;
   return (
     <section className="w-full flex justify-center items-center bg-[#F5F5F5] ">
-      <ToastContainer
-        position="bottom-right"
-        toastStyle={{ backgroundColor: 'green', color: 'white' }}
-      />
       <div className="flex justify-center pt-10">
         <div className=" w-4/5 md:w-8/12 lg:w-[65%]">
           <NewsletterHeading>Subscribe to our newsletter!</NewsletterHeading>
