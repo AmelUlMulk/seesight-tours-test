@@ -56,7 +56,7 @@ const Cities = [
   },
   {
     name: 'Newport',
-    slug: 'newport-tours,',
+    slug: 'newport-tours',
     type: 'usa'
   },
   {
@@ -100,7 +100,7 @@ const Cities = [
   },
   {
     name: 'Toronto',
-    slug: 'toronto-tours,',
+    slug: 'toronto-tours',
     type: 'canada'
   },
   {
@@ -115,7 +115,7 @@ const Cities = [
   },
   {
     name: 'Halifax',
-    slug: 'halifax-tours,',
+    slug: 'halifax-tours',
     type: 'canada'
   },
   {
@@ -171,6 +171,7 @@ const SearchCity = () => {
 
   const SubmitHandler = (e: any) => {
     e.preventDefault();
+
     const validCity = Cities.find(cty => cty.name === city);
     if (validCity) {
       return router.push(validCity.slug);
@@ -180,7 +181,6 @@ const SearchCity = () => {
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value.length);
     setCity(e.target.value);
     setSuggestedToggle(false);
     setCityNameErr('');
@@ -224,7 +224,6 @@ const SearchCity = () => {
     }
     setFocusIndex(nextCount);
   };
-
   return (
     <section
       id="search-filter"

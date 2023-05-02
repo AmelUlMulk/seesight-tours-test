@@ -11,10 +11,10 @@ import PrevslideIcon from '../../../assets/svg/prevslideicon.svg';
 import { useQuery } from '@apollo/client';
 import { TESTIMONIALS, TESTIMONIAL_INTERFACE } from '../../../api/testimonials';
 import logo from '../../../assets/svg/logo.svg';
-import GoogleIcon from '../../../assets/svg/google-icon.svg';
-import TripAdvisorLogo from '../../../assets/svg/tripadvisorlogo.svg';
-import ExpediaLogo from '../../../assets/svg/expedialogo.svg';
-import VIATORICON from '../../../assets/svg/viatorlogo.svg';
+import GoogleIcon from '../../../assets/svg/Google.svg';
+import TripAdvisorLogo from '../../../assets/svg/Trip Advisor.svg';
+import ExpediaLogo from '../../../assets/svg/Expedia.svg';
+import VIATORICON from '../../../assets/svg/Viator.svg';
 const TestimonialStyle = styled.section`
   background-image: linear-gradient(
       to top,
@@ -30,22 +30,22 @@ export const TextShadow = styled.h1`
 export const sourceIcon = (source: string) => {
   switch (source) {
     case 'WEBSITE':
-      return '/logo.svg';
+      return '/Website logo.svg';
       break;
     case 'GOOGLE':
-      return '/google-icon.svg';
+      return '/Google.svg';
       break;
     case 'EXPEDIA':
-      return '/expediaIcon.svg';
+      return '/Expedia.svg';
       break;
     case 'TRIPADVISOR':
-      return '/tripadvisorIcon.svg';
+      return '/Trip Advisor.svg';
       break;
     case 'VIATOR':
-      return '/viatorIcon.svg';
+      return '/Viator.svg';
       break;
     case 'GETYOURGUIDE':
-      return '/getyourguide.svg';
+      return '/Get Your Guide.svg';
       break;
     default:
       return source;
@@ -54,7 +54,7 @@ export const sourceIcon = (source: string) => {
 export const sourceIconDim = (source: string) => {
   switch (source) {
     case 'WEBSITE':
-      return '/logo.svg';
+      return '/Website logo.svg';
       break;
     case 'GOOGLE':
       return '/google-icon.svg';
@@ -157,7 +157,7 @@ const Testimonials = () => {
                       width={60}
                       height={60}
                       alt="review source"
-                      className="absolute top-2 right-3"
+                      className="absolute -top-3 right-3"
                     />
                     <Image
                       src="/quote.png"

@@ -11,7 +11,7 @@ const RecentConfirmBookings = () => {
   const [triggerBookings, { data, loading, error }] =
     useLazyQuery<RECENTCONFIRMEDBOOKINGS>(CONFIRMED_BOOKING_BY_DATE, {
       variables: {
-        pastDate: dayjs().subtract(100, 'days').format('YYYY-MM-DD'),
+        pastDate: dayjs().subtract(1, 'days').format('YYYY-MM-DD'),
         today: dayjs().format('YYYY-MM-DD')
       }
     });
@@ -28,7 +28,6 @@ const RecentConfirmBookings = () => {
   useEffect(() => {
     data?.bookings.map((booking, index) => {
       const recall = window.setTimeout(() => {
-        console.log(booking.createdAt);
         toast.info(
           <div>
             <div>
