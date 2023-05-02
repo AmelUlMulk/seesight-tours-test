@@ -28,7 +28,6 @@ const RecentConfirmBookings = () => {
   useEffect(() => {
     data?.bookings.map((booking, index) => {
       const recall = window.setTimeout(() => {
-        console.log(booking.createdAt);
         toast.info(
           <div>
             <div>

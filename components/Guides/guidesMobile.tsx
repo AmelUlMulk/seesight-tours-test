@@ -99,6 +99,7 @@ const GuidesMobile = ({ guidesData }: IProps) => {
               spaceBetween={1}
               loop={true}
               loopedSlides={guidesData?.length}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
               navigation={{
                 nextEl: '.nextButton'
               }}

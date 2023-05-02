@@ -43,20 +43,16 @@ const Trustbar = () => {
       >
         {data.map(dt => {
           return (
-            <div
-              key={dt.id}
-              className="flex-none lg:w-[33.33%] py-2 lg:py-0 lg:px-2"
-            >
+            <div key={dt.id} className="flex-none lg:w-2/6 p-2">
               <Link href={dt.link}>
-                <div className="bg-[#2191FA] flex items-center rounded-[8px] lg:rounded-[15px] xxsm:pl-5 xsm:pl-6 sm:pl-10 md:pl-16 lg:pl-3 xl:pl-6 xxsm:py-2 xsm:py-3 md:py-3 lg:py-5">
+                <div className="flex flex-wrap justify-center items-center rounded-[8px] lg:rounded-[15px] bg-[#2191FA] ">
                   <div>
                     <Image src={dt.icon} width={49} height={31} alt="" />
                   </div>
-                  <div className="xxsm:pr-5 xsm:pr-6 md:pr-20 lg:pr-0 lg:pl-3 py-2 w-[100%] text-center lg:text-start">
-                    <p className="xsm:text-[18px] sm:text-[14px] md:text-[16px] 2xl:text-[24px] font-[400]">
-                      {dt.snippet}
-                    </p>
-                  </div>
+
+                  <p className="xsm:text-[18px] sm:text-[14px] md:text-[16px] 2xl:text-[24px] font-[400] pl-3">
+                    {dt.snippet}
+                  </p>
                 </div>
               </Link>
             </div>
