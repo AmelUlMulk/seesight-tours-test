@@ -19,34 +19,46 @@ const TourPage = ({
   product,
   reviews,
   ratingCounts,
-  productReviews
+  productReviews,
+  rezdy
 }: PRODUCTPAGEINTERFACE) => {
+  console.log('this is rezdy', reviews);
   /* const swiper = useSwiper(); */
-  console.log('the reviews', product.relatedProducts);
   return (
     <div className="  flex flex-col ">
-      <h1 className="w-full text-xl lg:text-3xl xl:text-5xl  font-extrabold text-center  pt-4 xl:pt-12  pb-7 px-1 xl:px-8  ">
-        {product.cities[0] && (
-          <>
-            {product.cities[0].name}
-            <span className=" font-black "> {`>`}</span> {product.name}{' '}
-          </>
-        )}
-      </h1>
+      <div className="flex justify-between px-[2%] 2xl:px-[10%] mb-4  ">
+        <div className="flex flex-col ">
+          <h1 className="w-full text-xl lg:text-2xl xl:text-4xl  font-extrabold text-start  pt-4 xl:pt-12  mb-3   ">
+            {product.cities[0] && (
+              <>
+                <span className=" font-black "> </span> {product.name}{' '}
+              </>
+            )}
+          </h1>
+          <span className="text-lg">
+            {product.cities[0].name} {`>`} {product.name}
+          </span>
+        </div>
+        <TourBasics
+          price={product.price}
+          duration={product.duration}
+          type={product.type}
+          rating={reviews.average}
+          totalRatings={reviews.total}
+          slug={product.slug}
+        />
+      </div>
+
       <HeroSwipper media={product.carousel} />
-      <TourBasics
-        price={product.price}
-        duration={product.duration}
-        type={product.type}
-        rating={reviews.average}
-        totalRatings={reviews.total}
-        slug={product.slug}
-      />
-      <Included
-        longDescription={product.longDescription}
-        data={product.tourIncludes}
-        attractions={product.attractions}
-      />
+      <div className="  w-full       pl-2 2xl:px-[10%] mt-8  items-end     ">
+        <Included
+          longDescription={product.longDescription}
+          data={product.tourIncludes}
+          attractions={product.attractions}
+          rezdyId={rezdy[0].rezdy.rezdyId}
+          reviewState={reviews}
+        />
+      </div>
       <h2 className="w-full px-[2%] 2xl:px-[10%] text-black text-xl md:text-3xl font-bold  ">
         {product.name}
       </h2>
@@ -86,6 +98,11 @@ interface PRODUCTPAGEINTERFACE {
     }
   ];
   ratingCounts: RATINGCOUNT;
+  rezdy: [
+    {
+      rezdy: { rezdyId: string };
+    }
+  ];
 }
 export interface RATINGCOUNT {
   1: number;
@@ -118,7 +135,8 @@ export async function getStaticProps({ params }: PARAMS) {
   const { data } = await client.query<FETCH_PRODUCT_INTERFACE>({
     query: FETCH_PRODUCT,
     variables: {
-      slug
+      slug,
+      Id: slug
     }
   });
   if (!data.product) {
@@ -129,6 +147,7 @@ export async function getStaticProps({ params }: PARAMS) {
       }
     };
   }
+  console.log('this is the data', data);
   const reviews = {
     average: Number(
       data.reviews.reduce((a, b) => a + b.rating, 0) / data.reviews.length
@@ -156,7 +175,8 @@ export async function getStaticProps({ params }: PARAMS) {
       product: data.product[0],
       reviews,
       productReviews: data.reviews,
-      ratingCounts
+      ratingCounts,
+      rezdy: data.rezdy
     }
   };
 }
