@@ -15,6 +15,7 @@ import {
   ATTRACTION_SLUGS_INTERFACE
 } from '../../api/attraction';
 import styled from 'styled-components';
+import Head from 'next/head';
 
 const StyleMarkdown = styled.div`
   color: #333333;
@@ -216,8 +217,6 @@ export async function getStaticProps({ params }: IProps) {
   };
 }
 const SubSlug = ({ attraction }: IProps) => {
-  // const [imagesAr, setimagesAr] = useState<Array<Record<string, unknown>>>([]);
-  // const router = useRouter();
   const {
     name,
     canonical,
@@ -229,31 +228,17 @@ const SubSlug = ({ attraction }: IProps) => {
     cardMedia,
     heroMedia
   } = attraction || ({} as ATTRACTION);
-  // useEffect(() => {
-  //   const img = [] as any;
-  //   if (cardMedia?.length > 0) {
-  //     cardMedia.forEach((item: Record<string, any>, index: number) => {
-  //       img.push({
-  //         key: index + 1,
-  //         imageURL: item.url
-  //       });
-  //     });
-  //   } else {
-  //     heroMedia?.length > 0 &&
-  //       heroMedia.forEach((item: Record<string, any>, index: number) => {
-  //         img.push({
-  //           key: index + 1,
-  //           imageURL: item.url
-  //         });
-  //       });
-  //   }
-  //   if (img.length > 0) {
-  //     setimagesAr(img);
-  //   }
-  // }, [heroMedia]);
-  console.log('Attraction:', attraction);
   return (
     <>
+      <Head>
+        <title>{name}</title>
+        <meta
+          property="og:description"
+          content={metaDescription}
+          key="metadescription"
+        />
+        <link href={canonical} rel="canonical" key="canonical" />
+      </Head>
       <PageHero
         title="Hornblower Niagara Cruises"
         snippet="Niagara Falls, Canada"

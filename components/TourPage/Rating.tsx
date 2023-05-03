@@ -13,11 +13,9 @@ interface Rating {
   ];
 }
 const pr = (number: number) => {
-  console.log('the thing is', (number / 100) * 100);
   return `${(number / 100) * 100}%`;
 };
 const Rating = ({ productName, ratingCounts, reviews }: Rating) => {
-  console.log('the reviews', reviews);
   return (
     <div
       id="reviews"

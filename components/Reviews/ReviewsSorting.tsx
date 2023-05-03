@@ -36,7 +36,7 @@ const ReviewsSorting = ({
         </button>
       </div>
       {sortToggle && (
-        <div className="absolute top-[100%] w-[100%] z-50 rounded-b-[5px]">
+        <div className="absolute top-[100%] w-[100%] z-[60] rounded-b-[5px]">
           {sortObjectKeys.map((item: string, index: number) => (
             <div
               key={item}

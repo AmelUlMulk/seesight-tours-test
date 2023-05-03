@@ -1,4 +1,5 @@
 import { SetStateAction, useEffect } from 'react';
+import { MyErrorObject } from './Header';
 
 interface IProps {
   selectedCity: string | null;
@@ -11,8 +12,8 @@ interface IProps {
   setSubmitReview: React.Dispatch<SetStateAction<Record<string, any>>>;
   errorStates: Record<string, boolean>;
   setErrorStates: React.Dispatch<SetStateAction<Record<string, boolean>>>;
-  errorObject: Record<string, unknown>;
-  setErrorObject: React.Dispatch<SetStateAction<Record<string, unknown>>>;
+  errorObject: MyErrorObject;
+  setErrorObject: React.Dispatch<SetStateAction<MyErrorObject>>;
 }
 const TourDropDown = ({
   selectedCity,

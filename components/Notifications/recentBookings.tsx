@@ -5,7 +5,7 @@ import {
   RECENTCONFIRMEDBOOKINGS
 } from '../../api/socialProofs';
 import { useEffect } from 'react';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 const RecentConfirmBookings = () => {
   const [triggerBookings, { data, loading, error }] =
@@ -42,11 +42,20 @@ const RecentConfirmBookings = () => {
               Confirmed a tour of {booking.product.citiesProducts[0].city.name}{' '}
               {dayjs().diff(dayjs(booking.createdAt), 'hour')} hours ago
             </p>
-            {/* <p>{booking.customer.customerName}</p> */}
-          </div>
+            <p>{booking.customer.customerName}</p>
+          </div>,
+          {
+            toastId: booking.customer.customerName.split(' ')[0],
+            autoClose: 6000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            pauseOnFocusLoss: false
+          }
         );
       }, index * 20000);
-
       timeIdArray.push(recall);
     });
     return () => {

@@ -5,6 +5,7 @@ import { Rating } from 'react-simple-star-rating';
 import styled from 'styled-components';
 import { INSERT_REVIEW } from '../../api/reviews';
 import { useMediaQuery } from '../../layouts/NavBar';
+import { MyErrorObject } from './Header';
 interface IProps {
   dispModal: boolean;
   setDispModal: React.Dispatch<SetStateAction<boolean>>;
@@ -16,8 +17,8 @@ interface IProps {
   setTermsConditions: React.Dispatch<SetStateAction<boolean>>;
   errorStates: Record<string, boolean>;
   setErrorStates: React.Dispatch<SetStateAction<Record<string, boolean>>>;
-  errorObject: Record<string, unknown>;
-  setErrorObject: React.Dispatch<SetStateAction<Record<string, unknown>>>;
+  errorObject: MyErrorObject;
+  setErrorObject: React.Dispatch<SetStateAction<MyErrorObject>>;
 }
 interface RatingFieldProps {
   field: Record<string, any>;
@@ -73,7 +74,7 @@ const ReviewForm = ({
         emptyColor="gray"
         SVGstyle={{ display: 'inline-block' }}
         allowFraction
-        size={mediaQuery ? 25 : 40}
+        size={mediaQuery ? 25 : 35}
       />
     );
   };
@@ -150,10 +151,7 @@ const ReviewForm = ({
     >
       {({ isSubmitting, setFieldValue, values }) => (
         <Form>
-          <label
-            htmlFor="name"
-            className="block text-[12px] md:text-[14px] xl:text-[16px] text-[#4F4F4F] font-[500] mt-3"
-          >
+          <label className="block text-[12px] md:text-[14px] xl:text-[16px] text-[#4F4F4F] font-[500] mt-3">
             Name
           </label>
           <Field
@@ -161,7 +159,9 @@ const ReviewForm = ({
             name="traveller"
             type="text"
             placeholder="Name"
-            className="focus:outline-none bg-[#EEEEEE] py-2 lg:py-3 px-3 w-[100%] rounded-[5px] lg:rounded-[10px] mt-1"
+            autocomplete="off"
+            required
+            className="focus:outline-none bg-[#EEEEEE] text-[12px] md:text-[14px] xl:text-[16px] py-2 lg:py-3 px-3 w-[100%] rounded-[5px] lg:rounded-[10px] mt-1"
           />
           <ErrorMessage
             name="traveller"
@@ -169,10 +169,7 @@ const ReviewForm = ({
             className="text-red-400"
           />
 
-          <label
-            htmlFor="title"
-            className="block text-[12px] md:text-[14px] xl:text-[16px] text-[#4F4F4F] font-[500] mt-3"
-          >
+          <label className="block text-[12px] md:text-[14px] xl:text-[16px] text-[#4F4F4F] font-[500] mt-3">
             Title
           </label>
           <Field
@@ -180,7 +177,9 @@ const ReviewForm = ({
             name="title"
             type="text"
             placeholder="Title"
-            className="focus:outline-none bg-[#EEEEEE] py-2 lg:py-3 px-3 w-[100%] rounded-[5px] lg:rounded-[10px] mt-1"
+            autocomplete="off"
+            required
+            className="focus:outline-none bg-[#EEEEEE] text-[12px] md:text-[14px] xl:text-[16px] py-2 lg:py-3 px-3 w-[100%] rounded-[5px] lg:rounded-[10px] mt-1"
           />
           <ErrorMessage name="title" component="div" className="text-red-400" />
 
@@ -225,7 +224,7 @@ const ReviewForm = ({
             />
             <CheckBoxTextStyle
               isChecked={termsConditions}
-              className="text-[10px] text-justify lg:text-[14px] font-[500]"
+              className="text-[10px] text-justify lg:text-[14px] font-[500] text-[#4F4F4F]"
             >
               I certify that this review is based on my experience and is my
               genuine opinion, and have not beet offered any incentive or
@@ -235,7 +234,7 @@ const ReviewForm = ({
             </CheckBoxTextStyle>
           </div>
           <button
-            className="py-2 px-10 focus:outline-none text-[14px] sm:text-[16px] lg:text-[18px] xl:text-[20px] font-[500] bg-slate-400 rounded-[10px] mt-5 "
+            className="py-2 px-10 mb-10 focus:outline-none text-[14px] sm:text-[16px] lg:text-[18px] font-[500] bg-[#F15C5A] text-white float-right rounded-[10px] mt-5 "
             type="submit"
             // disabled={isSubmitting}
           >
