@@ -22,7 +22,6 @@ const TourPage = ({
   productReviews,
   rezdy
 }: PRODUCTPAGEINTERFACE) => {
-  console.log('this is rezdy', reviews);
   /* const swiper = useSwiper(); */
   return (
     <div className="  flex flex-col ">
