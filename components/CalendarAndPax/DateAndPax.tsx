@@ -250,7 +250,7 @@ const DateAndPax = ({ rezdyId }: DATEANDPAXPROPS) => {
   const [mobileCalendar, setMobileCalendar] = useState<boolean>(false);
 
   const [loading, setLoading] = useState<boolean>(false);
-
+  const [noAvailability, setNoAvailability] = useState<boolean>(false);
   const [productAvailabities, setProductAvailabilites] = useState<
     AVAILABILITY[]
   >([
@@ -329,10 +329,15 @@ const DateAndPax = ({ rezdyId }: DATEANDPAXPROPS) => {
     const getDate = async () => {
       setLoading(true);
       const availability = await fetchProductAvailabilities({ rezdyId });
-      setSelectedDate(dayjs(availability[0].startTime).format('YYYY-MM-DD'));
+      if (!availability) {
+        setNoAvailability(true);
+        setLoading(false);
+        return;
+      }
       if (availability) {
         setLoading(false);
       }
+      setSelectedDate(dayjs(availability[0].startTime).format('YYYY-MM-DD'));
       setProductAvailabilites(availability);
       setAvailabilityArray(() => {
         return availability.map(item =>
@@ -425,6 +430,10 @@ const DateAndPax = ({ rezdyId }: DATEANDPAXPROPS) => {
       {loading ? (
         <div className=" flex justify-center items-center w-full h-44 ">
           <p className="text-gray-400 animate-pulse">Loading</p>
+        </div>
+      ) : noAvailability ? (
+        <div className=" flex justify-center items-center w-full h-44 ">
+          <p className="text-gray-400 ">Coming Soon</p>
         </div>
       ) : (
         <div className="flex w-full justify-between gap-3 flex-wrap flex-col  ">
