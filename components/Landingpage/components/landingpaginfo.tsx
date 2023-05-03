@@ -25,7 +25,7 @@ const landingpPageInfo = [
 interface StyleProps {
   isActive: boolean;
 }
-const ButtonStyle = styled.button<StyleProps>`
+export const ButtonStyle = styled.button<StyleProps>`
   transform: ${props => (props.isActive ? 'scale(1.4)' : 'scale(1)')};
   transition: transform 0.3s linear;
 `;
