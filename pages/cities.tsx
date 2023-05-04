@@ -88,9 +88,9 @@ const Cities = ({ citiesPage }: CITIES_PAGE_INTERFACE) => {
       <TrustBar />
       <section className="flex flex-col w-full  justify-start ">
         <div className=" pl-[3%] xl:pl-[10%] ">
-          <h1 className="font-bold text-3xl md:text-5xl pt-12    ">
+          <h2 className="font-bold text-3xl md:text-5xl pt-12    ">
             FEATURED CITIES
-          </h1>
+          </h2>
 
           <Swiper
             className="swiper_123 relative "

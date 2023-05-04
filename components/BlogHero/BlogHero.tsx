@@ -57,7 +57,7 @@ const BlogHero = ({
         <StyledImage alt="guidesImage" src={media} layout="fill" />
         <div className="PageHero_container flex flex-col pl-10 ">
           <div className="font-bold text-white">
-            <h1>{title}</h1>
+            <h2>{title}</h2>
           </div>
           <div className="text-2xl text-white">
             <p>{snippet}</p>

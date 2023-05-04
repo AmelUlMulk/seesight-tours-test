@@ -62,7 +62,7 @@ const Steps = ({ currentStepIndex = 0 }: StepsProp) => {
             {currentStepIndex > 0 && (
               <Image src="/check.png" width={20} height={20} alt="check icon" />
             )}
-            <h1>Date</h1>
+            <h2>Date</h2>
           </Step>
           <Step
             selected={currentStepIndex === 1 ? true : false}
@@ -72,7 +72,7 @@ const Steps = ({ currentStepIndex = 0 }: StepsProp) => {
             {currentStepIndex > 1 && (
               <Image src="/check.png" width={20} height={20} alt="check icon" />
             )}
-            <h1>Payment</h1>
+            <h2>Payment</h2>
           </Step>
           <Step
             selected={currentStepIndex === 2 ? true : false}
@@ -83,7 +83,7 @@ const Steps = ({ currentStepIndex = 0 }: StepsProp) => {
             {currentStepIndex > 2 && (
               <Image src="/check.png" width={20} height={20} alt="check icon" />
             )}
-            <h1>Confirm</h1>
+            <h2>Confirm</h2>
           </Step>
         </div>
       </div>

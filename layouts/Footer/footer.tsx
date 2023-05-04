@@ -43,7 +43,7 @@ const Footer = () => {
             </div>
           </div>
           <div id="book_your_tour" className="px-5 md:px-8 lg:px-12 pt-4">
-            <h1 className="text-[20px] font-[600]">Book your Tour</h1>
+            <h2 className="text-[20px] font-[600]">Book your Tour</h2>
             <ul className="pt-2">
               <li className="py-2 text-[14px] font-[400]">
                 <Link href="/tours">
@@ -90,7 +90,7 @@ const Footer = () => {
             </ul>
           </div>
           <div id="menu" className="px-5 md:px-8 lg:px-12 pt-4">
-            <h1 className="text-[20px] font-[600]">Menu</h1>
+            <h2 className="text-[20px] font-[600]">Menu</h2>
             <ul className="pt-2">
               <li className="py-2 text-[14px] font-[400]">
                 <Link href="/blog">
@@ -137,7 +137,7 @@ const Footer = () => {
             </ul>
           </div>
           <div id="get_in_touch" className="px-5 md:px-8 lg:px-12 pt-4">
-            <h1 className="text-[20px] font-[600]">Get in Touch</h1>
+            <h2 className="text-[20px] font-[600]">Get in Touch</h2>
             <ul className="pt-2">
               <li className="py-2 text-[14px] font-[400] flex gap-5 items-center">
                 <div>

@@ -12,7 +12,7 @@ const ReviewCard = ({ review }: IProps) => {
     >
       <div className="flex justify-between items-center">
         <div className="flex gap-3 flex-wrap">
-          <h1 className="xsm:text-[20px] sm:text-[24px] text-[#333333] font-[600]">{`-${review?.traveller}`}</h1>
+          <h2 className="xsm:text-[20px] sm:text-[24px] text-[#333333] font-[600]">{`-${review?.traveller}`}</h2>
           <div className="flex items-center ">
             <Image
               src={'/rating-star-yellow.svg'}
