@@ -35,7 +35,7 @@ const TourPage = ({
             )}
           </h1>
           <span className="text-lg">
-            {product.cities[0].name} {`>`} {product.name}
+            {product?.cities[0]?.name} {`>`} {product.name}
           </span>
         </div>
         <TourBasics
@@ -54,7 +54,7 @@ const TourPage = ({
           longDescription={product.longDescription}
           data={product.tourIncludes}
           attractions={product.attractions}
-          rezdyId={rezdy[0].rezdy.rezdyId}
+          rezdyId={rezdy[0]?.rezdy?.rezdyId}
           reviewState={reviews}
         />
       </div>
