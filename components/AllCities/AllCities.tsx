@@ -46,7 +46,7 @@ const citiesCanada = [
 export const AllCities = ({ cities }: AllCities) => {
   return (
     <div className=" px-[3%] xl:px-[10%] py-12">
-      <h1 className="font-bold text-3xl xl:text-5xl      ">CITIES IN CANADA</h1>
+      <h2 className="font-bold text-3xl xl:text-5xl      ">CITIES IN CANADA</h2>
       <div className="flex flex-wrap gap-2 xl:gap-6 w-full  justify-center xl:justify-start  py-12 ">
         {cities.slice(0, 9).map((city, index) => {
           return (
@@ -54,9 +54,9 @@ export const AllCities = ({ cities }: AllCities) => {
           );
         })}
       </div>
-      <h1 className="font-bold text-3xl xl:text-5xl      ">
+      <h2 className="font-bold text-3xl xl:text-5xl      ">
         CITIES IN AMERICA
-      </h1>
+      </h2>
       <div className="flex flex-wrap gap-6 w-full  justify-center xl:justify-start  py-12 ">
         {cities.slice(9, 21).map((city, index) => {
           return (

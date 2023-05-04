@@ -106,9 +106,9 @@ const Testimonials = () => {
       className="px-10 sm:px-20 md:px-20 lg:px-32 2xl:px-40 bg-no-repeat bg-cover my-10 py-5"
     >
       <div>
-        <h1 className="text-[#333333] text-[18px] sm:text-[26px] lg:text-[36px] font-[600] pb-3">
+        <h2 className="text-[#333333] text-[18px] sm:text-[26px] lg:text-[36px] font-[600] pb-3">
           TESTIMONIALS
-        </h1>
+        </h2>
       </div>
       <div id="slider-container" className="lg:max-h-[350px] h-[100%]">
         <div

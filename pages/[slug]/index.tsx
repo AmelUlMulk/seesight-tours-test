@@ -90,9 +90,9 @@ const City = ({ featuredExp, cities, city }: IPROPS) => {
         <SearchCity />
       </section>
       <Trustbar />
-      <h1 className=" px-[8%] text-3xl font-bold capitalize mt-6 ">
+      <h2 className=" px-[8%] text-3xl font-bold capitalize mt-6 ">
         TOURS IN NIAGARA FALLS,CANADA
-      </h1>
+      </h2>
 
       <FeaturedExperiences featuredExp={featuredExp} citydropdown={cities} />
 

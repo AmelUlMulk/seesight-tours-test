@@ -57,9 +57,9 @@ const SectionWrapper = ({ title, children, slug, name }: WrapperProps) => {
           {name}
         </h2>
       )}
-      <h1 className=" text-center md:text-start text-xl  md:text-2xl   text-white mb-8">
+      <h2 className=" text-center md:text-start text-xl  md:text-2xl   text-white mb-8">
         {title}
-      </h1>
+      </h2>
       {children}
     </WRAPPER>
   );

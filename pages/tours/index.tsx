@@ -54,7 +54,7 @@ const Tours = ({ featuredExp, citydropdown, cities, dayTour }: IProps) => {
         citydropdown={citydropdown}
       />
       <div className=" ml-10 sm:ml-20 md:ml-20 lg:ml-32 2xl:ml-40  pt-3 pb-10 ">
-        <h1 className="font-bold text-3xl md:text-5xl pt-12    ">Our CITIES</h1>
+        <h2 className="font-bold text-3xl md:text-5xl pt-12    ">Our CITIES</h2>
 
         <Swiper
           className="swiper_123 relative "

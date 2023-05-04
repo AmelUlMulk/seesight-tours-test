@@ -25,6 +25,7 @@ const TourPage = ({
   /* const swiper = useSwiper(); */
   return (
     <div className="  flex flex-col ">
+
       <div className="flex justify-between px-[2%] 2xl:px-[10%] mb-4  ">
         <div className="flex flex-col ">
           <h1 className="w-full text-xl lg:text-2xl xl:text-4xl  font-extrabold text-start  pt-4 xl:pt-12  mb-3   ">
@@ -47,6 +48,7 @@ const TourPage = ({
           slug={product.slug}
         />
       </div>
+
 
       <HeroSwipper media={product.carousel} />
       <div className="  w-full       pl-2 2xl:px-[10%] mt-8  items-end     ">
