@@ -5,12 +5,15 @@ import { SetStateAction, useState } from 'react';
 interface IProps {
   blogs: any;
   blogsCategories: any;
-  filterBlogs: Array<Record<string, unknown>> | undefined;
-  setFilterBlog: React.Dispatch<
-    SetStateAction<Array<Record<string, unknown>> | undefined>
-  >;
+  setFilterBlog: React.Dispatch<SetStateAction<Array<Record<string, unknown>>>>;
+  setCurrentPage: React.Dispatch<SetStateAction<number>>;
 }
-const BlogSearch = ({ blogsCategories, blogs }: IProps) => {
+const BlogSearch = ({
+  blogsCategories,
+  blogs,
+  setFilterBlog,
+  setCurrentPage
+}: IProps) => {
   const [searchBlog, setSearchBlog] = useState('');
   const [selectedBlog, setSelectedBlog] = useState<string | undefined>();
 
@@ -19,20 +22,32 @@ const BlogSearch = ({ blogsCategories, blogs }: IProps) => {
   };
 
   const handleClick = (ctgSlug: string) => {
-    console.log(ctgSlug);
-    // if (ctgSlug) {
-    //   const filterCtg = blogs.filter(
-    //     (blog: Record<string, any>) => blog?.blogCategories[0]?.slug === ctgSlug
-    //   );
-    //   console.log('filterCtg', filterCtg);
-    // }
+    const filteredData =
+      ctgSlug !== undefined
+        ? blogs.filter((blog: Record<string, any>) => {
+            const isPresent = blog?.blogCategories?.filter((item: any) =>
+              item?.slug?.includes(ctgSlug)
+            );
+            if (isPresent.length > 0) return blog;
+          })
+        : blogs;
+    console.log('filterData:', filteredData);
+    if (filteredData) setCurrentPage(0);
+    setFilterBlog(filteredData);
   };
   console.log('blogs', blogs);
 
   return (
     <div id="categories">
-      <div className="flex bg-[#F9F9F9] border border-solid px-2 py-3">
-        <div>SICON</div>
+      <div className="flex items-center bg-[#F9F9F9] border border-solid px-2 py-3">
+        <div>
+          <Image
+            src="/SearchIcon.svg"
+            width={15}
+            height={15}
+            alt="search blogs icon"
+          />
+        </div>
         <input
           type="text"
           value={searchBlog}
@@ -46,6 +61,12 @@ const BlogSearch = ({ blogsCategories, blogs }: IProps) => {
         Categories
       </div>
       <div className="bg-[#F9F9F9] border border-solid max-h-[480px] overflow-auto">
+        <div
+          className="pl-5 py-1 cursor-pointer"
+          onClick={() => handleClick('')}
+        >
+          Show All
+        </div>
         {blogsCategories.map((ctg: Record<string, any>) => (
           <div
             onClick={() => handleClick(ctg.slug)}

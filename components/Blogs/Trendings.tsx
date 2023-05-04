@@ -6,22 +6,22 @@ import { SetStateAction } from 'react';
 interface IProps {
   blogs: any;
   blogsCategories: any;
-  filterBlogs: Array<Record<string, unknown>> | undefined;
-  setFilterBlog: React.Dispatch<
-    SetStateAction<Array<Record<string, unknown>> | undefined>
-  >;
+  filterBlogs: Array<Record<string, unknown>>;
+  setFilterBlog: React.Dispatch<SetStateAction<Array<Record<string, unknown>>>>;
+  setCurrentPage: React.Dispatch<SetStateAction<number>>;
 }
 interface CardProps {
   large: boolean;
 }
 const StyleDiv = styled.div<CardProps>`
-  width: ${props => (props.large ? '62%' : '30.33%')} !important;
+  width: ${props => (props.large ? '62%' : '30.6%')} !important;
 `;
 const TrendingBlogs = ({
   blogs,
   blogsCategories,
   filterBlogs,
-  setFilterBlog
+  setFilterBlog,
+  setCurrentPage
 }: IProps) => {
   return (
     <div id="trending" className="w-5/6 mx-auto">
@@ -39,7 +39,7 @@ const TrendingBlogs = ({
                     height={400}
                     quality={100}
                     alt={blog?.heroMedia[0].url}
-                    className="h-[350px] w-full"
+                    className="h-[380px] w-full"
                   />
                 </StyleDiv>
               ))}
@@ -49,8 +49,8 @@ const TrendingBlogs = ({
           <BlogSearch
             blogs={blogs}
             blogsCategories={blogsCategories}
-            filterBlogs={filterBlogs}
             setFilterBlog={setFilterBlog}
+            setCurrentPage={setCurrentPage}
           />
         </div>
       </div>
