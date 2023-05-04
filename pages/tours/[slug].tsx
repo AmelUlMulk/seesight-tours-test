@@ -25,14 +25,14 @@ const TourPage = ({
   console.log('the reviews', product.relatedProducts);
   return (
     <div className="  flex flex-col ">
-      <h1 className="w-full text-xl lg:text-3xl xl:text-5xl  font-extrabold text-center  pt-4 xl:pt-12  pb-7 px-1 xl:px-8  ">
+      <h2 className="w-full text-xl lg:text-3xl xl:text-5xl  font-extrabold text-center  pt-4 xl:pt-12  pb-7 px-1 xl:px-8  ">
         {product.cities[0] && (
           <>
             {product.cities[0].name}
             <span className=" font-black "> {`>`}</span> {product.name}{' '}
           </>
         )}
-      </h1>
+      </h2>
       <HeroSwipper media={product.carousel} />
       <TourBasics
         price={product.price}

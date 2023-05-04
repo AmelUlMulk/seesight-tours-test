@@ -175,10 +175,10 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
               onClick={() => setShowAll(true)}
               className="cursor-pointer flex items-center"
             >
-              {/* <h1 className="text-sky-500 text-3xl font-[600]">{`See ${selectedNav} (${selectNum})`}</h1> */}
-              <h1 className="text-[20px] text-[#6D6D6D] font-[400] cursor-pointer">
+              {/* <h2 className="text-sky-500 text-3xl font-[600]">{`See ${selectedNav} (${selectNum})`}</h2> */}
+              <h2 className="text-[20px] text-[#6D6D6D] font-[400] cursor-pointer">
                 See More
-              </h1>
+              </h2>
               {/* <ChevronRightIcon className="text-5xl text-sky-500 pt-2" /> */}
             </div>
           )}
@@ -189,9 +189,9 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
       return (
         <div className=" lg:px-36 2xl:px-60 flex justify-end mt-10 ">
           <div onClick={() => setShowAll(false)} className="cursor-pointer">
-            <h1 className="text-[20px] text-[#6D6D6D] font-[400] cursor-pointer">
+            <h2 className="text-[20px] text-[#6D6D6D] font-[400] cursor-pointer">
               Show Less
-            </h1>
+            </h2>
           </div>
         </div>
       );

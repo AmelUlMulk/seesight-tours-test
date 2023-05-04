@@ -54,7 +54,7 @@ export const Adventure = ({ title, snippet, media }: IProps): JSX.Element => {
           <StyledImage alt="guidesImage" src={media} layout="fill" />
           <div className="PageHero_container flex flex-col pl-10 pb-16 ">
             <div className="font-bold text-white  text-center 3xl:text-[66px] 2xl:text-[66px] xl:text-[55px] lg:text-[55px] md:text-[44px] sm:text-[44px] xsm:text-[33px] ">
-              <h1>{title}</h1>
+              <h2>{title}</h2>
             </div>
             <div className="text-2xl text-white text-center 3xl:text-[28px] 2xl:text-[28px] xl:text-[22px] lg:text-[22px] md:text-[20px] sm:text-[20px] xsm:text-[18px] ">
               <p>{snippet}</p>

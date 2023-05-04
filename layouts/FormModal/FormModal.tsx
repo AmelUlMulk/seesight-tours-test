@@ -77,9 +77,9 @@ const FormModal = ({ show, setShowModal, onSoldOut }: MODAL_INTERFACE) => {
             >
               X
             </button>
-            <h1 className="text-black font-bold  text-3xl pb-5 ">
+            <h2 className="text-black font-bold  text-3xl pb-5 ">
               Let us help you find what you are looking for!
-            </h1>
+            </h2>
             <form onSubmit={submitInfo}>
               <div className="grid gap-6 mb-6 sm:grid-cols-2">
                 <div>

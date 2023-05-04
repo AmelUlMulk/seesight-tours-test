@@ -21,9 +21,9 @@ const Careers = ({ pk_openings, non_pk_openings }: IProps) => {
         media="https://res.cloudinary.com/see-sight-tours/image/upload/q_auto,f_auto,c_fill,g_faces,h_570,w_1920,y_0/v1582036498/Happy-group-tour-guides.jpg"
       />
       <div id="career">
-        <h1 className="text-center text-[#333333] text-[18px] sm:text-[26px] lg:text-[36px] font-[600] mt-6">
+        <h2 className="text-center text-[#333333] text-[18px] sm:text-[26px] lg:text-[36px] font-[600] mt-6">
           Connecting people through travel
-        </h1>
+        </h2>
         <section id="how-started" className="py-10 sm:py-16">
           <div className="flex flex-col-reverse md:flex-row w-[75%] mx-auto">
             <div className="flex-none text-center md:text-start md:w-[60%] md:pr-10 lg:pr-20 mt-5 md:mt-0">

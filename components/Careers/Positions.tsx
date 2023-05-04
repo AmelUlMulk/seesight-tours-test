@@ -9,12 +9,12 @@ const AvailablePositions = ({ pk_openings, non_pk_openings }: IProps) => {
   const mediaQuery = useMediaQuery(768);
   return (
     <div id="available-positions" className="w-[75%] mx-auto py-10">
-      <h1 className="text-start text-[#333333] text-[18px] sm:text-[26px] lg:text-[36px] font-[600]">
+      <h2 className="text-start text-[#333333] text-[18px] sm:text-[26px] lg:text-[36px] font-[600]">
         Open Positions
-      </h1>
-      <h1 className="text-start text-[#333333] text-[16px] sm:text-[22px] lg:text-[28px] font-[600] mt-5">
+      </h2>
+      <h2 className="text-start text-[#333333] text-[16px] sm:text-[22px] lg:text-[28px] font-[600] mt-5">
         Open positions at SeeSight
-      </h1>
+      </h2>
       <div
         id="openings"
         className="flex flex-col gap-10 md:gap-0 md:flex-row mt-10 md:mt-5"
