@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { BLOG_PAGE_INTERFACE } from '../../api/blogsPage';
 import { useState } from 'react';
 import Link from 'next/link';
+import { useMediaQuery } from '../../hooks/mediaQuery';
 
 interface IProps {
   blogs: any;
@@ -21,6 +22,7 @@ const sliderObj: SliderObj = {
 
 const BlogsHeader = ({ blogs }: IProps) => {
   const [sliderCount, setSliderCount] = useState(0);
+  const mediaQuery = useMediaQuery(1024);
 
   return (
     <div
@@ -28,9 +30,9 @@ const BlogsHeader = ({ blogs }: IProps) => {
       className="w-5/6 mx-auto flex relative -mt-20 z-[500]"
     >
       <div id="latest" className="align-top">
-        <h2 className="text-white text-2xl">Latest</h2>
+        <h2 className="text-white text-2xl w-[20%]">Latest</h2>
       </div>
-      <div className="w-3/5 mx-auto grid grid-cols-3 gap-5 ">
+      <div className="w-3/5 items-start  mx-auto grid grid-cols-3 gap-5 ">
         {blogs
           .slice(sliderCount, sliderCount + 3)
           .map((blog: Record<string, any>, index: number) => (
@@ -41,8 +43,9 @@ const BlogsHeader = ({ blogs }: IProps) => {
                     src={blog.heroMedia[0].url}
                     width={550}
                     height={300}
+                    quality={100}
                     alt={blog.heroMedia[0].url}
-                    className="h-[200px] rounded-sm  object-cover"
+                    className="min-h-[170px] rounded-sm object-cover"
                   />
                 </div>
                 <p className="text-[#495057] text-xs font-light">
@@ -54,8 +57,8 @@ const BlogsHeader = ({ blogs }: IProps) => {
             </div>
           ))}
       </div>
-      <div className="flex pb-16">
-        <div className="text-black">
+      <div className="flex items-end pb-16 w-[20%]">
+        <div className="text-black mr-5 pb-2">
           <Image
             src="/Divider Line.svg"
             width={40}

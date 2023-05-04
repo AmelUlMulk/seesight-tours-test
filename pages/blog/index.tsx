@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Head from 'next/head';
 import { BLOGS_PAGE, BLOG_PAGE_INTERFACE } from '../../api/blogsPage';
 import PageHero from '../../layouts/PageHero';
@@ -40,6 +40,8 @@ const Blogs = ({ blogsPage, blogs, blogCategories }: BLOG_PAGE_INTERFACE) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [filterBlogs, setFilterBlogs] =
     useState<Array<Record<string, unknown>>>(blogs);
+  const blogsRef = useRef<HTMLDivElement>(null);
+  console.log('blogs', blogs);
   // console.log('blogs', blogsPage);
   // console.log('blogs', blogCategories);
   return (
@@ -69,8 +71,14 @@ const Blogs = ({ blogsPage, blogs, blogCategories }: BLOG_PAGE_INTERFACE) => {
           filterBlogs={filterBlogs}
           setFilterBlog={setFilterBlogs}
           setCurrentPage={setCurrentPage}
+          blogsRef={blogsRef}
         />
-        <h2>ALL BLOGS</h2>
+        <h2
+          ref={blogsRef}
+          className="w-5/6 mx-auto mt-10 text-4xl font-semibold text-start"
+        >
+          ALL BLOGS
+        </h2>
         <DisplayBlogs
           filterBlogs={filterBlogs}
           currentPage={currentPage}

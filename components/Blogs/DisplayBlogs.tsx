@@ -93,59 +93,6 @@ const DisplayBlogs = ({ filterBlogs, currentPage, setCurrentPage }: IProps) => {
           />
         </div>
       </section>
-
-      {/* <div className="flex justify-center">
-        <button
-          className=" px-36 text-center bg-red-700 border-none rounded-lg text-zinc-100 cursor-pointer font-bold h-14 "
-          onClick={() => {
-            blogCount === 6
-              ? setBlogCount(filterBlogs?.length)
-              : setBlogCount(6);
-          }}
-        >
-          {blogCount === 6 ? `SHOW MORE (${filterBlogs.length})` : 'SHOW LESS'}
-        </button>
-      </div> */}
-
-      {/* Render pagination links
-      <div className="flex justify-center mt-4">
-        <div className="flex">
-          <button
-            onClick={() => setPage(page - 1)}
-            disabled={page === 1}
-            className="px-3 py-1 bg-gray-300 rounded-l"
-          >
-            Prev
-          </button>
-          {Array.from(
-            { length: Math.ceil(filterBlogs.length / blogsPerPage) },
-            (_, i) => (
-              <button
-                key={i}
-                onClick={() => setPage(i + 1)}
-                className={`px-3 py-1 ${
-                  i + 1 === page ? 'bg-gray-600 text-white' : 'bg-gray-300'
-                } ${
-                  i === 0
-                    ? 'rounded-l'
-                    : i === Math.ceil(filterBlogs.length / blogsPerPage) - 1
-                    ? 'rounded-r'
-                    : ''
-                }`}
-              >
-                {i + 1}
-              </button>
-            )
-          )}
-          <button
-            onClick={() => setPage(page + 1)}
-            disabled={page === Math.ceil(filterBlogs.length / blogsPerPage)}
-            className="px-3 py-1 bg-gray-300 rounded-r"
-          >
-            Next
-          </button>
-        </div>
-      </div> */}
     </>
   );
 };
