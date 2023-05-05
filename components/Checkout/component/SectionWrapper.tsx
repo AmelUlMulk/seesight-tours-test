@@ -23,8 +23,6 @@ const WRAPPER = styled.div`
   }
   /* padding-top: 100px !important; */
   padding-bottom: 0;
-  display: flex;
-  flex-direction: column;
   width: 100%;
   min-height: 60vh;
 `;
@@ -44,20 +42,7 @@ const SectionWrapper = ({ title, children, slug, name }: WrapperProps) => {
   }, [isScrolling]);
   return (
     <WRAPPER onScroll={() => setProductDetails(false)}>
-      <ProductDetails
-        open={productDetails}
-        close={setProductDetails}
-        slug={slug ? slug : ''}
-      />
-      {slug && (
-        <h2
-          className=" text-center md:text-start    text-xl md:text-3xl cursor-pointer   text-white mb-2"
-          onClick={() => setProductDetails(true)}
-        >
-          {name}
-        </h2>
-      )}
-      <h2 className=" text-center md:text-start text-xl  md:text-2xl   text-white mb-8">
+      <h2 className=" text-center md:text-start text-xl  md:text-2xl  my-2 font-semibold ">
         {title}
       </h2>
       {children}

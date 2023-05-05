@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import Calendar from 'react-calendar';
 import styled from 'styled-components';
@@ -6,6 +6,8 @@ import dayjs from 'dayjs';
 import Image from 'next/image';
 import axios from 'axios';
 import { fetchProductAvailabilities } from '../../utils/getProductAvailabilites';
+import { useRouter } from 'next/router';
+import { PaxContext } from '../../utils/checkoutContext';
 
 type PASSENGERINFO = {
   count: number;
@@ -244,10 +246,14 @@ const PAXSELECTOR = styled.div`
 
 interface DATEANDPAXPROPS {
   rezdyId: string;
+  updateTourContext: () => void;
 }
 
-const DateAndPax = ({ rezdyId }: DATEANDPAXPROPS) => {
+const DateAndPax = ({ rezdyId, updateTourContext }: DATEANDPAXPROPS) => {
   const [mobileCalendar, setMobileCalendar] = useState<boolean>(false);
+  const router = useRouter();
+  //@ts-expect-error
+  const { updatePax, updateTour, updateUser } = useContext(PaxContext);
 
   const [loading, setLoading] = useState<boolean>(false);
   const [noAvailability, setNoAvailability] = useState<boolean>(false);
@@ -425,6 +431,11 @@ const DateAndPax = ({ rezdyId }: DATEANDPAXPROPS) => {
     return '';
   };
 
+  const proceedToCheckout = () => {
+    updatePax({ ...passengerPax, totalPrice, selectedTimeSlot });
+    updateTourContext();
+    router.push('/checkout');
+  };
   return (
     <>
       {loading ? (
@@ -760,7 +771,10 @@ const DateAndPax = ({ rezdyId }: DATEANDPAXPROPS) => {
               </p>
             </div>
           </div> */}
-          <button className=" bg-[#FD5D5A] rounded-md py-3 text-white ">
+          <button
+            className=" bg-[#FD5D5A] rounded-md py-3 text-white "
+            onClick={() => proceedToCheckout()}
+          >
             Check Availability
           </button>
           <div className="flex items-start gap-2    ">

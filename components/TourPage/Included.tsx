@@ -16,6 +16,7 @@ type INCLUDED = {
     average: number;
     total: number;
   };
+  updateTourContext: () => void;
 };
 
 const Included = ({
@@ -23,7 +24,8 @@ const Included = ({
   attractions,
   longDescription,
   rezdyId,
-  reviewState
+  reviewState,
+  updateTourContext
 }: INCLUDED) => {
   const ref = useRef(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -32,7 +34,7 @@ const Included = ({
     if (containerRef.current) {
       const containerHeight = containerRef.current.offsetHeight;
       const stopPosition = containerHeight - 900;
-      console.log('the stop position', stopPosition);
+
       setStopPosition(stopPosition);
     }
   }, []);
@@ -43,9 +45,8 @@ const Included = ({
         className="flex justify-end  flex-wrap flex-row-reverse items-start gap-6 "
         ref={containerRef}
       >
-
         <div className=" sticky w-[10%] top-[100px] z-50   min-w-[350px]   bg-white p-3  mb-[300px] rounded-lg  shadow-xl     ">
-          <DateAndPax rezdyId={rezdyId} />
+          <DateAndPax rezdyId={rezdyId} updateTourContext={updateTourContext} />
           <div className=" absolute -bottom-[150px]   w-full">
             <h3 className="text-xl font-medium ">
               Over {reviewState.total} Reviews
@@ -162,7 +163,6 @@ const Included = ({
               What you’ll do
             </h1>
           </div>
-
 
           <ProductTimeline description={longDescription} />
         </div>
