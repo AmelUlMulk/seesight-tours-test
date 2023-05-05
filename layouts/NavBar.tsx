@@ -39,10 +39,10 @@ const NavBar = () => {
   const mediaQuery = useMediaQuery(1024);
   // eslint-disable-next-line no-console
   return (
-    <header className="Navbar sticky top-0 z-[1020] bg-gray-100 ">
+    <header className=" px-[2%]  xl:px-[8%] 2xl:px-[10%] sticky top-0 z-[1020] bg-gray-100 ">
       <div className="py-2 md:py-5 mx-auto w-full  ">
-        <div className="flex justify-between items-center gap-12">
-          <div className="logo pl-4 md:w-1/5 flex justify-center  ">
+        <div className="flex justify-between items-center gap-3 2xl:gap-12">
+          <div className="logo  md:w-1/5 flex  justify-start  ">
             <Link href="/">
               <Image
                 alt="sea sight tours logo"
@@ -60,7 +60,7 @@ const NavBar = () => {
             </div>
           ) : (
             <>
-              <div className="Navlinks w-4/5 flex text-[#060606] justify-center text-lg  gap-[44px]  ">
+              <div className="Navlinks w-4/5 flex text-[#060606] justify-center  text-base xl:text-lg gap-3  2xl:gap-[44px]  ">
                 <Link
                   href="/tours"
                   className={
@@ -122,7 +122,7 @@ const NavBar = () => {
                   Contact Us
                 </Link>
               </div>
-              <div className="flex w-1/5 justify-center ">
+              <div className="flex w-1/5 justify-end ">
                 <button
                   onClick={() => setMyToursModal(true)}
                   className={` bg-[#F15C5A] p-3 text-white rounded-lg text-center  ${

@@ -22,9 +22,9 @@ const OurReviews = () => {
 
   return (
     <div className="mt-5 w-[90%] mx-auto">
-      <h1 className=" text-[18px] sm:text-[26px] lg:text-[36px] font-[600] text-[#333333]">
+      <h2 className=" text-[18px] sm:text-[26px] lg:text-[36px] font-[600] text-[#333333]">
         Our Reviews
-      </h1>
+      </h2>
       <Swiper
         slidesPerView={1}
         grabCursor

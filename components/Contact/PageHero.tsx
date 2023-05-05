@@ -77,9 +77,9 @@ const PageHero = ({ title, snippet, media, video }: IProps): JSX.Element => {
         {video && <StyledVideo src={media} muted loop autoPlay playsInline />}
         <div className="PageHero_container flex flex-col pl-10 ">
           <div className="font-bold text-white text-left ">
-            <h1 className=" 3xl:text-5xl 2xl:text-5xl xl:text-5xl lg:text-5xl md:text-5xl sm:text-4xl xsm:text-4xl xxsm:text-3xl ">
+            <h2 className=" 3xl:text-5xl 2xl:text-5xl xl:text-5xl lg:text-5xl md:text-5xl sm:text-4xl xsm:text-4xl xxsm:text-3xl ">
               {title}
-            </h1>
+            </h2>
           </div>
           <div className="text-2xl text-white">
             <p className=" 3xl:text-5xl 2xl:text-5xl xl:text-5xl lg:text-5xl md:text-2xl  sm:text-2xl sm:leading-10 xsm:text-xs xsm:leading-8 xxsm:text-xs xxsm:leading-7">

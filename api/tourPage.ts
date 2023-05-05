@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 const FETCH_PRODUCT = gql`
-  query FETCH_PRODUCT($slug: JSON!) {
+  query FETCH_PRODUCT($slug: JSON!, $Id: String!) {
     product: products(where: { slug: $slug }) {
       id: boat_id
       name
@@ -20,6 +20,7 @@ const FETCH_PRODUCT = gql`
       duration
       price
       FAQ
+
       carousel: carousel_media {
         id
         name
@@ -99,6 +100,11 @@ const FETCH_PRODUCT = gql`
       review
       traveller
     }
+    rezdy: boatnew_products(where: { slug: { _eq: $Id } }) {
+      rezdy {
+        rezdyId: rezdy_id
+      }
+    }
   }
 `;
 interface FETCH_PRODUCT_INTERFACE {
@@ -110,6 +116,13 @@ interface FETCH_PRODUCT_INTERFACE {
       travellor: string;
     }
   ];
+  rezdy: [
+    {
+      rezdy: {
+        rezdyId: string;
+      };
+    }
+  ];
 }
 interface PRODUCTINTERFACE1 {
   id: string;
@@ -118,6 +131,7 @@ interface PRODUCTINTERFACE1 {
   metaDescription: string;
   canonical: string;
   pageTitle: string;
+
   type: string;
   trustBar: string;
   shortDescription: string;

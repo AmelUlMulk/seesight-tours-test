@@ -12,9 +12,9 @@ const Attractions = ({ name, attractions }: ATTRACTIONS) => {
   return (
     <>
       <div className="pl-[8%] text-start text-4xl  font-bold py-10  pb-14   ">
-        <h1 className="text-3xl font-extrabold mb-6 " id="what-you-will-see">
+        <h2 className="text-3xl font-extrabold mb-6 " id="what-you-will-see">
           Best Things to do in {name}
-        </h1>
+        </h2>
         <Swiper
           className="swiper_123 relative w-full "
           spaceBetween={40}

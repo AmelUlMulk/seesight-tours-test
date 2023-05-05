@@ -50,9 +50,9 @@ const MyToursByID = ({
         <h2>No Booking Found with the given id</h2>
       ) : (
         <>
-          <h1 className="text-3xl text-black text-center mb-8 font-semibold my-4  ">
+          <h2 className="text-3xl text-black text-center mb-8 font-semibold my-4  ">
             {product.name}
-          </h1>
+          </h2>
           <StyledDiv />
           {/* <Image
             src={image}
@@ -64,14 +64,14 @@ const MyToursByID = ({
           /> */}
           <div className=" px-[2%] md:px-[15%]  py-8 bg-gray-200 w-full ">
             <div className=" pb-2  border-b-gray-300  border-b-2  ">
-              <h1 className="text-xl mb-2">Booking Reference</h1>
+              <h2 className="text-xl mb-2">Booking Reference</h2>
               <div className="flex justify-between ">
                 <span className="md:w-4/6">Booking Reference Code</span>
                 <span className=" md:w-1/3  text-start">{id}</span>
               </div>
             </div>
             <div className=" pt-4 pb-2  border-b-gray-300  border-b-2  ">
-              <h1 className="text-xl mb-2">Departure</h1>
+              <h2 className="text-xl mb-2">Departure</h2>
               <div className="flex justify-between ">
                 <span className="md:w-4/6">Time & Date</span>
                 <span className=" md:w-1/3  text-start">
@@ -81,7 +81,7 @@ const MyToursByID = ({
             </div>
             {guide !== null && (
               <div className=" pt-4 pb-2  border-b-gray-300  border-b-2  ">
-                <h1 className="text-xl mb-2">Your Guide</h1>
+                <h2 className="text-xl mb-2">Your Guide</h2>
                 <div className="flex justify-between ">
                   <span className="md:w-4/6">Name</span>
                   <span className=" md:w-1/3  text-start">
@@ -91,14 +91,14 @@ const MyToursByID = ({
               </div>
             )}
             <div className=" pt-4 pb-2  border-b-gray-300  border-b-2  ">
-              <h1 className="text-xl mb-2">Pick Up Location</h1>
+              <h2 className="text-xl mb-2">Pick Up Location</h2>
               <div className="flex justify-between ">
                 <span className="md:w-4/6">location</span>
                 <span className=" md:w-1/3  text-start">{pickupLocation}</span>
               </div>
             </div>
             <div className=" pt-4 pb-2  border-b-gray-300  border-b-2  ">
-              <h1 className="text-xl mb-2">Booking Info</h1>
+              <h2 className="text-xl mb-2">Booking Info</h2>
               <div className="flex justify-between ">
                 <span className="md:w-4/6">Tickets</span>
                 <div className="flex flex-col md:w-1/3 justify-start">
@@ -124,7 +124,7 @@ const MyToursByID = ({
             </div>
             {transactions[0] && (
               <div className=" pt-4 pb-2  border-b-gray-300  border-b-2  ">
-                <h1 className="text-xl mb-2">Payment</h1>
+                <h2 className="text-xl mb-2">Payment</h2>
                 <div className="flex justify-between ">
                   <span className="md:w-4/6">{transactions[0]?.card_type}</span>
                   <div className=" md:w-1/3 flex justify-between  text-start">

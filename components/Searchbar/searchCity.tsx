@@ -290,7 +290,7 @@ const SearchCity = () => {
             className="flex  w-[97%] md:w-[76%] shadow-2xl  xxsm:px-3 md:px-1  md:gap-5 lg:gap-6 py-2 bg-[#FFFFFF] rounded-b-[15px] max-h-[250px] xsm:max-h-[300px] absolute top-[100%] overflow-auto z-50"
           >
             <div className=" w-[50%]    px-1 xsm:px-3 sm:px-5">
-              <h1 className="text-[#0B0A0A] text[18px] font-[700]">Canada</h1>
+              <h2 className="text-[#0B0A0A] text[18px] font-[700]">Canada</h2>
               {Cities.filter(cty => cty.type === 'canada').map((cty: any) => (
                 <div id="browsers" key={cty.name}>
                   <div
@@ -303,7 +303,7 @@ const SearchCity = () => {
               ))}
             </div>
             <div className=" flex-none w-[50%]  px-1 xsm:px-3 sm:px-5">
-              <h1 className="text-[#0B0A0A] text[18px] font-[700]">USA</h1>
+              <h2 className="text-[#0B0A0A] text[18px] font-[700]">USA</h2>
               {Cities.filter(cty => cty.type === 'usa').map((cty: any) => (
                 <div id="browsers" key={cty.name}>
                   <div

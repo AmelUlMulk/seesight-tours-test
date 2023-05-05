@@ -20,37 +20,33 @@ const TourBasics = ({
   slug
 }: TOUR) => {
   const router = useRouter();
+  console.log('the duration', duration);
   return (
     <>
-      <div className=" px-[2%] 2xl:px-[10%] flex justify-between py-4 ">
-        <div className=" md:w-[50%]  flex  justify-evenly gap-2 md:gap-8  ">
-          <div className="flex flex-col">
-            <span className=" text-sm md:text-xl text-black font-normal ">
-              Prices
-            </span>
-            <span className=" text-sm md:text-xl text-[#505050] font-normal">
-              From ${price}{' '}
-            </span>
-          </div>
-          <div className="flex flex-col">
-            <span className=" text-sm md:text-xl text-black font-normal ">
-              Duration
-            </span>
-            <span className=" text-sm md:text-xl text-[#505050] font-normal">
-              {' '}
-              {duration} Hours{' '}
-            </span>
-          </div>
-          <div className="flex flex-col">
-            <span className=" text-sm md:text-xl text-black font-normal ">
-              Tour Type
-            </span>
-            <span className=" text-sm md:text-xl text-[#505050] font-normal">
-              {type}{' '}
-            </span>
-          </div>
+      <div className=" md:w-[40%]  flex  gap-2 md:gap-8 items-end   ">
+        <div className="flex justify-center w-full gap-1 items-center ">
+          <Image src="/clockicon.png" width={16} height={16} alt="clock-icon" />
+          <span className=" space-x-1 text-sm md:text-lg text-[#505050] font-normal ">
+            {' '}
+            {duration} Hours
+          </span>
         </div>
-        <div className=" md:w-[30%] flex justify-start gap-8  ">
+        <div className="flex justify-center w-full gap-1 items-center ">
+          <Image src="/persons.png" width={16} height={16} alt="persons" />
+          <span className=" space-x-1 text-sm md:text-lg text-[#505050] font-normal ">
+            {' '}
+            Up to 7 people
+          </span>
+        </div>
+        <div className="flex justify-center w-full gap-1 items-center ">
+          <Image src="/transport.png" width={16} height={16} alt="clock-icon" />
+          <span className=" space-x-1 text-sm md:text-lg text-[#505050] font-normal ">
+            {' '}
+            Hotel Pick-up
+          </span>
+        </div>
+
+        {/*    <div className=" md:w-[30%] flex justify-start gap-8  ">
           <div className="flex flex-col">
             <div className="flex items-center gap-2 ">
               <Image
@@ -66,9 +62,9 @@ const TourBasics = ({
               ({totalRatings} Reviews)
             </span>
           </div>
-        </div>
+        </div> */}
       </div>
-      <div className=" text-sm  px-[2%] 2xl:px-[10%] flex justify-between py-4 md:py-8 ">
+      {/*   <div className=" text-sm  px-[2%] 2xl:px-[10%] flex justify-between py-4 md:py-8 ">
         <div className=" md:w-full xl:w-[50%]  flex  justify-evenly gap-2  md:gap-8 items-center  ">
           <div className="flex flex-col">
             <span
@@ -112,7 +108,7 @@ const TourBasics = ({
             Book Now
           </button>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
