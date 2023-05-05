@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import FETCH_PRODUCT, {
   FETCH_PRODUCT_INTERFACE,
   PRODUCTINTERFACE1
@@ -14,6 +14,7 @@ import Included from '../../components/TourPage/Included';
 import Newsletter from '../../layouts/Newsletter/Newsletter';
 import Rating from '../../components/TourPage/Rating';
 import RelatedTours from '../../components/TourPage/RelatedTours';
+import { PaxContext } from '../../utils/checkoutContext';
 
 const TourPage = ({
   product,
@@ -23,6 +24,17 @@ const TourPage = ({
   rezdy
 }: PRODUCTPAGEINTERFACE) => {
   /* const swiper = useSwiper(); */
+  //@ts-ignore
+  const { updateTour } = useContext(PaxContext);
+
+  const updateTourContext = () => {
+    updateTour({
+      tour: product.name,
+      tourId: product.id,
+      tourImage: product.carousel.map(item => item.url)[0]
+    });
+  };
+
   return (
     <div className="  flex flex-col ">
       <div className="flex justify-between px-[2%] 2xl:px-[10%] mb-4  ">
@@ -56,6 +68,7 @@ const TourPage = ({
           attractions={product.attractions}
           rezdyId={rezdy[0]?.rezdy?.rezdyId}
           reviewState={reviews}
+          updateTourContext={updateTourContext}
         />
       </div>
       <h2 className="w-full px-[2%] 2xl:px-[10%] text-black text-xl md:text-3xl font-bold  ">

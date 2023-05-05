@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import dayjs from 'dayjs';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import { FormProps } from '../StripePayment';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import SectionWrapper from './SectionWrapper';
 import Summary from './summary';
+import { PaxContext } from '../../../utils/checkoutContext';
 
 interface IProps extends FormProps {
   customerId: string;
@@ -39,8 +40,15 @@ interface FORM {
 }
 
 const PaymentForm = ({ next }: FORM) => {
-  // console.log('productId:', productId);
+  //@ts-ignore
+  const { updateUser } = useContext(PaxContext);
+
+  const [name, setName] = useState<string>('');
+
+  const [email, setEmail] = useState<string>('');
+
   const [phone, setPhone] = useState<string>('');
+
   const [validPhone, setValidPhone] = useState<boolean>(true);
 
   useEffect(() => {
@@ -48,51 +56,55 @@ const PaymentForm = ({ next }: FORM) => {
       setValidPhone(isValidPhoneNumber(phone));
     }
   }, [phone]);
+  console.log('this is the valid phone', validPhone);
+  const customerFormHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!validPhone) return;
+    updateUser({
+      name,
+      email,
+      phone
+    });
+    next();
+  };
 
   return (
-    <div className=" w-[46%]  text-black ">
+    <div className=" w-full md:w-[46%]  text-black ">
       <StyledForm
         className="flex flex-col gap-3"
         id="main-form"
-        // onSubmit={e => paymentHandler(e)}
+        onSubmit={e => customerFormHandler(e)}
       >
-        <div className="flex flex-col   ">
-          <span> Name </span>
+        <div className="flex flex-col    ">
+          <span className=" font-semibold "> Name </span>
           <input
             type="text"
             className=" text-[18px] px-1 py-2 text-black border-gray-300 rounded border    "
             required
-            /*  value={customerDetails.name}
-                onChange={e =>
-                  setCustomerDetails({
-                    ...customerDetails,
-                    name: e.target.value
-                  })
-                } */
+            value={name}
+            onChange={e => setName(e.target.value)}
             minLength={2}
             maxLength={100}
           />
         </div>
         <div className="flex flex-col ">
-          <span> Email </span>
+          <span className=" font-semibold "> Email </span>
           <input
             className=" text-[18px] px-1 py-2 text-black border border-gray-300 rounded rounded-tr-lg"
             type="email"
-            /* value={customerDetails.email}
-                required
-                onChange={e =>
-                  setCustomerDetails({
-                    ...customerDetails,
-                    email: e.target.value
-                  })
-                } */
+            value={email}
+            required
+            onChange={e => setEmail(e.target.value)}
             minLength={2}
             maxLength={100}
           />
         </div>
 
         <div className="flex flex-col ">
-          <span className={`${!validPhone && 'text-red-600'}`}> Phone </span>
+          <span className={`${!validPhone && 'text-red-600'}   font-semibold `}>
+            {' '}
+            Phone{' '}
+          </span>
           {}
           <StyledPhoneInput
             value={phone}
@@ -103,12 +115,18 @@ const PaymentForm = ({ next }: FORM) => {
             valid={validPhone}
           />
         </div>
-        <div className="flex w-full justify-between  ">
-          <button className=" bg-[#F15C5A]  py-3 rounded-md w-1/3 text-white   ">
+        <div className="flex w-full justify-between mt-8  ">
+          <button
+            className=" bg-[#F15C5A]  py-3 rounded-md w-1/3 text-white   "
+            onClick={() => next()}
+          >
             {' '}
             Back{' '}
           </button>
-          <button className="border-2 border-[#F15C5A]  py-3 rounded-md w-1/3  ">
+          <button
+            className="border-2 border-[#F15C5A]  py-3 rounded-md w-1/3  "
+            type="submit"
+          >
             Next
           </button>
         </div>

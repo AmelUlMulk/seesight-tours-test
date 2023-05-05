@@ -56,8 +56,8 @@ type StepsProp = {
 const Steps = ({ currentStepIndex = 0 }: StepsProp) => {
   return (
     <div className="w-full flex justify-center ">
-      <div className="w-5/6 lg:w-1/2 flex justify-center relative bg-white   rounded-lg my-4  py-4">
-        <div className="relative w-4/5 md:w-1/2 lg-1/4  flex  align-middle justify-between items-center z-[100]  ">
+      <div className="  w-11/12   md:w-5/6   md:justify-center flex justify-start  relative bg-white   rounded-lg my-4  py-4">
+        <div className="relative w-full md:w-1/2 lg-1/4  flex  align-middle justify-between items-center z-[100]  ">
           <Step
             selected={currentStepIndex === 0 ? true : false}
             currentIndex={currentStepIndex}

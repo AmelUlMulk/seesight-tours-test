@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { PASSENGERINFO } from '../pages/checkout/[slug]';
+import { PASSENGERINFO } from '../pages/checkout';
 import dayjs from 'dayjs';
 
 type axiosReturn = {
