@@ -13,6 +13,7 @@ import ConfirmBooking from '../../components/Checkout/ConfirmBooking';
 import Steps from '../../components/Checkout/component/steps';
 import Thankyou from '../../components/Checkout/Thanks';
 import Head from 'next/head';
+import Details from '../../components/Checkout/component/Details';
 
 const ButtonDiv = styled.div`
   padding: 50px 20%;
@@ -48,10 +49,7 @@ const ButtonDiv = styled.div`
 interface StyleProps {
   image: string;
 }
-const MainStyle = styled.div<StyleProps>`
-  background-color: #000000d9;
-  background-image: url(${props => props.image});
-`;
+
 type PROPSDATA = {
   boatnew_products: [
     {
@@ -309,20 +307,7 @@ const Checkout = ({
     next();
   };
   const { component, currentComponentIndex, next, back } = useComponentSwipper([
-    <DateAndPax
-      key="date-and-pax"
-      selectedDate={selectedDate}
-      setSelectedDate={setSelectedDate}
-      availability={selectedAvailibility}
-      selectedTimeSlot={selectedTimeSlot}
-      setSelectedTimeSlot={setSelectedTimeSlot}
-      productAvailabities={product_Availability}
-      passengerPax={passengerPax}
-      setPassengerPax={setPassengerPax}
-      totalPrice={totalPrice}
-      slug={slug}
-      name={boatnew_products[0]?.name}
-    />,
+    <Details key="details" next={tiggerNext} />,
     <StripePayment
       key="form"
       stripePromise={stripePromise}
@@ -351,12 +336,7 @@ const Checkout = ({
       <Head>
         <title>{`Checkout | ${slug}`}</title>
       </Head>
-      <MainStyle
-        image={background}
-        className="min-h-[130vh] h-auto w-full bg-cover bg-no-repeat bg-center relative"
-      >
-        <div className="absolute top-0 left-0 h-[100%] w-full bg-black bg-op z-0 bg-opacity-40 "></div>
-
+      <div className="min-h-[130vh] h-auto w-full bg-cover bg-no-repeat bg-center relative bg-white ">
         {thankyou && <Thankyou open={thankyou} close={setThankYou} />}
         <Steps currentStepIndex={currentComponentIndex} />
         {component}
@@ -366,11 +346,7 @@ const Checkout = ({
               Back
             </button>
           )}
-          {currentComponentIndex === 0 && (
-            <button type="submit" form="main-form" onClick={next}>
-              Next
-            </button>
-          )}
+
           {currentComponentIndex === 1 && (
             <button type="submit" form="main-form">
               {!paymentLoading && <> PAY </>}
@@ -400,7 +376,7 @@ const Checkout = ({
             </button>
           )}
         </ButtonDiv>
-      </MainStyle>
+      </div>
     </>
   );
 };

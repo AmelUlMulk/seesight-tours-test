@@ -43,7 +43,6 @@ const Included = ({
         className="flex justify-end  flex-wrap flex-row-reverse items-start gap-6 "
         ref={containerRef}
       >
-
         <div className=" sticky w-[10%] top-[100px] z-50   min-w-[350px]   bg-white p-3  mb-[300px] rounded-lg  shadow-xl     ">
           <DateAndPax rezdyId={rezdyId} />
           <div className=" absolute -bottom-[150px]   w-full">
@@ -162,7 +161,6 @@ const Included = ({
               What you’ll do
             </h1>
           </div>
-
 
           <ProductTimeline description={longDescription} />
         </div>
