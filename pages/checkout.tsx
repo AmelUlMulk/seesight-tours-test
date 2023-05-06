@@ -123,7 +123,7 @@ const Checkout = () => {
 
   const stripePromise = loadStripe(String(process.env.NEXT_PUBLIC_STRIPE));
 
-  const [bookingId, setBookingId] = useState<string | undefined>('SAWUU6N');
+  const [bookingId, setBookingId] = useState<string | undefined>();
 
   const [confirmationLoading, setConfirmationLoading] =
     useState<boolean>(false);
@@ -148,7 +148,7 @@ const Checkout = () => {
         onCompleted: () => next()
       });
     }
-  }, [bookingId]);
+  }, []);
 
   const tiggerNext = () => {
     next();
