@@ -42,7 +42,7 @@ const SectionWrapper = ({ title, children, slug, name }: WrapperProps) => {
   }, [isScrolling]);
   return (
     <WRAPPER onScroll={() => setProductDetails(false)}>
-      <h2 className=" text-center md:text-start text-xl  md:text-2xl  my-2 font-semibold ">
+      <h2 className=" text-start    text-xl  md:text-2xl  my-2 font-semibold ">
         {title}
       </h2>
       {children}

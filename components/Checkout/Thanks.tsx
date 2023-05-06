@@ -4,12 +4,13 @@ import Image from 'next/image';
 interface ThankYouProps {
   open: boolean;
   close: React.Dispatch<React.SetStateAction<boolean>>;
+  bookingId: string | undefined;
 }
-const Thankyou = ({ open, close }: ThankYouProps) => {
+const Thankyou = ({ open, close, bookingId }: ThankYouProps) => {
   const router = useRouter();
   useEffect(() => {
     setTimeout(() => {
-      router.push('/');
+      router.push(`/my-tours/${bookingId}`);
     }, 5000);
   }, []);
 
