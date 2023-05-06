@@ -399,7 +399,7 @@ const DateAndPax = ({ rezdyId, updateTourContext }: DATEANDPAXPROPS) => {
           price: selectedTimeSlot.prices[0].price,
           title: selectedTimeSlot.prices[0].label
         },
-        infants: selectedTimeSlot.prices[1]
+        children: selectedTimeSlot.prices[1]
           ? {
               count: 0,
               label: selectedTimeSlot.prices[1].label,
@@ -407,7 +407,7 @@ const DateAndPax = ({ rezdyId, updateTourContext }: DATEANDPAXPROPS) => {
               title: selectedTimeSlot.prices[1].label
             }
           : undefined,
-        children: selectedTimeSlot.prices[2]
+        infants: selectedTimeSlot.prices[2]
           ? {
               count: 0,
               label: selectedTimeSlot.prices[2].label,
@@ -437,7 +437,7 @@ const DateAndPax = ({ rezdyId, updateTourContext }: DATEANDPAXPROPS) => {
     router.push('/checkout');
   };
   return (
-    <>
+    <div className="lg:flex hidden">
       {loading ? (
         <div className=" flex justify-center items-center w-full h-44 ">
           <p className="text-gray-400 animate-pulse">Loading</p>
@@ -799,7 +799,7 @@ const DateAndPax = ({ rezdyId, updateTourContext }: DATEANDPAXPROPS) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

@@ -123,20 +123,12 @@ const Checkout = () => {
 
   const stripePromise = loadStripe(String(process.env.NEXT_PUBLIC_STRIPE));
 
-  const [bookingId, setBookingId] = useState<string | undefined>();
-
-  const [paymentLoading, setPaymentLoading] = useState<boolean>(false);
+  const [bookingId, setBookingId] = useState<string | undefined>('SAWUU6N');
 
   const [confirmationLoading, setConfirmationLoading] =
     useState<boolean>(false);
 
   const [thankyou, setThankYou] = useState<boolean>(false);
-
-  const [customerDetails, setCustomerDetails] = useState<CustomerInfo>({
-    name: '',
-    email: '',
-    phone: ''
-  });
 
   const [getBookings, { data, loading, error }] =
     useLazyQuery<MY_TOURS_PAGE_INTERFACE>(BOOKING_SEARCH, {
@@ -145,17 +137,25 @@ const Checkout = () => {
       }
     });
 
+  useEffect(() => {
+    if (!pax?.adults) {
+      Router.push('/');
+    }
+  }, []);
+  useEffect(() => {
+    if (bookingId) {
+      getBookings({
+        onCompleted: () => next()
+      });
+    }
+  }, [bookingId]);
+
   const tiggerNext = () => {
     next();
   };
   const tiggerBack = () => {
     back();
   };
-  useEffect(() => {
-    if (!pax?.adults) {
-      Router.push('/');
-    }
-  }, []);
 
   const { component, currentComponentIndex, next, back } = useComponentSwipper([
     <Details key="details" next={tiggerNext} tour={tour} pax={pax} />,
@@ -164,6 +164,7 @@ const Checkout = () => {
       back={tiggerBack}
       key="payment"
       stripePromise={stripePromise}
+      setBookingId={setBookingId}
     />,
     <ConfirmBooking
       key="confirmation"
@@ -180,7 +181,9 @@ const Checkout = () => {
         <title>{`Checkout`}</title>
       </Head>
       <div className=" h-auto w-full bg-cover bg-no-repeat bg-center relative bg-white ">
-        {thankyou && <Thankyou open={thankyou} close={setThankYou} />}
+        {thankyou && (
+          <Thankyou open={thankyou} close={setThankYou} bookingId={bookingId} />
+        )}
         <Steps currentStepIndex={currentComponentIndex} />
         {pax?.adults ? (
           component
@@ -189,42 +192,6 @@ const Checkout = () => {
             Loading
           </div>
         )}
-        <ButtonDiv>
-          {currentComponentIndex > 0 && currentComponentIndex !== 2 && (
-            <button className="back" onClick={back}>
-              Back
-            </button>
-          )}
-
-          {/* {currentComponentIndex === 1 && (
-            <button type="submit" form="main-form">
-              {!paymentLoading && <> PAY </>}
-              {paymentLoading && (
-                <span className=" animate-pulse text-xl  ">
-                  Processing Please wait
-                </span>
-              )}
-            </button>
-          )} */}
-          {/* {currentComponentIndex === 2 && (
-            <button
-              className="back"
-              onClick={() => {
-                setThankYou(true);
-              }}
-            >
-              Confirm Later
-            </button>
-          )} */}
-          {currentComponentIndex === 2 && (
-            <button type="submit" form="confirmation-form">
-              {!confirmationLoading && <> Confirm </>}
-              {confirmationLoading && (
-                <span className=" animate-pulse text-xl  ">Confirming</span>
-              )}
-            </button>
-          )}
-        </ButtonDiv>
       </div>
     </>
   );

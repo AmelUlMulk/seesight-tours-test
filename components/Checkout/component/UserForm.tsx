@@ -41,13 +41,13 @@ interface FORM {
 
 const PaymentForm = ({ next }: FORM) => {
   //@ts-ignore
-  const { updateUser } = useContext(PaxContext);
+  const { updateUser, user } = useContext(PaxContext);
 
-  const [name, setName] = useState<string>('');
+  const [name, setName] = useState<string>(user?.name ? user.name : '');
 
-  const [email, setEmail] = useState<string>('');
+  const [email, setEmail] = useState<string>(user?.email ? user.email : '');
 
-  const [phone, setPhone] = useState<string>('');
+  const [phone, setPhone] = useState<string>(user?.phone ? user.phone : '');
 
   const [validPhone, setValidPhone] = useState<boolean>(true);
 

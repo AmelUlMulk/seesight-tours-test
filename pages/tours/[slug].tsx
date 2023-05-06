@@ -15,6 +15,7 @@ import Newsletter from '../../layouts/Newsletter/Newsletter';
 import Rating from '../../components/TourPage/Rating';
 import RelatedTours from '../../components/TourPage/RelatedTours';
 import { PaxContext } from '../../utils/checkoutContext';
+import Link from 'next/link';
 
 const TourPage = ({
   product,
@@ -37,27 +38,27 @@ const TourPage = ({
 
   return (
     <div className="  flex flex-col ">
-      <div className="flex justify-between px-[2%] 2xl:px-[10%] mb-4  ">
-        <div className="flex flex-col ">
-          <h1 className="w-full text-xl lg:text-2xl xl:text-4xl  font-extrabold text-start  pt-4 xl:pt-12  mb-3   ">
+      <div className="flex flex-col justify-start px-[2%] 2xl:px-[10%] mb-4 items-center  ">
+        <div className="flex justify-start w-full ">
+          <h1 className="w-full    text-xl lg:text-2xl xl:text-3xl  font-extrabold text-start  pt-4 xl:pt-12  mb-3 md:max-w-[60%]    ">
             {product.cities[0] && (
               <>
                 <span className=" font-black "> </span> {product.name}{' '}
               </>
             )}
           </h1>
-          <span className="text-lg">
-            {product?.cities[0]?.name} {`>`} {product.name}
-          </span>
         </div>
-        <TourBasics
-          price={product.price}
-          duration={product.duration}
-          type={product.type}
-          rating={reviews.average}
-          totalRatings={reviews.total}
-          slug={product.slug}
-        />
+        <div className="flex items-center justify-start w-full ">
+          <span className="text-base text-start  md:max-w-[60%] ">
+            <Link href={`/product?.cities[0].slug`}>
+              {product?.cities[0]?.name}
+            </Link>{' '}
+            {`>`} {product.name}
+          </span>
+          <div className="hidden md:block md:min-w-[40%] ">
+            <TourBasics duration={product.duration} />
+          </div>
+        </div>
       </div>
 
       <HeroSwipper media={product.carousel} />
@@ -69,6 +70,7 @@ const TourPage = ({
           rezdyId={rezdy[0]?.rezdy?.rezdyId}
           reviewState={reviews}
           updateTourContext={updateTourContext}
+          duration={product.duration}
         />
       </div>
       <h2 className="w-full px-[2%] 2xl:px-[10%] text-black text-xl md:text-3xl font-bold  ">

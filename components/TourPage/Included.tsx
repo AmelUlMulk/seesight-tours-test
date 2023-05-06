@@ -7,6 +7,15 @@ import Card from '../Card';
 import { Rating } from 'react-simple-star-rating';
 import ProductTimeline from './ProductTimeline';
 import DateAndPax from '../CalendarAndPax/DateAndPax';
+import TourBasics from './TourBasics';
+import styled from 'styled-components';
+const StyledStar = styled(Rating)`
+  @media (max-width: 768px) {
+    .star-svg {
+      width: 30px;
+    }
+  }
+`;
 type INCLUDED = {
   data: string[];
   attractions: [ATTRACTION_INTERFACE];
@@ -17,6 +26,7 @@ type INCLUDED = {
     total: number;
   };
   updateTourContext: () => void;
+  duration: number;
 };
 
 const Included = ({
@@ -25,7 +35,8 @@ const Included = ({
   longDescription,
   rezdyId,
   reviewState,
-  updateTourContext
+  updateTourContext,
+  duration
 }: INCLUDED) => {
   const ref = useRef(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -42,40 +53,47 @@ const Included = ({
   return (
     <>
       <div
-        className="flex justify-end  flex-wrap flex-row-reverse items-start gap-6 "
+        className="flex justify-end  flex-wrap flex-row-reverse items-start md:gap-6  w-full  "
         ref={containerRef}
       >
-        <div className=" sticky w-[10%] top-[100px] z-50   min-w-[350px]   bg-white p-3  mb-[300px] rounded-lg  shadow-xl     ">
+        <div className=" relative md:sticky md:w-[10%] md:top-[100px] z-50   min-w-[350px] w-full    p-3  md:mb-[300px] rounded-lg  shadow-none md:shadow-xl     ">
           <DateAndPax rezdyId={rezdyId} updateTourContext={updateTourContext} />
-          <div className=" absolute -bottom-[150px]   w-full">
-            <h3 className="text-xl font-medium ">
-              Over {reviewState.total} Reviews
-            </h3>
-            <div className="flex mt-2 items-center  justify-between w-full gap-4  ">
-              <Image
-                src="/tripadvisor.png"
-                width={70}
-                height={80}
-                alt="trip-advisor"
-              />
-              <div className="flex flex-col pl-4  border-l border-gray-300 ">
-                <Rating
-                  SVGstyle={{
-                    display: 'inline-block'
-                  }}
-                  readonly
-                  allowFraction
-                  initialValue={reviewState.average}
+          <div className=" flex flex-col relative   md:absolute md:-bottom-[150px]   w-full  items-start">
+            <div className=" flex md:hidden w-full  items-start ">
+              <TourBasics duration={duration} />
+            </div>
+            <div className="mt-8">
+              <h3 className="  md:text-xl font-medium ">
+                Over {reviewState.total} Reviews
+              </h3>
+              <div className="flex mt-2 items-center  justify-between w-full gap-4  ">
+                <Image
+                  src="/tripadvisor.png"
+                  width={70}
+                  height={80}
+                  alt="trip-advisor"
+                  className=" w-12 "
                 />
-                <p className="text-base">
-                  As recommended by 99% of Users on Trip advisor
-                </p>
+                <div className="flex flex-col pl-4  border-l border-gray-300 ">
+                  <StyledStar
+                    SVGstyle={{
+                      display: 'inline-block',
+                      textAlign: 'center'
+                    }}
+                    readonly
+                    allowFraction
+                    initialValue={reviewState.average}
+                  />
+                  <p className=" text-sm md:text-base">
+                    As recommended by 99% of Users on Trip advisor
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className=" 2xl:w-[70%]  ">
+        <div className=" 2xl:w-[70%]    ">
           <div
             className=" w-full    flex flex-col justify-between py-2 md:py-4 relative"
             ref={ref}
@@ -104,7 +122,7 @@ const Included = ({
               ))}
             </ul>
           </div>
-          <div className="   flex flex-col justify-between py-4 w-full">
+          <div className=" flex flex-col justify-between py-4 w-full max-w-[100vw]">
             <h1
               className=" text-xl md:text-[28px] font-extrabold mb-6 "
               id="what-you-will-see"

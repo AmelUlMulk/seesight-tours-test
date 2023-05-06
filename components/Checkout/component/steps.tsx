@@ -34,6 +34,7 @@ const Step = styled.div<StepProps>`
     /* height: ${props => (props.selected ? '90px' : '50px')}; */
   /* font-size: ${props => (props.selected ? '21px' : '16px')}; */
   /* } */
+
   display: flex;
   transition: all 0.2s ease-in-out;
   background-color: white;
@@ -59,11 +60,17 @@ const Steps = ({ currentStepIndex = 0 }: StepsProp) => {
       <div className="  w-11/12   md:w-5/6   md:justify-center flex justify-start  relative bg-white   rounded-lg my-4  py-4">
         <div className="relative w-full md:w-1/2 lg-1/4  flex  align-middle justify-between items-center z-[100]  ">
           <Step
-            selected={currentStepIndex === 0 ? true : false}
+            selected={currentStepIndex >= 1 ? true : false}
             currentIndex={currentStepIndex}
             index={0}
           >
-            <div className=" progress rounded-full w-8 h-8  flex items-center justify-center  text-[#F15C5A]   ">
+            <div
+              className={`progress rounded-full w-8 h-8  flex items-center justify-center ${
+                currentStepIndex >= 1
+                  ? 'text-white bg-[#F15C5A] '
+                  : 'text-[#F15C5A]'
+              } `}
+            >
               1
             </div>
             {/* {currentStepIndex > 0 && (
@@ -71,25 +78,37 @@ const Steps = ({ currentStepIndex = 0 }: StepsProp) => {
             )} */}
             <h1>Date</h1>
           </Step>
-          <Line selected={currentStepIndex === 1} />
+          <Line selected={currentStepIndex >= 2} />
 
           <Step
             selected={currentStepIndex === 1 ? true : false}
             currentIndex={currentStepIndex}
             index={1}
           >
-            <div className=" progress rounded-full w-8 h-8  flex items-center justify-center  text-[#F15C5A]   ">
+            <div
+              className={`progress rounded-full w-8 h-8  flex items-center justify-center ${
+                currentStepIndex >= 2
+                  ? 'text-white bg-[#F15C5A] '
+                  : 'text-[#F15C5A]'
+              } `}
+            >
               2
             </div>
             <h1>Payment</h1>
           </Step>
           <Line selected={currentStepIndex === 2} />
           <Step
-            selected={currentStepIndex === 2 ? true : false}
+            selected={currentStepIndex >= 3 ? true : false}
             currentIndex={currentStepIndex}
             index={2}
           >
-            <div className=" progress rounded-full w-8 h-8  flex items-center justify-center  text-[#F15C5A]   ">
+            <div
+              className={`progress rounded-full w-8 h-8  flex items-center justify-center ${
+                currentStepIndex === 3
+                  ? 'text-white bg-[#F15C5A] '
+                  : 'text-[#F15C5A]'
+              } `}
+            >
               3
             </div>
             <h1>Confirm</h1>

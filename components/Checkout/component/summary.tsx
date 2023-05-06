@@ -5,7 +5,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { PaxContext } from '../../../utils/checkoutContext';
 import dayjs from 'dayjs';
-
+import Tooltip from '../../../utils/tooltip';
 export const Span = styled.span`
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -19,7 +19,7 @@ const Summary = () => {
   const infants = 1;
   // const childrenPax = children ? children?.count : 0;
   // const infantPax = infants ? infants?.count : 0;
-  console.log('these are the things', tour);
+  console.log('these are the things', pax);
   const {} = tour;
   return (
     <div className=" w-[98%] mb-8 md:w-[46%] flex flex-col">
@@ -45,7 +45,9 @@ const Summary = () => {
           )}
 
           <div className="flex flex-col gap-4  text-base uppercase   ">
-            <Span>{tour.tour}</Span>
+            <Tooltip text={tour.tour}>
+              <Span>{tour.tour}</Span>
+            </Tooltip>
             <span>
               {dayjs(pax.selectedTimeSlot?.startTime).format(
                 'ddd, DD MMM YYYY'
@@ -69,7 +71,7 @@ const Summary = () => {
             <h2>{`${(children.count * Number(children.price)).toFixed(2)}`}</h2> */}
             </div>
           )}
-          {pax.children && (
+          {pax.children.count >= 1 && (
             <div className="flex     justify-between border-b-white border-b-2 ">
               <div className="border-r-white border-r-2 w-1/2 py-2">
                 <h2>{pax.children.label} (5-12)</h2>
@@ -82,7 +84,7 @@ const Summary = () => {
             <h2>{`${(children.count * Number(children.price)).toFixed(2)}`}</h2> */}
             </div>
           )}
-          {pax.infants && (
+          {pax.infants.count >= 1 && (
             <div className="flex     justify-between border-b-white border-b-2 ">
               <div className="border-r-white border-r-2 w-1/2 py-2">
                 <h2>{pax.infants.label} (Under 5)</h2>
