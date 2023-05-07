@@ -40,6 +40,7 @@ const PaymentSection = ({
   const [customerId, setCustomerId] = useState('');
 
   const createPaymentIntent = async (body: any) => {
+    console.log('the body', body);
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_PAYMENT_API}/create-payment-intent`,
@@ -47,17 +48,19 @@ const PaymentSection = ({
           ...body
         }
       );
+      console.log('the response', res);
       setClientSecret(res.data.clientSecret);
       setPaymentIntent(res.data.paymentIntent);
       setCustomerId(res.data.customer);
     } catch (error) {}
   };
+  console.log('the client secret', clientSecret);
 
   useEffect(() => {
     const body = {
       amount: pax.totalPrice,
       currency: 'usd',
-      tour: tour.name,
+      tour: tour.tour,
       tourDate: dayjs(pax.selectedTimeSlot.startTime).format('MMMM DD ,YYYY'),
       tourTime: dayjs(pax.selectedTimeSlot.startTime).format('HH:MM:ss')
     };

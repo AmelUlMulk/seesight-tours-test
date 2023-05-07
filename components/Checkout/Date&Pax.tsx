@@ -470,7 +470,6 @@ const DateAndPax = ({
                 </>
               )}
             </div>
-            {/* <Summary passengerPax={passengerPax} totalPrice={totalPrice} /> */}
           </div>
         </section>
       </div>

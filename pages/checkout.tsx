@@ -1,14 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { gql, useLazyQuery } from '@apollo/client';
-import client from '../apollo-client';
+import { useLazyQuery } from '@apollo/client';
 import { loadStripe } from '@stripe/stripe-js';
-import dayjs from 'dayjs';
 import { BOOKING_SEARCH, MY_TOURS_PAGE_INTERFACE } from '../api/my-tours';
-import DateAndPax from '../components/Checkout/Date&Pax';
 import useComponentSwipper from '../components/Checkout/useComponentSwiper';
-import StripePayment from '../components/Checkout/StripePayment';
+
 import ConfirmBooking from '../components/Checkout/ConfirmBooking';
 import Steps from '../components/Checkout/component/steps';
 import Thankyou from '../components/Checkout/Thanks';
@@ -17,7 +14,6 @@ import Details from '../components/Checkout/component/Details';
 import PaymentSection from '../components/Checkout/component/Payment';
 import Router from 'next/router';
 import { PaxContext } from '../utils/checkoutContext';
-import { Elements } from '@stripe/react-stripe-js';
 
 const ButtonDiv = styled.div`
   padding: 50px 20%;
@@ -54,35 +50,6 @@ interface StyleProps {
   image: string;
 }
 
-type PROPSDATA = {
-  boatnew_products: [
-    {
-      id: string;
-      name: string;
-      rezdy: {
-        rezdyId: string;
-      };
-      cities_products: [
-        {
-          city: {
-            time_zone: string;
-          };
-        }
-      ];
-    }
-  ];
-  product_Availability: [AVAILABILITY];
-  slug: string;
-  products: [
-    {
-      carousel_media: [
-        {
-          url: string;
-        }
-      ];
-    }
-  ];
-};
 export type AVAILABILITY = {
   id: number;
   startTime: string;
