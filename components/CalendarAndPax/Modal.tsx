@@ -36,16 +36,17 @@ const CalendarPaxModal = ({
   console.log('this is the data', tour, tourId, tourImage);
   useEffect(() => {
     if (open) {
-      updateTour({
-        tour,
-        tourId,
-        tourImage
-      });
       getProductBoat();
       return;
     }
   }, [open]);
-
+  const updateTourContext = () => {
+    updateTour({
+      tour,
+      tourId,
+      tourImage
+    });
+  };
   return (
     <div
       className={` ${
@@ -68,7 +69,7 @@ const CalendarPaxModal = ({
         {data?.boatnew_products[0]?.rezdy.rezdy_id && (
           <DateAndPax
             rezdyId={data.boatnew_products[0].rezdy.rezdy_id}
-            updateTourContext={updateTour}
+            updateTourContext={updateTourContext}
             mobile={true}
           />
         )}

@@ -438,7 +438,7 @@ const DateAndPax = ({
 
   const proceedToCheckout = () => {
     updatePax({ ...passengerPax, totalPrice, selectedTimeSlot });
-    // updateTourContext();
+    updateTourContext();
     router.push('/checkout');
   };
   return (
@@ -780,7 +780,7 @@ const DateAndPax = ({
             className=" bg-[#FD5D5A] rounded-md py-3 text-white "
             onClick={() => proceedToCheckout()}
           >
-            Check Availability
+            Check availability
           </button>
           <div className="flex items-start gap-2    ">
             <Image
