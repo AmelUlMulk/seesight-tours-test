@@ -438,7 +438,7 @@ const DateAndPax = ({
 
   const proceedToCheckout = () => {
     updatePax({ ...passengerPax, totalPrice, selectedTimeSlot });
-    updateTourContext();
+    // updateTourContext();
     router.push('/checkout');
   };
   return (

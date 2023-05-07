@@ -87,6 +87,7 @@ type CONTEXT = {
 const Checkout = () => {
   //@ts-ignore
   const { pax, tour } = useContext(PaxContext);
+  console.log('this is the pax', pax, tour);
 
   const stripePromise = loadStripe(String(process.env.NEXT_PUBLIC_STRIPE));
 
