@@ -140,7 +140,7 @@ const PaymentForm = (
     <SectionWrapper title="Traveler Information & Payment Details">
       <div className="flex flex-col-reverse lg:flex-row w-full gap-4   justify-center">
         <div className=" w-full  lg:w-1/3 h-1/2">
-          <Summary passengerPax={passengerPax} totalPrice={totalPrice} />
+          {/* <Summary passengerPax={passengerPax} totalPrice={totalPrice} /> */}
         </div>
         <div className=" w-full lg:w-1/2 text-white ">
           <StyledForm

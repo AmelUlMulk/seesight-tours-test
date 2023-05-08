@@ -9,10 +9,14 @@ interface RELATEDPRODUCT {
 const RelatedTours = ({ products }: RELATEDPRODUCT) => {
   return (
     <div className=" px-[2%] 2xl:px-[10%] py-[2%]">
-      <h2 className=" text-xl pb-4 md:text-4xl font-bold    ">Related Tours</h2>
-      <div className="grid 2xl:grid-cols-4 md:grid-cols-2 lg:grid-cols-3 xsm:grid-cols-1 grid-cols-2  gap-3 flex-wrap ">
+      <h2 className=" text-xl md:text-[28px] font-extrabold mt-6 w-full     ">
+        Related Tours
+      </h2>
+      <div className="flex justify-evenly flex-wrap w-full  ">
         {products.map(product => (
-          <TourCard key={product.name} product={product} />
+          <div className="max-w-[360px]" key={product.name}>
+            <TourCard product={product} />
+          </div>
         ))}
       </div>
     </div>

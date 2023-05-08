@@ -50,7 +50,6 @@ const ConfirmBooking = ({
               status={booking.status}
               phone={booking.customer.phone}
               setThankYou={setThankYou}
-              setConfirmationLoading={setConfirmationLoading}
               next={next}
             />
           )}

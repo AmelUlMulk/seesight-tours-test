@@ -9,8 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import RecentConfirmBookings from '../components/Notifications/recentBookings';
 import Script from 'next/script';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { PaxProivder } from '../utils/checkoutContext';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -36,7 +35,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <ApolloProvider client={client}>
         <NavBar />
-        <Component {...pageProps} />
+        <PaxProivder>
+          <Component {...pageProps} />
+        </PaxProivder>
         <Footer />
         <RecentConfirmBookings />
         <ToastContainer

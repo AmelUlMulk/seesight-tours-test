@@ -7,7 +7,7 @@ import {
   AVAILABILITY,
   PASSENGERPAX,
   PASSENGERINFO
-} from '../../pages/checkout/[slug]';
+} from '../../pages/checkout';
 import Summary from './component/summary';
 import SectionWrapper from './component/SectionWrapper';
 
@@ -470,7 +470,6 @@ const DateAndPax = ({
                 </>
               )}
             </div>
-            <Summary passengerPax={passengerPax} totalPrice={totalPrice} />
           </div>
         </section>
       </div>

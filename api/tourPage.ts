@@ -99,6 +99,7 @@ const FETCH_PRODUCT = gql`
       rating
       review
       traveller
+      source
     }
     rezdy: boatnew_products(where: { slug: { _eq: $Id } }) {
       rezdy {
@@ -161,6 +162,7 @@ interface PRODUCTINTERFACE1 {
       rating: number;
       review: string;
       travellor: string;
+      source: string;
     }
   ];
 }

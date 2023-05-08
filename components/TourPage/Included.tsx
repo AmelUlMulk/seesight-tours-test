@@ -7,6 +7,15 @@ import Card from '../Card';
 import { Rating } from 'react-simple-star-rating';
 import ProductTimeline from './ProductTimeline';
 import DateAndPax from '../CalendarAndPax/DateAndPax';
+import TourBasics from './TourBasics';
+import styled from 'styled-components';
+const StyledStar = styled(Rating)`
+  @media (max-width: 768px) {
+    .star-svg {
+      width: 30px;
+    }
+  }
+`;
 type INCLUDED = {
   data: string[];
   attractions: [ATTRACTION_INTERFACE];
@@ -16,6 +25,9 @@ type INCLUDED = {
     average: number;
     total: number;
   };
+  updateTourContext: () => void;
+  duration: number;
+  showPax: boolean;
 };
 
 const Included = ({
@@ -23,7 +35,10 @@ const Included = ({
   attractions,
   longDescription,
   rezdyId,
-  reviewState
+  reviewState,
+  updateTourContext,
+  duration,
+  showPax
 }: INCLUDED) => {
   const ref = useRef(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -32,7 +47,7 @@ const Included = ({
     if (containerRef.current) {
       const containerHeight = containerRef.current.offsetHeight;
       const stopPosition = containerHeight - 900;
-      console.log('the stop position', stopPosition);
+
       setStopPosition(stopPosition);
     }
   }, []);
@@ -40,51 +55,74 @@ const Included = ({
   return (
     <>
       <div
-        className="flex justify-end  flex-wrap flex-row-reverse items-start gap-6 "
+        className="flex justify-center lg:justify-start  flex-wrap flex-row-reverse items-start md:gap-6  w-full  "
         ref={containerRef}
       >
-
-        <div className=" sticky w-[10%] top-[100px] z-50   min-w-[350px]   bg-white p-3  mb-[300px] rounded-lg  shadow-xl     ">
-          <DateAndPax rezdyId={rezdyId} />
-          <div className=" absolute -bottom-[150px]   w-full">
-            <h3 className="text-xl font-medium ">
-              Over {reviewState.total} Reviews
-            </h3>
-            <div className="flex mt-2 items-center  justify-between w-full gap-4  ">
-              <Image
-                src="/tripadvisor.png"
-                width={70}
-                height={80}
-                alt="trip-advisor"
-              />
-              <div className="flex flex-col pl-4  border-l border-gray-300 ">
-                <Rating
-                  SVGstyle={{
-                    display: 'inline-block'
-                  }}
-                  readonly
-                  allowFraction
-                  initialValue={reviewState.average}
+        <div className=" relative mmd:sticky  mmd:top-[100px]  z-50   min-w-[350px]   mmd:w-[25%] w-full     p-3   mmd:mb-[300px] rounded-lg  shadow-none mmd:shadow-xl     ">
+          <DateAndPax
+            rezdyId={rezdyId}
+            updateTourContext={updateTourContext}
+            mobile={false}
+          />
+          <div className=" flex flex-col md:flex-row md:items-center relative   mmd:absolute mmd:-bottom-[150px] min-w-full      items-start">
+            <div className=" flex mmd:hidden w-full  items-start md:w-1/2 ">
+              <TourBasics duration={duration} />
+            </div>
+            <div className="mt-8">
+              <h3 className="  md:text-xl font-medium ">
+                Over {reviewState.total} Reviews
+              </h3>
+              <div className="flex mt-2 items-center  justify-between w-full gap-4  ">
+                <Image
+                  src="/tripadvisor.png"
+                  width={70}
+                  height={80}
+                  alt="trip-advisor"
+                  className=" w-12 "
                 />
-                <p className="text-base">
-                  As recommended by 99% of Users on Trip advisor
-                </p>
+                <div className="flex flex-col pl-4  border-l border-gray-300 ">
+                  <StyledStar
+                    SVGstyle={{
+                      display: 'inline-block',
+                      textAlign: 'center'
+                    }}
+                    readonly
+                    allowFraction
+                    initialValue={reviewState.average}
+                  />
+                  <p className=" text-sm md:text-base" id="mobile-pax">
+                    As recommended by 99% of Users on Trip advisor
+                  </p>
+                </div>
               </div>
             </div>
           </div>
+          {showPax && (
+            <div
+              className={`${
+                showPax ? 'block' : 'hidden'
+              } my-10 py-4  w-full bg px-2 bg-white mmd:hidden  `}
+            >
+              <DateAndPax
+                rezdyId={rezdyId}
+                updateTourContext={updateTourContext}
+                mobile={true}
+              />
+            </div>
+          )}
         </div>
 
-        <div className=" 2xl:w-[70%]  ">
+        <div className="   md:w-full mmd:w-[60%] lg:w-[60%] xl:w-[70%] ">
           <div
             className=" w-full    flex flex-col justify-between py-2 md:py-4 relative"
             ref={ref}
           >
-            <h1
+            <h2
               id="whatsincluded"
               className="  text-xl md:text-[28px]  font-extrabold  "
             >
               What's Included
-            </h1>
+            </h2>
             <ul className="  md:w-11/12 ">
               {data.map(item => (
                 <div className="flex items-start gap-2 mt-2 " key={item}>
@@ -103,13 +141,13 @@ const Included = ({
               ))}
             </ul>
           </div>
-          <div className="   flex flex-col justify-between py-4 w-full">
-            <h1
+          <div className=" flex flex-col justify-between py-4 w-full max-w-[100vw]">
+            <h2
               className=" text-xl md:text-[28px] font-extrabold mb-6 "
               id="what-you-will-see"
             >
               What you'll see
-            </h1>
+            </h2>
             <Swiper
               className="swiper_123 relative w-full "
               spaceBetween={40}
@@ -155,14 +193,13 @@ const Included = ({
             className="  w-full flex flex-col justify-between py-4"
             ref={ref}
           >
-            <h1
+            <h2
               id="to-do"
               className="  text-xl md:text-[28px] font-extrabold my-6 "
             >
               What you’ll do
-            </h1>
+            </h2>
           </div>
-
 
           <ProductTimeline description={longDescription} />
         </div>

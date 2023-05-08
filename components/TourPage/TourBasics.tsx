@@ -3,44 +3,43 @@ import React from 'react';
 import scrollToElement from '../../utils/scrollIntoView';
 import { Router, useRouter } from 'next/router';
 interface TOUR {
-  price: number;
+  // price: number;
   duration: number;
-  type: string;
+  /* type: string;
   rating: number;
   totalRatings: number;
-  slug: string;
+  slug: string; */
 }
 
 const TourBasics = ({
-  price,
-  duration,
-  type,
+  // price,
+  duration
+}: /* type,
   rating,
   totalRatings,
-  slug
-}: TOUR) => {
+  slug */
+TOUR) => {
   const router = useRouter();
-  console.log('the duration', duration);
   return (
     <>
-      <div className=" md:w-[40%]  flex  gap-2 md:gap-8 items-end   ">
-        <div className="flex justify-center w-full gap-1 items-center ">
+      <div className=" w-full grid-cols-3    flex  gap-2 mmd:gap-8 md:items-end items-center     ">
+        <div className=" col-span-1 flex flex-col mmd:flex-row  gap-1 justify-start md:justify-end w-full  items-center ">
           <Image src="/clockicon.png" width={16} height={16} alt="clock-icon" />
-          <span className=" space-x-1 text-sm md:text-lg text-[#505050] font-normal ">
+          <span className=" space-x-1 text-sm md:text-base text-[#505050] font-normal ">
             {' '}
             {duration} Hours
           </span>
         </div>
-        <div className="flex justify-center w-full gap-1 items-center ">
-          <Image src="/persons.png" width={16} height={16} alt="persons" />
-          <span className=" space-x-1 text-sm md:text-lg text-[#505050] font-normal ">
+        <div className=" col-span-1 flex flex-col mmd:flex-row gap-1 justify-start md:justify-end w-full  items-center ">
+          <Image src="/persons.png" width={19} height={16} alt="persons" />
+          <span className=" space-x-1 text-sm md:text-base text-[#505050] font-normal ">
             {' '}
             Up to 7 people
           </span>
         </div>
-        <div className="flex justify-center w-full gap-1 items-center ">
-          <Image src="/transport.png" width={16} height={16} alt="clock-icon" />
-          <span className=" space-x-1 text-sm md:text-lg text-[#505050] font-normal ">
+        <div className=" col-span-1 flex flex-col mmd:flex-row gap-1 justify-start md:justify-end w-full  items-center ">
+          <Image src="/transport.png" width={19} height={16} alt="clock-icon" />
+          <span className=" space-x-1 text-sm md:text-base text-[#505050] font-normal ">
             {' '}
             Hotel Pick-up
           </span>

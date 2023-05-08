@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import Calendar from 'react-calendar';
 import styled from 'styled-components';
@@ -6,6 +6,8 @@ import dayjs from 'dayjs';
 import Image from 'next/image';
 import axios from 'axios';
 import { fetchProductAvailabilities } from '../../utils/getProductAvailabilites';
+import { useRouter } from 'next/router';
+import { PaxContext } from '../../utils/checkoutContext';
 
 type PASSENGERINFO = {
   count: number;
@@ -244,10 +246,19 @@ const PAXSELECTOR = styled.div`
 
 interface DATEANDPAXPROPS {
   rezdyId: string;
+  updateTourContext: () => void;
+  mobile: boolean;
 }
 
-const DateAndPax = ({ rezdyId }: DATEANDPAXPROPS) => {
+const DateAndPax = ({
+  rezdyId,
+  updateTourContext,
+  mobile
+}: DATEANDPAXPROPS) => {
   const [mobileCalendar, setMobileCalendar] = useState<boolean>(false);
+  const router = useRouter();
+  //@ts-expect-error
+  const { updatePax } = useContext(PaxContext);
 
   const [loading, setLoading] = useState<boolean>(false);
   const [noAvailability, setNoAvailability] = useState<boolean>(false);
@@ -393,7 +404,7 @@ const DateAndPax = ({ rezdyId }: DATEANDPAXPROPS) => {
           price: selectedTimeSlot.prices[0].price,
           title: selectedTimeSlot.prices[0].label
         },
-        infants: selectedTimeSlot.prices[1]
+        children: selectedTimeSlot.prices[1]
           ? {
               count: 0,
               label: selectedTimeSlot.prices[1].label,
@@ -401,7 +412,7 @@ const DateAndPax = ({ rezdyId }: DATEANDPAXPROPS) => {
               title: selectedTimeSlot.prices[1].label
             }
           : undefined,
-        children: selectedTimeSlot.prices[2]
+        infants: selectedTimeSlot.prices[2]
           ? {
               count: 0,
               label: selectedTimeSlot.prices[2].label,
@@ -425,8 +436,13 @@ const DateAndPax = ({ rezdyId }: DATEANDPAXPROPS) => {
     return '';
   };
 
+  const proceedToCheckout = () => {
+    updatePax({ ...passengerPax, totalPrice, selectedTimeSlot });
+    updateTourContext();
+    router.push('/checkout');
+  };
   return (
-    <>
+    <div className={`${mobile ? 'block' : 'hidden'} mmd:block `}>
       {loading ? (
         <div className=" flex justify-center items-center w-full h-44 ">
           <p className="text-gray-400 animate-pulse">Loading</p>
@@ -760,8 +776,11 @@ const DateAndPax = ({ rezdyId }: DATEANDPAXPROPS) => {
               </p>
             </div>
           </div> */}
-          <button className=" bg-[#FD5D5A] rounded-md py-3 text-white ">
-            Check Availability
+          <button
+            className=" bg-[#FD5D5A] rounded-md py-3 text-white "
+            onClick={() => proceedToCheckout()}
+          >
+            Check availability
           </button>
           <div className="flex items-start gap-2    ">
             <Image
@@ -785,7 +804,7 @@ const DateAndPax = ({ rezdyId }: DATEANDPAXPROPS) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

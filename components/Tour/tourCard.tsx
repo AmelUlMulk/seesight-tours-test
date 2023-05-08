@@ -8,6 +8,7 @@ import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import CalendarPaxModal from '../CalendarAndPax/Modal';
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 interface IProps {
   product: Record<string, any>;
@@ -37,7 +38,8 @@ export const SnippetStyle = styled.p`
 `;
 const TourCard = ({ product, productType }: IProps) => {
   const [image, setImage] = useState<any>([]);
-
+  const [openPax, setOpenPax] = useState<boolean>(false);
+  console.log('the product', product);
   //storing Images in array
   useEffect(() => {
     const imageArr: Array<Record<string, any>> = [];
@@ -64,6 +66,13 @@ const TourCard = ({ product, productType }: IProps) => {
       id="tour-section"
       className="sm:mt-5 lg:mt-10 relative flex flex-col bg-[#FFFF] rounded-lg"
     >
+      <CalendarPaxModal
+        tour={product.name}
+        tourId={product.id}
+        tourImage={image[0]?.imageUrl}
+        open={openPax}
+        setOpenPax={setOpenPax}
+      />
       <div className="h-[240px] xsm:h-[280px] sm:h-[300px] md:h-[260px] lg:h-[260px] xl:h-[300px] w-[95%] py-2 mx-auto relative">
         <Link href={`/tours/${product?.slug}`} className="rounded-md h-[100%]">
           <div className="w-[100%] h-[100%] relative rounded-lg !overflow-hidden">
@@ -181,12 +190,14 @@ const TourCard = ({ product, productType }: IProps) => {
         >
           <button>See Details</button>
         </Link>
-        <Link
-          href={`/checkout/${product?.slug}`}
+        <button
           className="flex-none w-[37%] py-2 text-[#FFFFFF] text-center font-[500] text-[12px] xsm:text-[14px] xl:text-[16px] 2xl:text-[18px] bg-[#F15C5A] rounded-[8px] md:rounded-[10px]"
+          onClick={() => {
+            setOpenPax(true);
+          }}
         >
           <button>Book Now</button>
-        </Link>
+        </button>
       </div>
     </div>
   );
