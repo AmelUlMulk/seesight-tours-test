@@ -13,7 +13,7 @@ const CityCards = ({ image, slug, name }: CITYCARDS) => {
   return (
     <div
       onClick={() => router.push(`/${slug}`)}
-      className="relative h-full w-full "
+      className="relative h-full w-full cursor-pointer "
     >
       <Image
         src={image}

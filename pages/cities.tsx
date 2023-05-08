@@ -83,7 +83,6 @@ const Cities = ({ citiesPage }: CITIES_PAGE_INTERFACE) => {
           }
           video={true}
         />
-        <SearchCity />
       </div>
       <TrustBar />
       <section className="flex flex-col w-full  justify-start ">

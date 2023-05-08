@@ -20,6 +20,7 @@ import Trustbar from '../../components/Trust/Trustbar';
 import Newsletter from '../../layouts/Newsletter/Newsletter';
 import PageHero from '../../layouts/PageHero';
 import Head from 'next/head';
+import CitiesModal from '../../components/CitiesModal.tsx';
 
 const StyledDiv = styled.div`
   margin-top: 2rem;
@@ -87,7 +88,7 @@ const City = ({ featuredExp, cities, city }: IPROPS) => {
           video={city.heroMedia[0].url.includes('mp4')}
           landing
         />
-        <SearchCity />
+        <CitiesModal />
       </section>
       <Trustbar />
       <h2 className=" px-[8%] text-3xl font-bold capitalize mt-6 ">

@@ -24,6 +24,7 @@ import {
 } from '../../api/dayToursPage';
 import { useQuery } from '@apollo/client';
 import Head from 'next/head';
+import CitiesModal from '../../components/CitiesModal.tsx';
 
 const Tours = ({ featuredExp, citydropdown, cities, dayTour }: IProps) => {
   return (
@@ -46,7 +47,7 @@ const Tours = ({ featuredExp, citydropdown, cities, dayTour }: IProps) => {
           media="https://res.cloudinary.com/see-sight-tours/video/upload/v1658237954/landing-page-hero_mu19mc.mp4"
           video={true}
         />
-        <SearchCity />
+        <CitiesModal />
       </section>
       <Trustbar />
       <FeaturedExperiences

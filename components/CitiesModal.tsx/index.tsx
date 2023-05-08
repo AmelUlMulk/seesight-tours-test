@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import CityCards from './cityCards';
 import Image from 'next/image';
-interface CITIESMODAL {
+import { useLazyQuery } from '@apollo/client';
+import CITIESMODAL from '../../api/citiesSearch';
+interface CITYMODAL {
   cities: CITY[];
 }
 interface CITY {
@@ -14,24 +16,43 @@ interface CITY {
     }
   ];
 }
-const CitiesModal = ({ cities }: CITIESMODAL) => {
+const CitiesModal = () => {
+  const [getData, { data, loading }] = useLazyQuery(CITIESMODAL);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [filteredCards, setFilteredCards] = useState<CITY[]>(() => cities);
-  const [searchItem, setSearchItem] = useState<string>('');
+  const [filteredCards, setFilteredCards] = useState<CITY[]>([]);
+  const [searchItem, setSearchItem] = useState<string | undefined>();
 
   useEffect(() => {
-    setFilteredCards(() =>
-      cities.filter(item =>
-        item.name.toLowerCase().includes(searchItem.toLocaleLowerCase())
-      )
-    );
+    console.log('am triggering for no reason');
+    if (searchItem)
+      setFilteredCards(() =>
+        data?.cities?.filter((item: { name: string }) =>
+          item.name.toLowerCase().includes(searchItem.toLocaleLowerCase())
+        )
+      );
+
+    if (!searchItem && data && data.cities.length > 0) {
+      setFilteredCards(data?.cities);
+      console.log('fuck me dead');
+    }
   }, [searchItem]);
+
+  useEffect(() => {
+    if (data) {
+      setFilteredCards(data.cities);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (showModal) getData();
+  }, [showModal]);
+
   return (
     <>
       <div className=" flex justify-center w-full absolute -bottom-[-12%]">
         <button
           onClick={() => setShowModal(true)}
-          className="  relative w-[340px]  bg-[#F15C5A] text-white   z-20  py-4 text-xl flex justify-center rounded-xl  "
+          className="  relative w-[200px]  md:w-[340px]  bg-[#F15C5A] text-white   z-20  py-4 text-xl flex justify-center rounded-xl  "
           style={{ zIndex: 1000 }}
         >
           <Image
@@ -44,6 +65,7 @@ const CitiesModal = ({ cities }: CITIESMODAL) => {
           <span className=" text-base md:text-xl">Search city</span>
         </button>
       </div>
+
       <div
         style={{ zIndex: 1000 }}
         className={` ${
@@ -70,18 +92,19 @@ const CitiesModal = ({ cities }: CITIESMODAL) => {
             </div>
           </div>
           <div className=" grid grid-cols-2 px-[5%] md:grid-cols-3  2xl:grid-cols-4 w-full md:px-[10%]   lg:px-[20%] gap-4  ">
-            {filteredCards.map(city => (
-              <div
-                className="cols-span-1 h-full  rounded-md relative  "
-                key={city.name}
-              >
-                <CityCards
-                  name={city.name}
-                  slug={city.slug}
-                  image={city.card_media[0].url}
-                />
-              </div>
-            ))}
+            {!loading &&
+              filteredCards?.map(city => (
+                <div
+                  className="cols-span-1 h-full  rounded-md relative  "
+                  key={city.name}
+                >
+                  <CityCards
+                    name={city.name}
+                    slug={city.slug}
+                    image={city.card_media[0].url}
+                  />
+                </div>
+              ))}
           </div>
         </div>
       </div>

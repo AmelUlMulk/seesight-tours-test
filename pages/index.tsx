@@ -25,7 +25,6 @@ export default function Home({
   HomePage,
   guidesData
 }: IProps) {
-  console.log('this is thing', citydropdown);
   return (
     <>
       <Head>
@@ -48,7 +47,7 @@ export default function Home({
             video={true}
             landing
           />
-          <CitiesModal cities={citydropdown} />
+          <CitiesModal />
         </section>
 
         <LandingPage
