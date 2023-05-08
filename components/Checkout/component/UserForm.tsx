@@ -8,6 +8,7 @@ import axios from 'axios';
 import SectionWrapper from './SectionWrapper';
 import Summary from './summary';
 import { PaxContext } from '../../../utils/checkoutContext';
+import { useRouter } from 'next/router';
 
 interface IProps extends FormProps {
   customerId: string;
@@ -51,12 +52,13 @@ const PaymentForm = ({ next }: FORM) => {
 
   const [validPhone, setValidPhone] = useState<boolean>(true);
 
+  const router = useRouter();
   useEffect(() => {
     if (phone && phone.length > 1) {
       setValidPhone(isValidPhoneNumber(phone));
     }
   }, [phone]);
-  console.log('this is the valid phone', validPhone);
+
   const customerFormHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!validPhone) return;
@@ -118,7 +120,10 @@ const PaymentForm = ({ next }: FORM) => {
         <div className="flex w-full justify-between mt-8  ">
           <button
             className=" bg-[#F15C5A]  py-3 rounded-md w-1/3 text-white   "
-            onClick={() => next()}
+            onClick={e => {
+              e.preventDefault();
+              router.back();
+            }}
           >
             {' '}
             Back{' '}

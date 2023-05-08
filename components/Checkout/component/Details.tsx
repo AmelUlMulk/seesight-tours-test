@@ -4,8 +4,6 @@ import SectionWrapper from './SectionWrapper';
 import Summary from './summary';
 import UserForm from './UserForm';
 import Image from 'next/image';
-import { Detail } from 'react-calendar';
-import dayjs from 'dayjs';
 
 interface Details {
   next: () => void;
@@ -13,7 +11,6 @@ interface Details {
   pax: any;
 }
 const Details = ({ next, tour, pax }: Details) => {
-  console.log('the tour', pax);
   return (
     <SectionWrapper title="Traveler Information">
       <div className=" flex-col flex  md:flex-row items-start flex-wrap md:gap-4 ">

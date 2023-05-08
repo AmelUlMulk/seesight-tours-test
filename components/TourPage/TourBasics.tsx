@@ -20,26 +20,25 @@ const TourBasics = ({
   slug */
 TOUR) => {
   const router = useRouter();
-  console.log('the duration', duration);
   return (
     <>
-      <div className=" w-full grid-cols-4    flex  gap-2 md:gap-8 md:items-end items-start    ">
-        <div className="  flex justify-center md:justify-end w-full  items-center ">
+      <div className=" w-full grid-cols-3    flex  gap-2 mmd:gap-8 md:items-end items-center     ">
+        <div className=" col-span-1 flex flex-col mmd:flex-row  gap-1 justify-start md:justify-end w-full  items-center ">
           <Image src="/clockicon.png" width={16} height={16} alt="clock-icon" />
           <span className=" space-x-1 text-sm md:text-base text-[#505050] font-normal ">
             {' '}
             {duration} Hours
           </span>
         </div>
-        <div className=" col-span-3 flex justify-start md:justify-end w-full  items-center ">
-          <Image src="/persons.png" width={16} height={16} alt="persons" />
+        <div className=" col-span-1 flex flex-col mmd:flex-row gap-1 justify-start md:justify-end w-full  items-center ">
+          <Image src="/persons.png" width={19} height={16} alt="persons" />
           <span className=" space-x-1 text-sm md:text-base text-[#505050] font-normal ">
             {' '}
             Up to 7 people
           </span>
         </div>
-        <div className=" col-span-1 flex justify-start md:justify-end w-full  items-center ">
-          <Image src="/transport.png" width={16} height={16} alt="clock-icon" />
+        <div className=" col-span-1 flex flex-col mmd:flex-row gap-1 justify-start md:justify-end w-full  items-center ">
+          <Image src="/transport.png" width={19} height={16} alt="clock-icon" />
           <span className=" space-x-1 text-sm md:text-base text-[#505050] font-normal ">
             {' '}
             Hotel Pick-up

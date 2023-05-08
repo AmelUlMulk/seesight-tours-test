@@ -30,7 +30,6 @@ const PaymentSection = ({
 }: Details) => {
   //@ts-ignore
   const { pax, tour, user } = useContext(PaxContext);
-  console.log('the user', user, tour);
   const [paymentLoading, setPaymentLoading] = useState<boolean>(false);
 
   const [clientSecret, setClientSecret] = useState(null);
@@ -38,7 +37,6 @@ const PaymentSection = ({
   const [paymentIntent, setPaymentIntent] = useState(null);
 
   const [customerId, setCustomerId] = useState('');
-
   const createPaymentIntent = async (body: any) => {
     try {
       const res = await axios.post(
@@ -57,7 +55,7 @@ const PaymentSection = ({
     const body = {
       amount: pax.totalPrice,
       currency: 'usd',
-      tour: tour.name,
+      tour: tour.tour,
       tourDate: dayjs(pax.selectedTimeSlot.startTime).format('MMMM DD ,YYYY'),
       tourTime: dayjs(pax.selectedTimeSlot.startTime).format('HH:MM:ss')
     };
@@ -136,7 +134,6 @@ const PaymentSection = ({
         ...body
       }
     );
-
     setPaymentLoading(false);
     setBookingId(res.data.booking_id);
   };
@@ -153,7 +150,7 @@ const PaymentSection = ({
         {/* <div className="flex flex-col-reverse md:gap-4 md:flex-row   justify-start  "> */}
         <Summary />
         {!clientSecret ? (
-          <div className=" h-screen w-full flex    justify-center items-center  ">
+          <div className="  w-full flex    justify-center items-center  ">
             <div className=" flex justify-center items-center    h-1/2   w-5/6">
               <h4 className="animate-pulse text-4xl text-black">Loading....</h4>
             </div>

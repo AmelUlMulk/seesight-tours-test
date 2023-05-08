@@ -247,13 +247,18 @@ const PAXSELECTOR = styled.div`
 interface DATEANDPAXPROPS {
   rezdyId: string;
   updateTourContext: () => void;
+  mobile: boolean;
 }
 
-const DateAndPax = ({ rezdyId, updateTourContext }: DATEANDPAXPROPS) => {
+const DateAndPax = ({
+  rezdyId,
+  updateTourContext,
+  mobile
+}: DATEANDPAXPROPS) => {
   const [mobileCalendar, setMobileCalendar] = useState<boolean>(false);
   const router = useRouter();
   //@ts-expect-error
-  const { updatePax, updateTour, updateUser } = useContext(PaxContext);
+  const { updatePax } = useContext(PaxContext);
 
   const [loading, setLoading] = useState<boolean>(false);
   const [noAvailability, setNoAvailability] = useState<boolean>(false);
@@ -437,7 +442,7 @@ const DateAndPax = ({ rezdyId, updateTourContext }: DATEANDPAXPROPS) => {
     router.push('/checkout');
   };
   return (
-    <div className="lg:flex hidden">
+    <div className={`${mobile ? 'block' : 'hidden'} mmd:block `}>
       {loading ? (
         <div className=" flex justify-center items-center w-full h-44 ">
           <p className="text-gray-400 animate-pulse">Loading</p>
@@ -775,7 +780,7 @@ const DateAndPax = ({ rezdyId, updateTourContext }: DATEANDPAXPROPS) => {
             className=" bg-[#FD5D5A] rounded-md py-3 text-white "
             onClick={() => proceedToCheckout()}
           >
-            Check Availability
+            Check availability
           </button>
           <div className="flex items-start gap-2    ">
             <Image

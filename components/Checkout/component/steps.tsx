@@ -39,7 +39,7 @@ const Step = styled.div<StepProps>`
   transition: all 0.2s ease-in-out;
   background-color: white;
   gap: 0.5rem;
-  h1 {
+  h2 {
     background: white;
   }
   justify-content: center;
@@ -58,7 +58,7 @@ const Steps = ({ currentStepIndex = 0 }: StepsProp) => {
   return (
     <div className="w-full flex justify-center ">
       <div className="  w-11/12   md:w-5/6   md:justify-center flex justify-start  relative bg-white   rounded-lg my-4  py-4">
-        <div className="relative w-full md:w-1/2 lg-1/4  flex  align-middle justify-between items-center z-[100]  ">
+        <div className="relative w-full md:w-1/2 lg-1/4  flex  align-middle justify-between items-center z-10  ">
           <Step
             selected={currentStepIndex >= 1 ? true : false}
             currentIndex={currentStepIndex}
@@ -76,9 +76,9 @@ const Steps = ({ currentStepIndex = 0 }: StepsProp) => {
             {/* {currentStepIndex > 0 && (
               <Image src="/check.png" width={20} height={20} alt="check icon" />
             )} */}
-            <h1>Date</h1>
+            <h2>Details</h2>
           </Step>
-          <Line selected={currentStepIndex >= 2} />
+          <Line selected={currentStepIndex >= 1} />
 
           <Step
             selected={currentStepIndex === 1 ? true : false}
@@ -94,7 +94,7 @@ const Steps = ({ currentStepIndex = 0 }: StepsProp) => {
             >
               2
             </div>
-            <h1>Payment</h1>
+            <h2>Payment</h2>
           </Step>
           <Line selected={currentStepIndex === 2} />
           <Step
@@ -111,7 +111,7 @@ const Steps = ({ currentStepIndex = 0 }: StepsProp) => {
             >
               3
             </div>
-            <h1>Confirm</h1>
+            <h2>Confirm</h2>
           </Step>
         </div>
       </div>

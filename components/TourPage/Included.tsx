@@ -27,6 +27,7 @@ type INCLUDED = {
   };
   updateTourContext: () => void;
   duration: number;
+  showPax: boolean;
 };
 
 const Included = ({
@@ -36,7 +37,8 @@ const Included = ({
   rezdyId,
   reviewState,
   updateTourContext,
-  duration
+  duration,
+  showPax
 }: INCLUDED) => {
   const ref = useRef(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -53,13 +55,17 @@ const Included = ({
   return (
     <>
       <div
-        className="flex justify-end  flex-wrap flex-row-reverse items-start md:gap-6  w-full  "
+        className="flex justify-center lg:justify-start  flex-wrap flex-row-reverse items-start md:gap-6  w-full  "
         ref={containerRef}
       >
-        <div className=" relative md:sticky md:w-[10%] md:top-[100px] z-50   min-w-[350px] w-full    p-3  md:mb-[300px] rounded-lg  shadow-none md:shadow-xl     ">
-          <DateAndPax rezdyId={rezdyId} updateTourContext={updateTourContext} />
-          <div className=" flex flex-col relative   md:absolute md:-bottom-[150px]   w-full  items-start">
-            <div className=" flex md:hidden w-full  items-start ">
+        <div className=" relative mmd:sticky  mmd:top-[100px]  z-50   min-w-[350px]   mmd:w-[25%] w-full     p-3   mmd:mb-[300px] rounded-lg  shadow-none mmd:shadow-xl     ">
+          <DateAndPax
+            rezdyId={rezdyId}
+            updateTourContext={updateTourContext}
+            mobile={false}
+          />
+          <div className=" flex flex-col md:flex-row md:items-center relative   mmd:absolute mmd:-bottom-[150px] min-w-full      items-start">
+            <div className=" flex mmd:hidden w-full  items-start md:w-1/2 ">
               <TourBasics duration={duration} />
             </div>
             <div className="mt-8">
@@ -84,26 +90,39 @@ const Included = ({
                     allowFraction
                     initialValue={reviewState.average}
                   />
-                  <p className=" text-sm md:text-base">
+                  <p className=" text-sm md:text-base" id="mobile-pax">
                     As recommended by 99% of Users on Trip advisor
                   </p>
                 </div>
               </div>
             </div>
           </div>
+          {showPax && (
+            <div
+              className={`${
+                showPax ? 'block' : 'hidden'
+              } my-10 py-4  w-full bg px-2 bg-white mmd:hidden  `}
+            >
+              <DateAndPax
+                rezdyId={rezdyId}
+                updateTourContext={updateTourContext}
+                mobile={true}
+              />
+            </div>
+          )}
         </div>
 
-        <div className=" 2xl:w-[70%]    ">
+        <div className="   md:w-full mmd:w-[60%] lg:w-[60%] xl:w-[70%] ">
           <div
             className=" w-full    flex flex-col justify-between py-2 md:py-4 relative"
             ref={ref}
           >
-            <h1
+            <h2
               id="whatsincluded"
               className="  text-xl md:text-[28px]  font-extrabold  "
             >
               What's Included
-            </h1>
+            </h2>
             <ul className="  md:w-11/12 ">
               {data.map(item => (
                 <div className="flex items-start gap-2 mt-2 " key={item}>
@@ -123,12 +142,12 @@ const Included = ({
             </ul>
           </div>
           <div className=" flex flex-col justify-between py-4 w-full max-w-[100vw]">
-            <h1
+            <h2
               className=" text-xl md:text-[28px] font-extrabold mb-6 "
               id="what-you-will-see"
             >
               What you'll see
-            </h1>
+            </h2>
             <Swiper
               className="swiper_123 relative w-full "
               spaceBetween={40}
@@ -174,12 +193,12 @@ const Included = ({
             className="  w-full flex flex-col justify-between py-4"
             ref={ref}
           >
-            <h1
+            <h2
               id="to-do"
               className="  text-xl md:text-[28px] font-extrabold my-6 "
             >
               What you’ll do
-            </h1>
+            </h2>
           </div>
 
           <ProductTimeline description={longDescription} />

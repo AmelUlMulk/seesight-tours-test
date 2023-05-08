@@ -6,7 +6,7 @@ export const PaxProivder = ({ children }) => {
   const [pax, setPax] = useState({});
   const [tour, setTour] = useState({});
   const [user, setUser] = useState({});
-
+  console.log('the tour', tour);
   const updatePax = newObject1 => {
     setPax(newObject1);
   };
