@@ -127,6 +127,9 @@ const FEATUREDEXPERIENCES = gql`
       id
       name
       slug
+      card_media(limit: 1) {
+        url
+      }
     }
 
     totalProducts: productsConnection {

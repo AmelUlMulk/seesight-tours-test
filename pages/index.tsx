@@ -11,6 +11,7 @@ import { GUIDESINTERFACE } from '../api/commonInterfaces';
 import { GUIDES } from '../api/guides';
 import SearchCity from '../components/Searchbar/searchCity';
 import Newsletter from '../layouts/Newsletter/Newsletter';
+import CitiesModal from '../components/CitiesModal.tsx';
 
 interface IProps {
   featuredExp: any;
@@ -24,6 +25,7 @@ export default function Home({
   HomePage,
   guidesData
 }: IProps) {
+  console.log('this is thing', citydropdown);
   return (
     <>
       <Head>
@@ -46,7 +48,7 @@ export default function Home({
             video={true}
             landing
           />
-          <SearchCity />
+          <CitiesModal cities={citydropdown} />
         </section>
 
         <LandingPage
