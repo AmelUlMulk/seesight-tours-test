@@ -116,7 +116,7 @@ const Checkout = () => {
         onCompleted: () => next()
       });
     }
-  }, []);
+  }, [bookingId]);
 
   const tiggerNext = () => {
     next();

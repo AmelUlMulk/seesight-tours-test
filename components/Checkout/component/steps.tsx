@@ -76,9 +76,9 @@ const Steps = ({ currentStepIndex = 0 }: StepsProp) => {
             {/* {currentStepIndex > 0 && (
               <Image src="/check.png" width={20} height={20} alt="check icon" />
             )} */}
-            <h2>Date</h2>
+            <h2>Details</h2>
           </Step>
-          <Line selected={currentStepIndex >= 2} />
+          <Line selected={currentStepIndex >= 1} />
 
           <Step
             selected={currentStepIndex === 1 ? true : false}

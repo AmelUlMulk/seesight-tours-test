@@ -30,7 +30,6 @@ const PaymentSection = ({
 }: Details) => {
   //@ts-ignore
   const { pax, tour, user } = useContext(PaxContext);
-  console.log('the user', user, tour);
   const [paymentLoading, setPaymentLoading] = useState<boolean>(false);
 
   const [clientSecret, setClientSecret] = useState(null);
@@ -38,9 +37,7 @@ const PaymentSection = ({
   const [paymentIntent, setPaymentIntent] = useState(null);
 
   const [customerId, setCustomerId] = useState('');
-
   const createPaymentIntent = async (body: any) => {
-    console.log('the body', body);
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_PAYMENT_API}/create-payment-intent`,
@@ -48,13 +45,11 @@ const PaymentSection = ({
           ...body
         }
       );
-      console.log('the response', res);
       setClientSecret(res.data.clientSecret);
       setPaymentIntent(res.data.paymentIntent);
       setCustomerId(res.data.customer);
     } catch (error) {}
   };
-  console.log('the client secret', clientSecret);
 
   useEffect(() => {
     const body = {
@@ -139,7 +134,6 @@ const PaymentSection = ({
         ...body
       }
     );
-
     setPaymentLoading(false);
     setBookingId(res.data.booking_id);
   };
@@ -156,7 +150,7 @@ const PaymentSection = ({
         {/* <div className="flex flex-col-reverse md:gap-4 md:flex-row   justify-start  "> */}
         <Summary />
         {!clientSecret ? (
-          <div className=" h-screen w-full flex    justify-center items-center  ">
+          <div className="  w-full flex    justify-center items-center  ">
             <div className=" flex justify-center items-center    h-1/2   w-5/6">
               <h4 className="animate-pulse text-4xl text-black">Loading....</h4>
             </div>
