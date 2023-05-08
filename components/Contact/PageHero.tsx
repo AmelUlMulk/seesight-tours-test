@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import SearchCity from '../Searchbar/searchCity';
+import CitiesModal from '../CitiesModal.tsx';
 
 interface IProps {
   title: string;
@@ -88,7 +89,7 @@ const PageHero = ({ title, snippet, media, video }: IProps): JSX.Element => {
           </div>
         </div>
       </PageHero>
-      <SearchCity />
+      <CitiesModal />
     </section>
   );
 };

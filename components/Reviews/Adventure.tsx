@@ -2,6 +2,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import PageHero from '../../layouts/PageHero';
 import SearchCity from '../Searchbar/searchCity';
+import CitiesModal from '../CitiesModal.tsx';
 
 const AdventureStyle = styled.div`
   background-image: url('/review_adventure.png');
@@ -19,7 +20,7 @@ const Adventure = () => {
         </p>
       </div>
       <div className="relative my-10 w-[100%]">
-        <SearchCity />
+        <CitiesModal />
       </div>
     </AdventureStyle>
   );
