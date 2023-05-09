@@ -207,7 +207,6 @@ const Blog = ({ blogsPage, blogs }: BLOG_PAGE_INTERFACE) => {
     ?.replace(/\n$/gim, '<br />')
     ?.trim();
   return (
-
     <>
       <Head>
         <title>{blogsPage?.pageTitle ? blogsPage?.pageTitle : ''}</title>
