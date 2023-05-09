@@ -9,6 +9,10 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import CalendarPaxModal from '../CalendarAndPax/Modal';
+import {
+  optimizeImageUrl,
+  optimizeVideoUrl
+} from '../../utils/videoLinkOptimize';
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 interface IProps {
   product: Record<string, any>;
@@ -39,7 +43,7 @@ export const SnippetStyle = styled.p`
 const TourCard = ({ product, productType }: IProps) => {
   const [image, setImage] = useState<any>([]);
   const [openPax, setOpenPax] = useState<boolean>(false);
-  console.log('the product', product);
+
   //storing Images in array
   useEffect(() => {
     const imageArr: Array<Record<string, any>> = [];
@@ -61,6 +65,7 @@ const TourCard = ({ product, productType }: IProps) => {
     });
     totalAvg = Number((total / product?.reviews?.length).toFixed(1));
   }
+
   return (
     <div
       id="tour-section"
@@ -107,20 +112,22 @@ const TourCard = ({ product, productType }: IProps) => {
                 <SwiperSlide key={index} className="w-[100%] h-[100%]">
                   {img?.hasVideo ? (
                     <video
-                      src={img?.imageUrl}
+                      src={optimizeVideoUrl(img?.imageUrl)}
                       muted
-                      autoPlay
                       loop
                       playsInline
                       className="w-[100%] h-[100%] object-cover"
+                      autoPlay
                     ></video>
                   ) : (
                     <Image
-                      src={img?.imageUrl}
+                      src={optimizeImageUrl(img?.imageUrl)}
                       width={400}
                       height={400}
                       alt="feature product image"
                       className="w-[100%] h-[100%] object-cover rounded-lg hover:scale-105 ease-in-out duration-200"
+                      placeholder="blur"
+                      blurDataURL="/placeholder.webp"
                     />
                   )}
                 </SwiperSlide>

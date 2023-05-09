@@ -43,7 +43,7 @@ export default function Home({
             snippet={
               'Best Small Group Tours. Operating Across Canada and the United States'
             }
-            media="https://res.cloudinary.com/see-sight-tours/video/upload/v1658237954/landing-page-hero_mu19mc.mp4"
+            media="https://res.cloudinary.com/see-sight-tours/video/upload/q_60,w_1000,fl_progressive:steep//v1658237954/landing-page-hero_mu19mc.webm"
             video={true}
             landing
           />

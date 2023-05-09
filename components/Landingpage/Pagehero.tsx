@@ -16,7 +16,7 @@ const PageHero = () => {
           loop
           autoPlay
           playsInline
-          src="https://res.cloudinary.com/see-sight-tours/video/upload/q_70,w_1200,fl_progressive:steep//v1658237954/landing-page-hero_mu19mc.webm"
+          src="https://res.cloudinary.com/see-sight-tours/video/upload/q_70,w_1000,fl_progressive:steep//v1658237954/landing-page-hero_mu19mc.webm"
         />
         <div className="PageHero_container absolute top-[50%] left-[10%] w-[80%] flex flex-col ">
           <div className="heading text-7xl text-white font-bold">
