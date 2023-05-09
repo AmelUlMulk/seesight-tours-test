@@ -20,7 +20,7 @@ const PageHero = () => {
         />
         <div className="PageHero_container absolute top-[50%] left-[10%] w-[80%] flex flex-col ">
           <div className="heading text-7xl text-white font-bold">
-            <h1>The Best Way to See The World.</h1>
+            <h2>The Best Way to See The World.</h2>
           </div>
           <div className="snippet text-white text-3xl">
             <p>

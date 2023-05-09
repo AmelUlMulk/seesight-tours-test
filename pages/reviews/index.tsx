@@ -14,6 +14,7 @@ import FooterAbout from '../../components/Reviews/FooterAbout';
 import PageHero from '../../layouts/PageHero';
 import Newsletter from '../../layouts/Newsletter/Newsletter';
 import Adventure from '../../components/Reviews/Adventure';
+import Head from 'next/head';
 
 const sortObject: Record<string, string> = {
   Newest: 'date:desc',
@@ -54,10 +55,13 @@ const Reviews = () => {
       }
     });
   }, [cityFilter, fetchReviews, sortOrder, currentPage]);
-  // console.log('reviewsPage:', reviewsPage);
-  // console.log('totalReviews:', totalReviews);
   return (
     <>
+      <Head>
+        <title>{reviewsPage?.pageTitle}</title>
+        <meta property="og:description" key="metadescription" />
+        <link href={reviewsPage?.canonical} rel="canonical" key="canonical" />
+      </Head>
       <PageHero
         title="From one traveler to another
            See what customer are saying about SeeSight Tours"
@@ -65,6 +69,7 @@ const Reviews = () => {
       See what customer are saying about SeeSight Tours"
         media={reviewsPage?.hero_media[0]?.url || ''}
         video={true}
+        totalReviews={totalReviews}
       />
       <div
         onClick={() => {

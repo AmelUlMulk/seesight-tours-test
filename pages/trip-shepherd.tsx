@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PageHero from '../components/Contact/PageHero';
 import styled from 'styled-components';
 import FormModal from '../layouts/FormModal/FormModal';
+import Head from 'next/head';
 
 const TripShepherdCard = styled.div`
   background-color: #57b8e8;
@@ -11,6 +12,14 @@ const TripShepherd = () => {
   const [show, setShowModal] = useState<boolean>(false);
   return (
     <>
+      <Head>
+        <title>Trip-Sheperd</title>
+        <link
+          href="https://www.seesight-tours.com/trip-shepherd"
+          rel="canonical"
+          key="canonical"
+        />
+      </Head>
       <PageHero
         title={'Trip Shepherd'}
         snippet={
@@ -26,10 +35,10 @@ const TripShepherd = () => {
           <div className="container mx-auto xl:px-64">
             <div className="grid lg:grid-cols-2 gap-12  items-center">
               <div className="">
-                <h1 className="text-2xl md:text-2xl xl:text-2xl font-bold tracking-tight mb-3 text-left">
+                <h2 className="text-2xl md:text-2xl xl:text-2xl font-bold tracking-tight mb-3 text-left">
                   TripShepherd is an in-destination travel agent and plan-ahead
                   concierge service.
-                </h1>
+                </h2>
                 <p className="opacity-70 lead color: hsl(218, 81%, 85%) text-justify text-lg">
                   Traditionally, travel agents make money from the commissions
                   on the products they sell you and concierges meet with you
@@ -133,9 +142,9 @@ const TripShepherd = () => {
                 </TripShepherdCard>
               </div>
               <div className="">
-                <h1 className="text-2xl md:text-2xl xl:text-2xl font-bold tracking-tight mb-3 text-left">
+                <h2 className="text-2xl md:text-2xl xl:text-2xl font-bold tracking-tight mb-3 text-left">
                   Your TripShepherd Service Includes:
-                </h1>
+                </h2>
                 <ul className="list-disc text-left pl-5 text-lg">
                   <li className="leading-9  ">
                     2 Phone Consultations prior to in-destination arrival

@@ -6,6 +6,7 @@ import { CITIES_PRODUCT_FILTER } from '../../api/reviews';
 import TourDropDown from './TourDropdown';
 import DropdownIcon from '../../assets/svg/review-filtercitydropdown.svg';
 import { useMediaQuery } from '../../layouts/NavBar';
+import { MyErrorObject } from './Header';
 
 interface IProps {
   cities: any;
@@ -21,8 +22,8 @@ interface IProps {
   setSubmitReview: React.Dispatch<SetStateAction<Record<string, any>>>;
   errorStates: Record<string, boolean>;
   setErrorStates: React.Dispatch<SetStateAction<Record<string, boolean>>>;
-  errorObject: Record<string, unknown>;
-  setErrorObject: React.Dispatch<SetStateAction<Record<string, unknown>>>;
+  errorObject: MyErrorObject;
+  setErrorObject: React.Dispatch<SetStateAction<MyErrorObject>>;
 }
 const CityTours = ({
   cities,
@@ -46,7 +47,10 @@ const CityTours = ({
     <>
       <button
         className="w-[100%] relative bg-[#EEEEEE] flex justify-between items-center sm:px-3 py-3 rounded-[5px] lg:rounded-[10px] mt-5"
-        onClick={() => setTourDropdownToggle(!tourDropdownToggle)}
+        onClick={() => {
+          setCityDropdownToggle(false);
+          setTourDropdownToggle(!tourDropdownToggle);
+        }}
       >
         <div className="flex justify-center items-center ">
           <span className="px-3">
@@ -58,7 +62,7 @@ const CityTours = ({
             />
           </span>
           <span
-            className=" text-[10px] sm:[14px] md:text-[14px] lg:text-[14px] xl:text-[16px] font-[500] text-[#333333]"
+            className=" text-[10px] sm:[14px] md:text-[14px] lg:text-[14px] xl:text-[16px] font-[500] text-[#333333] text-start"
             onClick={() => setTourDropdownToggle(!cityDropdownToggle)}
           >
             {selectedCityProduct

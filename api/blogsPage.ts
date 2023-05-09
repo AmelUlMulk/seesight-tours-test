@@ -30,6 +30,7 @@ const BLOGS_PAGE = {
         snippet
         author
         publicationDate: publication_date
+        author
         heroMedia: hero_media {
           name
           alt: alternativeText
@@ -48,17 +49,16 @@ const BLOGS_PAGE = {
 };
 
 interface BLOG_PAGE_INTERFACE {
-  blogsPage: [
-    {
-      header: string;
-      subheader: string;
-      pageTitle: string;
-      slug: string;
-      metaDescription: string;
-      canonical: string;
-      heroMedia: [CARDMEDIAINTERFACE];
-    }
-  ];
+  blogsPage: {
+    header: string;
+    subheader: string;
+    pageTitle: string;
+    slug: string;
+    metaDescription: string;
+    canonical: string;
+    heroMedia: [CARDMEDIAINTERFACE];
+  };
+
   blogCategories: [
     {
       id: string;
@@ -73,6 +73,7 @@ interface BLOG_PAGE_INTERFACE {
       author: string;
       snippet: string;
       publicationDate: string;
+      author: string;
       heroMedia: [CARDMEDIAINTERFACE];
       blogCategories: {
         id: string;

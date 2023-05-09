@@ -15,7 +15,7 @@ module.exports = {
       sm: '640px',
 
       md: '768px',
-
+      mmd: '945px',
       lg: '1024px',
 
       xl: '1280px',
@@ -36,8 +36,9 @@ module.exports = {
       boxShadow: {
         guidesBox: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         guideimageBox: '-10px -11px 0px 1px #2191fa',
+        smallguideimageBox: '-5px -4px 0px 1px #2191fa',
         moreguideBox: '0px 9px 9px rgb(0 0 0 / 25%)',
-        tourExpImgBox:'1px -5px 0px 1px #2191fa'
+        tourExpImgBox: '1px -5px 0px 1px #2191fa'
       }
     }
   },

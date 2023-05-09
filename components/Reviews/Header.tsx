@@ -21,6 +21,13 @@ interface IProps {
 interface StyleProps {
   isRated: number;
 }
+
+export interface MyErrorObject {
+  product?: string;
+  cities?: string;
+  date?: string;
+}
+
 const ReviewsHeader = ({
   totalReviews,
   citiesPageDropDown,
@@ -29,7 +36,7 @@ const ReviewsHeader = ({
   const [rating, setRating] = useState<number>(0);
   const { reviewsConnection } = totalReviews;
   const [dispModal, setDispModal] = useState<boolean>(false);
-  const [errorObject, setErrorObject] = useState<Record<string, unknown>>({});
+  const [errorObject, setErrorObject] = useState<MyErrorObject>({});
   const mediaQuery = useMediaQuery(640);
   const percentage: number = Number(
     parseFloat(reviewsConnection?.aggregate?.avg?.rating).toFixed(1)

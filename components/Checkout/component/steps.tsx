@@ -1,36 +1,53 @@
+import Image from 'next/image';
 import React from 'react';
 import styled from 'styled-components';
-const Line = styled.div`
-  position: absolute;
-  height: 1px;
-  border-bottom: 1px solid white;
-  bottom: 50%;
-  width: 100%;
-  z-index: 1;
-`;
+
 interface StepProps {
   selected: boolean;
+  currentIndex: number;
+  index: number;
 }
+interface LINEPROS {
+  selected: boolean;
+}
+const Line = styled.div<LINEPROS>`
+  position: relative;
+  margin: 0rem 0.4rem;
+  border-bottom: ${props =>
+    props.selected ? '4px solid #2191FA' : '4px solid gray'};
+  width: 20%;
+  z-index: 1;
+`;
 
 const Step = styled.div<StepProps>`
-  width: ${props => (props.selected ? '120px' : '80px')};
-  height: ${props => (props.selected ? '120px' : '80px')};
-  @media (max-width: 1200px) {
-    width: ${props => (props.selected ? '90px' : '50px')};
-    height: ${props => (props.selected ? '90px' : '50px')};
-    font-size: ${props => (props.selected ? '40px' : '20px')};
-  }
+  justify-items: center;
+  /* width: ${props => (props.selected ? '150px' : '90px')}; */
+  /* height: ${props => (props.selected ? '150px' : '80px')}; */
+  /* padding: 0rem 1rem; */
+  /* @media (max-width: 1200px) { */
+  /* width: ${props => (props.selected ? '90px' : '80px')}; */
+  /* height: ${props => (props.selected ? '90px' : '50px')}; */
+  /*   font-size: ${props => (props.selected ? '24px' : '17px')};
+  } */
+  /* @media (max-width: 768px) {
+    width: ${props => (props.selected ? '80px' : '70px')};
+    /* height: ${props => (props.selected ? '90px' : '50px')}; */
+  /* font-size: ${props => (props.selected ? '21px' : '16px')}; */
+  /* } */
+
   display: flex;
   transition: all 0.2s ease-in-out;
-  color: ${props => (props.selected ? 'black' : '#8B8B8B')};
+  background-color: white;
+  gap: 0.5rem;
+  h2 {
+    background: white;
+  }
   justify-content: center;
   align-items: center;
-  font-size: ${props => (props.selected ? '60px' : '30px')};
   z-index: 1;
-  border-radius: 50%;
-  background: ${props => (props.selected ? 'white' : '#B0B0B0')};
-  border: ${props =>
-    props.selected ? '2px solid #ad2025' : '1px solid #ad2025'};
+  .progress {
+    border: 1px solid #f15c5a;
+  }
 `;
 
 type StepsProp = {
@@ -39,18 +56,64 @@ type StepsProp = {
 //Comparing stating with zero bacause step 1 = [0]
 const Steps = ({ currentStepIndex = 0 }: StepsProp) => {
   return (
-    <div className="w-full  mb-4  flex justify-center">
-      <div className="relative w-4/5 md:w-1/2 lg-1/4  flex  align-middle justify-between items-center z-[100] my-10 ">
-        <Line />
-        <Step selected={currentStepIndex === 0 ? true : false}>
-          <h1>1</h1>
-        </Step>
-        <Step selected={currentStepIndex === 1 ? true : false}>
-          <h1>2</h1>
-        </Step>
-        <Step selected={currentStepIndex === 2 ? true : false}>
-          <h1>3</h1>
-        </Step>
+    <div className="w-full flex justify-center ">
+      <div className="  w-11/12   md:w-5/6   md:justify-center flex justify-start  relative bg-white   rounded-lg my-4  py-4">
+        <div className="relative w-full md:w-1/2 lg-1/4  flex  align-middle justify-between items-center z-10  ">
+          <Step
+            selected={currentStepIndex >= 1 ? true : false}
+            currentIndex={currentStepIndex}
+            index={0}
+          >
+            <div
+              className={`progress rounded-full w-8 h-8  flex items-center justify-center ${
+                currentStepIndex >= 1
+                  ? 'text-white bg-[#F15C5A] '
+                  : 'text-[#F15C5A]'
+              } `}
+            >
+              1
+            </div>
+            {/* {currentStepIndex > 0 && (
+              <Image src="/check.png" width={20} height={20} alt="check icon" />
+            )} */}
+            <h2>Details</h2>
+          </Step>
+          <Line selected={currentStepIndex >= 1} />
+
+          <Step
+            selected={currentStepIndex === 1 ? true : false}
+            currentIndex={currentStepIndex}
+            index={1}
+          >
+            <div
+              className={`progress rounded-full w-8 h-8  flex items-center justify-center ${
+                currentStepIndex >= 2
+                  ? 'text-white bg-[#F15C5A] '
+                  : 'text-[#F15C5A]'
+              } `}
+            >
+              2
+            </div>
+            <h2>Payment</h2>
+          </Step>
+          <Line selected={currentStepIndex === 2} />
+          <Step
+            selected={currentStepIndex >= 3 ? true : false}
+            currentIndex={currentStepIndex}
+            index={2}
+          >
+            <div
+              className={`progress rounded-full w-8 h-8  flex items-center justify-center ${
+                currentStepIndex === 3
+                  ? 'text-white bg-[#F15C5A] '
+                  : 'text-[#F15C5A]'
+              } `}
+            >
+              3
+            </div>
+            <h2>Confirm</h2>
+          </Step>
+        </div>
       </div>
     </div>
   );

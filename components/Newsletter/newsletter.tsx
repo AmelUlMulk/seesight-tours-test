@@ -15,10 +15,10 @@ const Newsletter = () => {
       <div className=" mx-auto">
         <div className="flex items-center bg-[#fd5d5a]  md:px-10 py-16">
           <div className="text-white px-10 flex-none w-full md:w-[50%]">
-            <h1 className="text-5xl font-[600]">
+            <h2 className="text-[18px] sm:text-[26px] lg:text-[36px] font-[600] text-[#333333]">
               Subscribe to our Newsletter!
-            </h1>
-            <p className="text-2xl">
+            </h2>
+            <p className="text-[10px] sm:text-[12px] lg:text-[18px] font-[400] text-[#4F4F4F]">
               Signup to our newsletter and we will make sure to let you know
               whenever we have news!
             </p>

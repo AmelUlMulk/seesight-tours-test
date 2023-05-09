@@ -56,7 +56,7 @@ const Cities = [
   },
   {
     name: 'Newport',
-    slug: 'newport-tours,',
+    slug: 'newport-tours',
     type: 'usa'
   },
   {
@@ -100,7 +100,7 @@ const Cities = [
   },
   {
     name: 'Toronto',
-    slug: 'toronto-tours,',
+    slug: 'toronto-tours',
     type: 'canada'
   },
   {
@@ -115,7 +115,7 @@ const Cities = [
   },
   {
     name: 'Halifax',
-    slug: 'halifax-tours,',
+    slug: 'halifax-tours',
     type: 'canada'
   },
   {
@@ -171,16 +171,16 @@ const SearchCity = () => {
 
   const SubmitHandler = (e: any) => {
     e.preventDefault();
-    const FilterdCity = Cities.find(cty => cty.name === city);
-    if (FilterdCity) {
-      return router.push(FilterdCity.slug);
+
+    const validCity = Cities.find(cty => cty.name === city);
+    if (validCity) {
+      return router.push(validCity.slug);
     } else {
       setCityNameErr('Please search valid city');
     }
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value.length);
     setCity(e.target.value);
     setSuggestedToggle(false);
     setCityNameErr('');
@@ -221,20 +221,18 @@ const SearchCity = () => {
       nextCount = (focusIndex + searchFilter.length - 1) % searchFilter.length;
     if (key == 'Enter') {
       handleSelection(focusIndex);
-      SubmitHandler(e);
     }
     setFocusIndex(nextCount);
   };
-
   return (
     <section
       id="search-filter"
-      className="bg-[#FFFFFF] absolute xxsm:top-[94%] md:top-[92%] lg:top-[92%] bg-transparent w-[100%]"
+      className="bg-[#FFFFFF] absolute xxsm:top-[95%] md:top-[93%] lg:top-[92%] bg-transparent w-[100%]"
     >
       <div
         tabIndex={0}
         onKeyDown={Keyshandler}
-        className=" w-4/5 lg:w-2/5   mx-auto relative z-50 "
+        className=" w-3/4 lg:w-2/5   mx-auto relative z-50 "
         onMouseLeave={() => {
           setSuggestedToggle(false);
           setFilterToggle(false);
@@ -245,11 +243,11 @@ const SearchCity = () => {
             isOpen={suggestedToggle || filterToggle}
             className="flex items-center bg-[#E1E1E1]"
           >
-            <div className="flex items-center w-[65%] xsm:w-[65%] sm:w-[70%] md:w-[76%] xxsm:gap-2 xsm:gap-1 xsm:justify-between md:gap-0 hover:cursor-pointer">
-              <div className="pl-5 pr-3 py-2 flex-none w-[10%] xsm:w-[12%] md:w-[10%] lg:w-[10%]">
+            <div className="flex justify-between items-center w-[70%] md:w-[75%] hover:cursor-pointer">
+              <div className="ml-3 flex-none w-[10%] xsm:w-[10%] sm:w-[5%] lg:w-[4%]">
                 <SearchfilterIcon />
               </div>
-              <div className="bg-[#E1E1E1] flex-none w-[56%] xsm:w-[60%] sm:w-[72%] md:w-[78%] xxsm:px-3 md:px-1 xxsm:rounded-[54px] md:rounded-none">
+              <div className="bg-[#E1E1E1] flex-none w-[56%] xsm:w-[75%] sm:w-[75%] md:w-[80%] lg:w-[80%] pl-2 xxsm:rounded-[54px] md:rounded-none">
                 <input
                   name="search"
                   id="search"
@@ -257,11 +255,11 @@ const SearchCity = () => {
                   onChange={onChange}
                   placeholder=" City"
                   autoComplete="off"
-                  className="py-2  md:py-5 bg-[#E1E1E1] w-[100%] focus:outline-none placeholder:text-[10px] xsm:placeholder:text-[14px] sm:placeholder:text-[16px] placeholder:font-[400] placeholder:text-[#7C7C7C]"
+                  className="py-2  md:py-5 bg-[#E1E1E1] text-[10px] md:text-[16px] lg:text-[18px] w-[100%] focus:outline-none placeholder:text-[12px] md:placeholder:text-[16px] placeholder:font-[400] placeholder:text-[#7C7C7C]"
                 />
               </div>
               <div
-                className={`flex p-4 lg:p-6 justify-center items-center ${
+                className={`flex-none py-2 justify-center items-center w-[10%] lg:w-[8%] ${
                   suggestedToggle && 'rotate-180'
                 } `}
                 onClick={() => {
@@ -274,8 +272,8 @@ const SearchCity = () => {
               </div>
             </div>
 
-            <div className="flex-none w-[35%] xsm:w-[35%] md:w-[24%]">
-              <SearchButtonStyle className="text-[12px] md:text-lg   w-[100%] text-white font-[400] bg-[#F15C5A] xxsm:py-3 md:py-5 xxsm:px-5 xsm:px-8">
+            <div className="flex-none w-[30%] md:w-[25%]">
+              <SearchButtonStyle className="text-[12px] md:text-lg   w-[100%] text-white font-[400] bg-[#F15C5A] xxsm:py-3 md:py-5 lg:px-6">
                 Search
               </SearchButtonStyle>
             </div>
@@ -292,7 +290,7 @@ const SearchCity = () => {
             className="flex  w-[97%] md:w-[76%] shadow-2xl  xxsm:px-3 md:px-1  md:gap-5 lg:gap-6 py-2 bg-[#FFFFFF] rounded-b-[15px] max-h-[250px] xsm:max-h-[300px] absolute top-[100%] overflow-auto z-50"
           >
             <div className=" w-[50%]    px-1 xsm:px-3 sm:px-5">
-              <h1 className="text-[#0B0A0A] text[18px] font-[700]">Canada</h1>
+              <h2 className="text-[#0B0A0A] text[18px] font-[700]">Canada</h2>
               {Cities.filter(cty => cty.type === 'canada').map((cty: any) => (
                 <div id="browsers" key={cty.name}>
                   <div
@@ -305,7 +303,7 @@ const SearchCity = () => {
               ))}
             </div>
             <div className=" flex-none w-[50%]  px-1 xsm:px-3 sm:px-5">
-              <h1 className="text-[#0B0A0A] text[18px] font-[700]">USA</h1>
+              <h2 className="text-[#0B0A0A] text[18px] font-[700]">USA</h2>
               {Cities.filter(cty => cty.type === 'usa').map((cty: any) => (
                 <div id="browsers" key={cty.name}>
                   <div

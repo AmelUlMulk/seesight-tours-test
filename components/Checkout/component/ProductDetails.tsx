@@ -25,7 +25,7 @@ const ProductDetails = ({ open, close, slug }: PRODUCTMODAL) => {
     <div
       className={` transition-all  duration-500 ${
         !open ? 'hidden' : ''
-      }  fixed flex justify-center align-middle w-full   h-full min-h-[50vh] items-center top-0 left-0 z-50 shadow-2xl `}
+      }  fixed flex justify-center align-middle w-full h-full min-h-[50vh] items-center top-0 left-0 z-50 shadow-2xl `}
       onClick={e => {
         close(false);
       }}

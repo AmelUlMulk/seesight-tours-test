@@ -38,7 +38,7 @@ interface MapProps {
   status: string;
   phone: string;
   setThankYou: React.Dispatch<React.SetStateAction<boolean>>;
-  setConfirmationLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  next: () => void;
 }
 
 function Map({
@@ -55,17 +55,23 @@ function Map({
   status,
   phone,
   setThankYou,
-  setConfirmationLoading
+
+  next
 }: MapProps) {
+  const [confirmLoading, setComfirmationLoading] = useState<boolean>(false);
+
   const [pickupCoords, setPickupCoords] = useState<any>(null);
+
   const [autocomplete, setAutocomplete] = useState<any>(null);
+
   const [wrongLocation, setWrongLocation] = useState<Boolean>(false);
+
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: `AIzaSyCK_FbJyCK7eV-1GkrJ0cfsyJIuB0QJ2Ow`,
     libraries: ['places']
   });
-  const router = useRouter();
+
   const checkValidity = (result: any) => {
     let coords = result?.geometry?.location;
     if (pickupBounds) {
@@ -149,13 +155,13 @@ function Map({
     if (pickupLocation.length < 3 || wrongLocation) {
       return;
     }
-    setConfirmationLoading(true);
+    setComfirmationLoading(true);
     const headers = {
       'Content-Type': 'application/json'
     };
 
     const response = await axios.put(
-      `${process.env.NEXT_PUBLIC_PAYMENT_API}//booking/${id}`,
+      `${process.env.NEXT_PUBLIC_PAYMENT_API}/booking/${id}`,
       {
         ...customer,
         location: pickupLocation,
@@ -167,17 +173,14 @@ function Map({
       },
       { headers }
     );
-    setConfirmationLoading(false);
+    setComfirmationLoading(false);
     if (response.status === 200) {
-      console.log('confirmation Res:', response);
       setThankYou(true);
+      next();
     }
   };
-  console.log('pickupBound:', pickupBounds);
-  console.log('pickupCooords:', pickupCoords);
-  console.log('pickuplocation:', pickupLocation);
   return isLoaded ? (
-    <div className="flex flex-col lg:flex-row justify-between">
+    <div className="flex flex-col lg:flex-row justify-between mt-4 items-start ">
       {pickupBounds && (
         <div className="w-full lg:w-[48%]">
           <GoogleMap
@@ -212,14 +215,13 @@ function Map({
         </div>
       )}
 
-      <div className="w-full lg:w-[48%] flex justify-center align-middle  ">
+      <div className="w-full lg:w-[48%] flex justify-center align-middle   ">
         <form
-          action=""
-          className="w-full justify-center align-middle flex-col flex gap-4 "
+          className="w-full justify-center align-middle flex-col flex gap-1 "
           id="confirmation-form"
           onSubmit={e => confirmBooking(e)}
         >
-          <h2 className="text-white  text-3xl  ">Pick Up Location</h2>
+          <h2 className="text-black  text-xl  ">Pick Up Location</h2>
           {wrongLocation && (
             <p className="text-red-500 text-xl ">
               {' '}
@@ -241,7 +243,7 @@ function Map({
           >
             <input
               type="text"
-              className="text-2xl w-full py-2 text-black rounded-bl-lg rounded-tr-lg"
+              className="text-base px-2 w-full py-2 text-black border-2 border-gray-300  "
               placeholder="Search Address"
               value={pickupLocation}
               required
@@ -251,16 +253,39 @@ function Map({
             />
           </Autocomplete>
 
-          <div className="flex flex-col ">
-            <span className="text-white text-3xl mb-4 ">
+          <div className="flex flex-col  ">
+            <span className="text-black text-xl mt-4 ">
               Special Requirements
             </span>
             <textarea
               rows={4}
-              className="text-2xl py-2 text-black rounded-bl-lg rounded-tr-lg"
+              className="text-base px-2 w-full py-2 text-black border-2 border-gray-300"
               onChange={e => setSpecialRequierments(e.target.value)}
               value={specialRequierment}
             />
+          </div>
+          <div className="flex justify-between mt-6 ">
+            <button
+              className=" bg-[#F15C5A]  py-3 rounded-md w-1/3 text-white   "
+              onClick={e => {
+                e.preventDefault();
+                setThankYou(true);
+              }}
+            >
+              Confirm Later
+            </button>
+
+            <button
+              className="border-2 border-[#F15C5A]  py-3 rounded-md w-1/3  "
+              type="submit"
+              form="confirmation-form"
+            >
+              {confirmLoading ? (
+                <span className="animate-pulse">Processing</span>
+              ) : (
+                'Confirm'
+              )}
+            </button>
           </div>
         </form>
       </div>

@@ -11,20 +11,18 @@ type WrapperProps = {
 const WRAPPER = styled.div`
   position: relative;
   z-index: 50;
-  padding: 0px 146px;
+  padding: 0px 20%;
   padding-bottom: 0;
   @media (max-width: 1500px) {
     padding: 10px 50px;
     padding-bottom: 0;
   }
   @media (max-width: 700px) {
-    padding: 70px 10px;
+    padding: 10px 10px;
     padding-bottom: 0;
   }
   /* padding-top: 100px !important; */
   padding-bottom: 0;
-  display: flex;
-  flex-direction: column;
   width: 100%;
   min-height: 60vh;
 `;
@@ -44,20 +42,9 @@ const SectionWrapper = ({ title, children, slug, name }: WrapperProps) => {
   }, [isScrolling]);
   return (
     <WRAPPER onScroll={() => setProductDetails(false)}>
-      <ProductDetails
-        open={productDetails}
-        close={setProductDetails}
-        slug={slug ? slug : ''}
-      />
-      {slug && (
-        <h2
-          className=" text-xl   md:text-2xl cursor-pointer  mt-8 text-white mb-2"
-          onClick={() => setProductDetails(true)}
-        >
-          {name}
-        </h2>
-      )}
-      <h1 className="md:text-3xl text-2xl  text-white mb-8">{title}</h1>
+      <h2 className=" text-start    text-xl  md:text-2xl  my-2 font-semibold ">
+        {title}
+      </h2>
       {children}
     </WRAPPER>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import styled from 'styled-components';
 import { gql } from '@apollo/client';
 import { BLOG_PAGE, BLOG_PAGE_INTERFACE } from '../../api/blogPage';
@@ -6,6 +7,9 @@ import client from '../../apollo-client';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 
+import BlogHero from '../../components/BlogHero/BlogHero';
+import { useRouter } from 'next/router';
+import { BLOGS_PAGE } from '../../api/blogsPage';
 interface Params {
   params: {
     slug: string;
@@ -167,6 +171,10 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: Params) {
   const { slug } = params;
 
+  const { data: blogsData } = await client.query<BLOG_PAGE_INTERFACE>(
+    BLOGS_PAGE
+  );
+
   const { data } = await client.query<BLOG_PAGE_INTERFACE>({
     query: BLOG_PAGE,
     variables: {
@@ -176,19 +184,21 @@ export async function getStaticProps({ params }: Params) {
 
   return {
     props: {
-      blogs: data.blogs
+      blogs: data.blogs,
+      blogsPage: blogsData?.blogsPage
     }
   };
 }
 
-const Blog = ({ blogs }: BLOG_PAGE_INTERFACE) => {
+const Blog = ({ blogsPage, blogs }: BLOG_PAGE_INTERFACE) => {
+  const router = useRouter();
   if (!blogs) {
     return <h2>Content not available</h2>;
   }
   const filteredContent = blogs[0].content
     ?.replace(/^### (.*$)/gim, '<h3>$1</h3>')
     ?.replace(/^## (.*$)/gim, '<h2>$1</h2>')
-    ?.replace(/^# (.*$)/gim, '<h1>$1</h1>')
+    ?.replace(/^# (.*$)/gim, '<h2>$1</h2>')
     ?.replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>')
     ?.replace(/\*\*(.*)\*\*/gim, '<b>$1</b>')
     ?.replace(/\*(.*)\*/gim, '<i>$1</i>')
@@ -197,23 +207,39 @@ const Blog = ({ blogs }: BLOG_PAGE_INTERFACE) => {
     ?.replace(/\n$/gim, '<br />')
     ?.trim();
   return (
-    <div>
-      {/*  <BlogHero
-        title={blogs[0].pageTitle}
-        snippet={blogs[0].subheader}
-        media={blogs[0].heroMedia[0].url}
-        publicationDate={blogs[0].publicationDate}
-        author={blogs[0].author}
-      /> */}
-      <BLOGPAGE>
-        <div className="w-4/6 flex-col shadow-lg shadow-gray-700 px-10 py-10 ">
-          <h2>{blogs[0].pageTitle}</h2>
-          <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-            {filteredContent}
-          </ReactMarkdown>
-        </div>
-      </BLOGPAGE>
-    </div>
+
+    <>
+      <Head>
+        <title>{blogsPage?.pageTitle ? blogsPage?.pageTitle : ''}</title>
+        <meta
+          property="og:description"
+          content={blogsPage?.metaDescription}
+          key="metadescription"
+        />
+        <link
+          href={`${blogsPage?.canonical}/${router.query.slug}`}
+          rel="canonical"
+          key="canonical"
+        />
+      </Head>
+      <div>
+        <BlogHero
+          title={blogs[0].pageTitle}
+          snippet={blogs[0].subheader}
+          media={blogs[0].heroMedia[0].url}
+          publicationDate={blogs[0].publicationDate}
+          author={blogs[0].author}
+        />
+        <BLOGPAGE>
+          <div className="w-4/6 flex-col shadow-lg shadow-gray-700 px-10 py-10 ">
+            <h2>{blogs[0].pageTitle}</h2>
+            <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+              {filteredContent}
+            </ReactMarkdown>
+          </div>
+        </BLOGPAGE>
+      </div>
+    </>
   );
 };
 

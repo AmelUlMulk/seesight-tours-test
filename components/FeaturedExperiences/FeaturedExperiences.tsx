@@ -114,7 +114,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
         : city === 'All Cities'
         ? featuredExp[activeNav]
         : [];
-    if (cityFilterLoading) {
+    if (city !== 'All Cities' && cityFilterLoading) {
       return <h3>Loading....</h3>;
     }
     if (filteredProduct && filteredProduct.length === 0) {
@@ -175,10 +175,10 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
               onClick={() => setShowAll(true)}
               className="cursor-pointer flex items-center"
             >
-              {/* <h1 className="text-sky-500 text-3xl font-[600]">{`See ${selectedNav} (${selectNum})`}</h1> */}
-              <h1 className="text-[20px] text-[#6D6D6D] font-[400] cursor-pointer">
+              {/* <h2 className="text-sky-500 text-3xl font-[600]">{`See ${selectedNav} (${selectNum})`}</h2> */}
+              <h2 className="text-[20px] text-[#6D6D6D] font-[400] cursor-pointer">
                 See More
-              </h1>
+              </h2>
               {/* <ChevronRightIcon className="text-5xl text-sky-500 pt-2" /> */}
             </div>
           )}
@@ -189,9 +189,9 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
       return (
         <div className=" lg:px-36 2xl:px-60 flex justify-end mt-10 ">
           <div onClick={() => setShowAll(false)} className="cursor-pointer">
-            <h1 className="text-[20px] text-[#6D6D6D] font-[400] cursor-pointer">
+            <h2 className="text-[20px] text-[#6D6D6D] font-[400] cursor-pointer">
               Show Less
-            </h1>
+            </h2>
           </div>
         </div>
       );
@@ -275,7 +275,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
         id="feature_experiences_cards"
         className=" mt-2 lg:mt-3 mx-10 sm:mx-20 md:mx-20 lg:mx-32 2xl:mx-40 bg-[#F5F5F5]"
       >
-        <div className="grid xxsm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-5">
+        <div className="grid xxsm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6">
           {displayProduct()}
         </div>
       </div>
