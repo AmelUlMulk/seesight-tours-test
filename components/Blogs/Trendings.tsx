@@ -17,7 +17,7 @@ interface CardProps {
 }
 const StyleDiv = styled.div<CardProps>`
   @media (min-width: 768px) {
-    width: ${props => (props.large ? '62%' : '30.6%')} !important;
+    width: ${props => (props.large ? '62.5%' : '30.6%')} !important;
   }
 `;
 const TrendingBlogs = ({
@@ -55,7 +55,7 @@ const TrendingBlogs = ({
         </div>
       )}
       <div className="md:flex md:gap-0 mt-10">
-        <div className="flex-none md:w-[80%]">
+        <div className="flex-none  md:w-[75%] lg:w-[80%]">
           <div className="flex flex-wrap flex-col md:flex-row gap-3">
             {blogs
               .slice(9, mediaQuery ? 12 : 14)
@@ -67,7 +67,7 @@ const TrendingBlogs = ({
                     height={400}
                     quality={100}
                     alt={blog?.heroMedia[0].url}
-                    className="h-[250px] md:h-[280px] lg:h-[320px] xl:h-[380px] md:w-full rounded-[3px]"
+                    className="min-h-[230px] md:h-[100%] w-full rounded-[3px]"
                   />
                   <div className="absolute top-[70%] left-[5%] text-white">
                     <p className="text-xs font-light">{blog.publicationDate}</p>

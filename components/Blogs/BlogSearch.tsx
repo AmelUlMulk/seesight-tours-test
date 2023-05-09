@@ -61,6 +61,7 @@ const BlogSearch = ({
   };
 
   const handleClick = (ctgSlug: string) => {
+    setCurrentPage(0);
     const filteredData =
       ctgSlug !== undefined
         ? blogs.filter((blog: Record<string, any>) => {
@@ -70,7 +71,6 @@ const BlogSearch = ({
             if (isPresent.length > 0) return blog;
           })
         : blogs;
-    if (filteredData) setCurrentPage(0);
     setFilterBlog(filteredData);
   };
 
@@ -124,6 +124,7 @@ const BlogSearch = ({
               block: 'start'
             });
             handleClick('');
+            setCurrentPage(0);
           }}
         >
           Show All

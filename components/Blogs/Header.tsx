@@ -16,27 +16,29 @@ interface SliderObj {
 
 const sliderObj: SliderObj = {
   slid1: 0,
-  slide2: 1,
-  slider3: 2
+  slide2: 3,
+  slider3: 6
 };
 
 const BlogsHeader = ({ blogs }: IProps) => {
   const [sliderCount, setSliderCount] = useState(0);
-  const mediaQuery = useMediaQuery(1024);
-
+  const mediaQuery1 = useMediaQuery(1024);
+  const mediaQuery2 = useMediaQuery(768);
+  const sliderLimit = mediaQuery1 ? (mediaQuery2 ? 1 : 2) : 3;
+  console.log(sliderCount);
   return (
     <div
       id="blog-header"
-      className="w-5/6 mx-auto flex relative -mt-20 z-[500]"
+      className="w-5/6 mx-auto flex justify-center  relative -mt-20 z-[500]"
     >
-      <div id="latest" className="align-top">
-        <h2 className="text-white text-2xl w-[20%]">Latest</h2>
+      <div id="latest" className="align-top w-[15%]">
+        <h2 className="text-white text-2xl ">Latest</h2>
       </div>
-      <div className="w-3/5 items-start  mx-auto grid grid-cols-3 gap-5 ">
+      <div className="w-1/2 md:w-4/5 lg:w-3/4 items-start  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
         {blogs
-          .slice(sliderCount, sliderCount + 3)
+          .slice(sliderCount, sliderCount + sliderLimit)
           .map((blog: Record<string, any>, index: number) => (
-            <div key={index}>
+            <div key={index} className="h-full">
               <Link href={`/blog/${blog.slug}`}>
                 <div>
                   <Image
@@ -45,20 +47,20 @@ const BlogsHeader = ({ blogs }: IProps) => {
                     height={300}
                     quality={100}
                     alt={blog.heroMedia[0].url}
-                    className="min-h-[170px] rounded-sm object-cover"
+                    className="h-[200px] rounded-md "
                   />
                 </div>
-                <p className="text-[#495057] text-xs font-light">
+                <p className="text-[#495057] text-xs font-light mt-3">
                   {blog.publicationDate}
                 </p>
-                <h3 className="text-base font-medium">{blog.header}</h3>
-                <p className="text-[#495057] text-xs font-light">{`By ${blog.author}`}</p>
+                <h3 className="text-base font-medium mt-3">{blog.header}</h3>
+                <p className="text-[#495057] text-xs font-light mt-3">{`By ${blog.author}`}</p>
               </Link>
             </div>
           ))}
       </div>
-      <div className="flex items-end pb-16 w-[20%]">
-        <div className="text-black mr-5 pb-2">
+      <div id="slider-btn" className="flex items-center   w-[20%] pl-3 lg:pl-5">
+        <div className="text-black mr-2 lg:mr-5 pb-2">
           <Image
             src="/Divider Line.svg"
             width={40}
@@ -66,22 +68,18 @@ const BlogsHeader = ({ blogs }: IProps) => {
             alt="divider line"
           />
         </div>
-        <div id="slider" className="items-end grid grid-cols-3 gap-5">
+        <div id="slider" className="items-end grid grid-cols-3 gap-3">
           {Object.keys(sliderObj).map((key: string, index: number) => (
             <button
               key={key}
-              className={`text-[#34373a] ${
+              className={` text-xs ${
                 sliderCount === sliderObj[key as keyof SliderObj]
-                  ? 'text-2xl'
-                  : 'text-xs'
-              } ${
-                sliderCount === sliderObj[key as keyof SliderObj]
-                  ? 'font-bold'
-                  : 'font-light'
-              } text-[#C4C4C4]`}
+                  ? 'font-bold scale-[2] text-[#495057] '
+                  : 'font-light  text-[#C4C4C4]'
+              } transition-transform duration-500 ease-in`}
               onClick={() => setSliderCount(sliderObj[key as keyof SliderObj])}
             >
-              {`0${sliderObj[key as keyof SliderObj] + 1}`}
+              {`0${index + 1}`}
             </button>
           ))}
         </div>
