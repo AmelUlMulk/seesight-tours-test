@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Autoplay, Navigation, Lazy, A11y } from 'swiper';
+import SwiperCore, { Autoplay, Lazy, A11y } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/lazy';
 import 'swiper/css/a11y';
@@ -95,8 +95,8 @@ const CitiesSwiper = ({ data }: IProps) => {
                   <Image
                     src={optimizeImageUrl(city?.city?.cardMedia[0]?.url)}
                     alt={city?.city?.cardMedia[0]?.alt}
-                    width={200}
-                    height={200}
+                    width={150}
+                    height={150}
                     quality={70}
                     className="xxsm:w-[90%] sm:w-[100%] sm:h-[100%] object-cover rounded-lg hover:scale-110 ease-in-out duration-200"
                   />

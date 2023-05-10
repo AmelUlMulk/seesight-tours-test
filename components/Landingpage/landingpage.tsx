@@ -1,4 +1,5 @@
 import OurCities from '../FeaturedCities/OurCities';
+import FeaturedExperiences from '../FeaturedExperiences/FeaturedExperiences';
 
 import Trustbar from '../Trust/Trustbar';
 import LandingPageInfo from './components/landingpaginfo';
@@ -12,13 +13,6 @@ const Testimonials = dynamic(() => import('./components/testimonials'), {
 const OurGuides = dynamic(() => import('../Guides/guides'), {
   ssr: false
 });
-
-const FeaturedExperiences = dynamic(
-  () => import('../FeaturedExperiences/FeaturedExperiences'),
-  {
-    ssr: false
-  }
-);
 
 interface IProps {
   featuredExp: any;

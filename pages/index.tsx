@@ -7,12 +7,9 @@ import { FEATURED_EXPERIENCES_INTERFACE } from '../api/featuredexperiences';
 import { HOMEPAGE, HOMEPAGEINTERFACE } from '../api/homePage';
 import { GUIDESINTERFACE } from '../api/commonInterfaces';
 import { GUIDES } from '../api/guides';
-
 import Newsletter from '../layouts/Newsletter/Newsletter';
-
 import { PaxProivder } from '../utils/checkoutContext';
 import LandingPage from '../components/Landingpage/landingpage';
-
 import CitiesModal from '../components/CitiesModal.tsx';
 interface IProps {
   featuredExp: any;
