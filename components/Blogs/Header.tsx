@@ -25,7 +25,6 @@ const BlogsHeader = ({ blogs }: IProps) => {
   const mediaQuery1 = useMediaQuery(1024);
   const mediaQuery2 = useMediaQuery(768);
   const sliderLimit = mediaQuery1 ? (mediaQuery2 ? 1 : 2) : 3;
-  console.log(sliderCount);
   return (
     <div
       id="blog-header"
@@ -40,7 +39,7 @@ const BlogsHeader = ({ blogs }: IProps) => {
           .map((blog: Record<string, any>, index: number) => (
             <div key={index} className="w-full h-full">
               <Link href={`/blog/${blog.slug}`}>
-                <div className="h-1/2">
+                <div className="h-3/5 md:h-1/2">
                   <Image
                     src={blog.heroMedia[0].url}
                     width={550}

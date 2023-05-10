@@ -59,9 +59,6 @@ const Blogs = ({ blogsPage, blogs, blogCategories }: BLOG_PAGE_INTERFACE) => {
   const [filterBlogs, setFilterBlogs] =
     useState<Array<Record<string, unknown>>>(blogs);
   const blogsRef = useRef<HTMLDivElement>(null);
-  console.log('blogs', blogs);
-  // console.log('blogs', blogsPage);
-  // console.log('blogs', blogCategories);
   return (
     <>
       <Head>

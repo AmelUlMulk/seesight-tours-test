@@ -6,7 +6,6 @@ const BLOG_PAGE = gql`
     blogs(where: { slug: $slug }) {
       header
       subheader
-      name
       slug
       pageTitle: page_title
       metaDescription: meta_description
@@ -72,7 +71,6 @@ interface BLOG_PAGE_INTERFACE {
   blogs: [
     {
       header: string;
-      name: string;
       subheader: string;
       slug: string;
       pageTitle: string;

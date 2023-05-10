@@ -14,7 +14,7 @@ interface IProps {
 }
 const BlogCards = styled.div`
   max-height: 600px;
-  min-height: 500px;
+  min-height: 450px;
 `;
 const StyledImage = styled(Image)`
   z-index: 0;
@@ -52,9 +52,14 @@ const DisplayBlogs = ({
     setCurrentPage(selected);
     blogsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   };
-  console.log('filterBlogs:', filterBlogs);
   return (
     <>
+      {!filterBlogs ||
+        (filterBlogs.length === 0 && (
+          <div className="w-5/6 mx-auto">
+            <h4 className=" text-base font-medium">No Blogs Found</h4>
+          </div>
+        ))}
       <div className=" flex justify-center ">
         <div className="grid w-5/6 grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {filterBlogs &&
@@ -72,12 +77,12 @@ const DisplayBlogs = ({
                       width={500}
                       height={200}
                     />
-                    <div className="px-6 py-4 relative">
+                    <div className="px-3 py-4 relative">
                       <Link href={`/blog/${blog.slug}`}>
-                        <div className="font-bold text-base lg:text-xl mb-2 px-2 2xl:px-5">
+                        <div className="font-bold text-base lg:text-xl mb-2  ">
                           {blog.header}
                         </div>
-                        <BlogSnippet className="text-gray-700 text-base px-2 2xl:px-5 text-justify py-2">
+                        <BlogSnippet className="text-gray-700 text-base  text-justify py-2 leading-7">
                           {blog.snippet}
                         </BlogSnippet>
                         <div className="font-bold absolute -top-10 bg-gray-900 bg-opacity-30 text-white right-0 px-10 py-2 ">

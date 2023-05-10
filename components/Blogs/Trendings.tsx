@@ -38,8 +38,8 @@ const TrendingBlogs = ({
       {mediaQuery && (
         <Image
           src="/SearchBlogMenu.svg"
-          width={30}
-          height={30}
+          width={25}
+          height={25}
           alt="searchBlogIcons"
           onClick={() => setToggleSearch(!toggleSearch)}
           className="absolute top-0 right-0 "
@@ -71,9 +71,9 @@ const TrendingBlogs = ({
                     alt={blog?.heroMedia[0].url}
                     className="md:min-h-[230px] md:h-[100%] md:w-full rounded-[3px]"
                   />
-                  <div className="absolute top-[70%] left-[5%] text-white">
+                  <div className="absolute bottom-[10%] left-[5%] text-white">
                     <p className="text-xs font-light">{blog.publicationDate}</p>
-                    <h3 className="text-base font-medium mt-5">
+                    <h3 className="text-sm lg:text-base font-medium mt-2">
                       {blog.header}
                     </h3>
                   </div>
