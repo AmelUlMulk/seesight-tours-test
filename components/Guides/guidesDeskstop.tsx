@@ -17,6 +17,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/thumbs';
 import 'swiper/css/effect-fade';
 import NextIcon from '../../assets/svg/nexticon.svg';
+import { optimizeImageUrl } from '../../utils/videoLinkOptimize';
 SwiperCore.use([Autoplay, Navigation, Lazy, A11y, EffectFade, Controller]);
 interface IProps {
   guidesData: any;
@@ -124,7 +125,7 @@ const GuidesDesk = ({ guidesData }: IProps) => {
                       className="md:min-w-[120px] md:min-h-[85px] lg:min-w-[85px] lg:min-h-[80px] xl:min-w-[85px] xl:min-h-[87px] 2xl:min-w-[115px] 2xl:min-h-[107px] w-[100%] h-[100%] relative rounded-[5px] 2xl:mt-3"
                     >
                       <Image
-                        src={guide?.professional[0]?.url}
+                        src={optimizeImageUrl(guide?.professional[0]?.url)}
                         fill
                         alt={guide?.professional[0]?.alt}
                         className="object-cover rounded-[5px]"

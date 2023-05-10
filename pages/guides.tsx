@@ -6,7 +6,6 @@ import { GUIDES_PAGE, GUIDES_PAGE_INTERFACE } from '../api/guidesPage';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { Adventure } from '../layouts/AdventureSection/Adventure';
-import AdventureOne from '../public/Adventure.jpg';
 
 interface GuideProps {
   background: boolean;
@@ -140,13 +139,13 @@ const Guides = ({ guidesPage }: GUIDES_PAGE_INTERFACE) => {
           </SeeMoreButton>
         </div>
       </section>
-      <Adventure
+      {/*  <Adventure
         title={'Ready for an adventure?'}
         snippet={
           'The best small group tours operating across Canada and the United States'
         }
         media={AdventureOne}
-      />
+      /> */}
     </>
   );
 };

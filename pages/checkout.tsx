@@ -13,7 +13,7 @@ import Head from 'next/head';
 import Details from '../components/Checkout/component/Details';
 import PaymentSection from '../components/Checkout/component/Payment';
 import Router from 'next/router';
-import { PaxContext } from '../utils/checkoutContext';
+import { PaxContext, PaxProivder } from '../utils/checkoutContext';
 
 const ButtonDiv = styled.div`
   padding: 50px 20%;
@@ -148,6 +148,7 @@ const Checkout = () => {
       <Head>
         <title>{`Checkout`}</title>
       </Head>
+
       <div className=" h-auto w-full bg-cover bg-no-repeat bg-center relative bg-white ">
         {thankyou && (
           <Thankyou open={thankyou} close={setThankYou} bookingId={bookingId} />

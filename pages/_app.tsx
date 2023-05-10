@@ -1,16 +1,18 @@
 import '../styles/globals.css';
-import 'react-calendar/dist/Calendar.css';
+
 import type { AppProps } from 'next/app';
 import NavBar from '../layouts/NavBar';
 import Footer from '../layouts/Footer/footer';
-import { ApolloProvider } from '@apollo/client';
-import client from '../apollo-client';
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import RecentConfirmBookings from '../components/Notifications/recentBookings';
 import Script from 'next/script';
 import { PaxProivder } from '../utils/checkoutContext';
-
+import dynamic from 'next/dynamic';
+const AppoloProvider = dynamic(() => import('../utils/dynamicAppolo'), {
+  ssr: false
+});
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -19,8 +21,10 @@ export default function App({ Component, pageProps }: AppProps) {
           <Script
             strategy="lazyOnload"
             src="https://www.googletagmanager.com/gtag/js?id=UA-8671114-2"
+            defer
+            async
           />
-          <Script id="google-analytics" strategy="lazyOnload">
+          <Script id="google-analytics" strategy="lazyOnload" defer async>
             {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -33,13 +37,13 @@ export default function App({ Component, pageProps }: AppProps) {
         </>
       )}
 
-      <ApolloProvider client={client}>
+      <AppoloProvider>
         <NavBar />
         <PaxProivder>
           <Component {...pageProps} />
         </PaxProivder>
         <Footer />
-        <RecentConfirmBookings />
+        {/* <RecentConfirmBookings /> */}
         <ToastContainer
           position="bottom-right"
           autoClose={5000}
@@ -52,7 +56,7 @@ export default function App({ Component, pageProps }: AppProps) {
           pauseOnHover
           limit={1}
         />
-      </ApolloProvider>
+      </AppoloProvider>
     </>
   );
 }

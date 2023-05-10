@@ -47,10 +47,9 @@ const LandingPageInfo = () => {
           className="relative md:flex-none w-[100%] h-[320px] md:w-[50%] md:h-[300px] lg:h-[inherit] md:my-auto lg:m-0"
         >
           <Image
-            src={'/Rectangle 6.png'}
-            // width={833}
-            // height={637}
-            fill
+            src="https://res.cloudinary.com/see-sight-tours/image/upload/v1681321597/strapi/1_Hero_Image_9fb60136fc.jpg"
+            width={833}
+            height={637}
             alt="Hornblower Niagara Cruises"
             className="object-cover rounded-lg"
           />

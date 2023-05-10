@@ -91,7 +91,27 @@ const PageHero = ({
           }`}
         ></div>
         {!video && <StyledImage alt="guidesImage" src={media} layout="fill" />}
-        {video && <StyledVideo src={media} muted loop autoPlay playsInline />}
+        {video && (
+          <>
+            <StyledVideo
+              src={media}
+              muted
+              loop
+              autoPlay
+              playsInline
+              className="hidden xl:flex "
+            />
+
+            <StyledImage
+              alt="guidesImage"
+              src="https://res.cloudinary.com/see-sight-tours/image/upload/w_500/v1682684366/strapi/image1_f0cf2fc9c5.webp"
+              layout="fill"
+              className="flex xl:hidden "
+              priority={true}
+              quality={70}
+            />
+          </>
+        )}
         <div className="PageHero_container flex flex-col ">
           <div className="font-bold flex-col  text-white text-center w-full ">
             <h1 className="text-2xl sm:text-4xl lg:text-6xl text-white  ">

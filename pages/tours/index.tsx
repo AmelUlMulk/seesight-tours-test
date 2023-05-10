@@ -25,6 +25,7 @@ import {
 import { useQuery } from '@apollo/client';
 import Head from 'next/head';
 import CitiesModal from '../../components/CitiesModal.tsx';
+import { PaxProivder } from '../../utils/checkoutContext';
 
 const Tours = ({ featuredExp, citydropdown, cities, dayTour }: IProps) => {
   return (
@@ -38,6 +39,7 @@ const Tours = ({ featuredExp, citydropdown, cities, dayTour }: IProps) => {
         />
         <link href={dayTour?.canonical} rel="canonical" key="canonical" />
       </Head>
+
       <section id="hero" className="relative">
         <PageHero
           title={'The Best Way to See The World'}

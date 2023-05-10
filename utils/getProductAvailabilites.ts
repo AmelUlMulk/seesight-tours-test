@@ -36,6 +36,6 @@ export const fetchProductAvailabilities = async ({
       }
     }
   );
-  console.log('the availabilities', productAvailabities);
+
   return productAvailabities;
 };

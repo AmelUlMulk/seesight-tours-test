@@ -4,6 +4,7 @@ import { CityInterface } from '../../api/citiesPage';
 import CardSnippet from '../CardSnippet/CardSnippet';
 import Image from 'next/image';
 import styled from 'styled-components';
+import { optimizeImageUrl } from '../../utils/videoLinkOptimize';
 interface CityCard extends CityInterface {
   index: number;
 }
@@ -48,7 +49,7 @@ const CityCard = ({ city, index }: CityCard) => {
         >
           <Link href={city?.slug}>
             <Image
-              src={city?.cardMedia[0]?.url}
+              src={optimizeImageUrl(city?.cardMedia[0]?.url)}
               width={500}
               height={340}
               quality={100}

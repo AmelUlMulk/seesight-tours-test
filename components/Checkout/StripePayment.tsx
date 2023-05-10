@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AVAILABILITY, CustomerInfo, PASSENGERPAX } from '../../pages/checkout';
 import dayjs from 'dayjs';
-import { useStripe, useElements, Elements } from '@stripe/react-stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import PaymentForm from './component/PaymentForm';
 export interface FormProps {

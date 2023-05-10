@@ -8,6 +8,8 @@ import SwiperCore, { Autoplay, Navigation, Lazy, A11y } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/lazy';
 import 'swiper/css/a11y';
+
+import { optimizeImageUrl } from '../../utils/videoLinkOptimize';
 SwiperCore.use([Autoplay, Lazy, A11y]);
 interface IProps {
   data: [];
@@ -67,7 +69,7 @@ const CitiesSwiper = ({ data }: IProps) => {
       spaceBetween={20}
       grabCursor
       lazy={{
-        loadPrevNext: true,
+        loadPrevNext: false,
         checkInView: true
       }}
       breakpoints={{
@@ -91,12 +93,11 @@ const CitiesSwiper = ({ data }: IProps) => {
               >
                 <Link href={city?.city.slug}>
                   <Image
-                    src={city?.city?.cardMedia[0]?.url}
+                    src={optimizeImageUrl(city?.city?.cardMedia[0]?.url)}
                     alt={city?.city?.cardMedia[0]?.alt}
-                    // width={400}
-                    // height={400}
-                    quality={100}
-                    fill
+                    width={200}
+                    height={200}
+                    quality={70}
                     className="xxsm:w-[90%] sm:w-[100%] sm:h-[100%] object-cover rounded-lg hover:scale-110 ease-in-out duration-200"
                   />
                 </Link>

@@ -1,11 +1,24 @@
 import OurCities from '../FeaturedCities/OurCities';
-import FeaturedExperiences from '../FeaturedExperiences/FeaturedExperiences';
-import OurGuides from '../Guides/guides';
-import Newsletter from '../Newsletter/newsletter';
-import SearchCity from '../Searchbar/searchCity';
+
 import Trustbar from '../Trust/Trustbar';
 import LandingPageInfo from './components/landingpaginfo';
-import Testimonials from './components/testimonials';
+import dynamic from 'next/dynamic';
+
+const Newsletter = dynamic(() => import('../Newsletter/newsletter'));
+const Testimonials = dynamic(() => import('./components/testimonials'), {
+  ssr: false
+});
+
+const OurGuides = dynamic(() => import('../Guides/guides'), {
+  ssr: false
+});
+
+const FeaturedExperiences = dynamic(
+  () => import('../FeaturedExperiences/FeaturedExperiences'),
+  {
+    ssr: false
+  }
+);
 
 interface IProps {
   featuredExp: any;

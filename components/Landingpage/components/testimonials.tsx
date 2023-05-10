@@ -6,22 +6,17 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 SwiperCore.use([Navigation]);
-import NextslideIcon from '../../../assets/svg/nextslideicon.svg';
-import PrevslideIcon from '../../../assets/svg/prevslideicon.svg';
+
 import { useQuery } from '@apollo/client';
 import { TESTIMONIALS, TESTIMONIAL_INTERFACE } from '../../../api/testimonials';
-import logo from '../../../assets/svg/logo.svg';
-import GoogleIcon from '../../../assets/svg/Google.svg';
-import TripAdvisorLogo from '../../../assets/svg/Trip Advisor.svg';
-import ExpediaLogo from '../../../assets/svg/Expedia.svg';
-import VIATORICON from '../../../assets/svg/Viator.svg';
+
 const TestimonialStyle = styled.section`
   background-image: linear-gradient(
       to top,
       rgba(0, 0, 0, 0.532),
       rgba(43, 43, 43, 0.041)
     ),
-    url('/testimonial.png');
+    url('https://res.cloudinary.com/see-sight-tours/image/upload/t_desktop/v1682684366/strapi/image1_f0cf2fc9c5.webp');
   border-radius: 10px;
 `;
 export const TextShadow = styled.h1`

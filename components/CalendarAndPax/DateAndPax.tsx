@@ -4,7 +4,7 @@ import Calendar from 'react-calendar';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import Image from 'next/image';
-import axios from 'axios';
+
 import { fetchProductAvailabilities } from '../../utils/getProductAvailabilites';
 import { useRouter } from 'next/router';
 import { PaxContext } from '../../utils/checkoutContext';

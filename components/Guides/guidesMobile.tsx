@@ -17,14 +17,14 @@ import 'swiper/css/pagination';
 import 'swiper/css/thumbs';
 import 'swiper/css/effect-fade';
 import NextIcon from '../../assets/svg/nexticon.svg';
+import { optimizeImageUrl } from '../../utils/videoLinkOptimize';
 SwiperCore.use([Autoplay, Navigation, Lazy, A11y, EffectFade, Controller]);
 interface IProps {
   guidesData: any;
 }
 const GuidesMobile = ({ guidesData }: IProps) => {
   const [controlledSwiper, setControlledSwiper] = useState<any>({});
-  const [firstSwiper, setFirstSwiper] = useState<any>(null);
-  const [secondSwiper, setSecondSwiper] = useState<any>(null);
+
   if (!guidesData) {
     return <div>Loading...</div>;
   }
@@ -49,6 +49,7 @@ const GuidesMobile = ({ guidesData }: IProps) => {
           effect="fade"
           fadeEffect={{ crossFade: true }}
           className="xxsm:max-h-[370px] xsm:max-h-[390px] sm:max-h-[500px] h-[100%] !overflow-y-auto"
+          speed={10000}
         >
           {guidesData &&
             guidesData.length > 0 &&
@@ -60,8 +61,9 @@ const GuidesMobile = ({ guidesData }: IProps) => {
                 >
                   <div className="relative w-[90px] xxsm:h-[100px]  sm:w-[170px] sm:h-[180px] float-left mr-8 mb-[16px] ">
                     <Image
-                      src={guide?.professional[0]?.url}
-                      fill
+                      src={optimizeImageUrl(guide?.professional[0]?.url)}
+                      width={200}
+                      height={200}
                       alt={guide?.professional[0]?.alt}
                       className=" ml-5 mt-5 border-[7px] xxsm:h-[130px] xsm:h-[150px] sm:h-[100%] border-[#FFFFFF] rounded-[5px] shadow-smallguideimageBox"
                     />
@@ -119,8 +121,9 @@ const GuidesMobile = ({ guidesData }: IProps) => {
                       className="xxsm:w-[50px] xxsm:h-[43px] xsm:w-[57px] xsm:h-[50px] sm:w-[55px] sm:h-[65px] relative overflow-hidden rounded-[5px]"
                     >
                       <Image
-                        src={guide?.professional[0]?.url}
-                        fill
+                        src={optimizeImageUrl(guide?.professional[0]?.url)}
+                        width={200}
+                        height={200}
                         alt={guide?.professional[0]?.alt}
                         className="object-cover rounded-[5px] w-[100%] h-[80%]"
                       />
