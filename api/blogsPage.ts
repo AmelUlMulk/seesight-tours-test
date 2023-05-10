@@ -70,7 +70,6 @@ interface BLOG_PAGE_INTERFACE {
     {
       header: string;
       slug: string;
-      author: string;
       snippet: string;
       publicationDate: string;
       author: string;

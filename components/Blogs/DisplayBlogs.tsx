@@ -25,6 +25,13 @@ const StyledImage = styled(Image)`
   justify-content: center;
   object-fit: cover;
 `;
+const BlogSnippet = styled.p`
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+`;
+
 const DisplayBlogs = ({
   filterBlogs,
   currentPage,
@@ -67,12 +74,12 @@ const DisplayBlogs = ({
                     />
                     <div className="px-6 py-4 relative">
                       <Link href={`/blog/${blog.slug}`}>
-                        <div className="font-bold text-xl mb-2 px-5">
+                        <div className="font-bold text-base lg:text-xl mb-2 px-2 2xl:px-5">
                           {blog.header}
                         </div>
-                        <p className="text-gray-700 text-base px-5 text-justify py-2">
+                        <BlogSnippet className="text-gray-700 text-base px-2 2xl:px-5 text-justify py-2">
                           {blog.snippet}
-                        </p>
+                        </BlogSnippet>
                         <div className="font-bold absolute -top-10 bg-gray-900 bg-opacity-30 text-white right-0 px-10 py-2 ">
                           {blog?.publicationDate &&
                             dayjs(blog.publicationDate).format('MMM D, YYYY')}

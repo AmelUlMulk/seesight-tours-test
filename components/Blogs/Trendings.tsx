@@ -32,15 +32,17 @@ const TrendingBlogs = ({
   const mediaQuery = useMediaQuery(768);
   return (
     <div id="trending" className="w-5/6 mx-auto relative mt-16">
-      <h2 className="text-4xl font-semibold text-start">Trending</h2>
+      <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold text-start">
+        Trending
+      </h2>
       {mediaQuery && (
         <Image
           src="/SearchBlogMenu.svg"
-          width={40}
-          height={40}
+          width={30}
+          height={30}
           alt="searchBlogIcons"
           onClick={() => setToggleSearch(!toggleSearch)}
-          className="absolute top-0 right-0"
+          className="absolute top-0 right-0 "
         />
       )}
       {toggleSearch && (
@@ -54,8 +56,8 @@ const TrendingBlogs = ({
           />
         </div>
       )}
-      <div className="md:flex md:gap-0 mt-10">
-        <div className="flex-none  md:w-[75%] lg:w-[80%]">
+      <div className="flex justify-between md:justify-start md:gap-0 mt-10">
+        <div className="flex-none w-full  md:w-[75%] lg:w-[80%]">
           <div className="flex flex-wrap flex-col md:flex-row gap-3">
             {blogs
               .slice(9, mediaQuery ? 12 : 14)
@@ -67,7 +69,7 @@ const TrendingBlogs = ({
                     height={400}
                     quality={100}
                     alt={blog?.heroMedia[0].url}
-                    className="min-h-[230px] md:h-[100%] w-full rounded-[3px]"
+                    className="md:min-h-[230px] md:h-[100%] md:w-full rounded-[3px]"
                   />
                   <div className="absolute top-[70%] left-[5%] text-white">
                     <p className="text-xs font-light">{blog.publicationDate}</p>
@@ -79,7 +81,7 @@ const TrendingBlogs = ({
               ))}
           </div>
         </div>
-        <div>
+        <div className="md:w-[25%] lg:w-[20%]">
           {!mediaQuery && (
             <BlogSearch
               blogs={blogs}

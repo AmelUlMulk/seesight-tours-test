@@ -93,7 +93,7 @@ const Blogs = ({ blogsPage, blogs, blogCategories }: BLOG_PAGE_INTERFACE) => {
         />
         <h2
           ref={blogsRef}
-          className="w-5/6 mx-auto mt-10 text-4xl font-semibold text-start mb-5"
+          className="w-5/6 mx-auto mt-10 text-lg md:text-2xl lg:text-4xl font-semibold text-start mb-5"
         >
           ALL BLOGS
         </h2>
