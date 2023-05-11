@@ -39,7 +39,6 @@ export const SnippetStyle = styled.p`
 const TourCard = ({ product, productType }: IProps) => {
   const [image, setImage] = useState<any>([]);
   const [openPax, setOpenPax] = useState<boolean>(false);
-  console.log('the product', product);
   //storing Images in array
   useEffect(() => {
     const imageArr: Array<Record<string, any>> = [];

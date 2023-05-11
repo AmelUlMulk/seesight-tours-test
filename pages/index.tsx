@@ -66,8 +66,8 @@ export async function getStaticProps() {
   const { data } = await client.query<FEATURED_EXPERIENCES_INTERFACE>({
     query: FEATUREDEXPERIENCES,
     variables: {
-      dayTours: true,
-      multiday: true,
+      dayTours: false,
+      multiday: false,
       airportTransfers: false
     }
   });
