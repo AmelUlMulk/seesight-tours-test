@@ -24,7 +24,7 @@ const Footer = () => {
           <div className="logo-section px-5 md:px-8 lg:px-12 w-[100%] lg:w-[35%] sm:w-[50%] xsm:w-[90%] md:w-[40%]">
             <div id="image-wrapper" className="pt-4">
               <Image
-                src="/logo.svg"
+                src="https://res.cloudinary.com/see-sight-tours/image/upload/v1683794885/icons-website/logo_lw9npr.svg"
                 width={162}
                 height={155}
                 alt="sea sight log image"

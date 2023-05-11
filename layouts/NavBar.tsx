@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import React, { useState, useCallback, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import Hamburger from 'hamburger-react';
-import SideNav from './SideNav';
-
 import Modal from '../components/MyTours/BookingSearchModal';
+import dynamic from 'next/dynamic';
+import Router from 'next/router';
+const SideNav = dynamic(() => import('./SideNav'));
 
 export const useMediaQuery = (width: number) => {
   const [targetReached, setTargetReached] = useState(false);
@@ -17,25 +17,13 @@ export const useMediaQuery = (width: number) => {
       setTargetReached(false);
     }
   }, []);
-
-  useEffect(() => {
-    const media = window.matchMedia(`(max-width: ${width}px)`);
-    media.addEventListener('change', updateTarget);
-    // Check on mount (callback is not called until a change occurs)
-    if (media.matches) {
-      setTargetReached(true);
-    }
-
-    return () => media.removeEventListener('change', updateTarget);
-  }, [updateTarget, width]);
-
   return targetReached;
 };
 const NavBar = () => {
   const [isOpen, setOpen] = useState<boolean>(false);
+
   const [myToursModal, setMyToursModal] = useState(false);
-  const router = useRouter();
-  const mediaQuery = useMediaQuery(1024);
+
   // eslint-disable-next-line no-console
   return (
     <header className=" px-[2%]  xl:px-[8%] 2xl:px-[10%] sticky top-0 z-[1020] bg-gray-100 ">
@@ -45,8 +33,8 @@ const NavBar = () => {
             <Link href="/">
               <Image
                 alt="sea sight tours logo"
-                src="/logo.svg"
-                width={200}
+                src="https://res.cloudinary.com/see-sight-tours/image/upload/v1683794885/icons-website/logo_lw9npr.svg"
+                width={150}
                 height={57}
                 className="max-h-[100px] w-32 md:w-44 "
               />
@@ -62,7 +50,7 @@ const NavBar = () => {
               <Link
                 href="/tours"
                 className={
-                  router.pathname.split('/')[1] == 'tours'
+                  Router.pathname.split('/')[1] == 'tours'
                     ? 'active hover:text-blue-400 px-1'
                     : 'hover:text-blue-400 px-1'
                 }
@@ -72,7 +60,7 @@ const NavBar = () => {
               <Link
                 href="/cities"
                 className={
-                  router.pathname.split('/')[1] == 'cities'
+                  Router.pathname.split('/')[1] == 'cities'
                     ? 'active hover:text-blue-400 px-1'
                     : 'hover:text-blue-400 px-1'
                 }
@@ -82,7 +70,7 @@ const NavBar = () => {
               <Link
                 href="/guides"
                 className={
-                  router.pathname.split('/')[1] == 'guides'
+                  Router.pathname.split('/')[1] == 'guides'
                     ? 'active hover:text-blue-400 px-1 '
                     : 'hover:text-blue-400 px-1'
                 }
@@ -92,7 +80,7 @@ const NavBar = () => {
               <Link
                 href="/reviews"
                 className={
-                  router.pathname.split('/')[1] == 'reviews'
+                  Router.pathname.split('/')[1] == 'reviews'
                     ? 'active hover:text-blue-400 px-1'
                     : 'hover:text-blue-400 px-1'
                 }
@@ -102,7 +90,7 @@ const NavBar = () => {
               <Link
                 href="/about"
                 className={
-                  router.pathname.split('/')[1] == 'about'
+                  Router.pathname.split('/')[1] == 'about'
                     ? 'active hover:text-blue-400 px-1'
                     : 'hover:text-blue-400 px-1'
                 }
@@ -112,7 +100,7 @@ const NavBar = () => {
               <Link
                 href="/contact"
                 className={
-                  router.pathname.split('/')[1] == 'contact'
+                  Router.pathname.split('/')[1] == 'contact'
                     ? 'active hover:text-blue-400 px-2 border-r-[1px] border-black '
                     : 'hover:text-blue-400 pl-2 md:pr-2 lg:pr-4  border-gray-300'
                 }
@@ -124,7 +112,7 @@ const NavBar = () => {
               <button
                 onClick={() => setMyToursModal(true)}
                 className={` bg-[#F15C5A] p-3 text-white rounded-lg text-center  ${
-                  router.pathname.split('/')[1] == 'my-tours'
+                  Router.pathname.split('/')[1] == 'my-tours'
                     ? ' hover:bg-red-500   '
                     : 'hover:text-white '
                 }

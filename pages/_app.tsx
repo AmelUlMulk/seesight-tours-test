@@ -1,8 +1,8 @@
 import '../styles/globals.css';
 
 import type { AppProps } from 'next/app';
-import NavBar from '../layouts/NavBar';
-import Footer from '../layouts/Footer/footer';
+
+const Footer = dynamic(() => import('../layouts/Footer/footer'));
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,6 +10,7 @@ import RecentConfirmBookings from '../components/Notifications/recentBookings';
 import Script from 'next/script';
 import { PaxProivder } from '../utils/checkoutContext';
 import dynamic from 'next/dynamic';
+import NavBar from '../layouts/NavBar';
 const AppoloProvider = dynamic(() => import('../utils/dynamicAppolo'), {
   ssr: false
 });

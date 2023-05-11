@@ -18,8 +18,11 @@ interface CITY {
 }
 const CitiesModal = () => {
   const [getData, { data, loading }] = useLazyQuery(CITIESMODAL);
+
   const [showModal, setShowModal] = useState<boolean>(false);
+
   const [filteredCards, setFilteredCards] = useState<CITY[]>([]);
+
   const [searchItem, setSearchItem] = useState<string | undefined>();
 
   useEffect(() => {
