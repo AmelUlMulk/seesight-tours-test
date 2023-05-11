@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import { Rating } from 'react-simple-star-rating';
-import { useMediaQuery } from './NavBar';
 
 interface IProps {
   title: string;
@@ -66,7 +65,7 @@ const PageHero = ({
     1
   );
   const totalReviewCount = reviewsConnection?.aggregate.count;
-  const mediaQuery = useMediaQuery(540);
+
   return (
     <section className="Hero_Section  overflow-hidden">
       <PageHeroStyle
@@ -99,7 +98,7 @@ const PageHero = ({
           </>
         )}
         <div className="PageHero_container flex flex-col ">
-          <div className="font-bold flex-col  text-white text-center w-full ">
+          <div className="font-bold flex-col  text-white text-center w-full px-[2%]  ">
             <h1 className="text-3xl sm:text-4xl lg:text-6xl text-white  ">
               {' '}
               {landing && (
@@ -116,7 +115,7 @@ const PageHero = ({
             )}
           </div>
           {snippet !== 'Size Matters' && (
-            <p className="w-full text-xl sm:text-3xl  text-center text-white  ">
+            <p className="w-full text-xl sm:text-3xl  text-center text-white px-[2%]  ">
               {snippet}
             </p>
           )}
@@ -141,7 +140,7 @@ const PageHero = ({
                     SVGstyle={{
                       display: 'inline-block'
                     }}
-                    size={mediaQuery ? 25 : 40}
+                    size={25}
                   />
                 </div>
                 <p className="text-xl sm:text-3xl font-[600] px-3">{`${rating} out of 5`}</p>

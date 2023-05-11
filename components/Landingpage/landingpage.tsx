@@ -3,13 +3,9 @@ import FeaturedExperiences from '../FeaturedExperiences/FeaturedExperiences';
 
 import Trustbar from '../Trust/Trustbar';
 import LandingPageInfo from './components/landingpaginfo';
-import dynamic from 'next/dynamic';
+
 import LazyGuides from '../../utils/LazyLoadGuides';
 import LazyLoadTestimonials from '../../utils/LazyLoadTestimonials';
-
-const OurGuides = dynamic(() => import('../Guides/guides'), {
-  ssr: false
-});
 
 interface IProps {
   featuredExp: any;

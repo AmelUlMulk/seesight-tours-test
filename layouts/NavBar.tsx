@@ -26,7 +26,7 @@ const NavBar = () => {
 
   // eslint-disable-next-line no-console
   return (
-    <header className=" px-[2%]  xl:px-[8%] 2xl:px-[10%] sticky top-0 z-[1020] bg-gray-100 ">
+    <header className=" px-[2%]  xl:px-[8%] 2xl:px-[10%] sticky top-0 z-[1020] bg-gray-100 max-h-[64px] lg:max-h-[100px] ">
       <div className="py-2 md:py-5 mx-auto w-full  ">
         <div className="flex justify-between items-center gap-3 2xl:gap-12">
           <div className="logo  md:w-1/5 flex  justify-start  ">
@@ -34,8 +34,8 @@ const NavBar = () => {
               <Image
                 alt="sea sight tours logo"
                 src="https://res.cloudinary.com/see-sight-tours/image/upload/v1683794885/icons-website/logo_lw9npr.svg"
-                width={150}
-                height={57}
+                width={100}
+                height={30}
                 className="max-h-[100px] w-32 md:w-44 "
               />
             </Link>
