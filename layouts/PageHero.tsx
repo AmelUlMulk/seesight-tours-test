@@ -99,38 +99,36 @@ const PageHero = ({
         )}
         <div className="PageHero_container flex flex-col ">
           <div className="font-bold flex-col  text-white text-center w-full px-[2%]  ">
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl text-white  ">
+            <h1 className="text-3xl lg:text-6xl text-white  ">
               {' '}
               {landing && (
-                <span className="text-[#2191FA] text-4xl sm:text-4xl lg:text-7xl ">
+                <span className="text-[#2191FA] text-4xl  lg:text-7xl ">
                   ULTRA
                 </span>
               )}{' '}
               {title.indexOf('ULTRA') !== -1 ? title.split('ULTRA')[1] : title}
             </h1>
             {landing && (
-              <h3 className="text-3xl sm:text-4xl lg:text-5xl mt-2 font-semibold">
+              <h3 className="text-3xl  lg:text-5xl mt-2 font-semibold">
                 Size Matters!
               </h3>
             )}
           </div>
           {snippet !== 'Size Matters' && (
-            <p className="w-full text-xl sm:text-3xl  text-center text-white px-[2%]  ">
+            <p className="w-full text-xl   text-center text-white px-[2%]  ">
               {snippet}
             </p>
           )}
           {trustworthy && (
             <div className="text-white text-center">
-              <h3 className="text-2xl sm:text-3xl font-[600]">
+              <h3 className="text-2xl  font-[600]">
                 Personal | Authentic | Local
               </h3>
             </div>
           )}
           {totalReviews && (
             <div id="ratings" className="text-center text-white">
-              <h3 className="text-2xl sm:text-3xl font-[600]">
-                Our Overall rating
-              </h3>
+              <h3 className="text-2xl  font-[600]">Our Overall rating</h3>
 
               <div className="flex flex-wrap text-white justify-center items-center">
                 <div>
@@ -143,8 +141,8 @@ const PageHero = ({
                     size={25}
                   />
                 </div>
-                <p className="text-xl sm:text-3xl font-[600] px-3">{`${rating} out of 5`}</p>
-                <p className="text-xl sm:text-3xl">{`(${totalReviewCount} Reviews)`}</p>
+                <p className="text-xl  font-[600] px-3">{`${rating} out of 5`}</p>
+                <p className="text-xl ">{`(${totalReviewCount} Reviews)`}</p>
               </div>
             </div>
           )}

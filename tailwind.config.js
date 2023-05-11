@@ -27,9 +27,6 @@ module.exports = {
       '4xl': '2200px'
     },
     extend: {
-      fontFamily: {
-        sans: ['Poppins', ...defaultTheme.fontFamily.sans]
-      },
       colors: {
         modalWrapper: 'rgba(28, 28, 28, 0.8)'
       },

@@ -41,7 +41,7 @@ const Trustbar = () => {
             <div key={dt.id}>
               <Link href={dt.link}>
                 <div className="flex flex-col gap-5 justify-between items-center h-full px-2 sm:px-10 ">
-                  <div className="flex-none h-[40%]">
+                  <div className="flex-none ">
                     <Image
                       src={dt.icon}
                       width={25}
@@ -50,7 +50,7 @@ const Trustbar = () => {
                     />
                   </div>
 
-                  <p className="flex-none h-[40%] text-[12px] md:text-[14px] lg:text-[16px] text-[#2F2E2E] text-center font-[400]">
+                  <p className="flex-none  text-[12px] md:text-[14px] lg:text-[16px] text-[#2F2E2E] text-center font-[400]">
                     {dt.snippet}
                   </p>
                 </div>
