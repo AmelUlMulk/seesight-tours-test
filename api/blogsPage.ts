@@ -28,7 +28,9 @@ const BLOGS_PAGE = {
         header
         slug
         snippet
+        author
         publicationDate: publication_date
+        author
         heroMedia: hero_media {
           name
           alt: alternativeText
@@ -70,6 +72,7 @@ interface BLOG_PAGE_INTERFACE {
       slug: string;
       snippet: string;
       publicationDate: string;
+      author: string;
       heroMedia: [CARDMEDIAINTERFACE];
       blogCategories: {
         id: string;
