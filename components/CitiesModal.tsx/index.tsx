@@ -23,7 +23,6 @@ const CitiesModal = () => {
   const [searchItem, setSearchItem] = useState<string | undefined>();
 
   useEffect(() => {
-    console.log('am triggering for no reason');
     if (searchItem)
       setFilteredCards(() =>
         data?.cities?.filter((item: { name: string }) =>
@@ -56,7 +55,7 @@ const CitiesModal = () => {
           style={{ zIndex: 1000 }}
         >
           <Image
-            src="/search-icon.png"
+            src="https://res.cloudinary.com/see-sight-tours/image/upload/v1683789283/icons-website/search-icon_kexlxj.png"
             width={25}
             height={10}
             alt="search icon"

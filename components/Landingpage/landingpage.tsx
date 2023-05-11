@@ -4,11 +4,8 @@ import FeaturedExperiences from '../FeaturedExperiences/FeaturedExperiences';
 import Trustbar from '../Trust/Trustbar';
 import LandingPageInfo from './components/landingpaginfo';
 import dynamic from 'next/dynamic';
-
-const Newsletter = dynamic(() => import('../Newsletter/newsletter'));
-const Testimonials = dynamic(() => import('./components/testimonials'), {
-  ssr: false
-});
+import LazyGuides from '../../utils/LazyLoadGuides';
+import LazyLoadTestimonials from '../../utils/LazyLoadTestimonials';
 
 const OurGuides = dynamic(() => import('../Guides/guides'), {
   ssr: false
@@ -41,8 +38,8 @@ const LandingPage = ({
         citiesTotalCount={citiesTotal ? citiesTotal.aggregate.totalCount : 0}
       />
       <LandingPageInfo />
-      <Testimonials />
-      <OurGuides guidesData={guidesData} />
+      <LazyLoadTestimonials />
+      <LazyGuides guidesData={guidesData} />
     </div>
   );
 };

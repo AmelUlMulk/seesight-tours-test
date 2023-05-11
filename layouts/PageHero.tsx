@@ -20,20 +20,10 @@ const PageHeroStyle = styled.div`
   height: 55vh;
   position: relative;
   overflow: hidden !important;
-  /* &:before {
-      background: black;
-      content: '';
-      height: 100%;
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: 100%;
-      z-index: 1;
-      opacity: 0.6;
-    } */
+
   display: flex;
   @media (max-width: 540px) {
-    height: 60vh;
+    height: 65vh;
   }
   .PageHero_container {
     display: flex;
@@ -55,6 +45,7 @@ const StyledVideo = styled.video`
   object-fit: cover;
   position: absolute;
   z-index: 0;
+  top: 0;
   @media (max-width: 2200px) {
     height: 69vh;
   }
@@ -93,18 +84,13 @@ const PageHero = ({
         {!video && <StyledImage alt="guidesImage" src={media} layout="fill" />}
         {video && (
           <>
-            <StyledVideo
-              src={media}
-              muted
-              loop
-              autoPlay
-              playsInline
-              className="hidden xl:flex "
-            />
+            <div className="hidden xl:flex ">
+              <StyledVideo src={media} muted loop autoPlay playsInline />
+            </div>
 
             <StyledImage
               alt="guidesImage"
-              src="https://res.cloudinary.com/see-sight-tours/image/upload/w_500/v1682684366/strapi/image1_f0cf2fc9c5.webp"
+              src="https://res.cloudinary.com/see-sight-tours/image/upload/w_400,q_300/v1682684366/strapi/image1_f0cf2fc9c5.webp"
               layout="fill"
               className="flex xl:hidden "
               priority={true}
@@ -114,10 +100,10 @@ const PageHero = ({
         )}
         <div className="PageHero_container flex flex-col ">
           <div className="font-bold flex-col  text-white text-center w-full ">
-            <h1 className="text-2xl sm:text-4xl lg:text-6xl text-white  ">
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl text-white  ">
               {' '}
               {landing && (
-                <span className="text-[#2191FA] text-4xl sm:text-5xl lg:text-7xl ">
+                <span className="text-[#2191FA] text-4xl sm:text-4xl lg:text-7xl ">
                   ULTRA
                 </span>
               )}{' '}

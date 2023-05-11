@@ -17,6 +17,7 @@ import RelatedTours from '../../components/TourPage/RelatedTours';
 import { PaxContext } from '../../utils/checkoutContext';
 import Link from 'next/link';
 import scrollToElement from '../../utils/scrollIntoView';
+import Head from 'next/head';
 
 const TourPage = ({
   product,
@@ -43,68 +44,78 @@ const TourPage = ({
   };
 
   return (
-    <div className=" relative flex flex-col ">
-      <div className="flex flex-col justify-start px-[2%] 2xl:px-[10%] mb-4 items-center  ">
-        <div className="flex justify-start w-full ">
-          <h1 className="w-full    text-xl lg:text-2xl xl:text-3xl  font-extrabold text-start  pt-4 xl:pt-12  mb-3 mmd:max-w-[60%]    ">
-            {product.cities[0] && (
-              <>
-                <span className=" font-black "> </span> {product.name}{' '}
-              </>
-            )}
-          </h1>
-        </div>
-        <div className="flex items-center justify-start w-full ">
-          <span className="text-sm md:text-base text-start  mmd:max-w-[60%] ">
-            <Link href={`/product?.cities[0].slug`}>
-              {product?.cities[0]?.name}
-            </Link>{' '}
-            {`>`} {product.name}
-          </span>
-          <div className="hidden mmd:block md:min-w-[40%] ">
-            <TourBasics duration={product.duration} />
+    <>
+      <Head>
+        <title className="text-3xl font-bold underline">
+          {product.pageTitle}
+        </title>
+        <meta property="og:description" content={product.metaDescription} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href={product.canonical} />
+      </Head>
+      <div className=" relative flex flex-col ">
+        <div className="flex flex-col justify-start px-[2%] 2xl:px-[10%] mb-4 items-center  ">
+          <div className="flex justify-start w-full ">
+            <h1 className="w-full    text-xl lg:text-2xl xl:text-3xl  font-extrabold text-start  pt-4 xl:pt-12  mb-3 mmd:max-w-[60%]    ">
+              {product.cities[0] && (
+                <>
+                  <span className=" font-black "> </span> {product.name}{' '}
+                </>
+              )}
+            </h1>
+          </div>
+          <div className="flex items-center justify-start w-full ">
+            <span className="text-sm md:text-base text-start  mmd:max-w-[60%] ">
+              <Link href={`/${product?.cities[0].slug}`}>
+                {product?.cities[0]?.name}
+              </Link>{' '}
+              {`>`} {product.name}
+            </span>
+            <div className="hidden mmd:block md:min-w-[40%] ">
+              <TourBasics duration={product.duration} />
+            </div>
           </div>
         </div>
-      </div>
 
-      <HeroSwipper media={product.carousel} />
-      <div className="  w-full       pl-2 2xl:px-[10%] mt-8  items-end ">
-        <Included
-          longDescription={product.longDescription}
-          data={product.tourIncludes}
-          attractions={product.attractions}
-          rezdyId={rezdy[0]?.rezdy?.rezdyId}
-          reviewState={reviews}
-          updateTourContext={updateTourContext}
-          duration={product.duration}
-          showPax={showPax}
-        />
-      </div>
-
-      <Rating
-        productName={product.name}
-        ratingCounts={ratingCounts}
-        reviews={productReviews}
-      />
-      <RelatedTours products={product.relatedProducts} />
-      <Newsletter />
-      {!showPax && (
-        <div className=" z-50 fixed mmd:hidden px-[2%] bg-blue-500 items-center rounded flex justify-between bottom-0 right-0  w-full py-4    text-white shadow-2xl shadow-offset-md   ">
-          <p className=" text-white text-base text-center flex-1 ">
-            Starting from ${product.price.toFixed(2)}
-          </p>
-          <button
-            className=" bg-[#F15C5A] min-w-[30%]  px-4 py-2 rounded-lg"
-            onClick={() => {
-              setShowPax(true);
-            }}
-          >
-            {' '}
-            Check Dates
-          </button>
+        <HeroSwipper media={product.carousel} />
+        <div className="  w-full       pl-2 2xl:px-[10%] mt-8  items-end ">
+          <Included
+            longDescription={product.longDescription}
+            data={product.tourIncludes}
+            attractions={product.attractions}
+            rezdyId={rezdy[0]?.rezdy?.rezdyId}
+            reviewState={reviews}
+            updateTourContext={updateTourContext}
+            duration={product.duration}
+            showPax={showPax}
+          />
         </div>
-      )}
-    </div>
+
+        <Rating
+          productName={product.name}
+          ratingCounts={ratingCounts}
+          reviews={productReviews}
+        />
+        <RelatedTours products={product.relatedProducts} />
+        <Newsletter />
+        {!showPax && (
+          <div className=" z-50 fixed mmd:hidden px-[2%] bg-blue-500 items-center rounded flex justify-between bottom-0 right-0  w-full py-4    text-white shadow-2xl shadow-offset-md   ">
+            <p className=" text-white text-base text-center flex-1 ">
+              Starting from ${product.price.toFixed(2)}
+            </p>
+            <button
+              className=" bg-[#F15C5A] min-w-[30%]  px-4 py-2 rounded-lg"
+              onClick={() => {
+                setShowPax(true);
+              }}
+            >
+              {' '}
+              Check Dates
+            </button>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 interface PRODUCTSLUGS {

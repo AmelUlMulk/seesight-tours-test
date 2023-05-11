@@ -1,9 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import SmallToursIcon from '../../assets/svg/vector.svg';
-import FreeCancellationIcon from '../../assets/svg/Vector-1.svg';
-import ReviewsIcon from '../../assets/svg/Vector-2.svg';
-import { useMediaQuery } from '../../hooks/mediaQuery';
+
 export enum PAGE_OPTIONS {
   DAY_TOUR_PAGED = 'dayTours',
   MULTIDAY_TOUR_PAGE = 'multiday'
@@ -16,24 +13,23 @@ const data = [
   {
     id: 'B111',
     snippet: 'Small-Group Tours',
-    icon: '/SmallGroups.svg',
+    icon: 'https://res.cloudinary.com/see-sight-tours/image/upload/v1683788470/icons-website/SmallGroups_x9tntu.svg',
     link: '/tours'
   },
   {
     id: 'B112',
     snippet: 'Free Cancellation',
-    icon: '/Free_Cancellation.svg',
+    icon: 'https://res.cloudinary.com/see-sight-tours/image/upload/v1683788572/icons-website/Free_Cancellation_ijucbp.svg',
     link: '/faq'
   },
   {
     id: 'B113',
     snippet: '5000+ 5-Star Reviews',
-    icon: '/5Star.svg',
+    icon: 'https://res.cloudinary.com/see-sight-tours/image/upload/v1683788634/icons-website/5Star_vvajxg.svg',
     link: '/reviews'
   }
 ];
 const Trustbar = () => {
-  const mediaQuery = useMediaQuery(640);
   return (
     <section
       id="trusbar"
@@ -48,8 +44,8 @@ const Trustbar = () => {
                   <div className="flex-none h-[40%]">
                     <Image
                       src={dt.icon}
-                      width={mediaQuery ? 25 : 40}
-                      height={mediaQuery ? 25 : 40}
+                      width={25}
+                      height={25}
                       alt="trust us"
                     />
                   </div>

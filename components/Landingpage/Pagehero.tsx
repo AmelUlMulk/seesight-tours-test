@@ -3,6 +3,9 @@ import styled from 'styled-components';
 const PageHero = () => {
   const PageHero_Section = styled.div`
     height: 50vh;
+    @media (max-width: 768px) {
+      height: 62vh;
+    }
     background-color: gray;
     background-size: cover;
     background-repeat: no-repeat;

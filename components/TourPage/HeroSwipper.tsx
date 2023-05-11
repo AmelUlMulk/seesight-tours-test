@@ -73,11 +73,15 @@ const HeroSwipper = ({ media }: SwipperProps) => {
                 width={500}
                 height={300}
                 alt={media.url}
-                className="w-full object-fill h-full  "
+                quality={70}
+                className="w-full object-fill h-full "
+                placeholder="blur"
+                blurDataURL="/placeholder.webp"
               />
             ) : (
               <StyledVideo
-                autoPlay
+                autoPlay={index === 0}
+                controls={index > 0}
                 muted
                 loop
                 className="w-full object-fill h-full  "
