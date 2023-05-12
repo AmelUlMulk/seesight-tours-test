@@ -40,11 +40,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
   const [featuredExperienceData, setFeaturedExperienceData] = useState<
     FEATURED_EXPERIENCES_INTERFACE | HOMEPAGEINTERFACE | any
   >([]);
-  const [sfeaturedExperienceData, setSFeaturedExperienceData] = useState<
-    FEATURED_EXPERIENCES_INTERFACE | HOMEPAGEINTERFACE | any
-  >([]);
-  console.log('activeNav:', activeNav);
-  console.log('featuredExpData:', featuredExperienceData);
+
   //FETCHING QUERIES
 
   //fetch day & multiday
@@ -88,7 +84,6 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
 
   //useffect-3
   useEffect(() => {
-    setSFeaturedExperienceData(tourData?.homePage);
     setFeaturedExperienceData(tourData?.homePage);
   }, [tourData]);
 
