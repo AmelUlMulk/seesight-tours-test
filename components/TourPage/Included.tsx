@@ -3,12 +3,17 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import { ATTRACTION_INTERFACE } from '../../api/commonInterfaces';
 import Image from 'next/image';
-import Card from '../Card';
+
 import { Rating } from 'react-simple-star-rating';
-import ProductTimeline from './ProductTimeline';
-import DateAndPax from '../CalendarAndPax/DateAndPax';
-import TourBasics from './TourBasics';
+
 import styled from 'styled-components';
+import dynamic from 'next/dynamic';
+
+const DateAndPax = dynamic(() => import('../CalendarAndPax/DateAndPax'));
+const TourBasics = dynamic(() => import('./TourBasics'));
+const ProductTimeline = dynamic(() => import('./ProductTimeline'));
+const Card = dynamic(() => import('../Card'));
+
 const StyledStar = styled(Rating)`
   @media (max-width: 768px) {
     .star-svg {

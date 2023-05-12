@@ -5,6 +5,10 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import styled from 'styled-components';
 import SwiperCore, { Navigation } from 'swiper';
+import {
+  optimizeImageUrl,
+  optimizeVideoUrl
+} from '../../utils/videoLinkOptimize';
 const StyledImage = styled(Image)`
   min-height: 450px !important;
   max-height: 450px;
@@ -67,9 +71,9 @@ const HeroSwipper = ({ media }: SwipperProps) => {
       {media.map((media, index) => {
         return (
           <SwiperSlide key={media.url} className="w-2/6 min-h-full  ">
-            {media.url.includes('jpg') ? (
+            {media.url.includes('jpg') || media.url.includes('png') ? (
               <StyledImage
-                src={media.url}
+                src={optimizeImageUrl(media.url)}
                 width={500}
                 height={300}
                 alt={media.url}
@@ -77,16 +81,19 @@ const HeroSwipper = ({ media }: SwipperProps) => {
                 className="w-full object-fill h-full "
                 placeholder="blur"
                 blurDataURL="/placeholder.webp"
+                priority={true}
               />
             ) : (
-              <StyledVideo
-                autoPlay={index === 0}
-                controls={index > 0}
-                muted
-                loop
-                className="w-full object-fill h-full  "
-                src={media.url}
-              />
+              <>
+                <StyledVideo
+                  autoPlay={index === 0}
+                  controls={index > 0}
+                  muted
+                  loop
+                  className="w-full object-fill h-full  "
+                  src={optimizeVideoUrl(media.url)}
+                />
+              </>
             )}
           </SwiperSlide>
         );

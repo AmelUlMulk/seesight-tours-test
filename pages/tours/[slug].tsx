@@ -6,18 +6,23 @@ import FETCH_PRODUCT, {
 } from '../../api/tourPage';
 
 import client from '../../apollo-client';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import HeroSwipper from '../../components/TourPage/HeroSwipper';
+
 import TourBasics from '../../components/TourPage/TourBasics';
 import Included from '../../components/TourPage/Included';
-import Newsletter from '../../layouts/Newsletter/Newsletter';
-import Rating from '../../components/TourPage/Rating';
-import RelatedTours from '../../components/TourPage/RelatedTours';
+
 import { PaxContext } from '../../utils/checkoutContext';
 import Link from 'next/link';
 import scrollToElement from '../../utils/scrollIntoView';
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
+const HeroSwipper = dynamic(
+  () => import('../../components/TourPage/HeroSwipper')
+);
+const RelatedTours = dynamic(
+  () => import('../../components/TourPage/RelatedTours')
+);
+const Rating = dynamic(() => import('../../components/TourPage/Rating'));
+const Newsletter = dynamic(() => import('../../layouts/Newsletter/Newsletter'));
 
 const TourPage = ({
   product,
@@ -96,6 +101,7 @@ const TourPage = ({
           ratingCounts={ratingCounts}
           reviews={productReviews}
         />
+
         <RelatedTours products={product.relatedProducts} />
         <Newsletter />
         {!showPax && (

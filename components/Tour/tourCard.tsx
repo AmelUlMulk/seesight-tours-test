@@ -107,6 +107,7 @@ const TourCard = ({ product, productType }: IProps) => {
                 clickable: true
               }}
               className="w-[100%] h-[100%]"
+              lazy
             >
               {image?.map((img: any, index: number) => (
                 <SwiperSlide key={index} className="w-[100%] h-[100%]">
@@ -122,8 +123,8 @@ const TourCard = ({ product, productType }: IProps) => {
                   ) : (
                     <Image
                       src={optimizeImageUrl(img?.imageUrl)}
-                      width={400}
-                      height={400}
+                      width={300}
+                      height={300}
                       alt="feature product image"
                       className="w-[100%] h-[100%] object-cover rounded-lg hover:scale-105 ease-in-out duration-200"
                       placeholder="blur"

@@ -5,7 +5,7 @@ export function optimizeVideoUrl(videoUrl: string): string {
   const newLink = changeFormat.split('/upload');
 
   // Generate the optimized video URL
-  const optimizedUrl = `${newLink[0]}/upload/q_auto,w_400,${newLink[1]}`;
+  const optimizedUrl = `${newLink[0]}/upload/q_auto,w_500,${newLink[1]}`;
 
   // Return the optimized URL
   return optimizedUrl;

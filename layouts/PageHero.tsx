@@ -79,7 +79,7 @@ const PageHero = ({
         <div
           className={`${
             !video &&
-            'absolute top-0 left-0 w-[100%] h-[inherit] bg-gradient-to-tr  z-20'
+            'absolute top-0 left-0 w-[100%] h-[inherit]  bg-black  z-20'
           }`}
         ></div>
         {!video && <StyledImage alt="guidesImage" src={media} layout="fill" />}
@@ -91,11 +91,11 @@ const PageHero = ({
 
             <StyledImage
               alt="guidesImage"
-              src="https://res.cloudinary.com/see-sight-tours/image/upload/w_400,q_300/v1682684366/strapi/image1_f0cf2fc9c5.webp"
+              src="https://res.cloudinary.com/see-sight-tours/image/upload/w_350,q_300/v1682684366/strapi/image1_f0cf2fc9c5.webp"
               layout="fill"
               className="flex xl:hidden "
               priority={true}
-              quality={70}
+              quality={60}
             />
           </>
         )}
