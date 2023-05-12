@@ -16,9 +16,6 @@ function LazyGuides() {
     });
 
     observer.observe(ref.current);
-
-    // Cleanup function
-    return () => observer.unobserve(ref.current);
   }, []);
 
   return <div ref={ref}>{showGuides && <Testimonial />}</div>;

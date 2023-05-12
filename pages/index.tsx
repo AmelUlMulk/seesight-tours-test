@@ -12,7 +12,6 @@ import { PaxProivder } from '../utils/checkoutContext';
 import LandingPage from '../components/Landingpage/landingpage';
 import CitiesModal from '../components/CitiesModal.tsx';
 
-import dynamic from 'next/dynamic';
 interface IProps {
   featuredExp: any;
   citydropdown: any;
@@ -90,6 +89,7 @@ export async function getStaticProps() {
       citydropdown: data.citiesDropdown,
       HomePage: HomePage,
       guidesData
-    }
+    },
+    revalidate: 10
   };
 }

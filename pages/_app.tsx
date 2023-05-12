@@ -6,10 +6,10 @@ const Footer = dynamic(() => import('../layouts/Footer/footer'));
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import RecentConfirmBookings from '../components/Notifications/recentBookings';
 import Script from 'next/script';
-import { PaxProivder } from '../utils/checkoutContext';
 import dynamic from 'next/dynamic';
+
+const PaxProvider = dynamic(() => import('../utils/checkoutContext'));
 import NavBar from '../layouts/NavBar';
 const AppoloProvider = dynamic(() => import('../utils/dynamicAppolo'), {
   ssr: false
@@ -40,9 +40,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <AppoloProvider>
         <NavBar />
-        <PaxProivder>
+        <PaxProvider>
           <Component {...pageProps} />
-        </PaxProivder>
+        </PaxProvider>
         <Footer />
         {/* <RecentConfirmBookings /> */}
         <ToastContainer

@@ -32,3 +32,4 @@ export const PaxProivder = ({ children }) => {
     <PaxContext.Provider value={contextValue}>{children}</PaxContext.Provider>
   );
 };
+export default PaxProivder;

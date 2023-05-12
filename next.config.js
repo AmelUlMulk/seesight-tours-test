@@ -22,8 +22,7 @@ const nextConfig = {
   i18n: {
     locales: ['en'],
     defaultLocale: 'en'
-  },
-  domains: ['res.cloudinary.com']
+  }
 };
 
 module.exports = nextConfig;

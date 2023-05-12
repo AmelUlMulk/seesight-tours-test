@@ -1,4 +1,3 @@
-import OurCities from '../FeaturedCities/OurCities';
 import FeaturedExperiences from '../FeaturedExperiences/FeaturedExperiences';
 
 import Trustbar from '../Trust/Trustbar';
@@ -6,7 +5,7 @@ import LandingPageInfo from './components/landingpaginfo';
 
 import LazyGuides from '../../utils/LazyLoadGuides';
 import LazyLoadTestimonials from '../../utils/LazyLoadTestimonials';
-
+import LazyCities from '../../utils/LazyLoadCities';
 interface IProps {
   featuredExp: any;
   citydropdown: any;
@@ -27,12 +26,7 @@ const LandingPage = ({
         featuredExp={featuredExp}
         citydropdown={citydropdown}
       />
-      <OurCities
-        title="OUR CITIES"
-        subTitle="Let us show you the places we call home"
-        FeaturedCities={data}
-        citiesTotalCount={citiesTotal ? citiesTotal.aggregate.totalCount : 0}
-      />
+      <LazyCities data={data} citiesTotal={citiesTotal} />
       <LandingPageInfo />
       <LazyLoadTestimonials />
       <LazyGuides guidesData={guidesData} />

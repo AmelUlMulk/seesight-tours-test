@@ -21,7 +21,6 @@ export const useMediaQuery = (width: number) => {
 };
 const NavBar = () => {
   const [isOpen, setOpen] = useState<boolean>(false);
-
   const [myToursModal, setMyToursModal] = useState(false);
 
   // eslint-disable-next-line no-console
@@ -36,7 +35,10 @@ const NavBar = () => {
                 src="https://res.cloudinary.com/see-sight-tours/image/upload/v1683794885/icons-website/logo_lw9npr.svg"
                 width={100}
                 height={30}
-                className="max-h-[100px] w-32 md:w-44 "
+                className="max-h-[100px] w-32 md:w-44"
+                priority
+                placeholder="blur"
+                blurDataURL="/placeholder.webp"
               />
             </Link>
           </div>

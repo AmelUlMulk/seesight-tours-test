@@ -1,7 +1,9 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
-const LazyGuideComponent = dynamic(() => import('../components/Guides/guides'));
-function LazyGuides({ guidesData }) {
+const OurCities = dynamic(() =>
+  import('../components/FeaturedCities/OurCities')
+);
+function LazyCities({ data, citiesTotal }) {
   const [showGuides, setShowGUides] = useState(false);
   const ref = useRef();
 
@@ -20,8 +22,15 @@ function LazyGuides({ guidesData }) {
 
   return (
     <div ref={ref}>
-      {showGuides && <LazyGuideComponent guidesData={guidesData} />}
+      {showGuides && (
+        <OurCities
+          title="OUR CITIES"
+          subTitle="Let us show you the places we call home"
+          FeaturedCities={data}
+          citiesTotalCount={citiesTotal ? citiesTotal.aggregate.totalCount : 0}
+        />
+      )}
     </div>
   );
 }
-export default LazyGuides;
+export default LazyCities;

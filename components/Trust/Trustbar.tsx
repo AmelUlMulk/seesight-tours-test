@@ -47,6 +47,7 @@ const Trustbar = () => {
                       width={25}
                       height={25}
                       alt="trust us"
+                      priority
                     />
                   </div>
 

@@ -41,12 +41,14 @@ const StyledImage = styled(Image)`
 `;
 const StyledVideo = styled.video`
   height: 60vh;
+  max-height: 69vh;
   object-fit: cover;
   position: absolute;
   z-index: 0;
   top: 0;
   @media (max-width: 2200px) {
     height: 69vh;
+    max-height: 69vh;
   }
   width: 100vw !important;
   z-index: 1;
