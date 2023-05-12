@@ -48,8 +48,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
   //FETCHING QUERIES
 
   //fetch day & multiday
-
-  const [fetchTourType, { data, loading: tourFilterLoading, error }] =
+  const [fetchTourType, { data: tourData, loading: tourFilterLoading, error }] =
     useLazyQuery<FEATURED_EXPERIENCES_INTERFACE>(FEATUREDEXPERIENCES);
 
   //fetch by city
@@ -72,12 +71,12 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
   //useffect-2
   useEffect(() => {
     if (activeNav !== 'allThings') {
-      console.log('helo ddddddddddddddddddd');
       try {
         fetchTourType({
           variables: {
-            dayTours: activeNav === 'dayTours' ? true : false,
-            multiday: activeNav === 'multiday' ? true : false,
+            dayTours: true,
+
+            multiday: true,
             airportTransfers: false
           }
         });
@@ -89,9 +88,9 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
 
   //useffect-3
   useEffect(() => {
-    setSFeaturedExperienceData(data?.homePage);
-    setFeaturedExperienceData(data?.homePage);
-  }, [data]);
+    setSFeaturedExperienceData(tourData?.homePage);
+    setFeaturedExperienceData(tourData?.homePage);
+  }, [tourData]);
 
   //useffect-4
   useEffect(() => {
@@ -103,7 +102,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
 
     if (city === 'All Cities') {
       setNavArray(arr);
-      setFeaturedExperienceData(data?.homePage);
+      setFeaturedExperienceData(tourData?.homePage);
     } else {
       setNavArray(finalNavArray);
       finalNavArray?.forEach(item => {
@@ -160,10 +159,10 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
     console.log('filterCity:', filteredCity);
 
     if (city !== 'All Cities' && cityFilterLoading) {
-      return <h3>Loading....</h3>;
+      return <h3>Loading...</h3>;
     }
     if (tourFilterLoading) {
-      return <h3>Loading....</h3>;
+      return <h3>Loading...</h3>;
     }
     if (filteredProduct && filteredProduct?.length === 0) {
       return <h3>{`Tours coming to ${city} soon`}</h3>;
