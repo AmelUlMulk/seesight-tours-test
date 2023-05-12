@@ -11,11 +11,11 @@ function LazyGuides() {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setShowGUides(true);
-        LazyGuideComponent?.preload();
+        Testimonial?.preload();
       }
     });
 
-    observer.observe(ref.current);
+    observer?.observe(ref.current);
   }, []);
 
   return <div ref={ref}>{showGuides && <Testimonial />}</div>;

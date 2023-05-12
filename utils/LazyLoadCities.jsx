@@ -11,7 +11,7 @@ function LazyCities({ data, citiesTotal }) {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setShowGUides(true);
-        LazyGuideComponent.preload();
+        OurCities.preload();
       }
     });
 

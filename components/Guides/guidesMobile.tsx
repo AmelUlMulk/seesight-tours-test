@@ -59,13 +59,13 @@ const GuidesMobile = ({ guidesData }: IProps) => {
                   id="guide-bio"
                   className="xxsm:max-h-[270px] xsm:max-h-[298px] sm:max-h-[318px]  overflow-y-auto"
                 >
-                  <div className="relative w-[90px] xxsm:h-[100px]  sm:w-[170px] sm:h-[180px] float-left mr-8 mb-[16px] ">
+                  <div className="relative w-[130px]  h-[120px]  sm:w-[170px] sm:h-[180px] float-left mr-3 mb-[16px] ">
                     <Image
                       src={optimizeImageUrl(guide?.professional[0]?.url)}
                       width={200}
                       height={200}
                       alt={guide?.professional[0]?.alt}
-                      className=" ml-5 mt-5 border-[7px] xxsm:h-[130px] xsm:h-[150px] sm:h-[100%] border-[#FFFFFF] rounded-[5px] shadow-smallguideimageBox"
+                      className=" absolute top-0    border-[7px] xxsm:h-[130px] xsm:h-[150px] sm:h-[100%] border-[#FFFFFF] rounded-[5px] shadow-smallguideimageBox"
                     />
                   </div>
                   <div className="text-justify pr-3">
@@ -118,7 +118,7 @@ const GuidesMobile = ({ guidesData }: IProps) => {
                   <SwiperSlide key={guide?.id}>
                     <div
                       id="image-wrapper"
-                      className="xxsm:w-[50px] xxsm:h-[43px] xsm:w-[57px] xsm:h-[50px] sm:w-[55px] sm:h-[65px] relative overflow-hidden rounded-[5px]"
+                      className=" xxsm:h-[43px] xsm:w-[57px] xsm:h-[50px] sm:w-[55px] sm:h-[65px] relative overflow-hidden rounded-[5px]"
                     >
                       <Image
                         src={optimizeImageUrl(guide?.professional[0]?.url)}

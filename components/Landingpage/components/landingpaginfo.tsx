@@ -25,7 +25,7 @@ const landingpPageInfo = [
 interface StyleProps {
   isActive: boolean;
 }
-const ButtonStyle = styled.button<StyleProps>`
+export const ButtonStyle = styled.button<StyleProps>`
   transform: ${props => (props.isActive ? 'scale(1.4)' : 'scale(1)')};
   transition: transform 0.3s linear;
 `;
@@ -51,7 +51,7 @@ const LandingPageInfo = () => {
             width={833}
             height={637}
             alt="Hornblower Niagara Cruises"
-            className="object-cover rounded-lg"
+            className="object-cover rounded-lg h-full "
           />
         </div>
         {mediaQuery ? (

@@ -3,7 +3,9 @@ import FeaturedNavSection from './FeaturedNavSec';
 import { useLazyQuery, useQuery } from '@apollo/client';
 import DropdownIcon from '../../assets/svg/Vector 21.svg';
 import { CITIES_FILTER, CITY_FILTER_INTERFACE } from '../../api/cityfilter';
-import { FEATURED_EXPERIENCES_INTERFACE } from '../../api/featuredexperiences';
+import FEATUREDEXPERIENCES, {
+  FEATURED_EXPERIENCES_INTERFACE
+} from '../../api/featuredexperiences';
 import { HOMEPAGEINTERFACE } from '../../api/homePage';
 import TourCard from '../Tour/tourCard';
 import { PAGE_OPTIONS } from '../Trust/Trustbar';
@@ -38,7 +40,14 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
   const [featuredExperienceData, setFeaturedExperienceData] = useState<
     FEATURED_EXPERIENCES_INTERFACE | HOMEPAGEINTERFACE | any
   >([]);
+
   //FETCHING QUERIES
+
+  //fetch day & multiday
+  const [fetchTourType, { data: tourData, loading: tourFilterLoading, error }] =
+    useLazyQuery<FEATURED_EXPERIENCES_INTERFACE>(FEATUREDEXPERIENCES);
+
+  //fetch by city
   const [
     cityFilteredTours,
     {
@@ -49,10 +58,36 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
   ] = useLazyQuery<CITY_FILTER_INTERFACE>(CITIES_FILTER);
 
   //USEFFECTS()
+
+  //useffect-1
   useEffect(() => {
     filteredCity && setFeaturedExperienceData(filteredCity);
   }, [filteredCity]);
 
+  //useffect-2
+  useEffect(() => {
+    if (activeNav !== 'allThings') {
+      try {
+        fetchTourType({
+          variables: {
+            dayTours: true,
+
+            multiday: true,
+            airportTransfers: false
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, [activeNav]);
+
+  //useffect-3
+  useEffect(() => {
+    setFeaturedExperienceData(tourData?.homePage);
+  }, [tourData]);
+
+  //useffect-4
   useEffect(() => {
     const finalNavArray: Array<Record<string, any>> = [];
     let flag = true;
@@ -62,7 +97,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
 
     if (city === 'All Cities') {
       setNavArray(arr);
-      setFeaturedExperienceData(featuredExp);
+      setFeaturedExperienceData(tourData?.homePage);
     } else {
       setNavArray(finalNavArray);
       finalNavArray?.forEach(item => {
@@ -74,8 +109,9 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
         setActiveNav('allThings');
       }
     }
-  }, [featuredExperienceData, city, featuredExp, activeNav]);
+  }, [city, activeNav]);
 
+  //usefffect-5
   useEffect(() => {
     cityFilteredTours({
       variables: {
@@ -85,6 +121,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
       }
     });
   }, [city, cityFilteredTours]);
+
   //FUNCTIONS
   const Drop_Down_options = () => {
     const options: Array<Record<string, unknown>> = [];
@@ -108,16 +145,21 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
   };
 
   const displayProduct = () => {
-    const filteredProduct =
-      filteredCity && featuredExperienceData
-        ? featuredExperienceData[activeNav]
-        : city === 'All Cities'
-        ? featuredExp[activeNav]
-        : [];
+    const filteredProduct = featuredExperienceData
+      ? featuredExperienceData[activeNav]
+      : city === 'All Cities'
+      ? featuredExp[activeNav]
+      : [];
+    console.log('filterProduct:', filteredProduct);
+    console.log('filterCity:', filteredCity);
+
     if (city !== 'All Cities' && cityFilterLoading) {
-      return <h3>Loading....</h3>;
+      return <h3>Loading...</h3>;
     }
-    if (filteredProduct && filteredProduct.length === 0) {
+    if (tourFilterLoading) {
+      return <h3>Loading...</h3>;
+    }
+    if (filteredProduct && filteredProduct?.length === 0) {
       return <h3>{`Tours coming to ${city} soon`}</h3>;
     }
     // prevent null & duplicate items
@@ -134,7 +176,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
         }
       }, []);
     return uniquefilteredProduct
-      ?.slice(0, showAll ? filteredProduct.length : 6)
+      ?.slice(0, showAll ? filteredProduct?.length : 6)
       .map((product: Record<string, any>, index: number) => {
         return (
           <TourCard
@@ -153,8 +195,8 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
     let selectedNav = '';
     const selectNum = filteredCity
       ? //@ts-ignore
-        filteredCity[activeNav].length
-      : featuredExp[activeNav].length;
+        filteredCity[activeNav]?.length
+      : featuredExp[activeNav]?.length;
     if (activeNav === 'allThings') {
       selectedNav = 'All Things To Do';
     }
@@ -197,6 +239,7 @@ const FeaturedExperiences = ({ featuredExp, citydropdown }: IProps) => {
       );
     }
   };
+
   return (
     <section id="feature_experiences">
       <header
